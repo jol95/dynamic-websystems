@@ -23,6 +23,11 @@ kittySchema.methods.speak = function () {
     console.log(greeting);
 }
 
+silence.save(function (err, fluffy) {
+    if (err) return console.error(err);
+    silence.speak();
+});
+
 //const Kitten = mongoose.model('Kitten', kittySchema); // Error cant duplicate schemas.
 //const fluffy = new Kitten({ name: 'fluffy' });
 
