@@ -1,4 +1,4 @@
-    class normaldist{
+    class Normaldist{
         //Credit: https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
         nmdist(min, max, skew) {
             let u = 0, v = 0;
@@ -11,9 +11,8 @@
             num = Math.pow(num, skew); // Skew
             num *= max - min; // Stretch to fill range
             num += min; // offset to min
-            console.log("\n")
-            console.log("num = " + num);
+            console.log("\n" + "num = " + num);
             return num;
         }
     }
-    module.exports = new normaldist();
+    module.exports = new Normaldist();
