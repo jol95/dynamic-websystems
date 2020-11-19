@@ -23,7 +23,7 @@ class Distribute{
         this.distMaxHour = this.wDay + this.wDay/2; //TODO: better function
         this.wHour = normdist.nmdist(this.distMinHour,this.distMaxHour,this.windDistScew);
         console.log("^^ wHour ^^");
-        return this.windDistMax; //for use in prodAVG
+        //return this.windDistMax; //for use in prodAVG
     }
 
     consAvg(){
@@ -34,8 +34,9 @@ class Distribute{
 }
 module.exports = new Distribute();
 
-//yolo = new Distribute();
-//yolo.windDayAvg();
-//yolo.windHourAvg();
-//yolo.consAvg();
-
+/*
+yolo = new Distribute();
+yolo.windDayAvg();
+yolo.windHourAvg();
+yolo.consAvg();
+*/
