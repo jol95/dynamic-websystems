@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mydb', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/27017', {useNewUrlParser: true});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -23,7 +23,7 @@ kittySchema.methods.speak = function () {
     console.log(greeting);
 }
 
-const Kitten = mongoose.model('Kitten', kittySchema);
+const Kitten = mongoose.model('Kitten', kittySchema); // Error cant duplicate schemas.
 const fluffy = new Kitten({ name: 'fluffy' });
 
  /* Functions added to the methods property of a 
