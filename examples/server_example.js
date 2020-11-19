@@ -23,7 +23,7 @@ kittySchema.methods.speak = function () {
     console.log(greeting);
 }
 
-silence.save(function (err, fluffy) {
+silence.save(function (err, silence) {
     if (err) return console.error(err);
     silence.speak();
 });
