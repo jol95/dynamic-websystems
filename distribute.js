@@ -2,8 +2,15 @@
 class distribute{
     wDay;
     wHour;
+    cons;
     constructor(){
+        this.windDistMin = 0;
+        this.windDistMax = 10;
+        this.windDistScew = 1;
 
+        this.consDistMin = 20;
+        this.consDistMax = 100;
+        this.consDistScew = 1;
     }
     //Credit: https://stackoverflow.com/questions/25582882/javascript-math-random-normal-distribution-gaussian-bell-curve
     nmdist(min, max, skew) {
@@ -17,20 +24,20 @@ class distribute{
         num = Math.pow(num, skew); // Skew
         num *= max - min; // Stretch to fill range
         num += min; // offset to min
-
-        console.log(num);
         return num;
     }
 
-    windDay(){
-        this.wDay = nmdist(1,10,1);
+    windDayAvg(){
+        this.wDay = nmdist(this.windDistMin,this.windDistMax,this.windDistScew);
     }
 
-    windHour(){
-        this.wHour = nmdist(1,10,1);
+    windHourAvg(){
+        this.distMinHour = this.wDay - this.wDay/4; //TODO: better function
+        this.distMaxHour = this.wDay + this.wDay/4; //TODO: better function
+        this.wHour = nmdist(this.distMinHour,this.distMaxHour,this.windDistScew);
     }
 
-    run(){
-
+    consAvg(){
+        this.cons = nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
     }
 }
