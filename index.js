@@ -14,7 +14,7 @@ db.once('open', function() {
 });
 
 // Welcome message
-app.get('/', (req, res) => res.send('Welcome to Express'));
+app.get('/', (req, res) => res.send('Welcome to out server'));
 
 let apiRoutes = require("./routes");
 
