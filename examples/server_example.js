@@ -23,38 +23,32 @@ kittySchema.methods.speak = function () {
     console.log(greeting);
 }
 
-silence.save(function (err, silence) {
-    if (err) return console.error(err);
-    silence.speak();
-});
-
-//const Kitten = mongoose.model('Kitten', kittySchema); // Error cant duplicate schemas.
-//const fluffy = new Kitten({ name: 'fluffy' });
+const fluffy = new Kitten({ name: 'fluffy' });
 
  /* Functions added to the methods property of a 
  schema get compiled into the Model prototype and 
  exposed on each document instance: */ 
-//fluffy.speak(); // "Meow name is fluffy"
+fluffy.speak(); // "Meow name is fluffy"
 
 /* We have talking kittens! 
 But we still haven't saved anything to MongoDB. 
 Each document can be saved to the database by calling its save method. 
 The first argument to the callback will be an error if any occurred. */
-//fluffy.save(function (err, fluffy) {
-    //if (err) return console.error(err);
-    //fluffy.speak();
-//});
+fluffy.save(function (err, fluffy) {
+    if (err) return console.error(err);
+    fluffy.speak();
+});
 
 /* Say time goes by and we want 
 to display all the kittens we've seen. 
 We can access all of the kitten documents 
 through our Kitten model. */
-// Kitten.find(function (err, kittens) {
-//   if (err) return console.error(err);
-//   console.log(kittens);
-// })
+Kitten.find(function (err, kittens) {
+    if (err) return console.error(err);
+    console.log(kittens);
+})
 
 /* This performs a search for all documents 
 with a name property that begins with "fluff" and 
 returns the result as an array of kittens to the callback. */
-// Kitten.find({ name: /^fluff/ }, callback);
+Kitten.find({ name: /^fluff/ }, callback);
