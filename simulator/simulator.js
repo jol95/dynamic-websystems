@@ -14,13 +14,13 @@ var simulatorController = require('./api/simulatorController.js')
 // Sim routes
 
 simulator.route('/api')
-	.get(simController.index)
-    .post(simController.add);
+	.get(simulatorController.index)
+    .post(simulatorController.add);
 
 simulator.route('/api/:sim_id')
-    .get(simController.view)
-    .patch(simController.update)
-    .put(simController.update)
-    .delete(simController.delete);
+    .get(simulatorController.view)
+    .patch(simulatorController.update)
+    .put(simulatorController.update)
+    .delete(simulatorController.delete);
 
 module.exports = simulator;
