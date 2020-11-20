@@ -14,7 +14,10 @@ var simulatorSchema = new mongoose.Schema({
     },
     price: {
         type: Number
-    } 
+    },
+    date: {
+        type: Date.now
+    }
 });
 
 // Export simulator model

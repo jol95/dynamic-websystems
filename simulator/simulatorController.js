@@ -46,7 +46,7 @@ exports.view = function (req, res) {
 };
 // Update Simmodel
 exports.update = function (req, res) {
-    Sim.findById(req.params.sim_id, function (err, bio) {
+    Sim.findById(req.params.sim_id, function (err, sim) {
         if (err)
             res.send(err);
         sim.production = req.body.production? req.body.production: sim.production;
@@ -64,7 +64,7 @@ exports.update = function (req, res) {
         });
     });
 };
-// Delete Bio
+
 exports.delete = function (req, res) {
     Sim.deleteOne({
         _id: req.params.sim_id
