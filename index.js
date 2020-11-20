@@ -1,23 +1,32 @@
-var port = process.env.PORT || 8081;
+//index.js
+let port = process.env.PORT || 8081;
 
-const express = require('express');
+let express = require('express');
 var app = express();
 
-const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mydb', {useNewUrlParser: true, useUnifiedTopology: true});
+/* Bodyparser */
+let bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+     extended: true
+ }));
+ app.use(bodyParser.json());
 
-const db = mongoose.connection;
+/* MongoDB */
+let mongoose = require('mongoose');
+const dbPath = 'mongodb://localhost/mydb';
+const options = {useNewUrlParser: true, useUnifiedTopology: true}
+
+const db = mongoose.connect(dbPath, options);
+
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-	 //  we're connected!
+     console.log('MongoDB connected!');
 });
 
 // Welcome message
-app.get('/', (req, res) => res.send('Welcome to out server'));
+app.get('/', (req, res) => res.send('Welcome to our server'));
 
-/* routes.js */
-
-var apiRoutes = require("./routes");
+let apiRoutes = require("./routes");
 app.use('/api', apiRoutes);
 
 // Launch app to the specified port

@@ -9,4 +9,18 @@ router.get('/', function(req, res) {
 		        });
 });
 
+var simController = require('./simulator/simulatorController.js')
+
+// Sim routes
+
+router.route('/sim')
+	.get(simController.index)
+    .post(simController.add);
+
+router.route('/sim/:sim_id')
+    .get(simController.view)
+    .patch(simController.update)
+    .put(simController.update)
+    .delete(simController.update);
+
 module.exports = router;

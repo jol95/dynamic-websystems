@@ -18,6 +18,11 @@ kittySchema.methods.speak = function () {
   console.log(greeting);
 }
 
+Kitten.find(function (err, kittens) {
+  if (err) return console.error(err);
+  console.log(kittens);
+})
+
 const Kitten = mongoose.model('Kitten', kittySchema);
 const silence = new Kitten({ name: 'Silence' });
 
@@ -38,15 +43,6 @@ fluffy.save(function (err, fluffy) {
     if (err) return console.error(err);
     fluffy.speak();
 });
-
-/* Say time goes by and we want 
-to display all the kittens we've seen. 
-We can access all of the kitten documents 
-through our Kitten model. */
-Kitten.find(function (err, kittens) {
-    if (err) return console.error(err);
-    console.log(kittens);
-})
 
 /* This performs a search for all documents 
 with a name property that begins with "fluff" and 
