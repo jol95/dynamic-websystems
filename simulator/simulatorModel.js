@@ -16,7 +16,7 @@ var simulatorSchema = new mongoose.Schema({
         type: Number
     },
     date: {
-        type: Date.now
+        createdAt: {type: Date, default: Date.now}
     }
 });
 
