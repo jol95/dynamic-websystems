@@ -9,15 +9,15 @@ simulator.get('/', function(req, res) {
 		        });
 });
 
-var simulatorController = require('./api/simulatorController.js')
+var simulatorController = require('./simulator/simulatorController.js')
 
 // Sim routes
 
-simulator.route('/api')
+simulator.route('/simulator')
 	.get(simulatorController.index)
     .post(simulatorController.add);
 
-simulator.route('/api/:sim_id')
+simulator.route('/simulator/:sim_id')
     .get(simulatorController.view)
     .patch(simulatorController.update)
     .put(simulatorController.update)
