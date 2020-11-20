@@ -21,6 +21,6 @@ router.route('/sim/:sim_id')
     .get(simController.view)
     .patch(simController.update)
     .put(simController.update)
-    .delete(simController.update);
+    .delete(simController.delete);
 
 module.exports = router;
