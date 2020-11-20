@@ -11,7 +11,7 @@ exports.index = function (req, res) {
             });
         res.json({
             status: "success",
-            message: "Got Sim. Successfully!",
+            message: "Got Data Successfully!",
             data: sim       
         });
     });
@@ -28,7 +28,7 @@ exports.add = function (req, res) {
         if (err)
             res.json(err);
 res.json({
-            message: "New Sim. Added!",
+            message: "Data Added!",
             data: sim
         });
     });
@@ -39,7 +39,7 @@ exports.view = function (req, res) {
         if (err)
             res.send(err);
         res.json({
-            message: 'Bio Details',
+            message: 'Data Details',
             data: sim
         });
     });
@@ -58,7 +58,7 @@ exports.update = function (req, res) {
             if (err)
                 res.json(err)
             res.json({
-                message: "Bio Updated Successfully",
+                message: "Data Updated Successfully",
                 data: sim
             });
         });
@@ -73,7 +73,7 @@ exports.delete = function (req, res) {
             res.send(err)
         res.json({
             status: "success",
-            message: 'Siminf. Deleted'
+            message: 'Data deleted'
         })
     })
 }

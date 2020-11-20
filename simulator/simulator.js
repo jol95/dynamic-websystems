@@ -1,26 +1,26 @@
-// router.js
+// Simulator.js
 
-let router = require('express').Router();
+let simulator = require('express').Router();
 
-router.get('/', function(req, res) {
+simulator.get('/', function(req, res) {
 	    res.json({
 		            status: 'API Works',
 		            message: 'Welcome to FirstRest API'
 		        });
 });
 
-var simController = require('./simulator/simulatorController.js')
+var simulatorController = require('./api/simulatorController.js')
 
 // Sim routes
 
-router.route('/sim')
+simulator.route('/api')
 	.get(simController.index)
     .post(simController.add);
 
-router.route('/sim/:sim_id')
+simulator.route('/api/:sim_id')
     .get(simController.view)
     .patch(simController.update)
     .put(simController.update)
     .delete(simController.delete);
 
-module.exports = router;
+module.exports = simulator;

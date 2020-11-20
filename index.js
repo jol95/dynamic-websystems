@@ -27,8 +27,8 @@ db.then(() => {
 // Welcome message
 app.get('/', (req, res) => res.send('Welcome to our server'));
 
-let apiRoutes = require("./routes");
-app.use('/api', apiRoutes);
+let simulator = require("./simulator/simulator");
+app.use('/simulator', simulator);
 
 // Launch app to the specified port
 app.listen(port, function() {
