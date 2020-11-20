@@ -18,7 +18,7 @@ const options = {useNewUrlParser: true, useUnifiedTopology: true}
 
 const db = mongoose.connect(dbPath, options);
 
-mongo.then(() => {
+db.then(() => {
      console.log('MongoDB connected');
  }, error => {
      console.log(error, 'error');
