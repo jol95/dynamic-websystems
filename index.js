@@ -18,10 +18,11 @@ const options = {useNewUrlParser: true, useUnifiedTopology: true}
 
 const db = mongoose.connect(dbPath, options);
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-     console.log('MongoDB connected!');
-});
+mongo.then(() => {
+     console.log('MongoDB connected');
+ }, error => {
+     console.log(error, 'error');
+ })
 
 // Welcome message
 app.get('/', (req, res) => res.send('Welcome to our server'));
