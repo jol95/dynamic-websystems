@@ -1,15 +1,10 @@
 //index.js
-let port = process.env.PORT || 8081;
+const port = process.env.PORT || 8081;
 
-let express = require('express');
+const express = require('express');
 var app = express();
 
-/* Bodyparser */
-let bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({
-     extended: true
- }));
- app.use(bodyParser.json());
+ app.use(app.json());
 
 /* MongoDB */
 let mongoose = require('mongoose');
