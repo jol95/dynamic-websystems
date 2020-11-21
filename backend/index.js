@@ -4,7 +4,7 @@ const port = process.env.PORT || 8081;
 const express = require('express');
 var app = express();
 
- app.use(app.json());
+ app.use(express.json());
 
 /* MongoDB */
 let mongoose = require('mongoose');
