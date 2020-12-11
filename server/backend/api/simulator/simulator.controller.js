@@ -1,5 +1,5 @@
 //Import Bio Model
-Sim = require('./simulatorModel.js');
+Sim = require('./simulator.model.js');
 
 //For index
 exports.index = function (req, res) {
