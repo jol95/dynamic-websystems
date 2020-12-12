@@ -20,6 +20,15 @@ const userSchema = new mongoose.Schema({
     lastname: {
         type: Number,
     },
+    houseid: {
+        type: Number,
+        required: true,
+        unique: true
+    },
+    date: {
+        type: Date,
+        default: Date.now
+    },
 }, {
     timestamps: true,
 });
