@@ -33,7 +33,7 @@ router.route('/register').post((req, res) => {
         houseid
       });
 
-    newUser.save()
+    newUser.insert()
 
     const currentwind = 0 
     const currentproduction = 0  
