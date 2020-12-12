@@ -14,7 +14,7 @@ app.use(express.json());
 
 /* ----------MongoDB------------*/
 let dbPath = 'mongodb://localhost/mydb';
-let options = {useNewUrlParser: true, useUnifiedTopology: true}
+let options = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
 
 const db = mongoose.connect(dbPath, options);
 
@@ -29,6 +29,9 @@ app.get('/', (req, res) => res.send('Welcome to our server'));
 
 const simulator = require("./api/simulator/simulator.js");
 app.use('/simulator', simulator);
+
+const user = require("./api/user/user.js");
+app.use('/user', user);
 
 // Launch app, always last!!!
 app.listen(port, function() {

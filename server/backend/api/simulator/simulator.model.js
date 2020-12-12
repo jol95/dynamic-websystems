@@ -17,7 +17,6 @@ const simulatorSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-// Export simulator model
-var Sim  = module.exports = mongoose.model('Sim', simulatorSchema);
+const Simulator  = module.exports = mongoose.model('Simulator', simulatorSchema);
 
-module.exports = Sim;
+module.exports = Simulator;
