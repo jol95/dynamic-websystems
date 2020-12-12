@@ -1,6 +1,6 @@
 const simulator = require('express').Router();
 
-var simulatorController = require('./simulator.controller.js')
+const simulatorController = require('./simulator.controller.js')
 
 simulator.route('/')
 	.get(simulatorController.index)
