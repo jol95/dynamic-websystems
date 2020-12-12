@@ -51,13 +51,16 @@ router.route('/register').post((req, res) => {
 });
 
 router.route('/:houseid').get((req, res) => {
-    Prosumer.find(req.params.houseid, function (err, pros) {
-        if (err)
-            res.send(err);
-        res.json({
-            message: 'Data Details',
-            data: pros
-        });
+    Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
+        if (err){
+            console.log(err);
+        }
+        else{
+            res.json({
+                message: 'Data Details',
+                data: house
+            });
+        }
     });
 });
 
