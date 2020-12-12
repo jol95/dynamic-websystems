@@ -15,10 +15,10 @@ const userSchema = new mongoose.Schema({
         minlength: 3
     },
     firstname: {
-        type: Number,
+        type: String,
     },
     lastname: {
-        type: Number,
+        type: String,
     },
     houseid: {
         type: Number,
