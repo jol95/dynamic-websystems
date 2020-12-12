@@ -7,7 +7,7 @@ router.route('/').get((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/').post((req, res) => {
     const production = Number(req.body.production);
     const consumption = Number(req.body.consumption);
     const wind = Number(req.body.wind);
