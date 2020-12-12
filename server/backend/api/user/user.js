@@ -51,7 +51,7 @@ router.route('/register').post((req, res) => {
 });
 
 router.route('/:houseid').get((req, res) => {
-    Prosumer.findOne(req.params.houseid, function (err, pros) {
+    Prosumer.find(req.params.houseid, function (err, pros) {
         if (err)
             res.send(err);
         res.json({
