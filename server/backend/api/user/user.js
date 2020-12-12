@@ -50,7 +50,7 @@ router.route('/register').post((req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:houseid').get((req, res) => {
+router.route('/:houseid').view((req, res) => {
     Prosumer.findById(req.params.houseid, function (err, pros) {
         if (err)
             res.send(err);
