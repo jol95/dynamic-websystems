@@ -34,8 +34,6 @@ router.route('/register').post((req, res) => {
       });
 
     newUser.save()
-      .then(() => res.json('User added!'))
-      .catch(err => res.status(400).json('Error: ' + err));
 
     const currentwind = 0 
     const currentproduction = 0  
@@ -53,7 +51,7 @@ router.route('/register').post((req, res) => {
     });
 
     newProsumer.save()
-        .then(() => res.json('Prosumer added!'))
+        .then(() => res.json('Userr and prosumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
