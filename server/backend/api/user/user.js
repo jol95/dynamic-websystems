@@ -4,17 +4,9 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 router.route('/').get((req, res) => {
-    const dbpros = Prosumer.find();
-    const dbuse = User.find();
-
-    console.log(dbpros)
-    console.log(dbuse)
-
     User.find()
         .then(users => res.json(users))
         .catch(err => res.status(400).json('Error: ' + err));
-
-    
 });
 
 router.route('/register').post((req, res) => {
@@ -24,13 +16,15 @@ router.route('/register').post((req, res) => {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    const address = req.body.address;
 
     const newUser = new User({
         username,
         password,
         firstname,  
         lastname,
-        houseid
+        houseid,
+        address
       });
 
     newUser.save()
@@ -43,6 +37,7 @@ router.route('/register').post((req, res) => {
 
     const newProsumer = new Prosumer({
         houseid,
+        address,
         currentwind,
         currentproduction,
         netproduction,
@@ -51,8 +46,20 @@ router.route('/register').post((req, res) => {
     });
 
     newProsumer.save()
-        .then(() => res.json('Userr and prosumer added!'))
+        .then(() => res.json('User and prosumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
+
+router.route('/:houseid').get((req, res) => {
+    Prosumer.findById(req.params.houseid, function (err, pros) {
+        if (err)
+            res.send(err);
+        res.json({
+            message: 'Data Details',
+            data: pros
+        });
+    });
+});
+
 
 module.exports = router;

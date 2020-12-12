@@ -1,7 +1,12 @@
 var mongoose = require('mongoose');
 
-const prosumerSchema = new mongoose.Schema({   
+const prosumerSchema = new mongoose.Schema({
     houseid: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    address: {
         type: String,
         required: true,
         unique: true
