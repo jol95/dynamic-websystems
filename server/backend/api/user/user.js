@@ -33,7 +33,9 @@ router.route('/register').post((req, res) => {
         houseid
       });
 
-    newUser.insert()
+    newUser.save()
+      .then(() => res.json('User added!'))
+      .catch(err => res.status(400).json('Error: ' + err));
 
     const currentwind = 0 
     const currentproduction = 0  
@@ -51,7 +53,7 @@ router.route('/register').post((req, res) => {
     });
 
     newProsumer.save()
-        .then(() => res.json('Prosumer and consumer added!'))
+        .then(() => res.json('Prosumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
