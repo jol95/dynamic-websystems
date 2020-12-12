@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     houseid: {
-        type: Number,
+        type: String,
         required: true,
         unique: true
     },

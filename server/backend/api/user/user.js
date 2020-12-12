@@ -12,17 +12,19 @@ router.route('/add').post((req, res) => {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
+    const houseid = new mongoose.mongo.ObjectId()
 
     const newUser = new User({
         username,
         password,
         firstname,  
         lastname,
+        houseid
       });
 
-  newUser.save()
-    .then(() => res.json('User added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
+    newUser.save()
+        .then(() => res.json('User added!'))
+        .catch(err => res.status(400).json('Error: ' + err));
 });
 
 module.exports = router;
