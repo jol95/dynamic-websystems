@@ -27,9 +27,6 @@ db.then(() => {
 /*-----------Routing----------- */
 app.get('/', (req, res) => res.send('Welcome to our server'));
 
-const simulator = require("./api/simulator/simulator.js");
-app.use('/simulator', simulator);
-
 const user = require("./api/user/user.js");
 app.use('/user', user);
 
