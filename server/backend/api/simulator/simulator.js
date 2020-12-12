@@ -10,10 +10,10 @@ router.route('/').get((req, res) => {
 router.route('/').post((req, res) => {
     var sim = new Simulator
 
-    sim.production = Number(req.body.production);
-    sim.consumption = Number(req.body.consumption);
-    sim.wind = Number(req.body.wind);
-    sim.price = Number(req.body.price);
+    sim.production = req.body.production;
+    sim.consumption = req.body.consumption;
+    sim.wind = req.body.wind;
+    sim.price = req.body.price;
   
     sim.save()
     .then(() => res.json('Simulator added!'))
@@ -35,13 +35,13 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Simulator.findById(req.params.id)
       .then(simulator => {
-        const production = Number(req.body.production);
-        const consumption = Number(req.body.consumption);
-        const wind = Number(req.body.wind);
-        const price = Number(req.body.price);
+        const production = req.body.production;
+        const consumption = req.body.consumption;
+        const wind = req.body.wind;
+        const price = req.body.price;
 
         simulator.save()
-          .then(() => res.json('Exercise updated!'))
+          .then(() => res.json('Simulator updated!'))
           .catch(err => res.status(400).json('Error: ' + err));
       })
       .catch(err => res.status(400).json('Error: ' + err));
