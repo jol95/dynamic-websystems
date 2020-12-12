@@ -4,8 +4,8 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 router.route('/').get((req, res) => {
-    const dbpros = await Prosumer.find();
-    const dbuse = await User.find();
+    const dbpros = Prosumer.find();
+    const dbuse = User.find();
 
     console.log(dbpros)
     console.log(dbuse)
