@@ -4,12 +4,17 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 router.route('/').get((req, res) => {
+    const dbpros = await Prosumer.find();
+    const dbuse = await User.find();
+
+    console.log(dbpros)
+    console.log(dbuse)
+
     User.find()
         .then(users => res.json(users))
         .catch(err => res.status(400).json('Error: ' + err));
-    Prosumer.find()
-        .then(users => res.json(users))
-        .catch(err => res.status(400).json('Error: ' + err));
+
+    
 });
 
 router.route('/register').post((req, res) => {
@@ -29,8 +34,6 @@ router.route('/register').post((req, res) => {
       });
 
     newUser.save()
-        .then(() => res.json('User added!'))
-        .catch(err => res.status(400).json('Error: ' + err));
 
     const currentwind = 0 
     const currentproduction = 0  
@@ -48,7 +51,7 @@ router.route('/register').post((req, res) => {
     });
 
     newProsumer.save()
-        .then(() => res.json('Prosumer added!'))
+        .then(() => res.json('Prosumer and consumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
