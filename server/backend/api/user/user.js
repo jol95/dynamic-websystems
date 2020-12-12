@@ -12,12 +12,11 @@ router.route('/add').post((req, res) => {
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const houseid = req.body.houseid
 
     const newUser = new User({
         username,
         password,
-        firstname,
+        firstname,  
         lastname,
         houseid
       });
