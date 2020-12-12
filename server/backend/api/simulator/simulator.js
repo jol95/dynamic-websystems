@@ -8,20 +8,14 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/').post((req, res) => {
-    const production = Number(req.body.production);
-    const consumption = Number(req.body.consumption);
-    const wind = Number(req.body.wind);
-    const price = Number(req.body.price);
+    var sim = new Simulator
 
+    sim.production = Number(req.body.production);
+    sim.consumption = Number(req.body.consumption);
+    sim.wind = Number(req.body.wind);
+    sim.price = Number(req.body.price);
   
-    const newSimulator = new Simulator({
-      production,
-      consumption,
-      wind,
-      price,
-    });
-  
-    newSimulator.save()
+    sim.save()
     .then(() => res.json('Simulator added!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
