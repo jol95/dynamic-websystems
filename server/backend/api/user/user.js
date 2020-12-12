@@ -1,19 +1,24 @@
 const router = require('express').Router();
 const mongoose = require('mongoose');
 let User = require('./user.model');
+let Prosumer = require('./prosumer.model');
 
 router.route('/').get((req, res) => {
-  User.find()
-    .then(users => res.json(users))
-    .catch(err => res.status(400).json('Error: ' + err));
+    User.find()
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json('Error: ' + err));
+    Prosumer.find()
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/register').post((req, res) => {
+    const houseid = new mongoose.mongo.ObjectId()
+
     const username = req.body.username;
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
-    const houseid = new mongoose.mongo.ObjectId()
 
     const newUser = new User({
         username,
@@ -25,6 +30,25 @@ router.route('/add').post((req, res) => {
 
     newUser.save()
         .then(() => res.json('User added!'))
+        .catch(err => res.status(400).json('Error: ' + err));
+
+    const currentwind = 0 
+    const currentproduction = 0  
+    const netproduction = 0  
+    const buffer = 0  
+    const price = 0 
+
+    const newProsumer = new Prosumer({
+        houseid,
+        currentwind,
+        currentproduction,
+        netproduction,
+        buffer,
+        price,
+    });
+
+    newProsumer.save()
+        .then(() => res.json('Prosumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 });
 
