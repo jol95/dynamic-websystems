@@ -9,7 +9,6 @@ const prosumerSchema = new mongoose.Schema({
     address: {
         type: String,
         required: true,
-        unique: true
     },
     currentwind: {
         type: Number,

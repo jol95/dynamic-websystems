@@ -1,68 +1,11 @@
 const router = require('express').Router();
-const mongoose = require('mongoose');
-let User = require('./user.model');
-let Prosumer = require('./prosumer.model');
 
-router.route('/').get((req, res) => {
-    User.find()
-        .then(users => res.json(users))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
+import {getUser, registerUser, getHouse} from './assets/user.controller'
 
-router.route('/register').post((req, res) => {
-    const houseid = new mongoose.mongo.ObjectId()
+router.get('/', getUser);
 
-    const username = req.body.username;
-    const password = req.body.password;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const address = req.body.address;
+router.post('/register', registerUser);
 
-    const newUser = new User({
-        username,
-        password,
-        firstname,  
-        lastname,
-        houseid,
-        address
-      });
-
-    newUser.save()
-
-    const currentwind = 0 
-    const currentproduction = 0  
-    const netproduction = 0  
-    const buffer = 0  
-    const price = 0 
-
-    const newProsumer = new Prosumer({
-        houseid,
-        address,
-        currentwind,
-        currentproduction,
-        netproduction,
-        buffer,
-        price,
-    });
-
-    newProsumer.save()
-        .then(() => res.json('User and prosumer added!'))
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-
-router.route('/:houseid').get((req, res) => {
-    Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
-        if (err){
-            console.log(err);
-        }
-        else{
-            res.json({
-                message: 'Data Details',
-                data: house
-            });
-        }
-    });
-});
-
+router.get('/:houseid', getHouse);
 
 module.exports = router;
