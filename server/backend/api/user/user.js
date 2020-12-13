@@ -1,6 +1,7 @@
-const router = require('express').Router();
+import express from 'express';
+const router = express.Router();
 
-import {getUser, registerUser, getHouse} from './assets/user.controller'
+import {getUser, registerUser, getHouse} from './assets/user.controller';
 
 router.get('/', getUser);
 
