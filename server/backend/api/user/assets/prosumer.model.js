@@ -10,10 +10,13 @@ const prosumerSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    currentwind: {
+    wind: {
         type: Number,
     },
-    currentproduction: {
+    production: {
+        type: Number,
+    },
+    consumption: {
         type: Number,
     },
     netproduction: {

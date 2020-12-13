@@ -30,6 +30,9 @@ app.get('/', (req, res) => res.send('Welcome to our server'));
 const user = require("./api/user/user.js");
 app.use('/user', user);
 
+const simulator = require("./api/simulator/simulator.js");
+app.use('/api', simulator);
+
 // Launch app, always last!!!
 app.listen(port, function() {
      console.log("Running FirstRest on Port "+ port)

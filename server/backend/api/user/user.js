@@ -3,9 +3,9 @@ const router = express.Router();
 
 var userController = require("./assets/user.controller.js")
 
-router.route('/')
+router.route('/') // TODO: Add login 
     .get(userController.getUser);
-
+    
 router.route('/register')
     .post(userController.registerUser);
 

@@ -25,12 +25,13 @@ exports.registerUser = function(req, res) {
         lastname,
         houseid,
         address
-      });
+    });
 
     newUser.save()
 
-    const currentwind = 0 
-    const currentproduction = 0  
+    const wind = 0 
+    const production = 0  
+    const consumption = 0 
     const netproduction = 0  
     const buffer = 0  
     const price = 0 
@@ -38,8 +39,9 @@ exports.registerUser = function(req, res) {
     const newProsumer = new Prosumer({
         houseid,
         address,
-        currentwind,
-        currentproduction,
+        wind,
+        production,
+        consumption,
         netproduction,
         buffer,
         price,
@@ -56,10 +58,7 @@ exports.getHouse = function(req, res) {
             console.log(err);
         }
         else{
-            res.json({
-                message: 'Data Details',
-                data: house
-            });
+            res.json(house);
         }
     });
 }
