@@ -63,7 +63,7 @@ exports.updateHouse = function(req, res) {
         house.buffer = req.body.buffer;
         house.price = req.body.price;
 
-        sim.save(function (err) {
+        house.save(function (err) {
             if (err)
                 res.json(err)
             res.json(house);
