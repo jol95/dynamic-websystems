@@ -60,7 +60,14 @@ exports.updateHouse = function(req, res) {
         house.buffer = req.body.buffer;
         house.price = req.body.price;
 
-        house.save();
+        house.save(function (err) {
+            if (err)
+                res.json(err)
+            res.json({
+                message: "Data Updated Successfully",
+                data: sim
+            });
+        });
 
     });
 };
