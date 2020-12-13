@@ -65,7 +65,7 @@ exports.updateHouse = function(req, res) {
                 res.json(err)
             res.json({
                 message: "Data Updated Successfully",
-                data: sim
+                data: house
             });
         });
 
