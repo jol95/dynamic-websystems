@@ -40,7 +40,7 @@ exports.addHouse = function(req, res) {
 };
 
 exports.getHouse = function(req, res) {
-    Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
+    Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
         if (err){
             console.log(err);
         }
@@ -51,7 +51,7 @@ exports.getHouse = function(req, res) {
 };
 
 exports.updateHouse = function(req, res) {
-    Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
+    Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
 
         house.wind = req.body.wind;
         house.production = req.body.production;
@@ -61,7 +61,7 @@ exports.updateHouse = function(req, res) {
         house.price = req.body.price;
 
         house.save();
-        
+
     });
 };
 

@@ -10,7 +10,7 @@ exports.getUser = function(req, res) {
 }
 
 exports.registerUser = function(req, res) {
-    const houseid = new mongoose.mongo.ObjectId()
+    const houseid = new mongoose.mongo.ObjectId();
 
     const username = req.body.username;
     const password = req.body.password;
@@ -53,7 +53,7 @@ exports.registerUser = function(req, res) {
 }
 
 exports.getHouse = function(req, res) {
-    Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
+    Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
         if (err){
             console.log(err);
         }
