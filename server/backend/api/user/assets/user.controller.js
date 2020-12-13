@@ -29,8 +29,9 @@ exports.registerUser = function(req, res) {
 
     newUser.save()
 
-    const currentwind = 0 
-    const currentproduction = 0  
+    const wind = 0 
+    const production = 0  
+    const consumption = 0 
     const netproduction = 0  
     const buffer = 0  
     const price = 0 
@@ -38,8 +39,9 @@ exports.registerUser = function(req, res) {
     const newProsumer = new Prosumer({
         houseid,
         address,
-        currentwind,
-        currentproduction,
+        wind,
+        production,
+        consumption,
         netproduction,
         buffer,
         price,
