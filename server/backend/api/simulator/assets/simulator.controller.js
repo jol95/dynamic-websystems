@@ -20,7 +20,7 @@ exports.addHouse = function(req, res) {
     const production = 0;
     const consumption = 0;
     const netproduction = 0;  
-    const buffer = 0;  
+    const buffer = 0.5;  
     const price = 0; 
 
     const newProsumer = new Prosumer({
@@ -31,6 +31,7 @@ exports.addHouse = function(req, res) {
         consumption,
         netproduction,
         buffer,
+        ratio,
         price,
     });
 
@@ -57,6 +58,7 @@ exports.updateHouse = function(req, res) {
         house.consumption = req.body.consumption? req.body.consumption: house.consumption;
         house.netproduction = req.body.netproduction? req.body.netproduction: house.netproduction;
         house.buffer = req.body.buffer? req.body.buffer: house.buffer;
+        house.ratio = req.body.ratio? req.body.ratio: house.ratio;
         house.price = req.body.price? req.body.price: house.price;
 
         house.save(function (err) {

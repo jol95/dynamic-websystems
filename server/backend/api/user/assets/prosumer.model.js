@@ -25,6 +25,9 @@ const prosumerSchema = new mongoose.Schema({
     buffer: {
         type: Number,
     },
+    ratio: {
+        type: Number,
+    },
     price: {
         type: Number,
     },

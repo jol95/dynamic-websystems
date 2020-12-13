@@ -34,6 +34,7 @@ exports.registerUser = function(req, res) {
     const consumption = 0 
     const netproduction = 0  
     const buffer = 0  
+    const ratio = 0.5
     const price = 0 
 
     const newProsumer = new Prosumer({
@@ -44,6 +45,7 @@ exports.registerUser = function(req, res) {
         consumption,
         netproduction,
         buffer,
+        ratio,
         price,
     });
 
