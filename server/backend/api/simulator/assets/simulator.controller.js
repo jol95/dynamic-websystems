@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Prosumer = require('../../user/assets/prosumer.model');
 
 exports.getHouses = function(req, res) {
-    Prosumer.get(function (err, house) {
+    Prosumer.find(function (err, house) {
         if (err){
             console.log(err);
         }
