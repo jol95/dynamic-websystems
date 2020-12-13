@@ -13,6 +13,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json());
 
+app.use(express.static(path.join(__dirname, '../public')))
+
 /* ----------MongoDB------------*/
 let dbPath = 'mongodb://localhost/mydb';
 let options = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
