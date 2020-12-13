@@ -3,13 +3,13 @@ const mongoose = require('mongoose');
 let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
-export const getUser = (req, res) => {
+exports.getUser = function(req, res) {
     User.find()
         .then(users => res.json(users))
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
-export const registerUser = (req, res) => {
+exports.registerUser = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId()
 
     const username = req.body.username;
@@ -50,7 +50,7 @@ export const registerUser = (req, res) => {
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
-export const getHouse = (req, res) => {
+exports.getHouse = function(req, res) {
     Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
         if (err){
             console.log(err);

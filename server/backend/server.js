@@ -1,3 +1,4 @@
+
 /*------------INIT------------*/
 const express = require('express');
 const cors = require('cors');
@@ -26,7 +27,7 @@ db.then(() => {
 /*-----------Routing----------- */
 app.get('/', (req, res) => res.send('Welcome to our server'));
 
-import user from './api/user/user.js'
+const user = require("./api/user/user.js");
 app.use('/user', user);
 
 // Launch app, always last!!!

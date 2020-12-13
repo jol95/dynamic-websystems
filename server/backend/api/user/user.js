@@ -1,12 +1,15 @@
-import express from 'express';
+const express = require('express');
 const router = express.Router();
 
-import {getUser, registerUser, getHouse} from './assets/user.controller';
+var userController = require("./assets/user.controller.js")
 
-router.get('/', getUser);
+router.route('/')
+    .get(userController.getUser);
 
-router.post('/register', registerUser);
+router.route('/register')
+    .post(userController.registerUser);
 
-router.get('/:houseid', getHouse);
+router.route('/:houseid')
+    .get(userController.getHouse);
 
 module.exports = router;
