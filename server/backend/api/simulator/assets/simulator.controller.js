@@ -52,10 +52,7 @@ exports.getHouse = function(req, res) {
 
 exports.updateHouse = function(req, res) {
     Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
-        if (err){
-            res.send(err);
-        }
-        
+
         house.wind = req.body.wind;
         house.production = req.body.production;
         house.consumption = req.body.consumption;
@@ -64,6 +61,7 @@ exports.updateHouse = function(req, res) {
         house.price = req.body.price;
 
         house.save();
+        
     });
 };
 
