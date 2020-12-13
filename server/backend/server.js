@@ -1,15 +1,19 @@
-//index.js
-const port = process.env.PORT || 8081;
-
+/*------------INIT------------*/
 const express = require('express');
-var app = express();
+const cors = require('cors');
+const mongoose = require('mongoose');
 
- app.use(express.json());
+require('dotenv').config();
 
-/* MongoDB */
-let mongoose = require('mongoose');
-const dbPath = 'mongodb://localhost/mydb';
-const options = {useNewUrlParser: true, useUnifiedTopology: true}
+const app = express();
+const port = process.env.PORT || 8082;
+
+app.use(cors());
+app.use(express.json());
+
+/* ----------MongoDB------------*/
+let dbPath = 'mongodb://localhost/mydb';
+let options = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
 
 const db = mongoose.connect(dbPath, options);
 
@@ -17,15 +21,18 @@ db.then(() => {
      console.log('MongoDB connected');
  }, error => {
      console.log(error, 'error');
- })
+})
 
-// Welcome message
+/*-----------Routing----------- */
 app.get('/', (req, res) => res.send('Welcome to our server'));
 
-let api = require("./api/api.js");
-app.use('/api', api);
+const user = require("./api/user/user.js");
+app.use('/user', user);
 
-// Launch app to the specified port
+const simulator = require("./api/simulator/simulator.js");
+app.use('/api', simulator);
+
+// Launch app, always last!!!
 app.listen(port, function() {
      console.log("Running FirstRest on Port "+ port)
 })
