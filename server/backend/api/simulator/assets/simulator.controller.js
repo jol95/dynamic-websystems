@@ -52,13 +52,12 @@ exports.getHouse = function(req, res) {
 
 exports.updateHouse = function(req, res) {
     Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
-
-        house.wind = req.body.wind;
-        house.production = req.body.production;
-        house.consumption = req.body.consumption;
-        house.netproduction = req.body.netproduction;
-        house.buffer = req.body.buffer;
-        house.price = req.body.price;
+        house.wind = req.body.wind? req.body.wind: house.wind;
+        house.production = req.body.production? req.body.production: house.production;
+        house.consumption = req.body.consumption? req.body.consumption: house.consumption;
+        house.netproduction = req.body.netproduction? req.body.netproduction: house.netproduction;
+        house.buffer = req.body.buffer? req.body.buffer: house.buffer;
+        house.price = req.body.price? req.body.price: house.price;
 
         house.save(function (err) {
             if (err)
