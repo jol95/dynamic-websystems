@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-let Prosumer = require('./prosumer.model');
+const Prosumer = require('../../user/assets/prosumer.model');
 
 exports.getHouses = function(req, res) {
     Prosumer.get(function (err, house) {
