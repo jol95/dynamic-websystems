@@ -51,6 +51,7 @@ exports.getHouse = function(req, res) {
 };
 
 exports.updateHouse = function(req, res) {
+    var house = new Prosumer();
     Prosumer.find({ houseid: req.params.houseid}, function (err, house) {
         if (err){
             res.send(err);
