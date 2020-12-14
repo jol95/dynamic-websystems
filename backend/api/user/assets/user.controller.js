@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
-exports.getUser = function(req, res) {
+exports.getUser = async function(req, res) {
     await User.findOne({ email: req.body.email, password: req.body.password}, 
     function (err, user) {
         if (err){
