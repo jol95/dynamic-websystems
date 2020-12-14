@@ -3,10 +3,9 @@ import "./Home.css";
 
 class Home extends React.Component{
 
-   /*constructor(){
-    super();
+  constructor(props){
+    super(props);
   }
-  */
 
   render(){
     return (

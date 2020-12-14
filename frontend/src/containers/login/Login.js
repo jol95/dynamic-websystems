@@ -4,22 +4,17 @@ import Button from "react-bootstrap/Button";
 import "./Login.css";
 
 class Login extends React.Component{
-
-  state={}
-
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       email:"",
-      setEmail:"",
       password:"",
-      setPassword:""
     }
   }
 
   validateForm = (e) => {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return email.length > 0 && password.length > 0;
   }
 
   handleSubmit = (e) => {
@@ -35,16 +30,16 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              value={this.state.email}
-              onChange={(e) => this.state.setEmail(e.target.value)}
+              value={email}
+              onChange={(e) => this.setState({email: e.target.value})}
             />
           </Form.Group>
           <Form.Group size="lg" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={this.state.password}
-              onChange={(e) =>this.state.setPassword(e.target.value)}
+              value={password}
+              onChange={(e) => this.setState({email: e.target.value})}
             />
           </Form.Group>
           <Button block size="lg" type="submit" disabled={!this.validateForm()}>

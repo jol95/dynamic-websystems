@@ -6,10 +6,9 @@ import NotFound from "./containers/default/NotFound";
 
 class Routes extends React.Component{
 
-   /*constructor(){
-    super();
+  constructor(props){
+    super(props);
   }
-  */
 
   render(){
     return (
