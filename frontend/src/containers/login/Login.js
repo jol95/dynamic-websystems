@@ -22,7 +22,7 @@ export default function Login() {
   
     console.log(body)
   
-    axios.get('/api/user', {params: body})
+    axios.get('/api/user', {body: body})
     .then(function (response) {
       console.log(response);
     })
