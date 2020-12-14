@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
 import "./Login.css";
 
 class Login extends React.Component{
@@ -10,6 +11,8 @@ class Login extends React.Component{
     this.state = {
       email:"",
       password:"",
+      newEmail:"",
+      newPassword:""
     }
   }
 
@@ -19,6 +22,16 @@ class Login extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault();
+
+    const user = {
+      name: this.state.username
+    };
+
+    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      })
   }
 
   render(){
@@ -30,14 +43,14 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              onChange={(e, newValue) => this.setState({email: newValue})}
+              onChange={(e, newValue) => this.setState({newEmail: newValue})}
             />
           </Form.Group>
           <Form.Group size="lg" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              onChange={(e, newValue) => this.setState({email: newValue})}
+              onChange={(e, newValue) => this.setState({newPassword: newValue})}
             />
           </Form.Group>
           <Button block size="lg" type="submit" disabled={!this.validateForm}>

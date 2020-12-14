@@ -4,7 +4,7 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 exports.getUser = function(req, res) {
-    User.findOne({ username: req.body.username, password: req.body.password}, 
+    User.findOne({ email: req.body.email, password: req.body.password}, 
     function (err, user) {
         if (err){
             console.log(err);
@@ -18,14 +18,14 @@ exports.getUser = function(req, res) {
 exports.registerUser = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
-    const username = req.body.username;
+    const email = req.body.email;
     const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const address = req.body.address;
 
     const newUser = new User({
-        username,
+        email,
         password,
         firstname,  
         lastname,
