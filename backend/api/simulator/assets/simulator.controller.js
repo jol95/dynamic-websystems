@@ -41,7 +41,7 @@ exports.addHouse = function(req, res) {
 };
 
 exports.getHouse = function(req, res) {
-    Prosumer.findOne({ houseid: req.param.houseid}, function (err, house) {
+    Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
         if (err){
             console.log(err);
         }
@@ -52,7 +52,7 @@ exports.getHouse = function(req, res) {
 };
 
 exports.updateHouse = function(req, res) {
-    Prosumer.findOne({ houseid: req.param.houseid}, function (err, house) {
+    Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
         house.wind = req.body.wind? req.body.wind: house.wind;
         house.production = req.body.production? req.body.production: house.production;
         house.consumption = req.body.consumption? req.body.consumption: house.consumption;
