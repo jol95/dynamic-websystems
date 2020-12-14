@@ -24,13 +24,13 @@ db.then(() => {
 })
 
 /*-----------Routing----------- */
-app.get('/', (req, res) => res.send('Welcome to our server'));
+app.get('/', (req, res) => res.send('Welcome to the api'));
 
 const user = require("./api/user/user.js");
-app.use('/user', user);
+app.use('/api/user', user);
 
 const simulator = require("./api/simulator/simulator.js");
-app.use('/api', simulator);
+app.use('/api/simulator', simulator);
 
 // Launch app, always last!!!
 app.listen(port, function() {

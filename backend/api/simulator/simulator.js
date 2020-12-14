@@ -3,11 +3,11 @@ const router = express.Router();
 
 var simulatorController = require("./assets/simulator.controller.js")
 
-router.route('/simulator') 
+router.route('/') 
     .get(simulatorController.getHouses)
     .post(simulatorController.addHouse);
     
-router.route('/simulator/:houseid')
+router.route('/:houseid')
     .get(simulatorController.getHouse)
     .patch(simulatorController.updateHouse)
     .put(simulatorController.updateHouse);

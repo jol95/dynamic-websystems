@@ -4,9 +4,16 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 exports.getUser = function(req, res) {
-    User.find()
-        .then(users => res.json(users))
-        .catch(err => res.status(400).json('Error: ' + err));
+    User.findOne({ username: req.params.username, password: req.params.password}, 
+    function (err, user) {
+
+        if (err){
+            console.log(err);
+        }
+        else{
+            res.json(user);
+        }
+    });
 }
 
 exports.registerUser = function(req, res) {
@@ -52,15 +59,4 @@ exports.registerUser = function(req, res) {
     newProsumer.save()
         .then(() => res.json('User and prosumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
-}
-
-exports.getHouse = function(req, res) {
-    Prosumer.findOne({ houseid: req.params.houseid}, function (err, house) {
-        if (err){
-            console.log(err);
-        }
-        else{
-            res.json(house);
-        }
-    });
 }
