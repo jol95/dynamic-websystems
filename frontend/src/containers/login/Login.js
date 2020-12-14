@@ -33,7 +33,7 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              value={this.state.email}
+              value={email}
               onChange={(e) => this.setEmail(e.target.value)}
             />
           </Form.Group>
@@ -41,7 +41,7 @@ class Login extends React.Component{
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={this.state.password}
+              value={password}
               onChange={(e) =>this.setPassword(e.target.value)}
             />
           </Form.Group>
