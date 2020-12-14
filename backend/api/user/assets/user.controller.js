@@ -11,6 +11,7 @@ exports.getUser = function(req, res) {
         }
         else{
             res.json(user);
+            console.log(req.body);
         }
     });
 }
