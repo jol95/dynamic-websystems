@@ -60,22 +60,3 @@ const useFormInput = initialValue => {
 }
  
 export default Login;
-
-async function handleSubmit(event) {
-  event.preventDefault();
-
-  const body = {
-    email: email,
-    password: password
-  };
-
-  console.log(body)
-
-  axios.get('/api/user', {body: body})
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
