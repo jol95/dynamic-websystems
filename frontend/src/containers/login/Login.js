@@ -16,8 +16,8 @@ export default function Login() {
     event.preventDefault();
 
     const body = {
-      email: this.state.email,
-      password: this.state.password
+      email: email,
+      password: password
     };
   
     console.log(body)
