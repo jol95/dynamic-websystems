@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Login.css";
 
-async class Login extends React.Component{
+class Login extends React.Component{
   constructor(props){
     super(props);
 
