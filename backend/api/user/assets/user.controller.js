@@ -11,7 +11,7 @@ exports.getUser = function(req, res) {
         }
         else{
             console.log("PENIS");
-            console.log(req);
+            console.log(req.body);
             res.json(user);
         }
     });
