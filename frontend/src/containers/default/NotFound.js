@@ -2,6 +2,11 @@ import React from "react";
 import "./NotFound.css";
 
 class NotFound extends React.Component{
+
+  constructor(){
+    super();
+  }
+
   render(){
     return (
       <div className="NotFound text-center">

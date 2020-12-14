@@ -5,19 +5,23 @@ import "./Login.css";
 
 class Login extends React.Component{
 
-  state={
-    email:"",
-    setEmail:"",
-    password:"",
-    setPassword:""
+  constructor(){
+    super();
+
+    this.state = {
+      email:"",
+      setEmail:"",
+      password:"",
+      setPassword:""
+    }
   }
 
-  validateForm() {
+  validateForm = (e) => {
     return email.length > 0 && password.length > 0;
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit = (e) => {
+    e.preventDefault();
   }
 
   render(){
@@ -29,7 +33,7 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              value={email}
+              value={this.state.email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -37,7 +41,7 @@ class Login extends React.Component{
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={password}
+              value={this.state.password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>

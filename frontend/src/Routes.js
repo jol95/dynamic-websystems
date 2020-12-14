@@ -6,7 +6,10 @@ import NotFound from "./containers/default/NotFound";
 
 class Routes extends React.Component{
 
-  
+  constructor(){
+    super();
+  }
+
   render(){
     return (
       <Switch>
@@ -24,5 +27,5 @@ class Routes extends React.Component{
   }
 }
 
-export default Routes
+export default Routes;
 
