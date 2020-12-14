@@ -24,15 +24,26 @@ class Login extends React.Component{
     e.preventDefault();
 
     const user = {
-      email: this.state.newEmail,
-      password: this.state.newPassword
+      email: this.state.password,
+      password: this.state.password
     };
 
     console.log(user);
-
-    axios.get("/api/user", user, { headers: { "Content-Type": "text/plain" } }).then(response => {
-        console.log(response);
-    });
+    router.get('/api/user',((request, response) => {
+      console.log("User details");
+      console.log("Data before sending is ")
+      console.log(user);
+      axios.get('http://localhost:8082/api/user')
+      .then((getResponse) => {
+        console.log("GET Response")
+        console.log(getResponse.user);
+        data = getResponse.user;
+        response.send(user);
+      })
+      .catch(function (error) {
+        console.log("Error while fetching user data");
+      });  
+    }))
   }
 
   render(){
@@ -44,14 +55,14 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              onChange={(e, newValue) => this.setState({newEmail: newValue})}
+              onChange={(e, newValue) => this.setState({password: newValue})}
             />
           </Form.Group>
           <Form.Group size="lg" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              onChange={(e, newValue) => this.setState({newPassword: newValue})}
+              onChange={(e, newValue) => this.setState({password: newValue})}
             />
           </Form.Group>
           <Button block size="lg" type="submit" disabled={!this.validateForm}>
