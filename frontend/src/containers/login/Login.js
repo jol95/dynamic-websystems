@@ -14,7 +14,7 @@ class Login extends React.Component{
   }
 
   validateForm = (e) => {
-    return email.length > 0 && password.length > 0;
+    return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
   handleSubmit = (e) => {
@@ -30,16 +30,14 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              value={email}
-              onChange={(e) => this.setState({email: e.target.value})}
+              onChange={(e, newValue) => this.setState({email: newValue})}
             />
           </Form.Group>
           <Form.Group size="lg" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={password}
-              onChange={(e) => this.setState({email: e.target.value})}
+              onChange={(e, newValue) => this.setState({email: newValue})}
             />
           </Form.Group>
           <Button block size="lg" type="submit" disabled={!this.validateForm()}>
