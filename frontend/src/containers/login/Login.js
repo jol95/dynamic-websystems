@@ -21,7 +21,7 @@ function Login(props) {
   
     console.log(body)
   
-    axios.get('/api/user', {body})
+    fetch('/api/user', {body})
     .then(function (response) {
       console.log(response);
     })
