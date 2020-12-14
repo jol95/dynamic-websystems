@@ -21,7 +21,7 @@ function Login(props) {
   
     console.log(body)
   
-    axios.post('/api/user', {params: {body}})
+    axios.get('/api/user', {params: {body}})
     .then(function (response) {
       console.log(response);
     })
