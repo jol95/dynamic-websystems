@@ -29,21 +29,10 @@ class Login extends React.Component{
     };
 
     console.log(user);
-    router.get('/api/user',((request, response) => {
-      console.log("User details");
-      console.log("Data before sending is ")
-      console.log(user);
-      axios.get('http://localhost:8082/api/user')
-      .then((getResponse) => {
-        console.log("GET Response")
-        console.log(getResponse.user);
-        data = getResponse.user;
-        response.send(user);
-      })
-      .catch(function (error) {
-        console.log("Error while fetching user data");
-      });  
-    }))
+
+    axios.get("/api/user", {body: user}, { headers: { "Content-Type": "text/plain" } }).then(response => {
+        console.log(response);
+    });
   }
 
   render(){
