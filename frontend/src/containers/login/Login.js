@@ -28,7 +28,7 @@ class Login extends React.Component{
       password: this.state.password
     };
 
-    console.log(user);
+    console.log(body);
 
     axios.get("/api/user", {body}, { headers: { "Content-Type": "text/plain" } }).then(response => {
         console.log(response);
