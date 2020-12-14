@@ -15,8 +15,8 @@ function Login(props) {
     //props.history.push('/dashboard');
 
     const body = {
-      email: email,
-      password: password
+      email: email.value,
+      password: password.value
     };
   
     console.log(body)
