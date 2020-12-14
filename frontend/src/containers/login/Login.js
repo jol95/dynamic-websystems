@@ -4,8 +4,6 @@ import Button from "react-bootstrap/Button";
 import "./Login.css";
 
 class Login extends React.Component{
-  state={}
-
   constructor(props){
     super(props);
 
@@ -42,7 +40,7 @@ class Login extends React.Component{
               onChange={(e, newValue) => this.setState({email: newValue})}
             />
           </Form.Group>
-          <Button block size="lg" type="submit" disabled={!this.validateForm()}>
+          <Button block size="lg" type="submit" disabled={!this.validateForm}>
             Login
           </Button>
         </Form>
