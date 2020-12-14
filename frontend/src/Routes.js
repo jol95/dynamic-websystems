@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/home/Home";
-import Login from "./containers/Login";
+import Login from "./containers/login/Login";
 import NotFound from "./containers/default/NotFound";
 
 export default function Routes() {
