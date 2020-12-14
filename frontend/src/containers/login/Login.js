@@ -28,7 +28,7 @@ class Login extends React.Component{
       password: this.state.password
     };
 
-    axios.get('/api/user', {params: body})
+    axios.get('/api/user', {body})
     .then(function (response) {
       console.log(response);
     })
