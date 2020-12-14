@@ -4,18 +4,24 @@ import Home from "./containers/home/Home";
 import Login from "./containers/login/Login";
 import NotFound from "./containers/default/NotFound";
 
-export default function Routes() {
-  return (
-    <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
-      <Route exact path="/login">
-        <Login />
-      </Route>
-      <Route>
-        <NotFound/>
-      </Route>
-    </Switch>
-  );
+class Routes extends React.Component{
+
+  render(){
+    return (
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route exact path="/login">
+          <Login />
+        </Route>
+        <Route>
+          <NotFound/>
+        </Route>
+      </Switch>
+    );
+  }
 }
+
+export default Routes
+
