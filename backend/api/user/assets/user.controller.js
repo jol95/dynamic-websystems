@@ -5,7 +5,7 @@ let Prosumer = require('./prosumer.model');
 
 exports.getUser = async function(req, res) {
     await User.findOne({ email: req.body.email, password: req.body.password}, 
-    function (err, user) {
+    async function (err, user) {
         if (err){
             console.log(err);
         }
