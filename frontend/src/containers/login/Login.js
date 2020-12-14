@@ -11,8 +11,18 @@ export default function Login() {
     return email.length > 0 && password.length > 0;
   }
 
-  function handleSubmit(event) {
+  /*
+      TODO: Add functionality for login. server query...
+  */
+  async function handleSubmit(event) {
     event.preventDefault();
+  
+    try {
+      await Auth.signIn(email, password);
+      alert("Logged in");
+    } catch (e) {
+      alert(e.message);
+    }
   }
 
   return (
