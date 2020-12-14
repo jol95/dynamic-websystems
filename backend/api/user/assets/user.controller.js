@@ -6,7 +6,6 @@ let Prosumer = require('./prosumer.model');
 exports.getUser = function(req, res) {
     User.findOne({ username: req.params.username, password: req.params.password}, 
     function (err, user) {
-
         if (err){
             console.log(err);
         }
