@@ -50,7 +50,6 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              value={newValue}
               onChange={(e, newValue) => this.setState({password: newValue})}
             />
           </Form.Group>
@@ -58,7 +57,6 @@ class Login extends React.Component{
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={newValue}
               onChange={(e, newValue) => this.setState({password: newValue})}
             />
           </Form.Group>
