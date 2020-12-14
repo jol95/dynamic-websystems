@@ -6,11 +6,11 @@ import NotFound from "./containers/default/NotFound";
 export default function Routes() {
   return (
     <Switch>
-      <Route>
-        <NotFound/>
-      </Route>
       <Route exact path="/">
         <Home />
+      </Route>
+      <Route>
+        <NotFound/>
       </Route>
     </Switch>
   );
