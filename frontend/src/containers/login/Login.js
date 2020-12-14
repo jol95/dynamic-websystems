@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Login.css";
 
-class Login extends React.Component{
+async class Login extends React.Component{
   constructor(props){
     super(props);
 
@@ -28,11 +28,15 @@ class Login extends React.Component{
       password: this.state.password
     };
 
-    console.log(body);
+    axios.get('/api/user', {body})
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-    const response = await axios.$get('/api/slider', body);
-
-    console.log(response);
+    
   }
 
   render(){
