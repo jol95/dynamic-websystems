@@ -4,7 +4,7 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 exports.getUser = function(req, res) {
-    User.find({ username: req.params.username}, 
+    User.findOne({ username: req.body.username, password: req.body.password}, 
     function (err, user) {
         if (err){
             console.log(err);
