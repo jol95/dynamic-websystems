@@ -24,10 +24,11 @@ class Login extends React.Component{
     e.preventDefault();
 
     const user = {
-      name: this.state.username
+      email: this.state.newEmail,
+      password: this.state.newPassword
     };
 
-    axios.post(`https://jsonplaceholder.typicode.com/users`, { user })
+    axios.get(`/api/user`, { user })
       .then(res => {
         console.log(res);
         console.log(res.data);
