@@ -3,10 +3,11 @@ import "./NotFound.css";
 
 class NotFound extends React.Component{
 
-  constructor(){
+  /*constructor(){
     super();
   }
-
+  */
+ 
   render(){
     return (
       <div className="NotFound text-center">

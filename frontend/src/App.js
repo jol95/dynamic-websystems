@@ -8,9 +8,10 @@ import "./App.css";
 
 class App extends React.Component{
 
-  constructor(){
+   /*constructor(){
     super();
   }
+  */
 
 
   render(){

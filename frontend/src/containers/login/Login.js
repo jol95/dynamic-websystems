@@ -33,16 +33,16 @@ class Login extends React.Component{
             <Form.Control
               autoFocus
               type="email"
-              value={this.email}
-              onChange={(e) => this.setEmail(e.target.value)}
+              value={this.state.email}
+              onChange={(e) => this.state.setEmail(e.target.value)}
             />
           </Form.Group>
           <Form.Group size="lg" controlId="password">
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={this.password}
-              onChange={(e) =>this.setPassword(e.target.value)}
+              value={this.state.password}
+              onChange={(e) =>this.state.setPassword(e.target.value)}
             />
           </Form.Group>
           <Button block size="lg" type="submit" disabled={!this.validateForm()}>
