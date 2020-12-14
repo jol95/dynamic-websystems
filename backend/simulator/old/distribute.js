@@ -1,4 +1,4 @@
-const normdist = require("./normaldist.js");
+const normdist = require("../normaldist.js");
 class Distribute{
     wDay;
     wHour;
