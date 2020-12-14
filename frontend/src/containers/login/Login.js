@@ -23,14 +23,14 @@ class Login extends React.Component{
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const user = {
+    const body = {
       email: this.state.password,
       password: this.state.password
     };
 
     console.log(user);
 
-    axios.get("/api/user", {body: user}, { headers: { "Content-Type": "text/plain" } }).then(response => {
+    axios.get("/api/user", {body}, { headers: { "Content-Type": "text/plain" } }).then(response => {
         console.log(response);
     });
   }
