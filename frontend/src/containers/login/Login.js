@@ -24,15 +24,15 @@ class Login extends React.Component{
     e.preventDefault();
 
     const body = {
-      email: this.state.password,
+      email: this.state.email,
       password: this.state.password
     };
 
     console.log(body);
 
-    axios.get("/api/user", {body}, { headers: { "Content-Type": "text/plain" } }).then(response => {
-        console.log(response);
-    });
+    const response = await axios.$get('/api/slider', body);
+
+    console.log(response);
   }
 
   render(){
