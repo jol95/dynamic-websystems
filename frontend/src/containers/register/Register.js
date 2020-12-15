@@ -3,7 +3,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Register.css";
-import { connect } from "http2";
 
 function Register(props) {
   const email = useFormInput('');
