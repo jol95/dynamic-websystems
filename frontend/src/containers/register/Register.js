@@ -16,16 +16,16 @@ function Register(props) {
   // handle button click of login form
   const handleLogin = () => {
     const data = {
-      'email': email.value,
-      'password': password.value,
-      'firstname': firstname.value,
-      'lastname': lastname.value, 
-      'address': address.value
+      'email': email,
+      'password': password,
+      'firstname': firstname,
+      'lastname': lastname, 
+      'address': address
     };
   
     console.log(data)
   
-    axios.post('/api/user/register', {data})
+    axios.post('/api/user/register', data)
     .then(function (response) {
       console.log(response);
     })
