@@ -15,8 +15,8 @@ function Register(props) {
  
   // handle button click of login form
   const handleLogin = () => {
-    const data = {email: email, password: password, firstname: firstname
-      ,lastname: lastname, address: address}
+    const data = {email: email.value, password: password.value, firstname: firstname.value
+      ,lastname: lastname.value, address: address.value}
 
     axios.post('/api/user/register', data)
       .then(function (response) {
