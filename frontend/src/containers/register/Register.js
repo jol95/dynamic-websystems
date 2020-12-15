@@ -16,11 +16,11 @@ function Register(props) {
   // handle button click of login form
   const handleLogin = () => {
     const data = {
-      email: email,
-      password: password,
-      firstname: firstname,
-      lastname: lastname, 
-      address: address
+      'email': email,
+      'password': password,
+      'firstname': firstname,
+      'lastname': lastname, 
+      'address': address
     };
   
     console.log(data)
