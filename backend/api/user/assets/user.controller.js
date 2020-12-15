@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 let User = require('./user.model');
-let Prosumer = require('./prosumer.model');
+let Household = require('./household.model');
 
 exports.getUser = async function(req, res) {
     console.log(req.body);
@@ -29,15 +29,18 @@ exports.registerUser = function(req, res) {
     const newUser = new User({
         email,
         password,
+        houseid,
         firstname,  
         lastname,
-        houseid,
         address
     });
 
     newUser.save()
 
     const wind = 0 
+    const consumption = 0 
+    const price = 0 
+    const isproducing = true
     const production = 0  
     const consumption = 0 
     const netproduction = 0  
@@ -45,19 +48,20 @@ exports.registerUser = function(req, res) {
     const ratio = 0.5
     const price = 0 
 
-    const newProsumer = new Prosumer({
+    const newHousehold = new Household({
         houseid,
         address,
         wind,
-        production,
         consumption,
+        price,
+        isproducing,
+        production,
         netproduction,
         buffer,
         ratio,
-        price,
     });
 
-    newProsumer.save()
+    newHousehold.save()
         .then(() => res.json('User and prosumer added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 }

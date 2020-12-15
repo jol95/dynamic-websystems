@@ -19,7 +19,7 @@ class App extends React.Component{
         </LinkContainer>
         <LinkContainer to="/households">
           <Navbar.Brand className="font-weight-bold text-muted">
-            Electricity Panel
+            Households
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle />

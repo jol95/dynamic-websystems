@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-const prosumerSchema = new mongoose.Schema({
+const householdSchema = new mongoose.Schema({
     houseid: {
         type: String,
         required: true,
@@ -13,10 +13,17 @@ const prosumerSchema = new mongoose.Schema({
     wind: {
         type: Number,
     },
-    production: {
+    consumption: {
         type: Number,
     },
-    consumption: {
+    price: {
+        type: Number,
+    },
+    isproducing: {
+        type: Boolean,
+        required: true,
+    },
+    production: {
         type: Number,
     },
     netproduction: {
@@ -28,13 +35,10 @@ const prosumerSchema = new mongoose.Schema({
     ratio: {
         type: Number,
     },
-    price: {
-        type: Number,
-    },
 }, {
     timestamps: true,
 });
 
-const Prosumer  = module.exports = mongoose.model('Prosumer', prosumerSchema);
+const Household = module.exports = mongoose.model('Household', householdSchema);
 
-module.exports = Prosumer;
+module.exports = Household;

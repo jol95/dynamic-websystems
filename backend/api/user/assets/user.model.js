@@ -14,16 +14,16 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 3
     },
+    houseid: {
+        type: String,
+        required: 'Correct house id',
+        unique: true
+    },
     firstname: {
         type: String,
     },
     lastname: {
         type: String,
-    },
-    houseid: {
-        type: String,
-        required: 'Correct house id',
-        unique: true
     },
     address: {
         type: String,

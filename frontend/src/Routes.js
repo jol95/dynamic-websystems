@@ -15,7 +15,7 @@ class Routes extends React.Component{
           <Home />
         </Route>
         <Route exact path="/households">
-          <Households />
+          <Households/>
         </Route>
         <Route exact path="/register">
           <Register />
