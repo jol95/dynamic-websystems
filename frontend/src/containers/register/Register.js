@@ -23,7 +23,7 @@ function Register(props) {
       address: address
     };
   
-    console.log(body)
+    console.log(data)
   
     axios.post('/api/user/register', {data})
     .then(function (response) {
