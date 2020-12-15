@@ -3,14 +3,14 @@ var mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({   
     email: {
         type: String,
-        required: true,
+        required: 'Enter your email',
         unique: true,
         trim: true,
         minlength: 3
     },
     password: {
         type: String,
-        required: true,
+        required: 'Enter your password',
         trim: true,
         minlength: 3
     },
@@ -22,12 +22,12 @@ const userSchema = new mongoose.Schema({
     },
     houseid: {
         type: String,
-        required: true,
+        required: 'Correct house id',
         unique: true
     },
     address: {
         type: String,
-        required: true
+        required: 'Enter correct address'
     },
     date: {
         type: Date,
