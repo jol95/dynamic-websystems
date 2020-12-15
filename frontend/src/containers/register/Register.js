@@ -25,7 +25,7 @@ function Register(props) {
   
     console.log(data)
   
-    axios.post('/api/user/register', {body: data})
+    axios.post('/api/user/register', {data})
     .then(function (response) {
       console.log(response);
     })
