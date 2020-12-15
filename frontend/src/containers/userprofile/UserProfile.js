@@ -1,19 +1,17 @@
-import React from 'react'
+/*import React from 'react'
 import "./UserProfile.css"
 
-/*function UserProfile(props){
+function UserProfile(props){
 
     return (
         <div className="Appprofile">
             <h1>Household overviews</h1>
             <h2>Show household info</h2>
-        {/* Fetch data from API */}
-/*        <div>   
+        <div>   
             <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
         </div>
-        <br />
-        {/* Display data from API */}   
-/*        <div className="profiles"> 
+        <br /> 
+        <div className="profiles"> 
             {userData.map((profiles) => {
                 return (
                     <div className="profile" key={index}>
@@ -29,3 +27,4 @@ import "./UserProfile.css"
         </div>
     );
 }
+*/
