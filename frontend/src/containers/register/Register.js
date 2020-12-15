@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Register.css";
+import { connect } from "http2";
 
 function Register(props) {
   const email = useFormInput('');
@@ -15,8 +16,11 @@ function Register(props) {
  
   // handle button click of login form
   const handleLogin = () => {
-    axios.post('/api/user/register', {params: {email: email, password: password, firstname: firstname
-    , lastname: lastname, address: address}})
+    console.log({email: email, password: password, firstname: firstname
+      , lastname: lastname, address: address})
+
+    axios.post('/api/user/register', {email: email, password: password, firstname: firstname
+    , lastname: lastname, address: address})
     .then(function (response) {
       console.log(response);
     })
