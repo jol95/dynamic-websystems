@@ -7,12 +7,12 @@
     cursor: pointer;
     background-color: rgb(54, 202, 165);
     border: none;
-    color: rgb(40, 133, 150);
+    color: rgb(125, 218, 255);
     transition: all 0.5s;
   }
   
   .fetch-button:hover {
-    background-color: rgb(40, 209, 209);
+    background-color: rgb(98, 0, 255);
   }
   
   .houses {
@@ -27,9 +27,9 @@
     padding: 20px;
     margin: 10px;
     width: 47%;
-    color: #333;
+    color: rgb(173, 173, 173);
     flex-basis: width;
-    background-color: rgb(165, 230, 230);
+    background-color: rgb(209, 209, 209);
   }
   
   .houses h3 {

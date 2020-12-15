@@ -28,9 +28,9 @@ function Households(props){
                 <div className="houses" key={index}>
                     <h3>House {index + 1}</h3>
                     <div className="details">
-                        <p>{houses.address}</p>
-                        <p>{houses.wind}</p>
-                        <p>{houses.production}</p>
+                        <p>Address:{houses.address}</p>
+                        <p>Wind:{houses.wind}</p>
+                        <p>Production:{houses.production}</p>
                     </div>
                  </div>
             );
