@@ -4,6 +4,7 @@ let User = require('./user.model');
 let Prosumer = require('./prosumer.model');
 
 exports.getUser = async function(req, res) {
+    console.log(req.body);
     await User.findOne({ email: req.body.email, password: req.body.password}, 
     async function (err, user) {
         if (err){
