@@ -11,30 +11,29 @@ function Households(props){
     }
   
     return (
-      <div className="App">
-        <header className="App-header">
+      <div className="Apphouse">
           <h1>Household overviews</h1>
           <h2>Show household info</h2>
-        </header>
         {/* Fetch data from API */}
-        <div className="user-container">   
+        <div>   
           <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
         </div>
+        <br />
         {/* Display data from API */}   
-        <div className="usernames">
-  
-        {userData && userData.map((houses, index) => {
-            return (
-                <div className="houses" key={index}>
-                    <h3>House {index + 1}</h3>
-                    <div className="details">
-                        <p>Address:{houses.address}</p>
-                        <p>Wind:{houses.wind}</p>
-                        <p>Production:{houses.production}</p>
+        <div className="houses"> 
+            {userData && userData.map((houses, index) => {
+                return (
+                    <div className="house" key={index}>
+                        <h3>House {index + 1}</h3>
+                        <h2>ID: {houses.houseid}</h2>
+                        <div className="details">
+                            <p>Address:{houses.address}</p>
+                            <p>Wind:{houses.wind}</p>
+                            <p>Production:{houses.production}</p>
+                        </div>
                     </div>
-                 </div>
-            );
-        })}    
+                );
+            })}    
         </div>
         </div>
     );
