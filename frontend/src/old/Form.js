@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component} from './login/node_modules/react'
 
 class Form extends Component {
     initialState = {

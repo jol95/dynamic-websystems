@@ -1,4 +1,4 @@
-import React from "react";
+import React from "../login/node_modules/react";
 import "./Home.css";
 
 class Home extends React.Component{

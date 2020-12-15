@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import axios from 'axios';
+import React, { useState} from "./login/node_modules/react";
+import axios from './login/node_modules/axios';
 
 function Api() {
   const userURL = "http://130.240.200.62:8082/user"

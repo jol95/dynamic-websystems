@@ -13,6 +13,7 @@ class Routes extends React.Component{
   render(){
     return (
       <Switch>
+     
         <Route exact path="/">
           <Home />
         </Route>
@@ -22,6 +23,7 @@ class Routes extends React.Component{
         <Route>
           <NotFound/>
         </Route>
+        
       </Switch>
     );
   }
