@@ -16,17 +16,16 @@ function Register(props) {
  
   // handle button click of login form
   const handleLogin = () => {
-    console.log({email: email, password: password, firstname: firstname
-      , lastname: lastname, address: address})
+    const data = {email: email, password: password, firstname: firstname
+      ,lastname: lastname, address: address}
 
-    axios.post('/api/user/register', {email: email, password: password, firstname: firstname
-    , lastname: lastname, address: address})
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    axios.post('/api/user/register', data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
  
   return (
