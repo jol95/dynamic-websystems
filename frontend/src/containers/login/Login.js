@@ -17,7 +17,7 @@ function Login(props) {
       password: password.value, 
     }
 
-    axios.get('/api/user', data)
+    axios.post('/api/user', data)
       .then(function (response) {
         console.log(response);
       })
