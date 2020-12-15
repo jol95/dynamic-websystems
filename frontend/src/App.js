@@ -14,7 +14,12 @@ class App extends React.Component{
       <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
         <LinkContainer to="/">
           <Navbar.Brand className="font-weight-bold text-muted">
-            El Kontrollpanelen
+            Electricity Panel
+          </Navbar.Brand>
+        </LinkContainer>
+        <LinkContainer to="/households">
+          <Navbar.Brand className="font-weight-bold text-muted">
+            Electricity Panel
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle />
@@ -25,6 +30,9 @@ class App extends React.Component{
             </LinkContainer>
             <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/userprofile">
+              <Nav.Link>UserProfile</Nav.Link>
             </LinkContainer>
           </Nav>
         </Navbar.Collapse>

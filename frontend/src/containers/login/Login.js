@@ -20,6 +20,7 @@ function Login(props) {
     axios.post('/api/user', data)
       .then(function (response) {
         console.log(response);
+        console.log(response.data)
       })
       .catch(function (error) {
         console.log(error);
