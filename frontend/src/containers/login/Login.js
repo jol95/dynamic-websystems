@@ -4,26 +4,20 @@ import Button from "react-bootstrap/Button";
 import axios from 'axios';
 import "./Register.css";
 
-function Register(props) {
+function Login(props) {
   const email = useFormInput('');
   const password = useFormInput('');
-  const firstname = useFormInput('');
-  const lastname = useFormInput('');
-  const address = useFormInput('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
  
   // handle button click of login form
-  const handleRegister = () => {
+  const handleLogin = () => {
     const data = {
       email: email.value, 
       password: password.value, 
-      firstname: firstname.value,
-      lastname: lastname.value, 
-      address: address.value
     }
 
-    axios.post('/api/user/register', data)
+    axios.get('/api/user/', data)
       .then(function (response) {
         console.log(response);
       })
@@ -43,20 +37,8 @@ function Register(props) {
         Password<br />
         <input type="password" {...password} autoComplete="new-password" />
       </div>
-      <div style={{ marginTop: 10 }}>
-        Firstname<br />
-        <input type="text" {...firstname} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Lastname<br />
-        <input type="text" {...lastname} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Address<br />
-        <input type="text" {...address} autoComplete="new-password" />
-      </div>
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
+      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
     </div>
   );
 }
@@ -73,4 +55,4 @@ const useFormInput = initialValue => {
   }
 }
  
-export default Register;
+export default Login;

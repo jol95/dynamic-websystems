@@ -8,7 +8,6 @@ exports.getUser = async function(req, res) {
     await User.findOne({ email: req.body.email, password: req.body.password}, 
     async function (err, user) {
         if (err){
-            console.log(req.body);
             console.log(err);
         }
         else{

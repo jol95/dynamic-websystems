@@ -2,13 +2,10 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Home from "./containers/home/Home";
 import Register from "./containers/register/Register";
+import Login from "./containers/login/Login";
 import NotFound from "./containers/default/NotFound";
 
 class Routes extends React.Component{
-
-  constructor(props){
-    super(props);
-  }
 
   render(){
     return (
@@ -18,6 +15,9 @@ class Routes extends React.Component{
         </Route>
         <Route exact path="/register">
           <Register />
+        </Route>
+        <Route exact path="/login">
+          <Login/>
         </Route>
         <Route>
           <NotFound/>

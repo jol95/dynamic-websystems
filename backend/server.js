@@ -28,7 +28,7 @@ db.then(() => {
 })
 
 /*-----------Routing----------- */
-app.get('/', (req, res) => res.send('Welcome to the api'));
+app.get('/api', (req, res) => res.send('Welcome to the api'));
 
 const user = require("./api/user/user.js");
 app.use('/api/user', user);

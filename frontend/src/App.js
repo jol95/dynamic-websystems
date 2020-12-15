@@ -7,12 +7,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
 
 class App extends React.Component{
-
-  constructor(props){
-    super(props);
-  }
-
-
+  
   render(){
     return (
       <div className="App container py-3">
