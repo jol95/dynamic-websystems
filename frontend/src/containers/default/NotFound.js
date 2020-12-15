@@ -1,4 +1,4 @@
-import React from "../login/node_modules/react";
+import React from "../register/node_modules/react";
 import "./NotFound.css";
 
 class NotFound extends React.Component{

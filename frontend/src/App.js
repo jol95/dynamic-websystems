@@ -25,8 +25,8 @@ class App extends React.Component{
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
-            <LinkContainer to="/signup">
-              <Nav.Link>Signup</Nav.Link>
+            <LinkContainer to="/register">
+              <Nav.Link>Register</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
