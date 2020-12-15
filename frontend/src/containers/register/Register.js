@@ -25,7 +25,7 @@ function Register(props) {
   
     console.log(data)
   
-    axios.post('/api/user/register', {data})
+    axios.post('/api/user/register', data)
     .then(function (response) {
       console.log(response);
     })
@@ -58,7 +58,7 @@ function Register(props) {
         <input type="text" {...address} autoComplete="new-password" />
       </div>
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+      <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleLogin} disabled={loading} /><br />
     </div>
   );
 }
