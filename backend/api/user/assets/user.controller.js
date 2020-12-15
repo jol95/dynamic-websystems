@@ -42,11 +42,9 @@ exports.registerUser = function(req, res) {
     const price = 0 
     const isproducing = true
     const production = 0  
-    const consumption = 0 
     const netproduction = 0  
     const buffer = 0  
     const ratio = 0.5
-    const price = 0 
 
     const newHousehold = new Household({
         houseid,
