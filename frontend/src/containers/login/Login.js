@@ -17,7 +17,7 @@ function Login(props) {
       password: password.value, 
     }
 
-    axios.get('/api/user/', data)
+    axios.get('/api/user', data)
       .then(function (response) {
         console.log(response);
       })
@@ -28,7 +28,7 @@ function Login(props) {
  
   return (
     <div>
-      Register<br /><br />
+      Login<br /><br />
       <div>
         Email<br />
         <input type="text" {...email} autoComplete="new-password" />
