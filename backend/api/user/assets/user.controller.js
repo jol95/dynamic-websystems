@@ -60,6 +60,6 @@ exports.registerUser = function(req, res) {
     });
 
     newHousehold.save()
-        .then(() => res.json('User and prosumer added!'))
+        .then(() => res.json('User and household added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 }

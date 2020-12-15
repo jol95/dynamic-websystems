@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Household = require('../../user/assets/household.model');
 
 exports.getHouses = function(req, res) {
-    Prosumer.find(function (err, house) {
+    Household.find(function (err, house) {
         if (err){
             console.log(err);
         }
@@ -40,7 +40,7 @@ exports.addHouse = function(req, res) {
     });
 
     newHousehold.save()
-        .then(() => res.json('Prosumer added!'))
+        .then(() => res.json('Household added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 };
 
