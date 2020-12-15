@@ -11,8 +11,8 @@ class Home extends React.Component{
     return (
       <div className="Home">
         <div className="lander">
-          <h1>Scratch</h1>
-          <p className="text-muted">A simple note taking app</p>
+          <h1>El Kontrollpanelen</h1>
+          <p className="text-muted">Här håller man koll på sin el konsumption :)</p>
         </div>
       </div>
     );

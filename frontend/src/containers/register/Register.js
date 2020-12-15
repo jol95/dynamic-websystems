@@ -2,25 +2,30 @@ import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from 'axios';
-import "./Login.css";
+import "./Register.css";
 
-function Login(props) {
+function Register(props) {
   const email = useFormInput('');
   const password = useFormInput('');
+  const firstname = useFormInput('');
+  const lastname = useFormInput('');
+  const address = useFormInput('');
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
  
   // handle button click of login form
-  const handleLogin = () => {
+  const handleRegister = () => {
     const data = {
       email: email.value, 
       password: password.value, 
+      firstname: firstname.value,
+      lastname: lastname.value, 
+      address: address.value
     }
 
-    axios.post('/api/user', data)
+    axios.post('/api/user/register', data)
       .then(function (response) {
         console.log(response);
-        console.log(response.data)
       })
       .catch(function (error) {
         console.log(error);
@@ -29,7 +34,7 @@ function Login(props) {
  
   return (
     <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
       <br /><br />
       <div>
         Email<br />
@@ -39,8 +44,20 @@ function Login(props) {
         Password<br />
         <input type="password" {...password} autoComplete="new-password" />
       </div>
+      <div style={{ marginTop: 10 }}>
+        Firstname<br />
+        <input type="text" {...firstname} autoComplete="new-password" />
+      </div>
+      <div style={{ marginTop: 10 }}>
+        Lastname<br />
+        <input type="text" {...lastname} autoComplete="new-password" />
+      </div>
+      <div style={{ marginTop: 10 }}>
+        Address<br />
+        <input type="text" {...address} autoComplete="new-password" />
+      </div>
       {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Login'} onClick={handleLogin} disabled={loading} /><br />
+      <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
     </div>
   );
 }
@@ -57,4 +74,4 @@ const useFormInput = initialValue => {
   }
 }
  
-export default Login;
+export default Register;

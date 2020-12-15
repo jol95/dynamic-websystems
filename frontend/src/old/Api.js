@@ -1,12 +1,12 @@
-import React, { useState} from "react";
-import axios from 'axios';
+import React, { useState} from "./login/node_modules/react";
+import axios from './login/node_modules/axios';
 
 function Api() {
-  const userURL = "http://130.240.200.62:8082/user"
+  const userURL = "http://130.240.200.62:8082/api/user"
   const [userData, setUserData] = useState(null);
 
   const fetchData = async () => {
-    const response = await axios.get(userURL);
+    const response = await axios.get(userURL + "/?email=asdasdasd?password=asdasd");
     setUserData(response.data);
   }
 

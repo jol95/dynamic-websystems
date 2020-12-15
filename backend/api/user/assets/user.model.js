@@ -3,16 +3,21 @@ var mongoose = require('mongoose');
 const userSchema = new mongoose.Schema({   
     email: {
         type: String,
-        required: true,
+        required: 'Enter your email',
         unique: true,
         trim: true,
         minlength: 3
     },
     password: {
         type: String,
-        required: true,
+        required: 'Enter your password',
         trim: true,
         minlength: 3
+    },
+    houseid: {
+        type: String,
+        required: 'Correct house id',
+        unique: true
     },
     firstname: {
         type: String,
@@ -20,14 +25,9 @@ const userSchema = new mongoose.Schema({
     lastname: {
         type: String,
     },
-    houseid: {
-        type: String,
-        required: true,
-        unique: true
-    },
     address: {
         type: String,
-        required: true
+        required: 'Enter correct address'
     },
     date: {
         type: Date,
