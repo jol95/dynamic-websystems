@@ -34,7 +34,8 @@ function Register(props) {
  
   return (
     <div>
-      Register<br /><br />
+      <h1>Register</h1>
+      <br /><br />
       <div>
         Email<br />
         <input type="text" {...email} autoComplete="new-password" />

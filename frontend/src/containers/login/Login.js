@@ -29,7 +29,8 @@ function Login(props) {
  
   return (
     <div>
-      Login<br /><br />
+      <h1>Login</h1>
+      <br /><br />
       <div>
         Email<br />
         <input type="text" {...email} autoComplete="new-password" />
