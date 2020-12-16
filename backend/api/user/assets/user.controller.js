@@ -55,16 +55,12 @@ exports.registerUser = async function(req, res) {
     const lastname = req.body.lastname;
     const address = req.body.address;
 
-    console.log(req.body);
-
     const password = await new Promise((resolve, reject) => {
         bcrypt.hash(req.body.password, 10, function(err, hash) {
           if (err) reject(err)
           resolve(hash)
         });
       })
-
-    console.log("out"+password);
 
     const newUser = new User({
         email,
