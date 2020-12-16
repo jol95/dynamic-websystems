@@ -15,7 +15,7 @@ setInterval(() => {
     });
 
     houses.map( function(house) {
-        console.log(house.houseid);
+        console.log(house);
     });
 
     distribute.distributeAvg();
