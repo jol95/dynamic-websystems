@@ -73,5 +73,13 @@ const useFormInput = initialValue => {
     onChange: handleChange
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
  
-export default Register;
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));
