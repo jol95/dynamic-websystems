@@ -10,8 +10,8 @@ class Distribute{
         /*
             http://ceur-ws.org/Vol-923/paper05.pdf
         */
-        this.consDistMin = 5.9;
-        this.consDistMax = 19.4;
+        this.consDistMin = 0;
+        this.consDistMax = 0;
         this.consDistScew = 1;
     }
 
@@ -19,20 +19,12 @@ class Distribute{
         this.windDistMin = normdist.nmdist(0, 4.3, this.windDistScew);
         this.windDistMax = normdist.nmdist(4.3, 8.6, this.windDistScew);
 
-        this.consDistMin = normdist.nmdist(5.9, 12.65, this.windDistScew);
-        this.consDistMax = normdist.nmdist(12.65, 19.4, this.windDistScew);
+        this.consDistMin = normdist.nmdist(5.9, 12.65, this.consDistScew);
+        this.consDistMax = normdist.nmdist(12.65, 19.4, this.consDistScew);
 
         this.wDay = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
-        console.log("^^ wind ^^");
         this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
-        console.log("^^ consumption ^^");
     }
-
-    consDayAvg(){
-        this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
-        console.log("^^ cons ^^");
-    }
-
 }
 module.exports = new Distribute();
 
