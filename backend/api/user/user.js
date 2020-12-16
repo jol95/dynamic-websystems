@@ -4,8 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys.js");
 
-const validateRegisterInput = require("../../Validation/register");
-const validateLoginInput = require("../../Validation/login");
+const validateRegisterInput = require("/assets/validation/register");
+const validateLoginInput = require("/assets/validation/login");
 
 var userController = require("./assets/user.controller.js")
 
