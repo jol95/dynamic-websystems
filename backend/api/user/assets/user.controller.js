@@ -64,6 +64,7 @@ exports.registerUser = function(req, res) {
          bcrypt.hash(req.body.password, salt, (err, hash) => {
            if (err) throw err;
              password = hash;
+             console.log(password);
          });
     });
 
