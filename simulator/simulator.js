@@ -16,7 +16,7 @@ setInterval(() => {
       console.log(error);
     });
 
-    houses.map(house) => {
+    houses.map(house, index) => {
         console.log(h)
     };
 
