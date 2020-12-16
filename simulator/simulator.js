@@ -1,6 +1,7 @@
 const distribute = require("./old/distribute");
 const axios = require("axios");
 const { response } = require("express");
+const { cons } = require("./old/distribute");
 
 const backend = "http://localhost:5000/api"
 
@@ -16,9 +17,9 @@ setInterval(() => {
       console.log(error);
     });
 
-    houses.map(house, index) => {
-        console.log(h)
-    };
+    houses.map( function(house) {
+        console.log(house.houseid);
+    });
 
     distribute.distributeAvg();
     console.log(distribute.wDay);
