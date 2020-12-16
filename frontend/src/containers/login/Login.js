@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
+import classnames from "classnames";
 
 class Login extends Component {
   constructor() {
@@ -10,17 +14,33 @@ class Login extends Component {
       errors: {}
     };
   }
+
+componentWillReceiveProps(nextProps) {
+  if (nextProps.auth.isAuthenticated) {
+    this.props.history.push("/"); // push user to dashboard when they login
+  }
+  if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
 onSubmit = e => {
     e.preventDefault();
-const userData = {
+
+    const userData = {
       email: this.state.email,
       password: this.state.password
     };
-console.log(userData);
-  };
+
+  this.props.loginUser(userData); //
+};
+
 render() {
     const { errors } = this.state;
 return (
