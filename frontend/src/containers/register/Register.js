@@ -1,77 +1,172 @@
-import React, { useState } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import axios from 'axios';
-import "./Register.css";
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../../actions/authActions";
+import classnames from "classnames";
+import register from "Register.css";
 
-function Register(props) {
-  const email = useFormInput('');
-  const password = useFormInput('');
-  const firstname = useFormInput('');
-  const lastname = useFormInput('');
-  const address = useFormInput('');
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
- 
-  // handle button click of login form
-  const handleRegister = () => {
-    const data = {
-      email: email.value, 
-      password: password.value, 
-      firstname: firstname.value,
-      lastname: lastname.value, 
-      address: address.value
-    }
-
-    axios.post('/api/user/register', data)
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
+class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      firstname: "",
+      lastname: "",
+      address: "",
+      errors: {}
+    };
+  }
+componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
       });
+    }
   }
- 
-  return (
-    <div>
-      <h1>Register</h1>
-      <br /><br />
-      <div>
-        Email<br />
-        <input type="text" {...email} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Password<br />
-        <input type="password" {...password} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Firstname<br />
-        <input type="text" {...firstname} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Lastname<br />
-        <input type="text" {...lastname} autoComplete="new-password" />
-      </div>
-      <div style={{ marginTop: 10 }}>
-        Address<br />
-        <input type="text" {...address} autoComplete="new-password" />
-      </div>
-      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
-      <input type="button" value={loading ? 'Loading...' : 'Register'} onClick={handleRegister} disabled={loading} /><br />
-    </div>
-  );
-}
- 
-const useFormInput = initialValue => {
-  const [value, setValue] = useState(initialValue);
- 
-  const handleChange = e => {
-    setValue(e.target.value);
-  }
-  return {
-    value,
-    onChange: handleChange
-  }
-}
+onChange = e => {
+    this.setState({ [e.target.id]: e.target.value });
+  };
+onSubmit = e => {
+    e.preventDefault();
+const newUser = {
+      name: this.state.name,
+      email: this.state.email,
+      password: this.state.password,
+    };
+this.props.registerUser(newUser, this.props.history); 
+  };
+render() {
+    const { errors } = this.state;
+return (
+      <div className="container">
+        <div className="row">
+          <div className="col s8 offset-s2">
+            <Link to="/" className="btn-flat waves-effect">
+              <i className="material-icons left">keyboard_backspace</i> Back to
+              home
+            </Link>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <h4>
+                <b>Register</b> below
+              </h4>
+              <p className="grey-text text-darken-1">
+                Already have an account? <Link to="/login">Log in</Link>
+              </p>
+            </div>
+            <form noValidate onSubmit={this.onSubmit}>
 
-export default Register;
+            {/* EMAIL */}
+            <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.email}
+                  error={errors.email}
+                  id="email"
+                  type="email"
+                  className={classnames("", {
+                    invalid: errors.email
+                  })}
+                />
+                <label htmlFor="email">Email</label>
+                <span className="red-text">{errors.email}</span>
+              </div>
+
+              {/* PASSWORD */}
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.password}
+                  error={errors.password}
+                  id="password"
+                  type="password"
+                  className={classnames("", {
+                    invalid: errors.password
+                  })}
+                />
+                <label htmlFor="password">Password</label>
+                <span className="red-text">{errors.password}</span>
+              </div>
+
+              {/* FIRSTNAME */}
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.firstname}
+                  error={errors.firstname}
+                  id="firstname"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.firstname
+                  })}
+                />
+                <label htmlFor="name">First Name</label>
+                <span className="red-text">{errors.firstname}</span>
+              </div>
+
+              {/* LASTNAME */}
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.lastname}
+                  error={errors.lastname}
+                  id="lastname"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.lastname
+                  })}
+                />
+                <label htmlFor="lastname">Last Name</label>
+                <span className="red-text">{errors.lastname}</span>
+              </div>
+
+              {/* ADDRESS */}
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.address}
+                  error={errors.address}
+                  id="address"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.address
+                  })}
+                />
+                <label htmlFor="address">Address</label>
+                <span className="red-text">{errors.address}</span>
+              </div>
+              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                <button
+                  style={{
+                    width: "150px",
+                    borderRadius: "3px",
+                    letterSpacing: "1.5px",
+                    marginTop: "1rem"
+                  }}
+                  type="submit"
+                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                >
+                  Sign up
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { registerUser }
+)(withRouter(Register));
