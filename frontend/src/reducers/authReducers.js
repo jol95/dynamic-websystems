@@ -12,7 +12,7 @@ import {
   };
 
 
-  export default function(state = initialState, action) {
+  export function authR(state = initialState, action) {
     switch (action.type) {
       case SET_CURRENT_USER:
         return {
@@ -29,3 +29,4 @@ import {
         return state;
     }
   }
+  export default authR;
