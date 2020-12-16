@@ -5,7 +5,7 @@ const backend = "http://localhost:5000/api"
 
 tick = 5000;
 setInterval(() => {
-  test = await axios.get(backend + '/simulator')
+  test = axios.get(backend + '/simulator')
     .then(function (response) {
       this.response = response.data;
       return this.response;
