@@ -47,7 +47,7 @@ exports.getUser = async function(req, res) {
     //
 }
 
-exports.registerUser = function(req, res) {
+exports.registerUser = async function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
@@ -55,18 +55,14 @@ exports.registerUser = function(req, res) {
     const lastname = req.body.lastname;
     const address = req.body.address;
 
-    let password = req.body.password;
-
     console.log(req.body);
 
-    // Hash password before saving in database
-    bcrypt.genSalt(10, async (err, salt) => {
-         bcrypt.hash(req.body.password, salt, (err, hash) => {
-           if (err) throw err;
-             password = hash;
-             console.log("in"+password);
-         });
-    });
+    const password = await new Promise((resolve, reject) => {
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+          if (err) reject(err)
+          resolve(hash)
+        });
+      })
 
     console.log("out"+password);
 
