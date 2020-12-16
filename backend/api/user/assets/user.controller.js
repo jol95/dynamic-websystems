@@ -46,6 +46,7 @@ exports.getUser = async function(req, res) {
 }
 
 exports.registerUser = async function(req, res) {
+    console.log(req.body);
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
