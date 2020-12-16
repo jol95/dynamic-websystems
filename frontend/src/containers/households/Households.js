@@ -29,7 +29,10 @@ function Households(props){
                         <div className="details">
                             <p>Address:{houses.address}</p>
                             <p>Wind:{houses.wind}</p>
+                            <p>Consumption:{houses.consumption}</p>
                             <p>Production:{houses.production}</p>
+                            <p>Price:{houses.price}</p>
+                            <p>NetProduction:{houses.netproduction}</p>
                         </div>
                     </div>
                 );
