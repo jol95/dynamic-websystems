@@ -37,11 +37,10 @@ const simulator = require("./api/simulator/simulator.js");
 app.use('/api/simulator', simulator);
 
 /*Authenication stuff */
-
 // Passport middleware
-//app.use(passport.initialize());
+app.use(passport.initialize());
 // Passport config
-//require("./config/passport")(passport);
+require("./config/passport")(passport);
 
 // Launch app, always last!!!
 app.listen(port, function() {
