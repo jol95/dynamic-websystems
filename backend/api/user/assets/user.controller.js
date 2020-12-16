@@ -50,10 +50,11 @@ exports.registerUser = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
-    const password = "";
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const address = req.body.address;
+
+    let password = "";
 
     // Hash password before saving in database
     bcrypt.genSalt(10, (err, salt) => {
