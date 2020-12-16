@@ -60,15 +60,15 @@ exports.registerUser = function(req, res) {
     console.log(req.body);
 
     // Hash password before saving in database
-    bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.genSalt(10, async (err, salt) => {
          bcrypt.hash(req.body.password, salt, (err, hash) => {
            if (err) throw err;
              password = hash;
-             console.log(password);
+             console.log("in"+password);
          });
     });
 
-    console.log(password);
+    console.log("out"+password);
 
     const newUser = new User({
         email,
