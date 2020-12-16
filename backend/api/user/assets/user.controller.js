@@ -10,7 +10,7 @@ let Household = require('./household.model');
 
 exports.getUser = async function(req, res) {
     console.log(req.body);
-    const data = await User.findOne({ email: req.body.email, password: req.body.password});
+    const data = await User.findOne({ email: req.body.email});
     // Check password
     bcrypt.compare(req.body.password, data.password).then(isMatch => {
         if (isMatch) {
