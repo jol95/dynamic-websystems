@@ -10,23 +10,45 @@ let Household = require('./household.model');
 
 exports.getUser = async function(req, res) {
     console.log(req.body);
-    await User.findOne({ email: req.body.email, password: req.body.password}, 
-    async function (err, user) {
-        if (err){
-            console.log(err);
+    const data = await User.findOne({ email: req.body.email, password: req.body.password});
+    // Check password
+    bcrypt.compare(password, user.password).then(isMatch => {
+        if (isMatch) {
+            console.log("correct pw");
+            const payload = {
+                id: user.id,
+                firstname: user.email
+                };
+        // User matched
+        // Create JWT Payload
+
+    // Sign token
+    jwt.sign(
+        payload,
+        keys.secretOrKey,
+        {
+        expiresIn: 31556926 // 1 year in seconds
+        },
+        (err, token) => {
+        res.json({
+            success: true,
+            token: "Bearer " + token
+        });
         }
-        else{
-            console.log(req.body);
-            res.json(user);
-        }
+    );
+    } else {
+    return res
+        .status(400)
+        .json({ passwordincorrect: "Password incorrect" });
+    }
     });
+    //
 }
 
 exports.registerUser = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
-    const password = "";
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const address = req.body.address;
@@ -78,36 +100,5 @@ exports.registerUser = function(req, res) {
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
-const password = req.body.password;
-// Check password
-bcrypt.compare(password, user.password).then(isMatch => {
-    if (isMatch) {
-      // User matched
-      // Create JWT Payload
-      const payload = {
-        id: user.id,
-        firstname: user.firstname
-      };
-
-// Sign token
-jwt.sign(
-    payload,
-    keys.secretOrKey,
-    {
-      expiresIn: 31556926 // 1 year in seconds
-    },
-    (err, token) => {
-      res.json({
-        success: true,
-        token: "Bearer " + token
-      });
-    }
-  );
-} else {
-  return res
-    .status(400)
-    .json({ passwordincorrect: "Password incorrect" });
-}
-});
 
 module.exports = router;
