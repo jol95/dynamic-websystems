@@ -30,9 +30,11 @@ onChange = e => {
 onSubmit = e => {
     e.preventDefault();
 const newUser = {
-      name: this.state.name,
       email: this.state.email,
       password: this.state.password,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
+      address: this.state.address,
     };
 this.props.registerUser(newUser, this.props.history); 
   };
