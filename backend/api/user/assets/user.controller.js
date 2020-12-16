@@ -17,7 +17,7 @@ exports.getUser = async function(req, res) {
             console.log("correct pw");
             const payload = {
                 id: user.id,
-                firstname: user.email
+                email: user.email
                 };
         // User matched
         // Create JWT Payload
