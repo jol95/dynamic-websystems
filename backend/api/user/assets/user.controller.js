@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../../config/keys");
 let User = require('./user.model');
 let Household = require('./household.model');
+const { cons } = require('../../../simulator/old/distribute');
 
 
 exports.getUser = async function(req, res) {
@@ -65,6 +66,8 @@ exports.registerUser = function(req, res) {
              password = hash;
          });
     });
+
+    console.log(password);
 
     const newUser = new User({
         email,
