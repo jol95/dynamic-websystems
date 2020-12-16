@@ -15,14 +15,15 @@ class Distribute{
         this.consDistScew = 1;
     }
 
-    windMinMaxAvg(){
+    distributeAvg(){
         this.windDistMin = normdist.nmdist(0, 4.3, this.windDistScew);
         this.windDistMax = normdist.nmdist(4.3, 8.6, this.windDistScew);
-    }
 
-    windDayAvg(){
         this.windMinMaxAvg()
         this.wDay = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
+        console.log("^^ wind ^^");
+        this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
+        console.log("^^ consumption ^^");
     }
 
     consDayAvg(){
