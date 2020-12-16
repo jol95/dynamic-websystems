@@ -11,9 +11,9 @@ let Household = require('./household.model');
 exports.getUser = async function(req, res) {
     console.log(req.body);
     const user = await User.findOne({ email: req.body.email});
-    console.log(data)
+    console.log(user)
     // Check password
-    bcrypt.compare(req.body.password, data.password).then(isMatch => {
+    bcrypt.compare(req.body.password, user.password).then(isMatch => {
         if (isMatch) {
             console.log("correct pw");
             const payload = {
@@ -59,12 +59,12 @@ exports.registerUser = function(req, res) {
     console.log(req.body);
 
     // Hash password before saving in database
-    // bcrypt.genSalt(10, (err, salt) => {
-    //     bcrypt.hash(req.body.password, salt, (err, hash) => {
-    //       if (err) throw err;
-    //         password = hash;
-    //     });
-    // });
+    bcrypt.genSalt(10, (err, salt) => {
+         bcrypt.hash(req.body.password, salt, (err, hash) => {
+           if (err) throw err;
+             password = hash;
+         });
+    });
 
     const newUser = new User({
         email,
