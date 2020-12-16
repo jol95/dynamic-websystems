@@ -5,17 +5,16 @@ class Production{
     price;
     constructor(){
         distribution.windDayAvg();
-        distribution.windHourAvg();
         distribution.consAvg();
     }
 
     //TODO : more realistic function, maybe implement battery limits?
     prodAvg(){
         //if the wind is less than 25% of max
-        if (distribution.wHour < 4 /**distribution.windDistMax/4*/){ 
+        if (distribution.wDay < 4 /**distribution.windDistMax/4*/){ 
             this.prod = 0;
         } else {
-            this.prod = distribution.wHour * 10 //TODO: real value
+            this.prod = distribution.wDay * 10 //TODO: real value
         }
         console.log("\n" + "prod = " + this.prod);
     }
@@ -24,9 +23,9 @@ class Production{
     calcPrice(){
         if(distribution.wHour < 1){
             this.price = 4;
-        } else if(distribution.wHour < 2 && distribution.wHour >=1){
+        } else if(distribution.wDay < 2 && distribution.wHour >=1){
             this.price = 3;
-        } else if(distribution.wHour < 3 && distribution.wHour >=2){
+        } else if(distribution.wDay < 3 && distribution.wHour >=2){
             this.price = 2;
         } else {
             this.price = 1;

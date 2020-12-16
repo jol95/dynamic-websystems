@@ -5,7 +5,7 @@ const express = require('express');
 
 const cors = require('cors');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
+const passport = require("passport");
 
 require('dotenv').config();
 
@@ -35,6 +35,13 @@ app.use('/api/user', user);
 
 const simulator = require("./api/simulator/simulator.js");
 app.use('/api/simulator', simulator);
+
+/*Authenication stuff */
+
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
 
 // Launch app, always last!!!
 app.listen(port, function() {

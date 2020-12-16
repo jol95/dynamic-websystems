@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 let User = require('./user.model');
 let Household = require('./household.model');
 
+const email = req.body.email;
+const password = req.body.password;
+
 exports.getUser = async function(req, res) {
     console.log(req.body);
     await User.findOne({ email: req.body.email, password: req.body.password}, 
@@ -21,10 +24,18 @@ exports.registerUser = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
-    const password = req.body.password;
+    const password = "";
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const address = req.body.address;
+
+    // Hash password before saving in database
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+          if (err) throw err;
+            password = hash;
+        });
+    });
 
     const newUser = new User({
         email,
@@ -35,7 +46,8 @@ exports.registerUser = function(req, res) {
         address
     });
 
-    newUser.save()
+
+    newUser.save();
 
     const wind = 0 
     const consumption = 0 
@@ -63,3 +75,37 @@ exports.registerUser = function(req, res) {
         .then(() => res.json('User and household added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 }
+
+
+// Check password
+bcrypt.compare(password, user.password).then(isMatch => {
+    if (isMatch) {
+      // User matched
+      // Create JWT Payload
+      const payload = {
+        id: user.id,
+        firstname: user.firstname
+      };
+
+// Sign token
+jwt.sign(
+    payload,
+    keys.secretOrKey,
+    {
+      expiresIn: 31556926 // 1 year in seconds
+    },
+    (err, token) => {
+      res.json({
+        success: true,
+        token: "Bearer " + token
+      });
+    }
+  );
+} else {
+  return res
+    .status(400)
+    .json({ passwordincorrect: "Password incorrect" });
+}
+});
+
+module.exports = router;

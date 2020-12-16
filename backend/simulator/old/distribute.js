@@ -1,32 +1,31 @@
 const normdist = require("../normaldist.js");
 class Distribute{
     wDay;
-    wHour;
     cons;
     constructor(){
         this.windDistMin = 0;
-        this.windDistMax = 10;
+        this.windDistMax = 0;
         this.windDistScew = 1;
 
-        this.consDistMin = 20;
-        this.consDistMax = 100;
+        /*
+            http://ceur-ws.org/Vol-923/paper05.pdf
+        */
+        this.consDistMin = 5.9;
+        this.consDistMax = 19.4;
         this.consDistScew = 1;
     }
 
+    windMinMaxAvg(){
+        this.windDistMin = normdist.nmdist(0, 4.3, this.windDistScew);
+        this.windDistMax = normdist.nmdist(4.3, 8.6, this.windDistScew);
+    }
+
     windDayAvg(){
-        this.wDay = normdist.nmdist(this.windDistMin,this.windDistMax,this.windDistScew);
-        console.log("^^ wDay ^^");
+        this.windMinMaxAvg()
+        this.wDay = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
     }
 
-    windHourAvg(){
-        this.distMinHour = this.wDay - this.wDay/2; //TODO: better function
-        this.distMaxHour = this.wDay + this.wDay/2; //TODO: better function
-        this.wHour = normdist.nmdist(this.distMinHour,this.distMaxHour,this.windDistScew);
-        console.log("^^ wHour ^^");
-        //return this.windDistMax; //for use in prodAVG
-    }
-
-    consAvg(){
+    consDayAvg(){
         this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
         console.log("^^ cons ^^");
     }

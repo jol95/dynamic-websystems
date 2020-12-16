@@ -11,7 +11,6 @@
             num = Math.pow(num, skew); // Skew
             num *= max - min; // Stretch to fill range
             num += min; // offset to min
-            console.log("\n" + "num = " + num);
             return num;
         }
     }
