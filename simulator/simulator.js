@@ -1,7 +1,5 @@
 const distribute = require("./old/distribute");
 const axios = require("axios");
-const { response } = require("express");
-const { cons } = require("./old/distribute");
 
 const backend = "http://localhost:5000/api"
 
@@ -10,7 +8,6 @@ setInterval(() => {
     let houses
     axios.get(backend + '/simulator')
     .then(function (response) {
-      console.log(response.data)
       let houses = response.data;
     })
     .catch(function (error) {
