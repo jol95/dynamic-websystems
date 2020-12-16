@@ -17,7 +17,7 @@ class Login extends Component {
 
 componentWillReceiveProps(nextProps) {
   if (nextProps.auth.isAuthenticated) {
-    this.props.history.push("/"); // push user to dashboard when they login
+    this.props.history.push("/"); // push user to dashboard when they login (private page to be implemented)
   }
   if (nextProps.errors) {
       this.setState({
@@ -60,6 +60,8 @@ return (
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
+
+              {/* EMAIL */}
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -67,9 +69,18 @@ return (
                   error={errors.email}
                   id="email"
                   type="email"
+                  className={classnames("", {
+                    invalid: errors.email || errors.emailnotfound
+                  })}
                 />
                 <label htmlFor="email">Email</label>
+                <span className="red-text">
+                  {errors.email}
+                  {errors.emailnotfound}
+                </span>
               </div>
+
+              {/*PASSPORT */}
               <div className="input-field col s12">
                 <input
                   onChange={this.onChange}
@@ -77,8 +88,12 @@ return (
                   error={errors.password}
                   id="password"
                   type="password"
+                  className={classnames("", {
+                    invalid: errors.password || errors.passwordincorrect
+                  })}
                 />
                 <label htmlFor="password">Password</label>
+                
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -101,4 +116,19 @@ return (
     );
   }
 }
-export default Login;
+
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);

@@ -5,18 +5,16 @@ const backend = "http://localhost:5000/api"
 
 tick = 5000;
 setInterval(() => {
-  let houses;
-
-  axios.get(backend + '/simulator')
+  test = await axios.get(backend + '/simulator')
     .then(function (response) {
-      console.log(response.data)
-      houses = response.data;
+      this.response = response.data;
+      return this.response;
     })
     .catch(function (error) {
       console.log(error);
   });
 
-  console.log(houses);
+  console.log(test);
 
   //houses.map(house => {
     //house.
