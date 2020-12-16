@@ -4,19 +4,18 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../../config/keys");
+
 let User = require('./user.model');
 let Household = require('./household.model');
-const { cons } = require('../../../simulator/old/distribute');
 
 
 exports.getUser = async function(req, res) {
     console.log(req.body);
     const user = await User.findOne({ email: req.body.email});
-    console.log(user)
+
     // Check password
     bcrypt.compare(req.body.password, user.password).then(isMatch => {
         if (isMatch) {
-            console.log("correct pw");
             const payload = {
                 id: user.id,
                 email: user.email
@@ -29,7 +28,7 @@ exports.getUser = async function(req, res) {
         payload,
         keys.secretOrKey,
         {
-        expiresIn: 31556926 // 1 year in seconds
+        expiresIn: 1800 // 30 min
         },
         (err, token) => {
         res.json({
