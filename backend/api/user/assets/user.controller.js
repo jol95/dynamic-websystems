@@ -12,7 +12,7 @@ exports.getUser = async function(req, res) {
     console.log(req.body);
     const data = await User.findOne({ email: req.body.email, password: req.body.password});
     // Check password
-    bcrypt.compare(password, user.password).then(isMatch => {
+    bcrypt.compare(req.body.password, data.password).then(isMatch => {
         if (isMatch) {
             console.log("correct pw");
             const payload = {
@@ -99,5 +99,3 @@ exports.registerUser = function(req, res) {
         .then(() => res.json('User and household added!'))
         .catch(err => res.status(400).json('Error: ' + err));
 }
-
-
