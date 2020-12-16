@@ -19,7 +19,9 @@ class Distribute{
         this.windDistMin = normdist.nmdist(0, 4.3, this.windDistScew);
         this.windDistMax = normdist.nmdist(4.3, 8.6, this.windDistScew);
 
-        this.windMinMaxAvg()
+        this.consDistMin = normdist.nmdist(5.9, 12.65, this.windDistScew);
+        this.consDistMax = normdist.nmdist(12.65, 19.4, this.windDistScew);
+
         this.wDay = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
         console.log("^^ wind ^^");
         this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
