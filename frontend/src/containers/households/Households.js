@@ -32,7 +32,7 @@ function Households(props){
                             <p>Consumption:{houses.consumption}</p>
                             <p>Production:{houses.production}</p>
                             <p>Price:{houses.price}</p>
-                            <p>NetProduction:{houses.netproduction}</p>
+                            <p>Netto:{houses.netproduction}</p>
                         </div>
                     </div>
                 );
