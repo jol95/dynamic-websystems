@@ -10,7 +10,7 @@ let Household = require('./household.model');
 
 exports.getUser = async function(req, res) {
     console.log(req.body);
-    const data = await User.findOne({ email: req.body.email});
+    const user = await User.findOne({ email: req.body.email});
     console.log(data)
     // Check password
     bcrypt.compare(req.body.password, data.password).then(isMatch => {
@@ -50,6 +50,7 @@ exports.registerUser = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
+    const password = "";
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const address = req.body.address;
