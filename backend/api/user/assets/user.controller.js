@@ -8,6 +8,9 @@ const keys = require("../../../config/keys");
 let User = require('./user.model');
 let Household = require('./household.model');
 
+// Load input validation
+const validateRegisterInput = require("./validation/register");
+const validateLoginInput = require("./validation/login");
 
 exports.getUser = async function(req, res) {
     const user = await User.findOne({ email: req.body.email});
@@ -46,7 +49,6 @@ exports.getUser = async function(req, res) {
 }
 
 exports.registerUser = async function(req, res) {
-    console.log(req.body);
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
