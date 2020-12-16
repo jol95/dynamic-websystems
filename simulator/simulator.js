@@ -1,8 +1,7 @@
 const distribute = require("./old/distribute");
 const axios = require("axios");
-const mongoose = require('mongoose');
 
-const backend = "http://localhost:5000"
+const backend = "http://localhost:5000/api"
 
 tick = 5000;
 setInterval(() => {
