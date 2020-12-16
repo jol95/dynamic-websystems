@@ -10,7 +10,6 @@ let Household = require('./household.model');
 
 
 exports.getUser = async function(req, res) {
-    console.log(req.body);
     const user = await User.findOne({ email: req.body.email});
 
     // Check password
