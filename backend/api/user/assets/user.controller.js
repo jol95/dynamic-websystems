@@ -18,7 +18,7 @@ exports.getUser = async function(req, res) {
     // Check password
     console.log("body" + body.req.password);
     console.log("user" + user.password);
-    
+
     bcrypt.compare(req.body.password, user.password).then(isMatch => {
         if (isMatch) {
             const payload = {
