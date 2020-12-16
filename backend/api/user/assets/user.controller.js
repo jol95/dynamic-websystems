@@ -101,4 +101,3 @@ exports.registerUser = function(req, res) {
 }
 
 
-module.exports = router;
