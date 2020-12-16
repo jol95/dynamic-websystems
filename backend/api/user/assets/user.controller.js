@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 let User = require('./user.model');
 let Household = require('./household.model');
 
-const email = req.body.email;
-const password = req.body.password;
 
 exports.getUser = async function(req, res) {
     console.log(req.body);
