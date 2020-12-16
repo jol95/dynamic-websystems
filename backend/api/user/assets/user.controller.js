@@ -78,7 +78,7 @@ exports.registerUser = function(req, res) {
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
-
+const password = req.body.password;
 // Check password
 bcrypt.compare(password, user.password).then(isMatch => {
     if (isMatch) {
