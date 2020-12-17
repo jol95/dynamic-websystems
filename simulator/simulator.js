@@ -23,6 +23,7 @@ setInterval(() => {
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
       production.distributeAvg();
+      production.prodAvg();
       
       
     }

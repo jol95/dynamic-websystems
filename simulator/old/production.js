@@ -5,6 +5,8 @@ class Production{
     price;
     constructor(){
         distribution.distributeAvg();
+        distribution.wDay;
+        distribution.cons;
     }
 
     //TODO : more realistic function, maybe implement battery limits?
