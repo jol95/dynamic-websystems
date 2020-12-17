@@ -1,48 +1,40 @@
-const distribution = require("./distribute");
+const { cons } = require("./distribute");
 
 class Production{
     prod;
     price;
-    constructor(){
-        distribution.distributeAvg();
-        distribution.wDay;
-        distribution.cons;
-    }
 
     //TODO : more realistic function, maybe implement battery limits?
-    prodAvg(){
+    prodAvg(wind){
         //if the wind is less than 25% of max
-        if (distribution.wDay < 4 /**distribution.windDistMax/4*/){ 
+        if (wind < 4 /**distribution.windDistMax/4*/){ 
             this.prod = 0;
         } else {
-            this.prod = distribution.wDay * 10 //TODO: real value
+            this.prod = wind * 10 //TODO: real value
         }
-        console.log("\n" + "prod = " + this.prod);
     }
 
     //TODO: more realisitc function, probably with a function
-    calcPrice(){
-        if(distribution.wHour < 1){
+    calcPrice(wind, consumption){
+        if(wind < 1){
             this.price = 4;
-        } else if(distribution.wDay < 2 && distribution.wHour >=1){
+        } else if(1 < wind < 2){
             this.price = 3;
-        } else if(distribution.wDay < 3 && distribution.wHour >=2){
+        } else if(2 < wind < 3){
             this.price = 2;
         } else {
             this.price = 1;
         }
-        
-        if(distribution.cons < 40){
+
+        if(consumption < 8){
             this.price = this.price*0.3;
-        } else if(distribution.cons < 50 && distribution.cons > 40) {
+        } else if(consumption < 12 && consumption > 8) {
             this.price = this.price*0.4;
-        } else if(distribution.cons < 60 && distribution.cons > 50){
+        } else if(consumption < 15 && consumption > 12){
             this.price = this.price*0.5;
         } else {
             this.price = this.price*0.6;
         }
-        
-        console.log("\n" + "Price = " + this.price);
     }
 
 }
