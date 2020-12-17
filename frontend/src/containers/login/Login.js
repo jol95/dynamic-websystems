@@ -15,7 +15,7 @@ class Login extends Component {
     };
   }
 
-componentWillReceiveProps(nextProps) {
+/*componentWillReceiveProps(nextProps) {
   if (nextProps.auth.isAuthenticated) {
     this.props.history.push("/"); // push user to dashboard when they login (private page to be implemented)
   }
@@ -24,7 +24,7 @@ componentWillReceiveProps(nextProps) {
         errors: nextProps.errors
       });
     }
-  }
+  }*/
 
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
