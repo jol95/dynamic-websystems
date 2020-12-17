@@ -14,8 +14,8 @@ const update = async () => {
    console.error(err)
  }
 
- console.log(response);
- distribute.distributeAvg();
+  console.log(response);
+  distribute.distributeAvg();
   console.log(distribute.wDay);
   console.log("^^ WIND ^^");
   console.log(distribute.cons);
@@ -24,6 +24,13 @@ const update = async () => {
 
 tick = 5000;
 setInterval(() => {
-  update();
+  update().then(data => {
+    console.log(data);
+    distribute.distributeAvg();
+    console.log(distribute.wDay);
+    console.log("^^ WIND ^^");
+    console.log(distribute.cons);
+    console.log("^^ CONS^^");
+  })
 }, tick);
 
