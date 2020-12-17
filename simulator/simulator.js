@@ -19,6 +19,12 @@ tick = 5000;
 setInterval(() => {
   update().then(data => {
     console.log(data);
+    var objCount = data.length;
+    for ( var x = 0; x < objCount ; xx++ ) {
+      var curitem = data[x];
+      console.log(curitem);
+      console.log(curitem.houseid);
+    }
     distribute.distributeAvg();
     console.log(distribute.wDay);
     console.log("^^ WIND ^^");
