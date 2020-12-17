@@ -3,7 +3,7 @@ const axios = require("axios");
 
 const backend = "http://localhost:5000/api"
 
-const makeRequest = async () => { 
+const update = async () => { 
   try {
   const response = await axios.get(backend + '/simulator');
   if (response.status === 200) { 
@@ -13,18 +13,17 @@ const makeRequest = async () => {
  } catch (err) {
    console.error(err)
  }
-}
 
-tick = 5000;
-setInterval(() => {
-  makeRequest();
-
-  console.log(makeRequest.response);
-
-  distribute.distributeAvg();
+ console.log(response);
+ distribute.distributeAvg();
   console.log(distribute.wDay);
   console.log("^^ WIND ^^");
   console.log(distribute.cons);
   console.log("^^ CONS^^");
+}
+
+tick = 5000;
+setInterval(() => {
+  update();
 }, tick);
 
