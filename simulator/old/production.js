@@ -38,6 +38,7 @@ class Production{
     }
 
 }
+module.export = new Production();
 /*
 yolo = new Production();
 yolo.calcPrice();
