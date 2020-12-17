@@ -1,4 +1,4 @@
-const distribute = require("./old/distribute");
+const production = require("./old/production");
 const axios = require("axios");
 
 const backend = "http://localhost:5000/api"
@@ -22,14 +22,10 @@ setInterval(() => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
-      console.log(curitem);
-      console.log(curitem.houseid);
+      production.distributeAvg();
+      
+      
     }
-    distribute.distributeAvg();
-    console.log(distribute.wDay);
-    console.log("^^ WIND ^^");
-    console.log(distribute.cons);
-    console.log("^^ CONS^^");
   })
 }, tick);
 
