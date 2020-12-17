@@ -1,8 +1,10 @@
-const { cons } = require("./distribute");
-
 class Production{
     prod;
     price;
+    constructor(){
+        this.prodAvg;
+        this.calcPrice;
+    }
 
     //TODO : more realistic function, maybe implement battery limits?
     prodAvg(wind){
