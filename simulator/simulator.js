@@ -3,22 +3,22 @@ const axios = require("axios");
 
 const backend = "http://localhost:5000/api"
 
+const makeRequest = async () => { 
+  try {
+  const response = await axios.get(backend + '/simulator');
+  if (response.status === 200) { 
+    console.log('success stuff');
+   return response.data;
+  }
+ } catch (err) {
+   console.error(err)
+ }
+}
+
 tick = 5000;
 setInterval(() => {
-  test = axios.get(backend + '/simulator')
-    .then(function (response) {
-      this.response = response.data;
-      return this.response;
-    })
-    .catch(function (error) {
-      console.log(error);
-  });
-
-  console.log(test);
-
-  //houses.map(house => {
-    //house.
-  //})
+  
+  console.log(makeRequest)
 
   distribute.distributeAvg();
   console.log(distribute.wDay);
