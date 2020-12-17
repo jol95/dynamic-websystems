@@ -4,8 +4,9 @@ class Production{
     prod;
     price;
     constructor(){
-        distribution.windDayAvg();
-        distribution.consAvg();
+        distribution.distributeAvg();
+        distribution.wDay;
+        distribution.cons;
     }
 
     //TODO : more realistic function, maybe implement battery limits?
