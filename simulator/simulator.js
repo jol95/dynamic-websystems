@@ -20,7 +20,7 @@ setInterval(() => {
   update().then(data => {
     console.log(data);
     var objCount = data.length;
-    for ( var x = 0; x < objCount ; xx++ ) {
+    for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
       console.log(curitem);
       console.log(curitem.houseid);
