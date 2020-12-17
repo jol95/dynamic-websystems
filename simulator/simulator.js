@@ -24,6 +24,9 @@ setInterval(() => {
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
       distribute.distributeAvg();
+
+      production = Production();
+
       production.prodAvg(distribute.wDay);
       production.calcPrice(distribute.wDay, distribute.cons);
       
