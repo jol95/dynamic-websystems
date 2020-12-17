@@ -18,7 +18,7 @@ const makeRequest = async () => {
 tick = 5000;
 setInterval(() => {
   
-  console.log(makeRequest)
+  console.log(makeRequest.response)
 
   distribute.distributeAvg();
   console.log(distribute.wDay);
