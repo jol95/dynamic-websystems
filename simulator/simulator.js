@@ -1,4 +1,5 @@
 const production = require("./old/production");
+const distribute = require("./old/distribute");
 const axios = require("axios");
 
 const backend = "http://localhost:5000/api"
@@ -22,9 +23,18 @@ setInterval(() => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
-      production.distributeAvg();
-      production.prodAvg();
+      distribute.distributeAvg();
+      production.prodAvg(distribute.wDay);
+      production.calcPrice(distribute.wDay, distribute.cons);
       
+      const res = axios.put(backend + "simulator/" + curitem.houseid, {
+        wind: distribute.wDay,
+        consumption: distribute.cons,
+        production: production.production,
+        price: production.price,
+
+      });
+
       
     }
   })
