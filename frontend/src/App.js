@@ -4,9 +4,13 @@ import Nav from "react-bootstrap/Nav";
 import Routes from "./Routes";
 import { LinkContainer } from "react-router-bootstrap";
 import "./App.css";
+
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+
+import { Provider } from "react-redux";
+import store from "./store";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
