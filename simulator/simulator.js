@@ -13,13 +13,6 @@ const update = async () => {
  } catch (err) {
    console.error(err)
  }
-
-  console.log(response);
-  distribute.distributeAvg();
-  console.log(distribute.wDay);
-  console.log("^^ WIND ^^");
-  console.log(distribute.cons);
-  console.log("^^ CONS^^");
 }
 
 tick = 5000;
