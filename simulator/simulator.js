@@ -25,7 +25,9 @@ setInterval(() => {
     distribute.distributeAvg();
 
     console.log(distribute.wDay);
+    console.log("^^Wind^^")
     console.log(distribute.cons);
+    console.log("^^Consumption^^")
 
     // var objCount = data.length;
     // for ( var x = 0; x < objCount ; x++ ) {
