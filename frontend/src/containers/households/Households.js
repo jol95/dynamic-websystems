@@ -6,7 +6,7 @@ function Households(props){
     const [userData, setUserData] = useState(null);
   
     const fetchData = async () => {
-      const response = await axios.get("/api/simulator");
+      const response = await axios.get("/api/household");
       setUserData(response.data);
     }
   
@@ -29,7 +29,10 @@ function Households(props){
                         <div className="details">
                             <p>Address:{houses.address}</p>
                             <p>Wind:{houses.wind}</p>
+                            <p>Consumption:{houses.consumption}</p>
                             <p>Production:{houses.production}</p>
+                            <p>Price:{houses.price}</p>
+                            <p>Netto:{houses.netproduction}</p>
                         </div>
                     </div>
                 );

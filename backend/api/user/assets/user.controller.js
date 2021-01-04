@@ -1,30 +1,97 @@
 const mongoose = require('mongoose');
+const express = require("express");
+const router = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const keys = require("../config/keys");
 
 let User = require('./user.model');
 let Household = require('./household.model');
 
+// Load input validation
+const validateRegisterInput = require("./validation/register");
+const validateLoginInput = require("./validation/login");
+
+
+/*  WORKING
+
+    IN:
+    {
+    "email": "a@a.com",
+    "password": "abc123"
+    }
+
+
+    OUT:
+    {
+    "success": true,
+    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjMyMDg0MDA5M2JlN2RkYzcyY2IxOSIsImVtYWlsIjoiYUBhLmNvbSIsImlhdCI6MTYwOTc2OTE1NSwiZXhwIjoxNjA5NzcwOTU1fQ.2nSmC0oGKE9jWs4Mw2aQYE5QGy10va4fmDPwcdMOuN8"
+    }
+*/
 exports.getUser = async function(req, res) {
-    console.log(req.body);
-    await User.findOne({ email: req.body.email, password: req.body.password}, 
-    async function (err, user) {
-        if (err){
-            console.log(err);
+    const user = await User.findOne({ email: req.body.email});
+
+    // Check password
+    //    console.log("body" + body.req.password);
+    //   console.log("user" + user.password);
+
+    bcrypt.compare(req.body.password, user.password).then(isMatch => {
+        if (isMatch) {
+            const payload = {
+                id: user.id,
+                email: user.email
+                };
+
+    // Sign token
+    jwt.sign(
+        payload,
+        keys.secretOrKey,
+        {
+        expiresIn: 1800 // 30 min
+        },
+        (err, token) => {
+        res.json({
+            success: true,
+            token: "Bearer " + token
+        });
         }
-        else{
-            console.log(req.body);
-            res.json(user);
-        }
+    );
+    } else {
+    return res
+        .status(400)
+        .json({ passwordincorrect: "Password incorrect" });
+    }
     });
 }
 
-exports.registerUser = function(req, res) {
+/*  WORKING
+
+    IN:
+    {
+    "email": "a@a.com",
+    "password": "abc123",
+    "firstname": "dsa",
+    "lastname": "war",
+    "address": "ha123"
+    }
+
+    OUT: 
+    "User and household added!"
+*/
+exports.registerUser = async function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 
     const email = req.body.email;
-    const password = req.body.password;
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const address = req.body.address;
+
+    const password = await new Promise((resolve, reject) => {
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
+          if (err) reject(err)
+          resolve(hash)
+        });
+      })
 
     const newUser = new User({
         email,
@@ -35,7 +102,8 @@ exports.registerUser = function(req, res) {
         address
     });
 
-    newUser.save()
+
+    newUser.save();
 
     const wind = 0 
     const consumption = 0 
