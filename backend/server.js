@@ -5,7 +5,7 @@ const express = require('express');
 
 const cors = require('cors');
 const mongoose = require('mongoose');
-const passport = require("passport");
+const passport = require('passport');
 
 require('dotenv').config();
 
@@ -40,7 +40,7 @@ app.use('/api/household', household);
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
-require("./config/passport")(passport);
+require("./user/config/passport")(passport);
 
 // Launch app, always last!!!
 app.listen(port, function() {
