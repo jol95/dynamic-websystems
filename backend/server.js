@@ -40,7 +40,7 @@ app.use('/api/household', household);
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
-require("./user/config/passport")(passport);
+require("./api/user/config/passport")(passport);
 
 // Launch app, always last!!!
 app.listen(port, function() {
