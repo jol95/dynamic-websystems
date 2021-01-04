@@ -12,12 +12,28 @@ let Household = require('./household.model');
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
 
+
+/*  WORKING
+
+    IN:
+    {
+    "email": "a@a.com",
+    "password": "abc123"
+    }
+
+
+    OUT:
+    {
+    "success": true,
+    "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjMyMDg0MDA5M2JlN2RkYzcyY2IxOSIsImVtYWlsIjoiYUBhLmNvbSIsImlhdCI6MTYwOTc2OTE1NSwiZXhwIjoxNjA5NzcwOTU1fQ.2nSmC0oGKE9jWs4Mw2aQYE5QGy10va4fmDPwcdMOuN8"
+    }
+*/
 exports.getUser = async function(req, res) {
     const user = await User.findOne({ email: req.body.email});
 
     // Check password
-//    console.log("body" + body.req.password);
- //   console.log("user" + user.password);
+    //    console.log("body" + body.req.password);
+    //   console.log("user" + user.password);
 
     bcrypt.compare(req.body.password, user.password).then(isMatch => {
         if (isMatch) {
@@ -46,9 +62,22 @@ exports.getUser = async function(req, res) {
         .json({ passwordincorrect: "Password incorrect" });
     }
     });
-    //
 }
 
+/*  WORKING
+
+    IN:
+    {
+    "email": "a@a.com",
+    "password": "abc123",
+    "firstname": "dsa",
+    "lastname": "war",
+    "address": "ha123"
+    }
+
+    OUT: 
+    "User and household added!"
+*/
 exports.registerUser = async function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
 

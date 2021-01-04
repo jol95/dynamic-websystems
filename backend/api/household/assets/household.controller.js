@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Household = require('../../user/assets/household.model');
 
+/*
+
+*/
 exports.getHouses = function(req, res) {
     Household.find(function (err, house) {
         if (err){
@@ -16,14 +19,14 @@ exports.addHouse = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
     const address = req.body.address;
 
-    const wind = 0 
-    const consumption = 0 
-    const price = 0 
+    const wind = req.body.wind;
+    const consumption = req.body.consumption;
+    const price = req.body.price;
 
     const isproducing = false
-    const production = 0  
-    const netproduction = 0  
-    const buffer = 0  
+    const production = req.body.production;
+    const netproduction = req.body.netproduction;
+    const buffer = req.body.buffer;
     const ratio = 0.5
 
     const newHousehold = new Household({
