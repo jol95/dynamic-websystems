@@ -33,8 +33,8 @@ app.get('/api', (req, res) => res.send('Welcome to the api'));
 const user = require("./api/user/user.js");
 app.use('/api/user', user);
 
-const simulator = require("./api/simulator/simulator.js");
-app.use('/api/simulator', simulator);
+const household = require("./api/household/household.js");
+app.use('/api/household', household);
 
 /*Authenication stuff */
 // Passport middleware
