@@ -6,7 +6,7 @@ function Households(props){
     const [userData, setUserData] = useState(null);
   
     const fetchData = async () => {
-      const response = await axios.get("/api/simulator");
+      const response = await axios.get("/api/household");
       setUserData(response.data);
     }
   
