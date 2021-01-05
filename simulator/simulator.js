@@ -42,7 +42,7 @@ setInterval(() => {
 
 
       
-      const res = axios.put(backend + "simulator/" + curitem.houseid, {
+      const res = axios.put(backend + "/household/" + curitem.houseid, {
       wind: distribute.wDay,
       consumption: distribute.cons,
       production: production.production,
