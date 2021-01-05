@@ -3,7 +3,7 @@ class Production{
     price;
 
     //TODO : more realistic function, maybe implement battery limits?
-    prodAvg = function(wind){
+    prodAvg(wind){
         //if the wind is less than 25% of max
         if (wind < 4 /**distribution.windDistMax/4*/){ 
             this.prod = 0;
@@ -13,7 +13,7 @@ class Production{
     }
 
     //TODO: more realisitc function, probably with a function
-    calcPrice = function(wind, consumption){
+    calcPrice(wind, consumption){
         if(wind < 1){
             this.price = 4;
         } else if(1 < wind < 2){
