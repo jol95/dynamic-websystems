@@ -7,7 +7,7 @@ const backend = "http://localhost:5000/api"
 
 const update = async () => { 
   try {
-  const response = await axios.get(backend + '/simulator');
+  const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
     console.log('success stuff');
    return response.data;
@@ -49,7 +49,7 @@ setInterval(() => {
       price: production.price});
 
       console.log(res)
-      
+
       console.log("####################")
       console.log("####################")
     }
