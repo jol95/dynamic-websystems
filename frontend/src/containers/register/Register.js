@@ -6,6 +6,9 @@ import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import "./Register.css";
 
+/*  WORKING 
+
+*/
 class Register extends Component {
   constructor() {
     super();

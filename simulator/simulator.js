@@ -1,7 +1,7 @@
 const production = require("./old/production");
 const distribute = require("./old/distribute");
 const axios = require("axios");
-const { distributeAvg } = require("./old/distribute");
+const { distributeAvg, cons } = require("./old/distribute");
 
 const backend = "http://localhost:5000/api"
 
@@ -20,7 +20,10 @@ const update = async () => {
 tick = 5000;
 setInterval(() => {
   update().then(data => {
+
+    console.log("####################")
     console.log(data);
+    console.log("####################")
     
     distribute.distributeAvg();
 
@@ -29,26 +32,27 @@ setInterval(() => {
     console.log(distribute.cons);
     console.log("^^Consumption^^")
 
-    // var objCount = data.length;
-    // for ( var x = 0; x < objCount ; x++ ) {
-    //   var curitem = data[x];
-    //   distribute.distributeAvg();
+    var objCount = data.length;
+    for ( var x = 0; x < objCount ; x++ ) {
+      var curitem = data[x];
+      distribute.distributeAvg();
 
-    //   production.prodAvg(distribute.wDay);
-    //   production.calcPrice(distribute.wDay, distribute.cons);
+      production.prodAvg(distribute.wDay);
+      production.calcPrice(distribute.wDay, distribute.cons);
 
-
-      
-    //   // const res = axios.put(backend + "simulator/" + curitem.houseid, {
-    //   //   wind: distribute.wDay,
-    //   //   consumption: distribute.cons,
-    //   //   production: production.production,
-    //   //   price: production.price,
-
-    //   // });
 
       
-    // }
+      const res = axios.put(backend + "simulator/" + curitem.houseid, {
+      wind: distribute.wDay,
+      consumption: distribute.cons,
+      production: production.production,
+      price: production.price});
+
+      console.log(res)
+      
+      console.log("####################")
+      console.log("####################")
+    }
   })
 }, tick);
 
