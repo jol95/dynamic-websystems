@@ -36,11 +36,11 @@ setInterval(() => {
       production.calcPrice(distribute.wind, distribute.cons);
       
       const res = axios.put(backend + "/household/" + curitem.houseid, {
-      wind: distribute.wind,
-      consumption: distribute.cons,
-      production: production.production,
-      price: production.price});
-
+        wind: distribute.wind,
+        consumption: distribute.cons,
+        production: production.production,
+        price: production.price});
+        
       console.log(res)
 
       console.log("####################")
