@@ -16,7 +16,7 @@ const update = async () => {
   }
 }
 
-tick = 5000;
+tick = 10000;
 setInterval(() => {
   update().then(data => {
 
