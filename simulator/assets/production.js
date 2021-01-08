@@ -1,19 +1,21 @@
+const { cons } = require("./distribute");
+
 class Production{
     prod;
     price;
 
     //TODO : more realistic function, maybe implement battery limits?
-    calcProd = function(wind){
+    calcProd(wind){
         //if the wind is less than 25% of max
-        if (wind < 4.0 /**distribution.windDistMax/4*/){ 
+        if (wind < 4.0){ 
             this.prod = 0.0;
-        } else {
+        }else{
             this.prod = wind * 10.0 //TODO: real value
         }
     }
 
     //TODO: more realisitc function, probably with a function
-    calcPrice = function(wind, consumption){
+    calcPrice(wind, consumption){
         if(wind < 1.0){
             this.price = 4.0;
         } else if(1.0 < wind < 2.0){
