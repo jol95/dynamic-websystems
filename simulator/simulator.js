@@ -32,11 +32,11 @@ setInterval(() => {
       var curitem = data[x];
       distribute.distributeAvg();
 
-      production.prodAvg(distribute.wDay);
-      production.calcPrice(distribute.wDay, distribute.cons);
+      production.calcProd(distribute.wind);
+      production.calcPrice(distribute.wind, distribute.cons);
       
       const res = axios.put(backend + "/household/" + curitem.houseid, {
-      wind: distribute.wDay,
+      wind: distribute.wind,
       consumption: distribute.cons,
       production: production.production,
       price: production.price});
