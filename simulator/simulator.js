@@ -37,7 +37,7 @@ setInterval(() => {
       const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: distribute.wind,
         consumption: distribute.cons,
-        production: production.production,
+        production: production.prod,
         price: production.price});
 
       console.log(res)
