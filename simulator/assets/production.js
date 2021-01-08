@@ -1,6 +1,7 @@
 class Production{
     prod;
     price;
+    netprod;
 
     //TODO : more realistic function, maybe implement battery limits?
     calcProd(wind){
@@ -37,6 +38,10 @@ class Production{
         } else {
             this.price = this.price*0.6;
         }
+    }
+
+    calcNetProd(consumption){
+        this.netprod = this.prod - consumption;
     }
 
 }
