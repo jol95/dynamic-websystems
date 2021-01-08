@@ -15,13 +15,15 @@ class Distribute{
         this.consDistScew = 1;
     }
 
-    distributeAvg(){
-        this.windDistMin = normdist.nmdist(0, 4.3, this.windDistScew);
-        this.windDistMax = normdist.nmdist(4.3, 8.6, this.windDistScew);
+    distributeInit(){
+        this.windDistMin = normdist.nmdist(0, 3, this.windDistScew);
+        this.windDistMax = normdist.nmdist(4, 10, this.windDistScew);
 
         this.consDistMin = normdist.nmdist(5.9, 12.65, this.consDistScew);
         this.consDistMax = normdist.nmdist(12.65, 19.4, this.consDistScew);
+    }
 
+    distributeAvg(){
         this.wDay = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
         this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
     }
