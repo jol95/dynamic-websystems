@@ -1,7 +1,6 @@
-const production = require("./assets/production.js");
-const distribute = require("./assets/distribute.js");
 const axios = require("axios");
-const { distributeAvg, cons } = require("./assets/distribute.js");
+const { distribute, cons, wind } = require("./assets/distribute.js");
+const {production, prod, price} = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
@@ -40,7 +39,7 @@ setInterval(() => {
         consumption: distribute.cons,
         production: production.production,
         price: production.price});
-        
+
       console.log(res)
 
       console.log("####################")
