@@ -12,7 +12,6 @@ let Household = require('./household.model');
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
 
-
 /*  WORKING
 
     IN:

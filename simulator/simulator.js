@@ -12,9 +12,9 @@ const update = async () => {
     console.log('success stuff');
    return response.data;
   }
- } catch (err) {
+  } catch (err) {
    console.error(err)
- }
+  }
 }
 
 tick = 5000;
@@ -24,26 +24,19 @@ setInterval(() => {
     console.log("####################")
     console.log(data);
     console.log("####################")
-    
-    distribute.distributeAvg();
 
-    console.log(distribute.wDay);
-    console.log("^^Wind^^")
-    console.log(distribute.cons);
-    console.log("^^Consumption^^")
+    distribute.distributeInit();
 
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
       distribute.distributeAvg();
 
-      production.prodAvg(distribute.wDay);
-      production.calcPrice(distribute.wDay, distribute.cons);
-
-
+      production.calcProd(distribute.wind);
+      production.calcPrice(distribute.wind, distribute.cons);
       
       const res = axios.put(backend + "/household/" + curitem.houseid, {
-      wind: distribute.wDay,
+      wind: distribute.wind,
       consumption: distribute.cons,
       production: production.production,
       price: production.price});
