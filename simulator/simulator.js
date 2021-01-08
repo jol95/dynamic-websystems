@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { distribute, cons, wind } = require("./assets/distribute.js");
-const {production, prod, price} = require("./assets/production.js");
+const distribute = require("./assets/distribute.js");
+const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
