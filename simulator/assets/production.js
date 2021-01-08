@@ -10,7 +10,7 @@ class Production{
             console.log("wind is less")
             this.prod = 0.0;
         }else{
-            this.prod = (wind * 10.0);  //TODO: real value
+            this.prod = (wind * 3.2);  //TODO: real value
         }
 
         console.log(this.prod);
