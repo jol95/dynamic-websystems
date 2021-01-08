@@ -6,13 +6,14 @@ class Production{
 
     //TODO : more realistic function, maybe implement battery limits?
     calcProd(wind){
-        console.log(wind);
         //if the wind is less than 25% of max
-        if (wind < 4.0){ 
+        if (0.0 < wind < 4.0){ 
             this.prod = 0.0;
         }else{
-            this.prod = wind * 10.0 //TODO: real value
+            this.prod = (wind * 10.0);  //TODO: real value
         }
+
+        console.log(this.prod);
     }
 
     //TODO: more realisitc function, probably with a function
