@@ -6,7 +6,8 @@ class Production{
     calcProd(wind){
         console.log(wind)
         //if the wind is less than 25% of max
-        if (0.0 < wind < 4.0){ 
+        if (wind < 4.0){ 
+            console.log("wind is less")
             this.prod = 0.0;
         }else{
             this.prod = (wind * 10.0);  //TODO: real value
