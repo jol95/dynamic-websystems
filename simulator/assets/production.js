@@ -1,3 +1,5 @@
+const { cons } = require("./distribute");
+
 class Production{
     prod;
     price;
@@ -47,6 +49,7 @@ class Production{
 
     calcBuffer(buffer, netprod){
         this.buffer = buffer + (netprod);
+        console.log(this.buffer)
     }
 
 }
