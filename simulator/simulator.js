@@ -35,7 +35,7 @@ setInterval(() => {
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
       production.calcPrice(distribute.wind, distribute.cons);
-      production.calcBuffer(data.buffer, production.netprod)
+      production.calcBuffer(curitem.buffer, production.netprod)
       
       const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: distribute.wind,
