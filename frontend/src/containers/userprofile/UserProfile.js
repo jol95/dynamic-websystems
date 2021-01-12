@@ -12,7 +12,7 @@ function UserProfile (props){
         this.state = {
             baseImage: DefaultImg
         }
-     }
+     };
         //constructor(props) {
         //super(props);
 
