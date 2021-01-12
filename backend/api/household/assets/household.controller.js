@@ -60,14 +60,14 @@ exports.addHouse = function(req, res) {
     const address = req.body.address;
 
     const wind = req.body.wind;
-    const consumption = req.body.consumption;
-    const price = req.body.price;
-
-    const isproducing = false;
     const production = req.body.production;
+    const consumption = req.body.consumption;
     const netproduction = req.body.netproduction;
+    
+    const price = req.body.price;
     const ratio = 0.5; 
     const buffer = req.body.buffer;
+    const isproducing = false;
     const blackout = false;
 
     const newHousehold = new Household({
