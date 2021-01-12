@@ -85,8 +85,8 @@ setInterval(() => {
     const res = axios.put(backend + "/grid", {
       totalproduction: totalproduction,
       totalconsumption: totalconsumption,
-      totalnetproduction = totalnetproduction,
-      totalbuffer = totalbuffer
+      totalnetproduction: totalnetproduction,
+      totalbuffer: totalbuffer
     });
 
     console.log(res)
