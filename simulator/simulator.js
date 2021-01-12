@@ -6,7 +6,8 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
-let batterylimit = 2000;
+let batterylimit_h = 100;
+let batterylimit_t = 2000;
 
 let totalproduction = 0;
 let totalconsumption = 0;
@@ -17,7 +18,7 @@ const initTotal = async () => {
   try {
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
-    console.log('Request on api/grid worked!');
+    //console.log('Request on api/grid worked!');
     return response.data;
   }
   } catch (err) {
@@ -29,7 +30,7 @@ const update = async () => {
   try {
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
-    console.log('Request on api/household worked!');
+    //console.log('Request on api/household worked!');
    return response.data;
   }
   } catch (err) {
@@ -40,17 +41,17 @@ const update = async () => {
 // tick = 10000 //for error checking.
 tick = 1000;
 setInterval(() => {
-
+  console.log("tick")
   initTotal().then(data => {
       totalproduction = 0;
       totalconsumption = 0;
       totalnetproduction = 0;
       totalbuffer = data.totalbuffer;
+
+      distribute.distributeInit();
   });
 
   update().then(data => {
-    distribute.distributeInit();
-
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
@@ -59,7 +60,7 @@ setInterval(() => {
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
       production.calcPrice(distribute.wind, distribute.cons);
-      production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
+      production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
       production.checkBlackout(totalbuffer)
     
       const res = axios.put(backend + "/household/" + curitem.houseid, {
@@ -76,8 +77,8 @@ setInterval(() => {
       totalproduction = totalproduction + production.prod;
       totalnetproduction = totalnetproduction + production.netprod;
 
-      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit) {  // 
-        totalbuffer = totalbuffer
+      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
+        totalbuffer = batterylimit_t
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       } 
@@ -90,4 +91,6 @@ setInterval(() => {
       totalbuffer: totalbuffer
     })
   });
+  console.log("tock")
+
 }, tick);
