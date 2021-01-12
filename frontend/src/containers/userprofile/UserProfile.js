@@ -11,7 +11,7 @@ function UserProfile(props){
     }
   
     return (
-    fetchData;
+    fetchData();
       <div className="Apphouse">
           <h1>Your Household</h1>
           <h2>Show household info</h2>
