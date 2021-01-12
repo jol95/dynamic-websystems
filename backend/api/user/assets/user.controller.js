@@ -37,8 +37,7 @@ exports.getUser = async function(req, res) {
 
     const email = req.body.email;
     const password = req.body.password;
-    
-    
+  
     // Find user by email
     User.findOne({ email }).then(user => {
       // Check if user exists
@@ -128,26 +127,26 @@ exports.registerUser = async function(req, res) {
     });
 
     const wind = 0 
-    const consumption = 0 
-    const price = 0 
-    const isproducing = true
     const production = 0  
+    const consumption = 0 
     const netproduction = 0  
+    const price = 0 
     const ratio = 0.5
     const buffer = 20
+    const isproducing = true
     const blackout = false
 
     const newHousehold = new Household({
         houseid,
         address,
         wind,
-        consumption,
-        price,
-        isproducing,
         production,
+        consumption,
         netproduction,
+        price,
         ratio,
-        buffer, 
+        buffer,
+        isproducing, 
         blackout
     });
 
