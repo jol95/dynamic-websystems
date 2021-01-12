@@ -6,7 +6,7 @@ function UserProfile(props){
     const [userData, setUserData] = useState(null);
   
     const fetchData = async () => {
-      const response = await axios.get("/api/user");
+      const response = await axios.get("/api/user/users");
       setUserData(response.data);
     }
 
