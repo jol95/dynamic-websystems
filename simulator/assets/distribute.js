@@ -3,6 +3,9 @@ class Distribute{
     wind;
     cons;
     constructor(){
+        this.windMin = 1.0;
+        this.windMax = 8.5;
+
         this.windDistMin = 0.0;
         this.windDistMax = 0.0;
         this.windDistScew = 1.0;
@@ -10,17 +13,20 @@ class Distribute{
         /*
             http://ceur-ws.org/Vol-923/paper05.pdf
         */
+        this.consMin = 5.9;
+        this.consMax = 19.4;
+
         this.consDistMin = 0.0;
         this.consDistMax = 0.0;
         this.consDistScew = 1.0;
     }
 
     distributeInit(){
-        this.windDistMin = normdist.nmdist(1.0, 4.0, this.windDistScew); // 0 as min 
-        this.windDistMax = normdist.nmdist(6.5, 8.5, this.windDistScew); // 10 can be max
+        this.windDistMin = normdist.nmdist(this.winMin, 4.0, this.windDistScew); 
+        this.windDistMax = normdist.nmdist(6.5, this.winMax, this.windDistScew); 
 
-        this.consDistMin = normdist.nmdist(5.9, 12.65, this.consDistScew);
-        this.consDistMax = normdist.nmdist(12.65, 19.4, this.consDistScew);
+        this.consDistMin = normdist.nmdist(this.consMin, 12.65, this.consDistScew);
+        this.consDistMax = normdist.nmdist(12.65, this.consMax, this.consDistScew);
     }
 
     distributeAvg(){
