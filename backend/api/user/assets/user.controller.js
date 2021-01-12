@@ -93,8 +93,9 @@ exports.getUser = async function(req, res) {
     "User and household added!"
 */
 exports.registerUser = async function(req, res) {
-    houseid = mongoose.mongo.ObjectId()
-    
+    houseid = mongoose.mongo.ObjectId();
+    address = req.body.address;
+
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
@@ -111,7 +112,7 @@ exports.registerUser = async function(req, res) {
                 houseid: houseid,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
-                address: req.body.address
+                address: address
         });
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
