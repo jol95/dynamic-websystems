@@ -27,11 +27,10 @@ class UserProfile extends Component {
       baseImage: files.base64
     });
 
-    let imageObj = {
-      img: files.base64.toString()
-    };
+    img = files.base64.toString()
 
-    axios.post("api/household/" + data.houseid, imageObj)
+
+    axios.post("api/household/" + data.houseid, img)
       .then((data) => {
         if (data.data.success) {
           alert("Image has been successfully uploaded using base64 format");
