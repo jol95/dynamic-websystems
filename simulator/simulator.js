@@ -57,13 +57,17 @@ setInterval(() => {
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
       production.calcPrice(distribute.wind, distribute.cons);
+      production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
+      production.checkBlackout(totalbuffer)
     
       const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: distribute.wind,
-        consumption: distribute.cons,
-        price: production.price,
         production: production.prod,
-        netproduction: production.netprod
+        consumption: distribute.cons,
+        netproduction: production.netprod,
+        price: production.price,
+        buffer: production.buffer,
+        blackout: production.blackout
       });
 
       totalconsumption = totalconsumption + distribute.cons;

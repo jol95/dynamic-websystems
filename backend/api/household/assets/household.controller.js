@@ -63,10 +63,12 @@ exports.addHouse = function(req, res) {
     const consumption = req.body.consumption;
     const price = req.body.price;
 
-    const isproducing = false
+    const isproducing = false;
     const production = req.body.production;
     const netproduction = req.body.netproduction;
-    const ratio = 0.5
+    const ratio = 0.5; 
+    const buffer = req.body.buffer;
+    const blackout = false;
 
     const newHousehold = new Household({
         houseid,
@@ -78,6 +80,8 @@ exports.addHouse = function(req, res) {
         production,
         netproduction,
         ratio,
+        buffer,
+        blackout
     });
 
     newHousehold.save()
@@ -159,6 +163,8 @@ exports.updateHouse = function(req, res) {
         house.production = req.body.production? req.body.production: house.production;
         house.netproduction = req.body.netproduction? req.body.netproduction: house.netproduction;
         house.ratio = req.body.ratio? req.body.ratio: house.ratio;
+        house.buffer = req.body.buffer? req.body.buffer: house.buffer;
+        house.blackout = req.body.blackout? req.body.blackout: house.blackout;
 
         house.save(function (err) {
             if (err)
