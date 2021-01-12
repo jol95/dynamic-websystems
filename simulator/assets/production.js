@@ -11,7 +11,7 @@ class Production{
         if (wind < 4.0){ 
             this.prod = 0.0;
         }else{
-            this.prod = (wind * 3);  
+            this.prod = (wind * 2.8);  
         }
     }
     
