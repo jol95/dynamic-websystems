@@ -10,6 +10,13 @@ const gridSchema = new mongoose.Schema({
     },
     totalconsumption: {
         type: Number,
+    },
+    totalnetproduction:{
+        type: Number,
+    },
+    totalbuffer: {
+        type: Number,
+        max: 2000
     }
 }, {
     timestamps: true,

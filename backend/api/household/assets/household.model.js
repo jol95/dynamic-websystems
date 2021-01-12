@@ -31,6 +31,7 @@ const householdSchema = new mongoose.Schema({
     },
     buffer: {
         type: Number,
+        max: 100
     },
     ratio: {
         type: Number,
