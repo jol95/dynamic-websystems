@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import FileBase from 'react-file-base64';
 import './ProfileImg.css';
 
 class ProfileImg extends Component {
@@ -15,6 +16,31 @@ class ProfileImg extends Component {
             baseImage: DefaultImg
         });
     }
+
+    // function to capture base64 format of an image
+    getBaseFile(files) {
+    // create a local readable base64 instance of an image
+    this.setState({
+      baseImage: files.base64
+    });
+
+    let imageObj = {
+      imageData: files.base64.toString()
+    };
+
+    axios.post("API", imageObj)
+      .then((data) => {
+        if (data.data.success) {
+          alert("Image has been successfully uploaded using base64 format");
+          this.setDefaultImage("base");
+        }
+      })
+      .catch((err) => {
+        alert("Error while uploading image using base64 format")
+        this.setDefaultImage("base");
+      });
+  }
+
 
     render() {
         return (
