@@ -16,16 +16,6 @@ function UserProfile (props){
         //constructor(props) {
         //super(props);
 
-
-    HouseholdInput(props){
-        const [userData, setUserData] = useState(null);    
-        const fetchData = async () => {
-            const response = await axios.get("/api/household");
-            setUserData(response.data);
-        }
-    }
-
-    
     setDefaultImage() {
         this.setState({
             baseImage: DefaultImg
@@ -55,7 +45,7 @@ function UserProfile (props){
       });
     }
 
-        return(){
+        return(
         fetchData(),
         <div className="Apphouse">
             <h1>Your Household</h1>
@@ -90,6 +80,6 @@ function UserProfile (props){
             </div>
             </div>
         };
-}
+
 
 export default UserProfile;
