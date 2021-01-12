@@ -12,6 +12,9 @@ import "./Login.css";
 class Login extends Component {
   constructor() {
     super();
+
+    this.submit = this.submit.bind(this);
+
     this.state = {
       email: "",
       password: "",
@@ -42,7 +45,8 @@ onSubmit = e => {
       password: this.state.password
     };
 
-  this.props.loginUser(userData); //
+  //this.props.loginUser(userData); 
+  this.props.dispatch(loginUser(userData));
 };
 
 render() {
