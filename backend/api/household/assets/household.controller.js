@@ -123,7 +123,6 @@ exports.getHouse = function(req, res) {
         }
     });
 };
-
 /*  WORKING
 
     IN:
@@ -165,6 +164,7 @@ exports.updateHouse = function(req, res) {
         house.ratio = req.body.ratio? req.body.ratio: house.ratio;
         house.buffer = req.body.buffer? req.body.buffer: house.buffer;
         house.blackout = req.body.blackout? req.body.blackout: house.blackout;
+        house.img = req.body.img? req.body.img: house.img;
 
         house.save(function (err) {
             if (err)
