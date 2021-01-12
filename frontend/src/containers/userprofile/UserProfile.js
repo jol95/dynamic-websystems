@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from "react";
+import axios from 'axios';
 import "./UserProfile.css"
 
 function UserProfile(props){
@@ -36,3 +37,5 @@ function UserProfile(props){
         </div>
     );
 }
+
+export default UserProfile;
