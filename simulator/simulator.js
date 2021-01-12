@@ -10,6 +10,17 @@ let totalconsumption = 0;
 let totalnetproduction = 0;
 let totalbuffer = 0;
 
+const initTotal = async () => { 
+  try {
+    const response = await axios.get(backend + '/grid');
+  if (response.status === 200) { 
+    console.log('Request on api/grid worked!');
+    return response.data;
+  }
+  } catch (err) {
+   console.error(err)
+  }
+
 const getUsers = async () => { 
   try {
   const response = await axios.get(backend + '/household');
@@ -22,16 +33,16 @@ const getUsers = async () => {
   }
 }
 
-const initTotal = async () => { 
-  try {
-    const response = await axios.get(backend + '/grid');
-  if (response.status === 200) { 
-    console.log('Request on api/grid worked!');
-    return response.data;
-  }
-  } catch (err) {
-   console.error(err)
-  }
+const updateTotal = async () => {
+  const res = axios.put(backend + "/grid", {
+    totalproduction: totalproduction,
+    totalconsumption: totalconsumption,
+    totalnetproduction: totalnetproduction,
+    totalbuffer: totalbuffer
+  })
+};
+
+  return res;
 }
 
 // tick = 10000 //for error checking.
@@ -43,7 +54,7 @@ setInterval(() => {
       totalconsumption = 0;
       totalnetproduction = 0;
       totalbuffer = data.totalbuffer;
-  })
+  });
 
   getUsers().then(data => {
     distribute.distributeInit();
@@ -62,7 +73,8 @@ setInterval(() => {
         consumption: distribute.cons,
         price: production.price,
         production: production.prod,
-        netproduction: production.netprod});
+        netproduction: production.netprod
+      });
 
       totalconsumption = totalconsumption + distribute.cons;
       totalproduction = totalproduction + production.prod;
@@ -73,18 +85,11 @@ setInterval(() => {
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       }
-
-      if
     }
+  });
 
-    const res = axios.put(backend + "/grid", {
-      totalproduction: totalproduction,
-      totalconsumption: totalconsumption,
-      totalnetproduction: totalnetproduction,
-      totalbuffer: totalbuffer
-    });
-  })
-
+  updateTotal().then(data => {
+    console.log(data)
+  });
    
 }, tick);
-
