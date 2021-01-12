@@ -32,6 +32,6 @@ const managerSchema = new mongoose.Schema({
     timestamps: true,
 });
 
-const User  = module.exports = mongoose.model('User', userSchema);
+const Manager  = module.exports = mongoose.model('Manager', managerSchema);
 
-module.exports = User;
+module.exports = Manager;
