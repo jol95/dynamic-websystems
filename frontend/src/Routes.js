@@ -5,6 +5,7 @@ import Households from "./containers/households/Households";
 import Register from "./containers/register/Register";
 import Login from "./containers/login/Login";
 import UserProfile from "./containers/userprofile/UserProfile";
+import ProfileImg from "./containers/profileimg/ProfileImg";
 import Dashboard from "./containers/dashboard/Dashboard";
 import PrivateRoute from "./containers/private-route/PrivateRoute";
 import NotFound from "./containers/default/NotFound";
@@ -19,6 +20,7 @@ class Routes extends React.Component{
         <Route path="/register" component={Register}></Route>
         <Route path="/login" component={Login}></Route>
         <Route path="/userprofile" component={UserProfile}></Route>
+        <Route path="/profileimg" component={ProfileImg}></Route>
         <Switch>
         <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>
         </Switch>

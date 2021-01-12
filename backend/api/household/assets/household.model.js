@@ -39,11 +39,9 @@ const householdSchema = new mongoose.Schema({
         type: Boolean,
         required: true,
     },
-    img:
-    {
-        data: Buffer,
-        contentType: String
-    },
+    img: {
+        type: String
+    }
 }, {
     timestamps: true,
 });
