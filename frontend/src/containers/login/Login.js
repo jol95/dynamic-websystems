@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
 import "./Login.css";
 
-/*  TODO: CANT LOGIN 
-
-*/
 class Login extends Component {
   constructor() {
     super();
-    
     this.state = {
       email: "",
       password: "",
@@ -20,10 +16,17 @@ class Login extends Component {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-  if (nextProps.auth.isAuthenticated) {
-    this.props.history.push("/"); // push user to dashboard when they login (private page to be implemented)
+  componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+  //if (nextProps.auth.isAuthenticated) {
+  // this.props.history.push("/register"); // push user to dashboard when they login (private page to be implemented)
+  //}
   if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
@@ -38,12 +41,13 @@ onChange = e => {
 onSubmit = e => {
     e.preventDefault();
 
-    const userData = {
-      email: this.state.email,
-      password: this.state.password
-    };
+const userData = {
+  email: this.state.email,
+  password: this.state.password
+};
 
-  this.props.loginUser(userData); 
+//  this.props.loginUser(userData); //
+this.props.loginUser(userData, this.props.history); 
 };
 
 render() {
@@ -68,6 +72,7 @@ return (
 
               {/* EMAIL */}
               <div className="input-field col s12">
+              <label htmlFor="email">Email</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.email}
@@ -78,15 +83,15 @@ return (
                     invalid: errors.email || errors.emailnotfound
                   })}
                 />
-                <label htmlFor="email">Email</label>
                 <span className="red-text">
                   {errors.email}
                   {errors.emailnotfound}
                 </span>
               </div>
 
-              {/*PASSPORT */}
+              {/*PASSwORd */}
               <div className="input-field col s12">
+              <label htmlFor="password">Password</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
@@ -97,7 +102,6 @@ return (
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
-                <label htmlFor="password">Password</label>
                 
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -136,4 +140,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(Login);
+)(withRouter(Login));

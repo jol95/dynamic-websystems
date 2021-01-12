@@ -67,8 +67,12 @@ setInterval(() => {
       totalconsumption = totalconsumption + distribute.cons;
       totalproduction = totalproduction + production.prod;
       totalnetproduction = totalnetproduction + production.netprod;
-      totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-      
+
+      if(totalbuffer + (production.netprod * (1 - curitem.ratio) > 2000)) { 
+        totalbuffer = totalbuffer
+      }else{
+        totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
+      }
     }
 
     const res = axios.put(backend + "/grid", {

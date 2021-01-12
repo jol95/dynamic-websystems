@@ -6,17 +6,16 @@ const gridSchema = new mongoose.Schema({
         unique: true
     },
     totalproduction: {
-        type: Number,
+        type: Number
     },
     totalconsumption: {
-        type: Number,
+        type: Number
     },
     totalnetproduction:{
-        type: Number,
+        type: Number
     },
     totalbuffer: {
-        type: Number,
-        max: 2000
+        type: Number
     }
 }, {
     timestamps: true,

@@ -6,9 +6,6 @@ import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import "./Register.css";
 
-/*  WORKING 
-
-*/
 class Register extends Component {
   constructor() {
     super();
@@ -21,6 +18,14 @@ class Register extends Component {
       errors: {}
     };
   }
+
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
@@ -28,11 +33,9 @@ class Register extends Component {
       });
     }
   }
-  
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
-};
-
+  };
 onSubmit = e => {
     e.preventDefault();
 const newUser = {
@@ -65,6 +68,7 @@ return (
 
             {/* EMAIL */}
             <div className="input-field col s12">
+            <label htmlFor="email">Email</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.email}
@@ -75,12 +79,12 @@ return (
                     invalid: errors.email
                   })}
                 />
-                <label htmlFor="email">Email</label>
                 <span className="red-text">{errors.email}</span>
               </div>
 
               {/* PASSWORD */}
               <div className="input-field col s12">
+              <label htmlFor="password">Password</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
@@ -91,12 +95,12 @@ return (
                     invalid: errors.password
                   })}
                 />
-                <label htmlFor="password">Password</label>
                 <span className="red-text">{errors.password}</span>
               </div>
 
               {/* FIRSTNAME */}
               <div className="input-field col s12">
+              <label htmlFor="name">First Name</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.firstname}
@@ -107,12 +111,12 @@ return (
                     invalid: errors.firstname
                   })}
                 />
-                <label htmlFor="name">First Name</label>
                 <span className="red-text">{errors.firstname}</span>
               </div>
 
               {/* LASTNAME */}
               <div className="input-field col s12">
+              <label htmlFor="lastname">Last Name</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.lastname}
@@ -123,12 +127,12 @@ return (
                     invalid: errors.lastname
                   })}
                 />
-                <label htmlFor="lastname">Last Name</label>
                 <span className="red-text">{errors.lastname}</span>
               </div>
 
               {/* ADDRESS */}
               <div className="input-field col s12">
+              <label htmlFor="address">Address</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.address}
@@ -139,7 +143,7 @@ return (
                     invalid: errors.address
                   })}
                 />
-                <label htmlFor="address">Address</label>
+
                 <span className="red-text">{errors.address}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>

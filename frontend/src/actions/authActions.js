@@ -19,9 +19,9 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 // Login - get user token
-export const loginUser = (userData) => dispatch => {
+export const loginUser = (userData, history) => dispatch => {
   axios
-    .post("api/user", userData)
+    .post("api/user/login", userData)
     .then(res => {
       // Save to localStorage
       // Set token to localStorage
@@ -33,6 +33,9 @@ export const loginUser = (userData) => dispatch => {
       const decoded = jwt_decode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
+      console.log("authaction login");
+      console.log("token: ", token);
+      history.push("/dashboard");
     })
     .catch(err =>
       dispatch({
