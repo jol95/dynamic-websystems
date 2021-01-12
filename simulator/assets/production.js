@@ -43,17 +43,17 @@ class Production{
 
     calcBuffer(netprod, ratio, o_buffer){
         if((o_buffer + (netprod * ratio)) > 100){ // 100 kW limit for battery on house
-            buffer = buffer
+
         }else{
-            buffer = o_buffer + (netprod * ratio);
+            this.buffer = o_buffer + (netprod * ratio);
         }
     }
 
     checkBlackout(totalbuffer){
         if(this.netprod <= 0 && totalbuffer <= 0 && this.buffer <= 0){
-            blackout = true;
+            this.blackout = true;
         }else{
-            blackout = false;
+            this.blackout = false;
         }
     }
 }
