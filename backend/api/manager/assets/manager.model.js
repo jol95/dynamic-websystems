@@ -20,13 +20,18 @@ const managerSchema = new mongoose.Schema({
     lastname: {
         type: String,
     },
+    production: {
+        type: String,
+    },
+    buffer: {
+        type: Number,
+    },
     status: {
         type: String,
-        required: 'Enter correct address'
+        required: true
     },
-    date: {
-        type: Date,
-        default: Date.now
+    img: {
+        type: String
     },
 }, {
     timestamps: true,

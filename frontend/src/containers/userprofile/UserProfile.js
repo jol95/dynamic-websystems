@@ -29,6 +29,7 @@ class UserProfile extends Component {
     this.setState({
       baseImage: files.base64
     });
+    }
 
     let imageObj = {
       img: files.base64.toString()
