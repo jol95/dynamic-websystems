@@ -17,7 +17,8 @@ class UserProfile extends Component {
         const fetchData = async () => {
             const response = await axios.get("/api/household");
             setUserData(response.data);
-     }
+        }
+    }
 
     
     setDefaultImage() {
