@@ -47,8 +47,8 @@ class Production{
         this.netprod = this.prod - consumption;
     }
 
-    calcBuffer(buffer, netprod){
-        this.buffer = buffer + (netprod);
+    calcBuffer(buffer, ratio, netprod){
+        this.buffer = buffer + (netprod * ratio);
         console.log(this.buffer)
     }
 
