@@ -76,7 +76,7 @@ setInterval(() => {
       console.log("####################")
 
       totalproduction = totalproduction + production.prod;
-      totalnetproduction = totalnetproduction + production.netprod * (1 - ratio)
+      totalnetproduction = totalnetproduction + production.netprod * (1 - curitem.ratio)
       totalconsumption = totalconsumption + production.cons;
     }
 
