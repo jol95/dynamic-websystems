@@ -25,6 +25,9 @@ class Routes extends React.Component{
         <Route exact path="/login">
           <Login/>
         </Route>
+        <Route exact path="/userprofile">
+          <UserProfile/>
+        </Route>
         <Switch>
         <PrivateRoute exact path="/dashboard">
           <Dashboard/>
