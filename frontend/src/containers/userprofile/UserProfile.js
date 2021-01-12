@@ -7,6 +7,10 @@ import "./UserProfile.css";
 class UserProfile extends Component {
     constructor(props) {
         super(props);
+        const [userData, setUserData] = useState(null);    
+        const fetchData = async () => {
+        const response = await axios.get("/api/household");
+        setUserData(response.data);
         this.state = {
             baseImage: DefaultImg
         }
@@ -42,12 +46,8 @@ class UserProfile extends Component {
       });
   }
 
-    function UserProfile(props){
-        const [userData, setUserData] = useState(null);    
-        const fetchData = async () => {
-        const response = await axios.get("/api/household");
-        setUserData(response.data);
-        }
+    //function UserProfile(props){
+        //}
     
         return (
         fetchData(),
