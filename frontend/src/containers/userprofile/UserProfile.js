@@ -79,7 +79,8 @@ function UserProfile (props){
                 })}    
             </div>
             </div>
-        };
+        );
+}
 
 
 export default UserProfile;
