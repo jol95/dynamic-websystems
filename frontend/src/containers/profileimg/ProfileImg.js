@@ -21,7 +21,7 @@ class ProfileImg extends Component {
             <div>
                 <FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} />
             </div>
-            <img src={this.state.baseImage} alt="upload-image" className="process__image" />
+            //<img src={this.state.baseImage} alt="upload-image" className="process__image" />
 
         )
     }
