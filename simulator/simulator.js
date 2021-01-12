@@ -6,6 +6,8 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
+let batterylimit = 2000;
+
 let totalproduction = 0;
 let totalconsumption = 0;
 let totalnetproduction = 0;
@@ -74,7 +76,7 @@ setInterval(() => {
       totalproduction = totalproduction + production.prod;
       totalnetproduction = totalnetproduction + production.netprod;
 
-      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > 2000) { 
+      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit) {  // 
         totalbuffer = totalbuffer
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
