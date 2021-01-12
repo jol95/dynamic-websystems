@@ -10,7 +10,7 @@ function UserProfile (props){
             const response = await axios.get("/api/household");
             setUserData(response.data);
           }
-          
+
         //this.state = {
         //    baseImage: DefaultImg
         //}
@@ -24,27 +24,6 @@ function UserProfile (props){
     //}
 
     // function to capture base64 format of an image
-    getBaseFile(files) {
-    // create a local readable base64 instance of an image
-    this.setState({
-      baseImage: files.base64
-    });
-
-    var img = files.base64.toString()
-
-    axios.post("api/household/" + data.houseid, img)
-      .then((data) => {
-        if (data.data.success) {
-          alert("Image has been successfully uploaded using base64 format");
-          this.setDefaultImage("base");
-        }
-      })
-      .catch((err) => {
-        console.log(data.houseid);
-        alert("Error while uploading image using base64 format")
-        this.setDefaultImage("base");
-      });
-    }
 
         return(
         fetchData(),
@@ -69,19 +48,44 @@ function UserProfile (props){
                                 <p>Price:{data.price} sek</p>
                                 <p>Ratio:{data.ratio}</p>
                             </div>
-                            <div>
-                                <div>
-                                    <FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} />
-                                </div>
-                                    <img src={this.state.baseImage} alt="upload-image" className="process__image" />
                             </div>
-                        </div>
                     );
-                })}    
-            </div>
-            </div>
+                })} 
+                </div>
+            </div>   
         );
 }
 
+}
+
+function getBaseFile(files) {
+    // create a local readable base64 instance of an image
+    this.setState({
+      baseImage: files.base64
+    });
+
+    var img = files.base64.toString()
+
+    axios.post("api/household/" + data.houseid, img)
+      .then((data) => {
+        if (data.data.success) {
+          alert("Image has been successfully uploaded using base64 format");
+          this.setDefaultImage("base");
+        }
+      })
+      .catch((err) => {
+        console.log(data.houseid);
+        alert("Error while uploading image using base64 format")
+        this.setDefaultImage("base");
+      });
+      return(
+        <div>
+            <div>
+                <FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} />
+            </div>
+            <img src={this.state.baseImage} alt="upload-image" className="process__image" />
+            </div>
+      );
+    }
 
 export default UserProfile;
