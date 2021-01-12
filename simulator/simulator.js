@@ -73,9 +73,9 @@ setInterval(() => {
       console.log("####################");
       console.log("####################");
 
+      totalconsumption = totalconsumption + distribute.cons;
       totalproduction = totalproduction + production.prod;
-      totalconsumption = totalconsumption + production.cons;
-      totalnetproduction = totalnetproduction + production.netprod;
+      totalnetproduction = totalnetproduction + (production.netprod * (1 - curitem.ratio));
       totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       
     }
