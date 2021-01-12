@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 
 let User = require('./user.model');
-let Household = require('./household.model');
+let Household = require('../../household/assets/household.model');
 
 // Load input validation
 const validateRegisterInput = require("./validation/register");

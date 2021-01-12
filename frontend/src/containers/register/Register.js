@@ -28,9 +28,11 @@ class Register extends Component {
       });
     }
   }
+  
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
-  };
+};
+
 onSubmit = e => {
     e.preventDefault();
 const newUser = {
