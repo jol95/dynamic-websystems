@@ -4,13 +4,12 @@ import FileBase from 'react-file-base64';
 import DefaultImg from './defaultimg.png';
 import "./UserProfile.css";
 
-const [userData, setUserData] = useState(null);    
-const fetchData = async () => {
-    const response = await axios.get("/api/household");
-    setUserData(response.data);
-  }
-
 function UserProfile (props){
+    const [userData, setUserData] = useState(null);    
+    const fetchData = async () => {
+        const response = await axios.get("/api/household");
+        setUserData(response.data);
+  }
 
         //this.state = {
         //    baseImage: DefaultImg
@@ -58,6 +57,11 @@ function UserProfile (props){
 }
 
 function getBaseFile(files) {
+    const [userData, setUserData] = useState(null);    
+    const fetchData = async () => {
+        const response = await axios.get("/api/household");
+        setUserData(response.data);
+  }
     // create a local readable base64 instance of an image
     this.setState({
       baseImage: files.base64
