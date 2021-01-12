@@ -73,7 +73,8 @@ setInterval(() => {
         consumption: distribute.cons,
         price: production.price,
         production: production.prod,
-        netproduction: production.netprod});
+        netproduction: production.netprod
+      });
 
       totalconsumption = totalconsumption + distribute.cons;
       totalproduction = totalproduction + production.prod;
