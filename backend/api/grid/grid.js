@@ -5,6 +5,7 @@ var gridController = require("./assets/grid.controller.js")
 
 router.route('/') 
     .get(gridController.getGrid)
+    .post(gridController.createGrid)
     .patch(gridController.updateGrid)
     .put(gridController.updateGrid);
 
