@@ -30,7 +30,7 @@ class Routes extends React.Component{
           <UserProfile/>
         </Route>
         <Switch>
-        <PrivateRoute exact path="/dashboard" component={Dashboard}>
+        <PrivateRoute exact path="/dashboard" comp={Dashboard}>
           <Dashboard/>
         </PrivateRoute>
         </Switch>

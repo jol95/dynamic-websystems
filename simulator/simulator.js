@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
 const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
@@ -69,11 +70,13 @@ setInterval(() => {
       totalproduction = totalproduction + production.prod;
       totalnetproduction = totalnetproduction + production.netprod;
 
-      if(totalbuffer + (production.netprod * (1 - curitem.ratio) > 2000)) { 
+      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > 2000) { 
         totalbuffer = totalbuffer
+        console.log("buffer not updated")
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-      }
+        console.log("buffer updated")
+      } 
     }
 
     const res = axios.put(backend + "/grid", {
