@@ -14,23 +14,23 @@ class Routes extends React.Component{
   render(){
     return (
       <Switch>
-        <Route exact path="/">
+        <Route exact path="/" component={Home}>
           <Home />
         </Route>
-        <Route exact path="/households">
+        <Route exact path="/households" component={Households}>
           <Households/>
         </Route>
-        <Route exact path="/register">
+        <Route exact path="/register" component={Register}>
           <Register />
         </Route>
-        <Route exact path="/login">
+        <Route exact path="/login" component={Login}>
           <Login/>
         </Route>
-        <Route exact path="/userprofile">
+        <Route exact path="/userprofile" component={UserProfile}>
           <UserProfile/>
         </Route>
         <Switch>
-        <PrivateRoute exact path="/dashboard">
+        <PrivateRoute exact path="/dashboard" component={Dashboard}>
           <Dashboard/>
         </PrivateRoute>
         </Switch>
