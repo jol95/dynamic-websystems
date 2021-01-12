@@ -75,7 +75,7 @@ setInterval(() => {
 
       totalconsumption = totalconsumption + distribute.cons;
       totalproduction = totalproduction + production.prod;
-      totalnetproduction = totalnetproduction + (production.netprod * (1 - curitem.ratio));
+      totalnetproduction = totalnetproduction + production.netprod;
       totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       
     }
