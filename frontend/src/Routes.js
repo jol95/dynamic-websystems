@@ -14,13 +14,13 @@ class Routes extends React.Component{
   render(){
     return (
       <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route path="/households" component={Households}/>
-        <Route path="/register" component={Register}/>
-        <Route path="/login" component={Login}/>
-        <Route path="/userprofile" component={UserProfile}/>
+        <Route exact path="/" component={Home}></Route>
+        <Route path="/households" component={Households}></Route>
+        <Route path="/register" component={Register}></Route>
+        <Route path="/login" component={Login}></Route>
+        <Route path="/userprofile" component={UserProfile}></Route>
         <Switch>
-        <PrivateRoute path="/dashboard" comp={Dashboard}/>
+        <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>
         </Switch>
         <Route component={NotFound}/>      
       </Switch>
