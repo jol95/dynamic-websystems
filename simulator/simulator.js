@@ -73,6 +73,8 @@ setInterval(() => {
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       }
+
+      if
     }
 
     const res = axios.put(backend + "/grid", {
