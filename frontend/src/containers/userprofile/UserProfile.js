@@ -16,11 +16,11 @@ function UserProfile (props){
         //constructor(props) {
         //super(props);
 
-    setDefaultImage() {
-        this.setState({
-            baseImage: DefaultImg
-        });
-    }
+    //setDefaultImage() {
+    //    this.setState({
+    //        baseImage: DefaultImg
+    //    });
+    //}
 
     // function to capture base64 format of an image
     getBaseFile(files) {
