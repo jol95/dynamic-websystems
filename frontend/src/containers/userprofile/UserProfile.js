@@ -56,8 +56,6 @@ function UserProfile (props){
         );
 }
 
-}
-
 function getBaseFile(files) {
     // create a local readable base64 instance of an image
     this.setState({
