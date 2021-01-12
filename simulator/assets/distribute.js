@@ -16,8 +16,8 @@ class Distribute{
     }
 
     distributeInit(){
-        this.windDistMin = normdist.nmdist(0.0, 4.20, this.windDistScew);
-        this.windDistMax = normdist.nmdist(6.5, 10.0, this.windDistScew);
+        this.windDistMin = normdist.nmdist(1.0, 4.0, this.windDistScew); // 0 as min 
+        this.windDistMax = normdist.nmdist(6.5, 8.5, this.windDistScew); // 10 can be max
 
         this.consDistMin = normdist.nmdist(5.9, 12.65, this.consDistScew);
         this.consDistMax = normdist.nmdist(12.65, 19.4, this.consDistScew);
