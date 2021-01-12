@@ -74,13 +74,13 @@ exports.addHouse = function(req, res) {
         houseid,
         address,
         wind,
-        consumption,
-        price,
-        isproducing,
         production,
+        consumption,
         netproduction,
+        price,
         ratio,
         buffer,
+        isproducing,
         blackout
     });
 
