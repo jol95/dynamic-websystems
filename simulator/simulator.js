@@ -22,7 +22,7 @@ const initTotal = async () => {
   }
 }
 
-const getUsers = async () => { 
+const update = async () => { 
   try {
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
@@ -32,17 +32,6 @@ const getUsers = async () => {
   } catch (err) {
    console.error(err)
   }
-}
-
-const updateTotal = async () => {
-  const res = axios.put(backend + "/grid", {
-    totalproduction: totalproduction,
-    totalconsumption: totalconsumption,
-    totalnetproduction: totalnetproduction,
-    totalbuffer: totalbuffer
-  })
-
-  return res;
 }
 
 // tick = 10000 //for error checking.
@@ -56,7 +45,7 @@ setInterval(() => {
       totalbuffer = data.totalbuffer;
   });
 
-  getUsers().then(data => {
+  update().then(data => {
     distribute.distributeInit();
 
     var objCount = data.length;
@@ -86,10 +75,12 @@ setInterval(() => {
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       }
     }
-  });
 
-  updateTotal().then(data => {
-    console.log(data)
+    const res = axios.put(backend + "/grid", {
+      totalproduction: totalproduction,
+      totalconsumption: totalconsumption,
+      totalnetproduction: totalnetproduction,
+      totalbuffer: totalbuffer
+    })
   });
-   
 }, tick);
