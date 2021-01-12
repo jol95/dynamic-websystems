@@ -20,6 +20,7 @@ const initTotal = async () => {
   } catch (err) {
    console.error(err)
   }
+}
 
 const getUsers = async () => { 
   try {
@@ -40,7 +41,6 @@ const updateTotal = async () => {
     totalnetproduction: totalnetproduction,
     totalbuffer: totalbuffer
   })
-};
 
   return res;
 }
