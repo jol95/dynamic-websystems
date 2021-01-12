@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Household = require('../../user/assets/household.model');
+const Household = require('./household.model');
 
 /* WORKING 
 
