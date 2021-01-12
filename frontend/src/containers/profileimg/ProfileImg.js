@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+/*import React, { Component } from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 import DefaultImg from './defaultimg.png';
@@ -26,10 +26,10 @@ class ProfileImg extends Component {
     });
 
     let imageObj = {
-      imageData: files.base64.toString()
+      img: files.base64.toString()
     };
 
-    axios.post("API", imageObj)
+    axios.post("api/household/" + houseid, imageObj)
       .then((data) => {
         if (data.data.success) {
           alert("Image has been successfully uploaded using base64 format");
@@ -55,4 +55,4 @@ class ProfileImg extends Component {
         )
     }
 }
-  export default ProfileImg;
+  export default ProfileImg; */
