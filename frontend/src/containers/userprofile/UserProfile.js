@@ -36,7 +36,6 @@ class UserProfile extends Component {
 
     var img = files.base64.toString()
 
-
     axios.post("api/household/" + data.houseid, img)
       .then((data) => {
         if (data.data.success) {
@@ -49,9 +48,9 @@ class UserProfile extends Component {
         alert("Error while uploading image using base64 format")
         this.setDefaultImage("base");
       });
-  }
+    }
 
-        return (
+        return(){
         fetchData(),
         <div className="Apphouse">
             <h1>Your Household</h1>
@@ -85,8 +84,7 @@ class UserProfile extends Component {
                 })}    
             </div>
             </div>
-        );
-}
+        };
 }
 
 export default UserProfile;
