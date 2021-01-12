@@ -4,6 +4,7 @@ import Home from "./containers/home/Home";
 import Households from "./containers/households/Households";
 import Register from "./containers/register/Register";
 import Login from "./containers/login/Login";
+import UserProfile from "./containers/login/UserProfile";
 import Dashboard from "./containers/dashboard/Dashboard";
 import PrivateRoute from "./containers/private-route/PrivateRoute";
 import NotFound from "./containers/default/NotFound";
