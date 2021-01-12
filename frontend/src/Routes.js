@@ -4,6 +4,8 @@ import Home from "./containers/home/Home";
 import Households from "./containers/households/Households";
 import Register from "./containers/register/Register";
 import Login from "./containers/login/Login";
+import Dashboard from "./containers/dashboard/Dashboard";
+import PrivateRoute from "./containers/private-route/PrivateRoute";
 import NotFound from "./containers/default/NotFound";
 
 class Routes extends React.Component{
@@ -23,6 +25,11 @@ class Routes extends React.Component{
         <Route exact path="/login">
           <Login/>
         </Route>
+        <Switch>
+        <PrivateRoute exact path="/dashboard">
+          <Dashboard/>
+        </PrivateRoute>
+        </Switch>
         <Route>
           <NotFound/>
         </Route>
