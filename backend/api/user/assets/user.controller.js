@@ -93,6 +93,8 @@ exports.getUser = async function(req, res) {
     "User and household added!"
 */
 exports.registerUser = async function(req, res) {
+    houseid = mongoose.mongo.ObjectId()
+    
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
@@ -106,7 +108,7 @@ exports.registerUser = async function(req, res) {
             const newUser = new User({
                 email: req.body.email,
                 password: req.body.password,
-                houseid: new mongoose.mongo.ObjectId(),
+                houseid: houseid,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 address: req.body.address
