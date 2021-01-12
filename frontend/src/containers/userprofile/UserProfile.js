@@ -30,6 +30,7 @@ function UserProfile(props){
                             <p>Buffer:{data.buffer}</p>
                             <p>Blackout:{data.price}</p>
                             <p>Netto:{data.blackout}</p>
+                            <p>Ratio:{data.ratio}</p>
                         </div>
                     </div>
                 );
