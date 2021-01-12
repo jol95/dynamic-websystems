@@ -158,10 +158,10 @@ exports.getHouse = function(req, res) {
 exports.updateHouse = function(req, res) {
     Household.findOne({ houseid: req.params.houseid}, function (err, house) {
         house.wind = req.body.wind? req.body.wind: house.wind;
-        house.consumption = req.body.consumption? req.body.consumption: house.consumption;
-        house.price = req.body.price? req.body.price: house.price;
         house.production = req.body.production? req.body.production: house.production;
+        house.consumption = req.body.consumption? req.body.consumption: house.consumption;
         house.netproduction = req.body.netproduction? req.body.netproduction: house.netproduction;
+        house.price = req.body.price? req.body.price: house.price;
         house.ratio = req.body.ratio? req.body.ratio: house.ratio;
         house.buffer = req.body.buffer? req.body.buffer: house.buffer;
         house.blackout = req.body.blackout? req.body.blackout: house.blackout;
