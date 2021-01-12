@@ -21,7 +21,7 @@ function UserProfile(props){
         <br />
         {/* Display data from API */}   
         <div className="profiles"> 
-            {userData && userData.map((profile, index) => {
+            {userData && userData.map((profiles, index) => {
                 return (
                     <div className="profile" key={index}>
                         <h3>User {index + 1}</h3>
