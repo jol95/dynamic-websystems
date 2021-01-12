@@ -2,46 +2,28 @@ import React from 'react';
 import axios from 'axios';
 import './ProfileImg.css';
 
-function ProfileImg() { //test
-
+class ProfileImg extends Component {
     constructor(props) {
         super(props);
-        this.state ={
-            file: null
-        };
-        this.onFormSubmit = this.onFormSubmit.bind(this);
-        this.onChange = this.onChange.bind(this);
+        this.state = {
+            baseImage: DefaultImg
+        }
     }
-    onFormSubmit(e){
-        e.preventDefault();
-        const formData = new FormData();
-        formData.append('myfile',this.state.file);
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };
-        axios.post("http://localhost:5000/upload",formData,config)
-            .then((response) => {
-                alert("The file is successfully uploaded");
-            }).catch((error) => {
+
+    setDefaultImage() {
+        this.setState({
+            baseImage: DefaultImg
         });
     }
-  
-    onChange(e) {
-        this.setState({file:e.target.files});
-    }
-  
+
     render() {
         return (
-            <form onSubmit={this.onFormSubmit}>
-                <h1>File Upload</h1>
-                <input type="file" className="custom-file-input" name="myImage" onChange= {this.onChange} />
-                {console.log(this.state.file)}
-                <button className="upload-button" type="submit">Upload to DB</button>
-            </form>
+            <div>
+                <FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} />
+            </div>
+            <img src={this.state.baseImage} alt="upload-image" className="process__image" />
+
         )
     }
-  }
-  
+}
   export default ProfileImg;
