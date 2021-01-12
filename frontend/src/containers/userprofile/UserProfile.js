@@ -7,12 +7,13 @@ import "./UserProfile.css";
 function UserProfile (props){
         const [userData, setUserData] = useState(null);    
         const fetchData = async () => {
-        const response = await axios.get("/api/household");
-        setUserData(response.data);
-        this.state = {
-            baseImage: DefaultImg
-        }
-     }
+            const response = await axios.get("/api/household");
+            setUserData(response.data);
+          }
+          
+        //this.state = {
+        //    baseImage: DefaultImg
+        //}
         //constructor(props) {
         //super(props);
 
