@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Household = require('../../user/assets/household.model');
+const Household = require('./household.model');
 
 /* WORKING 
 
@@ -66,7 +66,6 @@ exports.addHouse = function(req, res) {
     const isproducing = false
     const production = req.body.production;
     const netproduction = req.body.netproduction;
-    const buffer = req.body.buffer;
     const ratio = 0.5
 
     const newHousehold = new Household({
@@ -78,7 +77,6 @@ exports.addHouse = function(req, res) {
         isproducing,
         production,
         netproduction,
-        buffer,
         ratio,
     });
 
@@ -160,7 +158,6 @@ exports.updateHouse = function(req, res) {
         house.price = req.body.price? req.body.price: house.price;
         house.production = req.body.production? req.body.production: house.production;
         house.netproduction = req.body.netproduction? req.body.netproduction: house.netproduction;
-        house.buffer = req.body.buffer? req.body.buffer: house.buffer;
         house.ratio = req.body.ratio? req.body.ratio: house.ratio;
 
         house.save(function (err) {

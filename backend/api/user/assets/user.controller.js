@@ -6,12 +6,11 @@ const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 
 let User = require('./user.model');
-let Household = require('./household.model');
+let Household = require('../../household/assets/household.model');
 
 // Load input validation
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
-
 
 /*  WORKING
 
@@ -29,38 +28,53 @@ const validateLoginInput = require("./validation/login");
     }
 */
 exports.getUser = async function(req, res) {
-    const user = await User.findOne({ email: req.body.email});
-
-    // Check password
-    //    console.log("body" + body.req.password);
-    //   console.log("user" + user.password);
-
-    bcrypt.compare(req.body.password, user.password).then(isMatch => {
-        if (isMatch) {
-            const payload = {
-                id: user.id,
-                email: user.email
-                };
-
-    // Sign token
-    jwt.sign(
-        payload,
-        keys.secretOrKey,
-        {
-        expiresIn: 1800 // 30 min
-        },
-        (err, token) => {
-        res.json({
-            success: true,
-            token: "Bearer " + token
-        });
-        }
-    );
-    } else {
-    return res
-        .status(400)
-        .json({ passwordincorrect: "Password incorrect" });
+    // Form validation
+    const { errors, isValid } = validateLoginInput(req.body);
+    // Check validation
+    if (!isValid) {
+      return res.status(400).json(errors);
     }
+
+    const email = req.body.email;
+    const password = req.body.password;
+    
+    
+    // Find user by email
+    User.findOne({ email }).then(user => {
+      // Check if user exists
+      if (!user) {
+        return res.status(404).json({ emailnotfound: "Email not found" });
+      }
+
+      // Check password
+      bcrypt.compare(password, user.password).then(isMatch => {
+        if (isMatch) {
+          // User matched
+          // Create JWT Payload
+          const payload = {
+            id: user.id,
+            name: user.name
+          };
+         // Sign token
+          jwt.sign(
+            payload,
+            keys.secretOrKey,
+            {
+              expiresIn: 120 // 1 year in seconds
+            },
+            (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer1 " + token
+              });
+            }
+          );
+        } else {
+          return res
+            .status(400)
+            .json({ passwordincorrect: "Password incorrect" });
+        }
+      });
     });
 }
 
@@ -79,31 +93,36 @@ exports.getUser = async function(req, res) {
     "User and household added!"
 */
 exports.registerUser = async function(req, res) {
-    const houseid = new mongoose.mongo.ObjectId();
-
-    const email = req.body.email;
-    const firstname = req.body.firstname;
-    const lastname = req.body.lastname;
-    const address = req.body.address;
-
-    const password = await new Promise((resolve, reject) => {
-        bcrypt.hash(req.body.password, 10, function(err, hash) {
-          if (err) reject(err)
-          resolve(hash)
+    // Form validation
+    const { errors, isValid } = validateRegisterInput(req.body);
+    // Check validation
+    if (!isValid) {
+       return res.status(400).json(errors);
+    }
+    User.findOne({ email: req.body.email }).then(user => {
+        if (user) {
+            return res.status(400).json({ email: "Email already exists" });
+        } else {
+            const newUser = new User({
+                email: req.body.email,
+                password: req.body.password,
+                houseid: new mongoose.mongo.ObjectId(),
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                address: req.body.address
         });
-      })
-
-    const newUser = new User({
-        email,
-        password,
-        houseid,
-        firstname,  
-        lastname,
-        address
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if (err) throw err;
+            newUser.password = hash;
+            newUser
+              .save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err));
+          });
+        });
+      }
     });
-
-
-    newUser.save();
 
     const wind = 0 
     const consumption = 0 
@@ -111,7 +130,6 @@ exports.registerUser = async function(req, res) {
     const isproducing = true
     const production = 0  
     const netproduction = 0  
-    const buffer = 0  
     const ratio = 0.5
 
     const newHousehold = new Household({
@@ -123,7 +141,6 @@ exports.registerUser = async function(req, res) {
         isproducing,
         production,
         netproduction,
-        buffer,
         ratio,
     });
 

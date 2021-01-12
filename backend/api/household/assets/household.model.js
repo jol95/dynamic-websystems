@@ -29,9 +29,6 @@ const householdSchema = new mongoose.Schema({
     netproduction: {
         type: Number,
     },
-    buffer: {
-        type: Number,
-    },
     ratio: {
         type: Number,
     },
