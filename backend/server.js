@@ -15,6 +15,10 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+/*----------file upload----------*/
+const fs = require('fs');
+const path = require('path');
+
 /* ----------MongoDB------------*/
 let dbPath = 'mongodb://localhost/mydb';
 let options = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
