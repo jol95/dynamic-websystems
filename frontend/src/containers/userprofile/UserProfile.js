@@ -4,13 +4,18 @@ import FileBase from 'react-file-base64';
 import DefaultImg from './defaultimg.png';
 import "./UserProfile.css";
 
-class UserProfile extends Component {
-    constructor(props) {
-        super(props);
+function UserProfile (props){
+        const [userData, setUserData] = useState(null);    
+        const fetchData = async () => {
+        const response = await axios.get("/api/household");
+        setUserData(response.data);
         this.state = {
             baseImage: DefaultImg
         }
-    }
+     }
+        //constructor(props) {
+        //super(props);
+
 
     HouseholdInput(props){
         const [userData, setUserData] = useState(null);    
