@@ -7,15 +7,12 @@ import "./UserProfile.css";
 class UserProfile extends Component {
     constructor(props) {
         super(props);
-        const [userData, setUserData] = useState(null);    
-        const fetchData = async () => {
-        const response = await axios.get("/api/household");
         setUserData(response.data);
         this.state = {
             baseImage: DefaultImg
         }
     }
-    }
+
     
     setDefaultImage() {
         this.setState({
@@ -29,13 +26,11 @@ class UserProfile extends Component {
     this.setState({
       baseImage: files.base64
     });
-    }
 
-    let imageObj = {
-      img: files.base64.toString()
-    };
+    img = files.base64.toString()
 
-    axios.post("api/household/" + houseid, imageObj)
+
+    axios.post("api/household/" + data.houseid, img)
       .then((data) => {
         if (data.data.success) {
           alert("Image has been successfully uploaded using base64 format");
@@ -43,13 +38,16 @@ class UserProfile extends Component {
         }
       })
       .catch((err) => {
+        console.log(data.houseid);
         alert("Error while uploading image using base64 format")
         this.setDefaultImage("base");
       });
   }
 
-    //function UserProfile(props){
-        //}
+    HouseholdInput(props){
+        const [userData, setUserData] = useState(null);    
+        const fetchData = async () => {
+        const response = await axios.get("/api/household");
     
         return (
         fetchData(),
@@ -87,5 +85,6 @@ class UserProfile extends Component {
             </div>
         );
     }
+}
 }
 export default UserProfile;
