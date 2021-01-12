@@ -12,6 +12,13 @@ class UserProfile extends Component {
         }
     }
 
+    HouseholdInput(props){
+        const [userData, setUserData] = useState(null);    
+        const fetchData = async () => {
+            const response = await axios.get("/api/household");
+            setUserData(response.data);
+     }
+
     
     setDefaultImage() {
         this.setState({
@@ -26,7 +33,7 @@ class UserProfile extends Component {
       baseImage: files.base64
     });
 
-    img = files.base64.toString()
+    var img = files.base64.toString()
 
 
     axios.post("api/household/" + data.houseid, img)
@@ -43,12 +50,6 @@ class UserProfile extends Component {
       });
   }
 
-    HouseholdInput(props){
-        const [userData, setUserData] = useState(null);    
-        const fetchData = async () => {
-            const response = await axios.get("/api/household");
-            setUserData(response.data);
-     }
         return (
         fetchData(),
         <div className="Apphouse">
@@ -84,7 +85,7 @@ class UserProfile extends Component {
             </div>
             </div>
         );
-    }
+}
 }
 
 export default UserProfile;
