@@ -25,12 +25,19 @@ const householdSchema = new mongoose.Schema({
     price: {
         type: Number,
     },
+    ratio: {
+        type: Number,
+    },
+    buffer: {
+        type: Number,
+    },
     isproducing: {
         type: Boolean,
         required: true,
     },
-    ratio: {
-        type: Number,
+    blackout: {
+        type: Boolean,
+        required: true,
     },
 }, {
     timestamps: true,

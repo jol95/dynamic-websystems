@@ -16,9 +16,6 @@ const gridSchema = new mongoose.Schema({
     },
     totalbuffer: {
         type: Number
-    },
-    blackout: {
-        type: Boolean
     }
 }, {
     timestamps: true,
