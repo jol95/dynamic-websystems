@@ -12,7 +12,7 @@ function UserProfile(props){
   
     return (
       <div className="Apphouse">
-          <h1>Household overviews</h1>
+          <h1>Your Household</h1>
           <h2>Show household info</h2>
         {/* Fetch data from API */}
         <div>   
@@ -20,19 +20,18 @@ function UserProfile(props){
         </div>
         <br />
         {/* Display data from API */}   
-        <div className="houses"> 
-            {userData && userData.map((houses, index) => {
+        <div className="profiles"> 
+            {userData && userData.map((data, index) => {
                 return (
-                    <div className="house" key={index}>
-                        <h3>House {index + 1}</h3>
-                        <h2>ID: {houses.houseid}</h2>
+                    <div className="profile" key={index}>
+                        <h2>ID: {data.houseid}</h2>
                         <div className="details">
-                            <p>Address:{houses.address}</p>
-                            <p>Wind:{houses.wind}</p>
-                            <p>Consumption:{houses.consumption}</p>
-                            <p>Production:{houses.production}</p>
-                            <p>Price:{houses.price}</p>
-                            <p>Netto:{houses.netproduction}</p>
+                            <p>Production:{data.production}</p>
+                            <p>Consumption:{data.consumption}</p>
+                            <p>Netto production:{data.netproduction}</p>
+                            <p>Buffer:{data.buffer}</p>
+                            <p>Blackout:{data.price}</p>
+                            <p>Netto:{data.blackout}</p>
                         </div>
                     </div>
                 );
