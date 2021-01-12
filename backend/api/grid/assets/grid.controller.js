@@ -18,15 +18,13 @@ exports.createGrid = function(req, res) {
     const totalconsumption = 0;
     const totalnetproduction = 0;
     const totalbuffer = 10;
-    blackout = false;
 
     const newGrid = new Grid({
         id,
         totalproduction,
         totalconsumption,
         totalnetproduction,
-        totalbuffer,
-        blackout
+        totalbuffer
     });
 
     newGrid.save()
@@ -40,7 +38,6 @@ exports.updateGrid = function(req, res) {
         grid.totalconsumption = req.body.totalconsumption? req.body.totalconsumption: grid.totalconsumption;
         grid.totalnetproduction = req.body.totalnetproduction? req.body.totalnetproduction: grid.totalnetproduction;
         grid.totalbuffer = req.body.totalbuffer? req.body.totalbuffer: grid.totalbuffer;
-        grid.blackout = req.body.blackout? req.body.blackout: grid.blackout;
 
         grid.save(function (err) {
             if (err)
