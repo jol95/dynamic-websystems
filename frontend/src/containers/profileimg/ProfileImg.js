@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './ProfileImg.css';
 
-function ProfileImg() {
+function ProfileImg() { //test
 
     constructor(props) {
         super(props);
