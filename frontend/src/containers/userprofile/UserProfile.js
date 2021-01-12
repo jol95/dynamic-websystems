@@ -15,6 +15,7 @@ class UserProfile extends Component {
             baseImage: DefaultImg
         }
     }
+    }
     
     setDefaultImage() {
         this.setState({
