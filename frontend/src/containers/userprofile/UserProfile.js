@@ -2,23 +2,32 @@ import React from 'react'
 import "./UserProfile.css"
 
 function UserProfile(props){
+    const [userData, setUserData] = useState(null);
+  
+    const fetchData = async () => {
+      const response = await axios.get("/api/user");
+      setUserData(response.data);
+    }
 
     return (
-        <div className="Appprofile">
-            <h1>Household overviews</h1>
-            <h2>Show household info</h2>
+        <div className="Apphouse">
+          <h1>Users overviews</h1>
+          <h2>Show user info</h2>
+        {/* Fetch data from API */}
         <div>   
-            <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
+          <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
         </div>
-        <br /> 
+        <br />
+        {/* Display data from API */}   
         <div className="profiles"> 
-            {userData.map((profiles) => {
+            {userData && userData.map((profile, index) => {
                 return (
                     <div className="profile" key={index}>
-                        <h3>House {index + 1}</h3>
-                        <h2>ID: {profiles.firstname}</h2>
+                        <h3>User {index + 1}</h3>
+                        <h2>ID: {profiles.houseid}</h2>
                         <div className="details">
-                            <p>Address:{profiles.lastname}</p>
+                            <p>First Name:{profiles.firstname}</p>
+                            <p>Last Name:{profiles.lastname}</p>
                         </div>
                     </div>
                 );
