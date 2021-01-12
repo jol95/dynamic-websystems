@@ -4,7 +4,6 @@ class Production{
     prod;
     price;
     netprod;
-    buffer;
 
     //TODO : more realistic function, maybe implement battery limits?
     calcProd(wind){
@@ -46,12 +45,6 @@ class Production{
     calcNetProd(consumption){
         this.netprod = this.prod - consumption;
     }
-
-    calcBuffer(buffer, ratio, netprod){
-        this.buffer = buffer + (netprod * ratio);
-        console.log(this.buffer)
-    }
-
 }
 module.exports = new Production();
 
