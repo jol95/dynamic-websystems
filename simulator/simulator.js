@@ -72,10 +72,8 @@ setInterval(() => {
 
       if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > 2000) { 
         totalbuffer = totalbuffer
-        console.log("buffer not updated")
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-        console.log("buffer updated")
       } 
     }
 
