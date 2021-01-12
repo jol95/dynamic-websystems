@@ -35,7 +35,7 @@ const initTotal = async () => {
 }
 
 // tick = 10000 //for error checking.
-tick = 5000;
+tick = 1000;
 setInterval(() => {
 
   initTotal().then(data => {
@@ -46,10 +46,6 @@ setInterval(() => {
   })
 
   getUsers().then(data => {
-    console.log("####################")
-    console.log(data);
-    console.log("####################")
-
     distribute.distributeInit();
 
     var objCount = data.length;
@@ -68,11 +64,6 @@ setInterval(() => {
         production: production.prod,
         netproduction: production.netprod});
 
-      console.log(res);
-
-      console.log("####################");
-      console.log("####################");
-
       totalconsumption = totalconsumption + distribute.cons;
       totalproduction = totalproduction + production.prod;
       totalnetproduction = totalnetproduction + production.netprod;
@@ -86,8 +77,6 @@ setInterval(() => {
       totalnetproduction: totalnetproduction,
       totalbuffer: totalbuffer
     });
-
-    console.log(res)
   })
 
    
