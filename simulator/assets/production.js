@@ -42,7 +42,7 @@ class Production{
     }
 
     calcBuffer(netprod, ratio, o_buffer){
-        if((o_buffer + (netprod * ratio)) > 100){
+        if((o_buffer + (netprod * ratio)) > 100){ // 100 kW limit for battery on house
             buffer = buffer
         }else{
             buffer = o_buffer + (netprod * ratio);
