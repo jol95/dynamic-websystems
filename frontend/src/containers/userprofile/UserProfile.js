@@ -7,7 +7,6 @@ import "./UserProfile.css";
 class UserProfile extends Component {
     constructor(props) {
         super(props);
-        setUserData(response.data);
         this.state = {
             baseImage: DefaultImg
         }
@@ -47,8 +46,9 @@ class UserProfile extends Component {
     HouseholdInput(props){
         const [userData, setUserData] = useState(null);    
         const fetchData = async () => {
-        const response = await axios.get("/api/household");
-    
+            const response = await axios.get("/api/household");
+            setUserData(response.data);
+     }
         return (
         fetchData(),
         <div className="Apphouse">
@@ -86,5 +86,5 @@ class UserProfile extends Component {
         );
     }
 }
-}
+
 export default UserProfile;
