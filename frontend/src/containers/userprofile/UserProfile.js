@@ -64,7 +64,7 @@ function getBaseFile(files) {
 
     var img = files.base64.toString()
 
-    axios.post("api/household/" + data.houseid, img)
+    axios.post("api/household/" + userData.houseid, img)
       .then((data) => {
         if (data.data.success) {
           alert("Image has been successfully uploaded using base64 format");
@@ -72,7 +72,7 @@ function getBaseFile(files) {
         }
       })
       .catch((err) => {
-        console.log(data.houseid);
+        console.log(userData.houseid);
         alert("Error while uploading image using base64 format")
         this.setDefaultImage("base");
       });
