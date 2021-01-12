@@ -24,12 +24,11 @@ function UserProfile(props){
                     <div className="profile" key={index}>
                         <h2>ID: {data.houseid}</h2>
                         <div className="details">
-                            <p>Production:{data.production}</p>
-                            <p>Consumption:{data.consumption}</p>
-                            <p>Netto production:{data.netproduction}</p>
-                            <p>Buffer:{data.buffer}</p>
-                            <p>Blackout:{data.price}</p>
-                            <p>Netto:{data.blackout}</p>
+                            <p>Production:{data.production} kW/h</p>
+                            <p>Consumption:{data.consumption} kW/h</p>
+                            <p>Netto production:{data.netproduction} kW/h</p>
+                            <p>Buffer:{data.buffer} kW</p>
+                            <p>Blackout:{data.blackout}</p>
                             <p>Ratio:{data.ratio}</p>
                         </div>
                     </div>
