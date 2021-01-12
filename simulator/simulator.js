@@ -10,7 +10,7 @@ let totalconsumption = 0;
 let totalnetproduction = 0;
 let totalbuffer = 0;
 
-const updateUsers = async () => { 
+const getUsers = async () => { 
   try {
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
@@ -22,7 +22,7 @@ const updateUsers = async () => {
   }
 }
 
-const updateTotal = async () => { 
+const initTotal = async () => { 
   try {
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
@@ -38,14 +38,14 @@ const updateTotal = async () => {
 tick = 5000;
 setInterval(() => {
 
-  updateTotal().then(data => {
+  initTotal().then(data => {
       totalproduction = 0;
       totalconsumption = 0;
       totalnetproduction = 0;
       totalbuffer = data.totalbuffer;
   })
 
-  updateUsers().then(data => {
+  getUsers().then(data => {
     console.log("####################")
     console.log(data);
     console.log("####################")
@@ -60,27 +60,25 @@ setInterval(() => {
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
       production.calcPrice(distribute.wind, distribute.cons);
-      production.calcBuffer(curitem.buffer, curitem.ratio, production.netprod);
     
       const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: distribute.wind,
         consumption: distribute.cons,
         price: production.price,
         production: production.prod,
-        netproduction: production.netprod,
-        buffer: production.buffer});
+        netproduction: production.netprod});
 
-      console.log(res)
+      console.log(res);
 
-      console.log("####################")
-      console.log("####################")
+      console.log("####################");
+      console.log("####################");
 
       totalproduction = totalproduction + production.prod;
-      totalnetproduction = totalnetproduction + production.netprod * (1 - curitem.ratio)
       totalconsumption = totalconsumption + production.cons;
+      totalnetproduction = totalnetproduction + production.netprod;
+      totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
+      
     }
-
-    totalbuffer = totalbuffer + totalnetproduction;
 
     const res = axios.put(backend + "/grid", {
       totalproduction: totalproduction,
@@ -90,8 +88,6 @@ setInterval(() => {
     });
 
     console.log(res)
-
-
   })
 
    
