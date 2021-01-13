@@ -190,9 +190,10 @@ exports.updateUser = function(req, res) {
           });
         });
       }
+      user.password = user.password,
       user.firstname = req.body.firstname? req.body.firstname: user.firstname,
       user.lastname = req.body.lastname? req.body.lastname: user.lastname,
-      user.address = req.body.address? req.body.address: user.address
+      user.address = req.body.address? req.body.address: user.address,
 
       user
           .save()
