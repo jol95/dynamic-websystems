@@ -45,7 +45,7 @@ class ProfileImg extends Component {
         return (
             <div>
                 <div>
-                    <FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} />
+                    {/*<FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} /> */}
                 </div>
                 <img src={this.state.baseImage} alt="upload-image" className="process__image" />
             </div>
