@@ -72,6 +72,10 @@ setInterval(() => {   // Init
           production.calcProd(0);
           production.calcNetProd();
         }
+
+        totalconsumption = totalconsumption + distribute.cons;
+        totalproduction = totalproduction + production.prod;
+        totalnetproduction = totalnetproduction + production.netprod;
         
         return data;
 
