@@ -137,7 +137,6 @@ exports.registerUser = async function(req, res) {
     const production = 0  
     const consumption = 0 
     const netproduction = 0  
-    const price = 0 
     const ratio = 0.5
     const buffer = 10
     const isproducing = true
@@ -151,7 +150,6 @@ exports.registerUser = async function(req, res) {
         production,
         consumption,
         netproduction,
-        price,
         ratio,
         buffer,
         isproducing, 
