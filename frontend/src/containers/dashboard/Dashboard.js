@@ -23,6 +23,7 @@ return (
               </p>
             </h4>
             <UpdateDb/>
+            <ProfileImg/>
             <button
               style={{
                 width: "150px",
