@@ -114,6 +114,7 @@ class ProfileImg extends Component {
 
 ProfileImg.propTypes = {
   updateDatabase: PropTypes.func.isRequired,
+  display: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
