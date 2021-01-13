@@ -41,7 +41,6 @@ export const loginUser = (userData, history) => dispatch => {
       // Set current user
       dispatch(setCurrentUser(decoded));
       console.log("decoded", decoded);
-      console.log("payload", setCurrentUser(payload));
       history.push("/dashboard");
     })
     .catch(err =>
