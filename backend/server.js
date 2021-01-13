@@ -1,4 +1,6 @@
 /*------------INIT------------*/
+const https = require('https');
+
 require('dotenv').config();
 
 const express = require('express');
@@ -9,10 +11,7 @@ const passport = require('passport');
 
 require('dotenv').config();
 
-const app = express({
-     key: fs.readFileSync('server.key'),
-     cert: fs.readFileSync('server.cert')
-   });
+const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
@@ -57,4 +56,11 @@ require("./api/user/config/passport")(passport);  // Passport config
 app.listen(port, function() {
      console.log("Running FirstRest on Port "+ port)
 })
+
+https.createServer({
+     key: fs.readFileSync('server.key'),
+     cert: fs.readFileSync('server.cert')
+   }, app).listen(3000, () => {
+     console.log('Listening...')
+   })
 
