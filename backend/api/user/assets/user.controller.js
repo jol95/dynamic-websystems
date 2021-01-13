@@ -11,6 +11,7 @@ let Household = require('../../household/assets/household.model');
 // Load input validation
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
+const validateUpdateInput = require("./validation/update");
 
 /*  WORKING
 
@@ -51,20 +52,21 @@ exports.loginUser = async function(req, res) {
           // User matched
           // Create JWT Payload
           const payload = {
-            id: user.id,
-            name: user.name
+            email: user.email,
+            houseid: user.houseid
           };
          // Sign token
           jwt.sign(
             payload,
             keys.secretOrKey,
             {
-              expiresIn: 120 // 1 year in seconds
+              expiresIn: 300 // 1 year in seconds
             },
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer1 " + token
+                token: "Bearer1 " + token,
+                email: email
               });
             }
           );
@@ -132,7 +134,7 @@ exports.registerUser = async function(req, res) {
     const netproduction = 0  
     const price = 0 
     const ratio = 0.5
-    const buffer = 20
+    const buffer = 10
     const isproducing = true
     const blackout = false
 
@@ -153,4 +155,36 @@ exports.registerUser = async function(req, res) {
     newHousehold.save()
         .then(() => res.json('User and household added!'))
         .catch(err => res.status(400).json('Error: ' + err));
+}
+
+exports.updateUser = function(req, res) {
+  // Form validation
+  const { errors, isValid } = validateUpdateInput(req.body);
+  // Check validation
+  if (!isValid) {
+     return res.status(400).json(errors);
+  }
+
+ User.findOne({ email: req.body.email }).then(user => {
+  if (user) {
+      return res.status(400).json({ email: "Email already exists" });
+  } else {
+      const newUser = new User({
+          password = req.body.password? req.body.password: user.password,
+          firstname = req.body.firstname? req.body.firstname: user.firstname,
+          lastname = req.body.lastname? req.body.lastname: user.lastname,
+          address = req.body.address? req.body.address: user.address,
+  });
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser
+        .save()
+        .then(user => res.json(user))
+        .catch(err => console.log(err));
+    });
+  });
+}
+});
 }

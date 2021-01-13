@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 const Household = require('./household.model');
 
+// Load input validation
+const validateUpdateInput = require("./validation/updatedb");
+    
 /* WORKING 
 
     IN: {}
@@ -54,7 +57,6 @@ exports.getHouses = function(req, res) {
 
     "Household added!"
 */
-
 exports.addHouse = function(req, res) {
     const houseid = new mongoose.mongo.ObjectId();
     const address = req.body.address;
@@ -155,6 +157,13 @@ exports.getHouse = function(req, res) {
 
 */
 exports.updateHouse = function(req, res) {
+     // Form validation
+    const { errors, isValid } = validateUpdateInput(req.body);
+     // Check validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
     Household.findOne({ houseid: req.params.houseid}, function (err, house) {
         house.wind = req.body.wind? req.body.wind: house.wind;
         house.production = req.body.production? req.body.production: house.production;

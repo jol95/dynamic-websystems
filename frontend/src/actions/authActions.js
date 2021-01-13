@@ -6,6 +6,18 @@ import {
   SET_CURRENT_USER,
   USER_LOADING
 } from "./types";
+
+// Update ratio
+export const updateDatabase = (dbData) => dispatch => {
+  axios
+    .post("" , dbData)
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+}
+
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
@@ -55,7 +67,7 @@ export const setUserLoading = () => {
     type: USER_LOADING
   };
 };
-// Log user out
+// Log user out, maybe a redirect?
 export const logoutUser = () => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");

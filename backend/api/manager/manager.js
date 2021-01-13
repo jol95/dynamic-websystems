@@ -4,16 +4,14 @@ const router = express.Router();
 var managerController = require("./assets/manager.controller.js")
 
 router.route('/')
-    .get(getManager)
-    .put(updateManager)
+    .get(managerController.getManager)
+    .put(managerController.updateManager)
     .patch(managerController.updateManager);
 
-router.route('/login') 
+router.route('/login')  // Same functionality as user.login, small differences like houseid in payload for img. 
     .post(managerController.loginManager);
     
-router.route('/register')
+router.route('/register')   // Same functionality as user.register, small differences.
     .post(managerController.registerManager);
-
-router.route('/')
 
 module.exports = router;
