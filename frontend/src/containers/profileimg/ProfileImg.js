@@ -19,10 +19,9 @@ class ProfileImg extends Component {
         errors: {}
       };
     }
-
   componentDidMount() {
-    const { user } = this.props.auth;
     var base64Flag = 'data:image/jpeg;base64,';
+    const { user } = this.props.auth;
     const data = user.houseid.split(" ")[0]
     const res = axios.get("api/household/" + data);
     this.setState = ({
@@ -65,12 +64,14 @@ class ProfileImg extends Component {
       console.log("binary string: xxxxxx")
       const newUpdate = {img: this.state.base64TextString}
 
-
+    
+    var base64Flag = 'data:image/jpeg;base64,';
     var imageStr = this.state.base64TextString;
     this.setState({
       display: base64Flag + imageStr
     })
 
+  const { user } = this.props.auth;
   const data = user.houseid.split(" ")[0]
   this.props.updateDatabase(newUpdate, data); 
 
