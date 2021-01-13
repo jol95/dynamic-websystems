@@ -11,7 +11,22 @@ import {
 export const updateDatabase = (dbData ,data) => dispatch => {
   axios
     .put("api/household/" + data, dbData)
+    .then(res => {
+      const { base } = res.data.img;
+      dispatch(setCurrentPicture(base));
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
+
+//export const getUserInfo = (data) => dispatch => {
+  //response = axios.get("api/household/" + data)
+  //response.data.img;
+//}
 
 
 // Register User
@@ -64,6 +79,14 @@ export const setUserLoading = () => {
     type: USER_LOADING
   };
 };
+
+export const setCurrentPicture = () => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: base
+  };
+};
+
 // Log user out, maybe a redirect?
 export const logoutUser = () => dispatch => {
   // Remove token from local storage

@@ -60,11 +60,6 @@ tick = 1000;    // 1 second each loop.
 setInterval(() => {   // Init 
   console.log("tick")
 
-  getGrid().then(data => {
-    distribute.distributeInit(); // Init our max and min.
-  });
-
-
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
     house_o = getHouses().then(data => {
       return data;
@@ -97,23 +92,32 @@ setInterval(() => {   // Init
           production.calcProd(distribute.wind); 
           production.calcNetProd(distribute.cons);
           production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
+
+          const res = axios.put(backend + "/household/" + curitem.houseid, {
+            wind: distribute.wind,
+            production: production.prod,
+            consumption: distribute.cons,
+            netproduction: production.netprod,
+            price: production.price,
+            buffer: production.buffer,
+            blackout: production.blackout
+          });
         }else if(!curitem.isproducing){
           production.calcProd(0);
           production.calcNetProd();
+
+          const res = axios.put(backend + "/household/" + curitem.houseid, {
+            consumption: distribute.cons,
+            netproduction: production.netprod,
+            price: production.price,
+            buffer: production.buffer,
+            blackout: production.blackout
+          });
         }
         
         //production.calcPrice(distribute.wind, distribute.cons);
         //production.checkBlackout(totalbuffer)
       
-        const res = axios.put(backend + "/household/" + curitem.houseid, {
-          wind: distribute.wind,
-          production: production.prod,
-          consumption: distribute.cons,
-          netproduction: production.netprod,
-          price: production.price,
-          buffer: production.buffer,
-          blackout: production.blackout
-        });
 
         totalconsumption = totalconsumption + distribute.cons;
         totalproduction = totalproduction + production.prod;
@@ -137,6 +141,10 @@ setInterval(() => {   // Init
 
       return data;
   });
+
+  manager_o = getManagers().then(data => {
+    /* CONTENT  */
+  })
 
   console.log("tock")
 }, tick);
