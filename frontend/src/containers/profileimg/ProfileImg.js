@@ -74,7 +74,7 @@ class ProfileImg extends Component {
 
   render () {
     const { errors } = this.state;
-    const { housepic } = this.state.display;
+    const { housepic } = this.state;
   return(
     <div>
       <img
