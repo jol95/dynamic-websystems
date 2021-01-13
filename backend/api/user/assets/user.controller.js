@@ -69,8 +69,8 @@ exports.loginUser = async function(req, res) {
               res.json({
                 success: true,
                 token: "Bearer1 " + token,
-                email: email,
-                houseid: houseid
+                //email: email,
+                //houseid: houseid
               });
             }
           );
@@ -173,23 +173,24 @@ exports.updateUser = function(req, res) {
   if (!user) {
       return res.status(400).json({ email: "Email doesn't exist" });
   } else {
-      if((!Validator.isEmpty(req.body.password)){
-        user.password = req.body.password;
-      }
+      if(! (Validator.isEmpty(req.body.password))){
+        
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+        if (err) throw err;
+        user.password = hash;
+        })
+      })
+    }
       user.firstname = req.body.firstname? req.body.firstname: user.firstname,
       user.lastname = req.body.lastname? req.body.lastname: user.lastname,
       user.address = req.body.address? req.body.address: user.address
 
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(user.password, salt, (err, hash) => {
-        if (err) throw err;
-        user.password = hash;
-        user
-          .save()
-          .then(user => res.json(user))
-          .catch(err => console.log(err));
-        });
-      });
+      user
+        .save()
+        .then(user => res.json(user))
+        .catch(err => console.log(err));
+    });
+  }
 }
-});
-}
+
