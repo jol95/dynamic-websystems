@@ -11,7 +11,7 @@ let Household = require('../../household/assets/household.model');
 // Load input validation
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
-const validateUpdateInput = require("./validation/update");
+const validateUpdateInput = require("../../manager/assets/validation/update");
 
 /*  WORKING
 

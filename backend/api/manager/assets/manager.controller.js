@@ -97,34 +97,55 @@ exports.registerManager = async function(req, res) {
     });
 }
 
-exports.updateUser = function(req, res) {
-  // Form validation
-  const { errors, isValid } = validateUpdateInput(req.body);
+exports.getManagers = function(req, res) {
+  Manager.find(function (err, manager) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          res.json(manager);
+      }
+  });
+}
+
+exports.getManager = function(req, res) {
+  const { errors, isValid } = validateUpdateInput(req.params);
   // Check validation
   if (!isValid) {
      return res.status(400).json(errors);
   }
 
- User.findOne({ email: req.body.email }).then(user => {
-  if (user) {
-      return res.status(400).json({ email: "Email already exists" });
-  } else {
-      const newUser = new User({
-          password = req.body.password? req.body.password: user.password,
-          firstname = req.body.firstname? req.body.firstname: user.firstname,
-          lastname = req.body.lastname? req.body.lastname: user.lastname,
-          address = req.body.address? req.body.address: user.address,
+  Manager.findOne({ email: req.params.email}, function (err, manager) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          res.json(manager);
+      }
   });
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser
-        .save()
-        .then(user => res.json(user))
-        .catch(err => console.log(err));
-    });
+};
+
+exports.updateManager = function(req, res) {
+  // Form validation
+  const { errors, isValid } = validateUpdateInput(req.params);
+  // Check validation
+  if (!isValid) {
+     return res.status(400).json(errors);
+  }
+
+  Manager.findOne({ email: req.params.email }).then(manager => {
+    if (!manager) {
+        return res.status(400).json({ email: "Email doesn't exist" });
+    } else {
+        manager.production = req.body.production? req.body.production: manager.production,
+        manager.buffer = req.body.buffer? req.body.buffer: manager.buffer,
+        manager.lastname = req.body.lastname? req.body.lastname: manager.lastname,
+        manager.address = req.body.address? req.body.address: manager.address
+
+        manager
+          .save()
+          .then(user => res.json(user))
+          .catch(err => console.log(err));
+    }
   });
-}
-});
 }
