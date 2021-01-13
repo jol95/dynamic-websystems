@@ -1,7 +1,5 @@
 const normdist = require("./normaldist/normaldist.js");
 class Distribute{
-    wind;
-    cons;
     constructor(){
         this.windMin = 1.0;
         this.windMax = 8.5;
@@ -29,9 +27,14 @@ class Distribute{
         this.consDistMax = normdist.nmdist(12.65, this.consMax, this.consDistScew);
     }
 
-    distributeAvg(){
-        this.wind = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
-        this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
+    calcWind(){
+        var wind = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
+        return wind;
+    }
+
+    calcConsumption(){
+        var cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
+        return cons;
     }
 }
 module.exports = new Distribute();

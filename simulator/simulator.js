@@ -10,13 +10,13 @@ let init = false;
 let house_o;
 let manager_o;
 
-let batterylimit_h = 100; // Battery limit house in kW
+let batterylimit_h = 100;  // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
 let totalproduction = 0; 
 let totalconsumption = 0;
 let totalnetproduction = 0;
-let buffer = 0;
+let totalbuffer = 0;
 
 const getGrid = async () => {   // Function to get electric grid (total values).
   try {
@@ -72,7 +72,7 @@ setInterval(() => {   // Init
       totalproduction = data.totalproduction;
       totalconsumption = data.totalconsumption;
       totalnetproduction = data.totalnetproduction;
-      buffer = data.buffer;
+      totalbuffer = data.buffer;
     });
 
     distribute.distributeInit();
@@ -86,40 +86,47 @@ setInterval(() => {   // Init
         var curitem = data[x];
         var olditem = house_o[x];
 
-        distribute.distributeAvg(); // Wind and consumption. 
+        var wind = distribute.calcWind(); 
+        var consumption = distribute.calcConsumption();
 
-        if(curitem.isproducing){    // If household is producing or only consuming. 
-          production.calcProd(distribute.wind); 
+        if(curitem.isproducing){    // If household is producing
+          var production = production.calcProd(wind); 
+          var netproduction = production.calcNetProd(production, consumption);
+          var buffer = production.calcBuffer(netproduction, curitem.ratio, curitem.buffer, batterylimit_h);
+          var blackout = checkBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
+
+          const res = axios.put(backend + "/household/" + curitem.houseid, {
+            wind: wind,
+            production: production,
+            consumption: consumption,
+            netproduction: netproduction,
+            totalbuffer: buffer,
+            blackout: blackout
+          });
+
+        }else if(!curitem.isproducing){  // Not producing
+          production.calcProd(0);
           production.calcNetProd(distribute.cons);
           production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
-
-          const res = axios.put(backend + "/household/" + curitem.houseid, {
-            wind: distribute.wind,
-            production: production.prod,
-            consumption: distribute.cons,
-            netproduction: production.netprod,
-            buffer: production.buffer,
-            blackout: production.blackout
-          });
-        }else if(!curitem.isproducing){
-          production.calcProd(0);
-          production.calcNetProd();
+          production.checkBlackout(totalbuffer, totalnetproduction)
 
           const res = axios.put(backend + "/household/" + curitem.houseid, {
             consumption: distribute.cons,
             netproduction: production.netprod,
-            buffer: production.buffer,
+            totalbuffer: production.totalbuffer,
             blackout: production.blackout
           });
         }
         
         //production.calcPrice(distribute.wind, distribute.cons);
-        //production.checkBlackout(totalbuffer)
+        //production.checkBlackout(totaltotalbuffer)
       
 
-        totalconsumption = totalconsumption + distribute.cons;
-        totalproduction = totalproduction + production.prod;
+        totalconsumption = totalconsumption + (olditem.consumption - distribute.cons);
+        totalproduction = totalproduction + (olditem.production - production.prod);
         totalnetproduction = totalnetproduction + (olditem.netproduction - production.netprod);
+
+        totalbuffer = 
 
 
       return data;
