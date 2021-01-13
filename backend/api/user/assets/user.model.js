@@ -28,11 +28,7 @@ const userSchema = new mongoose.Schema({
     address: {
         type: String,
         required: 'Enter correct address'
-    },
-    date: {
-        type: Date,
-        default: Date.now
-    },
+    }
 }, {
     timestamps: true,
 });
