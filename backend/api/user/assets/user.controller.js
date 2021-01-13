@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const express = require("express");
-const router = express.Router();
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
@@ -27,7 +27,7 @@ const validateLoginInput = require("./validation/login");
     "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjMyMDg0MDA5M2JlN2RkYzcyY2IxOSIsImVtYWlsIjoiYUBhLmNvbSIsImlhdCI6MTYwOTc2OTE1NSwiZXhwIjoxNjA5NzcwOTU1fQ.2nSmC0oGKE9jWs4Mw2aQYE5QGy10va4fmDPwcdMOuN8"
     }
 */
-exports.getUser = async function(req, res) {
+exports.loginUser = async function(req, res) {
     // Form validation
     const { errors, isValid } = validateLoginInput(req.body);
     // Check validation
