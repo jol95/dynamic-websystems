@@ -21,16 +21,16 @@ if (localStorage.jwtToken) {
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
 
-/* BUGS WITH SOME REDIRECTS */
+
 
   // Check for expired token
-//  const currentTime = Date.now() / 120; // to get in milliseconds
-//  if (decoded.exp < currentTime) {
-//    // Logout user
-//    store.dispatch(logoutUser());
-//    // Redirect to login
-//    window.location.href = "./login";
-//  }
+  const currentTime = Date.now() / 120; // to get in milliseconds
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
+    // Redirect to login
+    window.location.href = "./login";
+  }
 }
 
 class App extends React.Component{
