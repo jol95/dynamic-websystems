@@ -173,7 +173,19 @@ exports.updateUser = function(req, res) {
   if (!user) {
       return res.status(400).json({ email: "Email doesn't exist" });
   } else {
-      if(!isEmpty(req.body.password)){
+      if(isEmpty(req.body.password)){
+        console.log("password not getting hashed");
+        user.password = user.password,
+        user.firstname = req.body.firstname? req.body.firstname: user.firstname,
+        user.lastname = req.body.lastname? req.body.lastname: user.lastname,
+        user.address = req.body.address? req.body.address: user.address,
+
+        user
+          .save()
+          .then(user => res.json(user))
+          .catch(err => console.log(err));
+      }else{
+        console.log("password getting hashed");
         user.password = req.body.password;
         user.firstname = req.body.firstname? req.body.firstname: user.firstname,
         user.lastname = req.body.lastname? req.body.lastname: user.lastname,
@@ -189,17 +201,7 @@ exports.updateUser = function(req, res) {
             .catch(err => console.log(err));
           });
         });
-      }
-      user.password = user.password,
-      user.firstname = req.body.firstname? req.body.firstname: user.firstname,
-      user.lastname = req.body.lastname? req.body.lastname: user.lastname,
-      user.address = req.body.address? req.body.address: user.address,
-
-      user
-          .save()
-          .then(user => res.json(user))
-          .catch(err => console.log(err));
-    
-}
-});
+      } 
+    }
+  });
 }
