@@ -10,6 +10,7 @@ class UpdateDb extends Component {
       super();
       this.state = {
         ratio: "",
+        img: "",
         errors: {}
       };
     }
@@ -28,6 +29,7 @@ class UpdateDb extends Component {
         onSubmit = e => {
             e.preventDefault();
         const newUpdate = {
+        ratio: this.state.ratio,
         ratio: this.state.ratio,
 
         };

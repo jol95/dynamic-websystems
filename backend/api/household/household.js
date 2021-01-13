@@ -9,7 +9,7 @@ router.route('/')
     
 router.route('/:houseid')
     .get(householdController.getHouse) // GET household based on id. 
-    .patch(householdController.updateHouse) // UPDATES all household parameters including specific ones. 
-    .put(householdController.updateHouse); // UPDATES all household parameters including specific ones.
+    .patch(householdController.updateHouse) // UPDATE all household parameters including specific ones. 
+    .put(householdController.updateHouse); // UPDATE all household parameters including specific ones.
 
 module.exports = router;

@@ -1,52 +1,55 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { updateDatabase } from "../../actions/authActions";
+import classnames from "classnames";
 import FileBase from 'react-file-base64';
 import DefaultImg from './defaultimg.png';
 import './ProfileImg.css';
 
-class ProfileImg extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            baseImage: DefaultImg
-        }
-    }
 
-    setDefaultImage() {
-        this.setState({
-            baseImage: DefaultImg
-        });
+class ProfileImg extends Component {
+    constructor() {
+      super();
+      this.state = {
+        img: "",
+        errors: {}
+      };
     }
 
     // function to capture base64 format of an image
     getBaseFile(files) {
     // create a local readable base64 instance of an image
     this.setState({
-      baseImage: files.base64
+      basefile: files.base64
     });
+    }
 
-    let imageObj = {
-      img: files.base64.toString()
+    UNSAFE_componentWillReceiveProps(nextProps) {
+      if (nextProps.errors) {
+      this.setState({
+          errors: nextProps.errors
+      });
+      }
+    }
+    onChange = e => {
+        this.setState({ [e.target.id]: e.target.value });
     };
+        onSubmit = e => {
+            e.preventDefault();
+        const newUpdate = {
+        ratio: this.state.ratio,
+
+        };
 
     const { user } = this.props.auth;
-    const userdata = user.houseid.split(" ")[0]
-
-    axios.post("/api/household/" + userdata , imageObj)
-      .then((data) => {
-        if (data.data.success) {
-          alert("Image has been successfully uploaded using base64 format");
-          this.setDefaultImage("base");
-        }
-      })
-      .catch((err) => {
-        alert("Error while uploading image using base64 format")
-        this.setDefaultImage("base");
-      });
-  }
-
+    const data = user.houseid.split(" ")[0]
+    this.props.updateDatabase(newUpdate, data); 
+    };
 
     render() {
+      const { errors } = this.state;
         return (
             <div>
                 <div>
@@ -58,4 +61,17 @@ class ProfileImg extends Component {
         )
     }
 }
-  export default ProfileImg;
+
+ProfileImg.propTypes = {
+  updateDatabase: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { updateDatabase }
+)( ProfileImg );
