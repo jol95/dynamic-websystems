@@ -63,7 +63,6 @@ class ProfileImg extends Component {
     this.setState({
       display: base64Flag + imageStr
     })
-  const preview = "data:image/png;base64," + this.state.base64TextString
   const { user } = this.props.auth;
   const data = user.houseid.split(" ")[0]
   this.props.updateDatabase(newUpdate, data); 
@@ -75,6 +74,7 @@ class ProfileImg extends Component {
   render () {
     const { errors } = this.state;
     const { display } = this.state;
+    const preview = "data:image/png;base64," + this.state.base64TextString
   return(
     <div>
       <img
