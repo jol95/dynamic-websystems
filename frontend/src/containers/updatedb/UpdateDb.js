@@ -44,7 +44,7 @@ class UpdateDb extends Component {
               
               {/* RATIO */}
               <div className="input-field col s12">
-              <label htmlFor="address">Ratio</label>
+              <label htmlFor="slider">Ratio</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.ratio}
@@ -58,6 +58,10 @@ class UpdateDb extends Component {
                     invalid: errors.ratio
                   })}
                 />
+                <input
+                  type="text" 
+                  id="textInput" 
+                  value="">
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
