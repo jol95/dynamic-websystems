@@ -78,7 +78,7 @@ class ProfileImg extends Component {
   return(
     <div>
       <img
-        src={display}
+        src={SET_CURRENT_PICTURE}
         alt='Image goes here'/>
       <form noValidate onSubmit={this.onSubmit}>
     <div>
