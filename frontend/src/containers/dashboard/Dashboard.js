@@ -22,7 +22,7 @@ return (
                 You are logged in :){" "}
               </p>
             </h4>
-            <ProfileImg/>
+            {//<ProfileImg/>
             <UpdateDb/>
             <button
               style={{
