@@ -9,7 +9,8 @@ import {
 
 // Update ratio
 export const updateDatabase = (dbData ,data) => dispatch => {
-  axios.put("api/household/" + data, dbData)
+  axios
+    .put("api/household/" + data, dbData)
 };
 
 
