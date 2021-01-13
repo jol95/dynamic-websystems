@@ -56,7 +56,7 @@ class ProfileImg extends Component {
   const data = user.houseid.split(" ")[0]
   this.props.updateDatabase(newUpdate, data); 
 
-  preview.src = "data:image/png;base64," + this.state.base64TextString
+  //preview.src = "data:image/png;base64," + this.state.base64TextString
 
   };
 
