@@ -12,6 +12,8 @@ var olddata;
 let batterylimit_h = 100; // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
+let power_plant = 100; // Power in powerplant
+
 let totalproduction = 0; 
 let totalconsumption = 0;
 let totalnetproduction = 0;
@@ -45,21 +47,39 @@ tick = 1000;    // 1 second each loop.
 setInterval(() => {   // Init 
   console.log("tick")
 
+  initTotal().then(data => {
+    totalproduction = 0;
+    totalconsumption = 0;
+    totalnetproduction = 0;
+
+    distribute.distributeInit(); // Init our max and min.
+  });
+
+
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
     olddata = update().then(data => {
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+        var curitem = data[x];
+
+        distribute.distributeAvg(); // Wind and consumption. 
+
+        if(curitem.isproducing){    // If household is producing or only consuming. 
+          production.calcProd(distribute.wind); 
+          production.calcNetProd(distribute.cons);
+          production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
+        }else if(!curitem.isproducing){
+          production.calcProd(0);
+          production.calcNetProd();
+        }
+        
         return data;
+
+      }
     });
 
     init = true;
   }
-
-  initTotal().then(data => {
-      totalproduction = 0;
-      totalconsumption = 0;
-      totalnetproduction = 0;
-
-      distribute.distributeInit(); // Init our max and min.
-  });
 
   olddata = update().then(data => {
       var objCount = data.length;
