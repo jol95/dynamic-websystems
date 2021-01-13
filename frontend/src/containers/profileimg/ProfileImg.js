@@ -118,6 +118,7 @@ ProfileImg.propTypes = {
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
+  display: state.display,
   auth: state.auth,
   errors: state.errors
 });
