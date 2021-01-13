@@ -11,6 +11,8 @@ import {
 export const updateDatabase = (dbData ,data) => dispatch => {
   axios
     .put("api/household/" + data, dbData)
+    const response = await axios.get(backend + '/household/' + data);
+    return response.img;
 };
 
 

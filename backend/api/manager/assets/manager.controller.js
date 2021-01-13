@@ -78,8 +78,8 @@ exports.registerManager = async function(req, res) {
                 password: req.body.password,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
-                production: 0,
-                buffer: 10,
+                production: 100,
+                buffer: 0,
                 status: "off",
                 img: ""
 
