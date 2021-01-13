@@ -45,10 +45,11 @@ class ProfileImg extends Component {
     };
     onSubmit = e => {
         e.preventDefault();
+
     const newUpdate = {
       img: this.state.img,
     };
-    const base64 = await this.convertBase64(file);
+    const base64 = convertBase64(newUpdate);
     console.log(base64);};
     const { user } = this.props.auth;
     const data = user.houseid.split(" ")[0]
