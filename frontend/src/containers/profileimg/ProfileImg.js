@@ -18,47 +18,68 @@ class ProfileImg extends Component {
       };
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-      if (nextProps.errors) {
-      this.setState({
-          errors: nextProps.errors
-      });
-      }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+    this.setState({
+        errors: nextProps.errors
+    });
+    }
   }
   onChange = e => {
+      console.log("file to upload", e.target.files[0])
+      let file = e.target.files[0]
       this.setState({ [e.target.id]: e.target.value });
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = this._handleReaderLoaded.bind(this)
+        reader.readAsBinaryString(file)
+      }
   };
-      onSubmit = e => {
-          e.preventDefault();
-      const newUpdate = {
-        ratio: this.state.ratio,
-      };
+
+  _handleReaderLoaded = (readerEvt) => {
+    let binaryString = readerEvt.target.result
+    this.setState({
+      base64TextString: btoa(binaryString)
+    })
+  }
+
+
+  onSubmit = e => {
+      e.preventDefault();
+      const preview = document.getElementById("profile-picture");
+      console.log("binary string:", this.state.base64TextString)
+
+      const newUpdate = {img: this.state.base64TextString}
 
   const { user } = this.props.auth;
   const data = user.houseid.split(" ")[0]
   this.props.updateDatabase(newUpdate, data); 
+
+  preview.src = "data:image/png;base64," + this.state.base64TextString
+
   };
 
-  render() {
-      //const { errors } = this.state; 
-      
-      
+  render () {
+    const { errors } = this.state;
+  return(
+    <div>
+        <div>
+          <input 
+            type="file"
+            name="image"
+            id="file"
+            accept=".jpeg, .png, .jpg"
+            onChange = {this.onChange}
+          />
+          <input type="submit"/>
+        </div>
+    </div>
 
-      
-    nst { errors } = this.state;
-        rn (
-            >
-              iv>
-                nput 
-                type="file"
-                onChange = {this.onChange}
-              />
-            </div>
-            </div>
-
-        )
-    }
+    )
+  }
 }
+
 
 ProfileImg.propTypes = {
   updateDatabase: PropTypes.func.isRequired,
