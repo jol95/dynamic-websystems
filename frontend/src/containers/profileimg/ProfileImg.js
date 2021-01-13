@@ -23,7 +23,7 @@ class ProfileImg extends Component {
     var base64Flag = 'data:image/jpeg;base64,';
     const { user } = this.props.auth;
     const data = user.houseid.split(" ")[0]
-    const res = axios.get("api/household/" + data);
+    const res = await axios.get("api/household/" + data);
     this.setState = ({
       display: base64Flag + res.data.img
     })
