@@ -18,21 +18,6 @@ class ProfileImg extends Component {
       };
     }
 
-      convertBase64 = (file) => {
-      return new Promise((resolve, reject)=>{
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-
-        fileReader.onload = () => {
-          resolve(fileReader.result);
-        };
-
-        fileReader.onerror = (error) => {
-          reject(error);
-        };
-      });
-    };
-
     UNSAFE_componentWillReceiveProps(nextProps) {
       if (nextProps.errors) {
       this.setState({
@@ -44,13 +29,7 @@ class ProfileImg extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
     onSubmit = e => {
-        e.preventDefault();
-
-    const newUpdate = {
-      img: this.state.img,
-    };
-    const base64 = convertBase64(newUpdate);
-    console.log(base64);};
+        e.preventDefault();};
     const { user } = this.props.auth;
     const data = user.houseid.split(" ")[0]
     this.props.updateDatabase(newUpdate, data);
