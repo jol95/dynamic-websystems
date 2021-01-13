@@ -1,12 +1,11 @@
 /*------------INIT------------*/
-const https = require('https');
-
 require('dotenv').config();
 
 const express = require('express');
 
 const cors = require('cors');
 const mongoose = require('mongoose');
+const https = require('https');
 const passport = require('passport');
 
 require('dotenv').config();
@@ -60,7 +59,7 @@ app.listen(port, function() {
 https.createServer({
      key: fs.readFileSync('server.key'),
      cert: fs.readFileSync('server.cert')
-   }, app).listen(3000, () => {
+   }, app).listen(port, () => {
      console.log('Listening...')
    })
 

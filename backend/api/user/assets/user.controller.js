@@ -56,7 +56,8 @@ exports.loginUser = async function(req, res) {
           // Create JWT Payload
           const payload = {
             email: user.email,
-            houseid: user.houseid
+            houseid: user.houseid,
+            firstname: user.firstname
           };
          // Sign token
           jwt.sign(
