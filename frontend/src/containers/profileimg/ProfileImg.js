@@ -24,19 +24,23 @@ class ProfileImg extends Component {
           errors: nextProps.errors
       });
       }
-    }
-    onChange = e => {
-        this.setState({ [e.target.id]: e.target.value });
-    };
-    onSubmit = e => {
-        e.preventDefault();};
-    const { user } = this.props.auth;
-    const data = user.houseid.split(" ")[0]
-    this.props.updateDatabase(newUpdate, data);
-    const data = user.houseid.split(" ")[0]
-    this.props.updateDatabase(newUpdate, data); 
-    };
+  }
+  onChange = e => {
+      this.setState({ [e.target.id]: e.target.value });
+  };
+      onSubmit = e => {
+          e.preventDefault();
+      const newUpdate = {
+        ratio: this.state.ratio,
+      };
 
+  const { user } = this.props.auth;
+  const data = user.houseid.split(" ")[0]
+  this.props.updateDatabase(newUpdate, data); 
+  };
+
+  render() {
+      const { errors } = this.state;
     render() {
       const { errors } = this.state;
         return (
