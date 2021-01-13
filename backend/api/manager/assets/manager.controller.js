@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../user/config/keys");
 
-let Manager = require('./assets/manager.model.js');
+let Manager = require('./manager.model.js');
 
 // Load input validation
 const validateRegisterInput = require("../../user/assets/validation/register");
