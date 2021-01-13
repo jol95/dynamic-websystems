@@ -41,16 +41,15 @@ class ProfileImg extends Component {
 
   render() {
       const { errors } = this.state;
-    render() {
-      const { errors } = this.state;
-        return (
-            <div>
-                <div>
-                  <input 
-                    type="file"
-                    onChange = {this.onChange}
-                  />
-                </div>
+    nst { errors } = this.state;
+        rn (
+            >
+              iv>
+                nput 
+                type="file"
+                onChange = {this.onChange}
+              />
+            </div>
             </div>
 
         )
