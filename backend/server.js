@@ -1,11 +1,12 @@
 /*------------INIT------------*/
+const https = require('https');
+
 require('dotenv').config();
 
 const express = require('express');
 
 const cors = require('cors');
 const mongoose = require('mongoose');
-const https = require('https');
 const passport = require('passport');
 
 require('dotenv').config();
@@ -15,6 +16,15 @@ const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+
+var options = {
+     key: fs.readFileSync('server.key'),
+     cert: fs.readFileSync('server.cert'),
+}
+
+var server = https.createServer(options, app).listen(port, function(){
+     console.log("Express server listening on port " + port);
+});
 
 /*----------file upload----------*/
 const fs = require('fs');
@@ -56,10 +66,5 @@ app.listen(port, function() {
      console.log("Running FirstRest on Port "+ port)
 })
 
-https.createServer({
-     key: fs.readFileSync('server.key'),
-     cert: fs.readFileSync('server.cert')
-   }, app).listen(port, () => {
-     console.log('Listening...')
-   })
+
 
