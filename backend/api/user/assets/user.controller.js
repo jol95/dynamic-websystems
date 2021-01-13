@@ -66,7 +66,8 @@ exports.loginUser = async function(req, res) {
               res.json({
                 success: true,
                 token: "Bearer1 " + token,
-                email: email
+                email: email,
+                houseid: houseid
               });
             }
           );
@@ -165,7 +166,7 @@ exports.updateUser = function(req, res) {
      return res.status(400).json(errors);
   }
 
- User.findOne({ email: req.body.email }).then(user => {
+ User.findOne({ email: req.params.email }).then(user => {
   if (!user) {
       return res.status(400).json({ email: "Email doesn't exist" });
   } else {

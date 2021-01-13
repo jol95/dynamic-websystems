@@ -9,7 +9,7 @@ router.route('/login')
 router.route('/register')
     .post(userController.registerUser);
 
-router.route('/')
+router.route('/:email')
     .put(userController.updateUser)
     .patch(userController.updateUser);
 
