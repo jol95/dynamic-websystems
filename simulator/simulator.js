@@ -31,7 +31,19 @@ const initTotal = async () => {   // Function to get electric grid (total values
   }
 }
 
-const updateHouses = async () => {  // Function which recives all households and updates respectively. 
+const getHouses = async () => {  // Function which recives all households and updates respectively. 
+  try {
+  const response = await axios.get(backend + '/household/' + houseid);
+  if (response.status === 200) { 
+    //console.log('Request on api/household worked!');
+   return response.data;
+  }
+  } catch (err) {
+   console.error(err)
+  }
+}
+
+const getManagers= async () => {  // Function which recives all households and updates respectively. 
   try {
   const response = await axios.get(backend + '/household/' + houseid);
   if (response.status === 200) { 
@@ -59,49 +71,15 @@ setInterval(() => {   // Init
 
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
     house_o = updateHouses().then(data => {
-      var objCount = data.length;
-      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
-        var curitem = data[x];
-
-        distribute.distributeAvg(); // Wind and consumption. 
-
-        if(curitem.isproducing){    // If household is producing or only consuming. 
-          production.calcProd(distribute.wind); 
-          production.calcNetProd(distribute.cons);
-          production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
-        }else if(!curitem.isproducing){
-          production.calcProd(0);
-          production.calcNetProd();
-        }
-        
-        const res = axios.put(backend + "/household/" + curitem.houseid, {
-          wind: distribute.wind,
-          production: production.prod,
-          consumption: distribute.cons,
-          netproduction: production.netprod,
-          buffer: production.buffer,
-          blackout: production.blackout
-        });
-
-        totalconsumption = totalconsumption + distribute.cons;
-        totalproduction = totalproduction + production.prod;
-        totalnetproduction = totalnetproduction + production.netprod;
-
-        return data;
-
-      }
+      return data;
     });
 
-    const res = axios.put(backend + "/grid", {
-      totalproduction: totalproduction,
-      totalconsumption: totalconsumption,
-      totalnetproduction: totalnetproduction,
-    })
+    manager_o = 
 
     init = true;
   }
 
-  house_o = updateHouses().then(data => {
+  house_o = getHouses().then(data => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
