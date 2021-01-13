@@ -45,10 +45,12 @@ tick = 1000;    // 1 second each loop.
 setInterval(() => {   // Init 
   console.log("tick")
 
-  if(!init){
+  if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
     olddata = update().then(data => {
         return data;
     });
+
+    init = true;
   }
 
   initTotal().then(data => {
@@ -91,7 +93,7 @@ setInterval(() => {   // Init
 
         totalconsumption = totalconsumption + distribute.cons;
         totalproduction = totalproduction + production.prod;
-        totalnetproduction = totalnetproduction + production.netprod;
+        totalnetproduction = totalnetproduction + (olditem.netproduction - production.netprod);
 
         if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
           totalbuffer = batterylimit_t;
