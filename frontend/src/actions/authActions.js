@@ -8,8 +8,8 @@ import {
 } from "./types";
 
 // Update ratio
-export const updateDatabase = (dbData) => dispatch => {
-  //axios.put("api/household/" + houseID, dbData)
+export const updateDatabase = (dbData ,data) => dispatch => {
+  axios.put("api/household/" + data, dbData)
 };
 
 
