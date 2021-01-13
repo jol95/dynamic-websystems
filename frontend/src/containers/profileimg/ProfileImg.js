@@ -25,6 +25,7 @@ class ProfileImg extends Component {
     this.setState({
       display: base64Flag + imageStr
     })
+    console.log("componentdidmount+++")
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
