@@ -13,6 +13,9 @@ const gridSchema = new mongoose.Schema({
     },
     totalnetproduction:{
         type: Number
+    },
+    price:{
+        type: Number
     }
 }, {
     timestamps: true,
