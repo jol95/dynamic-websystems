@@ -17,12 +17,14 @@ exports.createGrid = function(req, res) {
     const totalproduction = 0;
     const totalconsumption = 0;
     const totalnetproduction = 0;
+    const price = 0;
 
     const newGrid = new Grid({
         id,
         totalproduction,
         totalconsumption,
         totalnetproduction,
+        price
     });
 
     newGrid.save()
@@ -35,6 +37,7 @@ exports.updateGrid = function(req, res) {
         grid.totalproduction = req.body.totalproduction? req.body.totalproduction: grid.totalproduction;
         grid.totalconsumption = req.body.totalconsumption? req.body.totalconsumption: grid.totalconsumption;
         grid.totalnetproduction = req.body.totalnetproduction? req.body.totalnetproduction: grid.totalnetproduction;
+        grid.price = grid.body.price? req.body.price: grid.price;
 
         grid.save(function (err) {
             if (err)
