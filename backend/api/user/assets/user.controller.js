@@ -141,6 +141,7 @@ exports.registerUser = async function(req, res) {
     const buffer = 10
     const isproducing = true
     const blackout = false
+    const img = ""
 
     const newHousehold = new Household({
         houseid,
@@ -153,7 +154,8 @@ exports.registerUser = async function(req, res) {
         ratio,
         buffer,
         isproducing, 
-        blackout
+        blackout,
+        img
     });
 
     newHousehold.save()
