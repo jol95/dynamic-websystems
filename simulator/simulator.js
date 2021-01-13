@@ -19,7 +19,7 @@ let totalproduction = 0;
 let totalconsumption = 0;
 let totalnetproduction = 0;
 
-const initTotal = async () => {   // Function to get electric grid (total values).
+const getGrid = async () => {   // Function to get electric grid (total values).
   try {
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
@@ -60,11 +60,7 @@ tick = 1000;    // 1 second each loop.
 setInterval(() => {   // Init 
   console.log("tick")
 
-  initTotal().then(data => {
-    totalproduction = 0;
-    totalconsumption = 0;
-    totalnetproduction = 0;
-
+  getGrid().then(data => {
     distribute.distributeInit(); // Init our max and min.
   });
 
