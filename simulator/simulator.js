@@ -98,7 +98,6 @@ setInterval(() => {   // Init
             production: production.prod,
             consumption: distribute.cons,
             netproduction: production.netprod,
-            price: production.price,
             buffer: production.buffer,
             blackout: production.blackout
           });
@@ -109,7 +108,6 @@ setInterval(() => {   // Init
           const res = axios.put(backend + "/household/" + curitem.houseid, {
             consumption: distribute.cons,
             netproduction: production.netprod,
-            price: production.price,
             buffer: production.buffer,
             blackout: production.blackout
           });

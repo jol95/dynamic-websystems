@@ -12,6 +12,7 @@ import './ProfileImg.css';
 
 class ProfileImg extends Component {
     constructor() {
+      const preview = "";
       super();
       this.state = {
         img: "",
@@ -53,7 +54,6 @@ class ProfileImg extends Component {
 
   onSubmit = e => {
       e.preventDefault();
-//      const preview = document.getElementById("profile-picture");
       console.log("binary string: xxxxxx")
       const newUpdate = {img: this.state.base64TextString}
 
@@ -63,7 +63,7 @@ class ProfileImg extends Component {
     this.setState({
       display: base64Flag + imageStr
     })
-
+  const preview = "data:image/png;base64," + this.state.base64TextString
   const { user } = this.props.auth;
   const data = user.houseid.split(" ")[0]
   this.props.updateDatabase(newUpdate, data); 
@@ -78,7 +78,7 @@ class ProfileImg extends Component {
   return(
     <div>
       <img
-        src={display}
+        src={preview}
         alt='Image goes here'/>
       <form noValidate onSubmit={this.onSubmit}>
     <div>
