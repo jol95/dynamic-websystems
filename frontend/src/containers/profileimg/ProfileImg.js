@@ -81,14 +81,16 @@ class ProfileImg extends Component {
         src={display}
         alt='Image goes here'/>
       <form noValidate onSubmit={this.onSubmit}>
-        <div>
-          <input 
-            type="file"
-            name="image"
-            id="file"
-            accept=".jpeg, .png, .jpg"
-            onChange = {this.onChange}
-          />
+    <div>
+      
+        <input 
+          type="file"
+          name="image"
+          id="file"
+          accept=".jpeg, .png, .jpg"
+          onChange = {this.onChange}
+        />
+        
         </div>
           <div className="col s12" style={{ paddingLeft: "11.250px" }}>
             <button
@@ -114,12 +116,10 @@ class ProfileImg extends Component {
 
 ProfileImg.propTypes = {
   updateDatabase: PropTypes.func.isRequired,
-  display: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  display: state.display,
   auth: state.auth,
   errors: state.errors
 });
