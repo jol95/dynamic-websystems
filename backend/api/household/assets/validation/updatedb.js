@@ -11,7 +11,7 @@ module.exports = function validateUpdateInput(data) {
 
 // ratio check
   if (! (Validator.isEmpty(temp))) {
-    if (Validator.isFloat(data.ratio)) {
+    if (Validator.isFloat(temp)) {
       errors.ratio = "Ratio needs to be a number";
     }
     if(!(0 <= data.ratio <= 1)){
