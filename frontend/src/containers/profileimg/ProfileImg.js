@@ -27,7 +27,7 @@ class ProfileImg extends Component {
           resolve(fileReader.result);
         };
 
-        fileReader.onerror (error) => {
+        fileReader.onerror = (error) => {
           reject(error);
         };
       });
