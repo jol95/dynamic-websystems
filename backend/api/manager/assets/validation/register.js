@@ -10,7 +10,6 @@ module.exports = function validateRegisterInput(data) {
   data.password = !isEmpty(data.password) ? data.password : "";
   data.firstname = !isEmpty(data.firstname) ? data.firstname : "";
   data.lastname = !isEmpty(data.lastname) ? data.lastname : "";
-  data.address = !isEmpty(data.address) ? data.address : "";
   // email check
   if (Validator.isEmpty(data.email)) {
     errors.email = "Email field is required";
@@ -31,10 +30,6 @@ module.exports = function validateRegisterInput(data) {
 // lastname check
   if (Validator.isEmpty(data.lastname)) {
     errors.name = "Last name field is required";
-  }
-// address check
-  if (Validator.isEmpty(data.address)) {
-    errors.name = "Address field is required";
   }
 
 return {
