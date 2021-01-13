@@ -18,6 +18,14 @@ class ProfileImg extends Component {
       };
     }
 
+  componentDidMount() {
+    var base64Flas = 'data:image/jpeg;base64,';
+    var imageStr = this.state.base64TextString;
+    this.setState({
+      img: base64Flag + imageStr
+    })
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
     this.setState({
