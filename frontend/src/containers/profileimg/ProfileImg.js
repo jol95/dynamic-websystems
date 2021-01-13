@@ -29,7 +29,7 @@ class ProfileImg extends Component {
       img: files.base64.toString()
     };
 
-    axios.post("api/household/" + houseid, imageObj)
+    axios.post("" , imageObj)
       .then((data) => {
         if (data.data.success) {
           alert("Image has been successfully uploaded using base64 format");

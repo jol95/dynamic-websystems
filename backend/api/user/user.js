@@ -9,5 +9,8 @@ router.route('/login')
 router.route('/register')
     .post(userController.registerUser);
 
+router.route('/')
+    .put(userController.updateUser)
+    .patch(userController.updateUser);
 
 module.exports = router;
