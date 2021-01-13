@@ -13,8 +13,6 @@ let manager_o;
 let batterylimit_h = 100; // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
-let power_plant = 100; // Power in powerplant
-
 let totalproduction = 0; 
 let totalconsumption = 0;
 let totalnetproduction = 0;

@@ -30,9 +30,8 @@ function UserProfile (props){
                                 <p>Buffer:{data.buffer} kW</p>
                                 <p>Blackout:{data.blackout}</p>
                                 <p>Ratio:{data.ratio}</p>
-                                <p>Img TEST:{data.img}</p>
                                 <img
-                                    src={data.img}
+                                    src={"data:image/png;base64," + data.img}
                                     alt='Image goes here'/>
                             </div>
                             </div>
