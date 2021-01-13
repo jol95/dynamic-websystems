@@ -36,6 +36,7 @@ class UpdateDb extends Component {
 
     render() {
         const { errors } = this.state;
+        const { user } = this.props.auth;
     return (
         <div className="container">
             <form noValidate onSubmit={this.onSubmit}>
