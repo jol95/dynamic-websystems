@@ -29,8 +29,8 @@ function UserProfile (props){
                                 <p>Netto production:{data.netproduction} kW/h</p>
                                 <p>Buffer:{data.buffer} kW</p>
                                 <p>Blackout:{data.blackout}</p>
-                                <p>Price:{data.price} sek</p>
                                 <p>Ratio:{data.ratio}</p>
+                                <p>Img TEST:{data.img}</p>
                                 <img
                                     src={data.img}
                                     alt='Image goes here'/>
