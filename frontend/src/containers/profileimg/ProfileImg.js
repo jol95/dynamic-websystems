@@ -20,12 +20,7 @@ class ProfileImg extends Component {
     }
 
   componentDidMount() {
-    var base64Flag = 'data:image/jpeg;base64,';
-    var imageStr = this.state.base64TextString;
-    this.setState({
-      display: base64Flag + imageStr
-    })
-    console.log("componentdidmount+++")
+    console.log("profileimg mounted")
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -57,10 +52,15 @@ class ProfileImg extends Component {
 
   onSubmit = e => {
       e.preventDefault();
-      const preview = document.getElementById("profile-picture");
+//      const preview = document.getElementById("profile-picture");
       console.log("binary string: xxxxxx")
-
       const newUpdate = {img: this.state.base64TextString}
+
+    var base64Flag = 'data:image/jpeg;base64,';
+    var imageStr = this.state.base64TextString;
+    this.setState({
+      display: base64Flag + imageStr
+    })
 
   const { user } = this.props.auth;
   const data = user.houseid.split(" ")[0]
