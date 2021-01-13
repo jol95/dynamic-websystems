@@ -28,8 +28,7 @@ class UpdateDb extends Component {
         onSubmit = e => {
             e.preventDefault();
         const newUpdate = {
-        ratio: this.state.ratio,
-
+          ratio: this.state.ratio,
         };
 
     const { user } = this.props.auth;
