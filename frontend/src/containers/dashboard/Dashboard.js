@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import UpdateDb from "../updatedb/UpdateDb";
+import ProfileImg from "../profileimg/ProfileImg";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -22,6 +23,8 @@ return (
                 You are logged in :){" "}
               </p>
             </h4>
+            <ProfileImg/>
+            <UpdateDb/>
             <button
               style={{
                 width: "150px",
@@ -34,7 +37,6 @@ return (
             >
               Logout
             </button>
-            <UpdateDb/>
           </div>
         </div>
       </div>

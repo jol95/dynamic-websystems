@@ -9,7 +9,10 @@ const passport = require('passport');
 
 require('dotenv').config();
 
-const app = express();
+const app = express({
+     key: fs.readFileSync('server.key'),
+     cert: fs.readFileSync('server.cert')
+   });
 const port = process.env.PORT || 5000;
 
 app.use(cors());
