@@ -59,10 +59,5 @@ app.use('/api/manager', manager);
 app.use(passport.initialize());    // Passport middleware
 require("./api/user/config/passport")(passport);  // Passport config
 
-// Launch app, always last!!!
-app.listen(port, function() {
-     console.log("Running FirstRest on Port "+ port)
-})
-
 
 
