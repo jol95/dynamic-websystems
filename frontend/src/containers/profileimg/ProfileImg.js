@@ -62,8 +62,12 @@ class ProfileImg extends Component {
 
   render () {
     const { errors } = this.state;
+    const { img } = this.state;
   return(
     <div>
+      <img
+        src={img}
+      />
       <form noValidate onSubmit={this.onSubmit}>
         <div>
           <input 

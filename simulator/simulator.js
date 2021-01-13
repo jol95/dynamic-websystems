@@ -32,7 +32,7 @@ const initTotal = async () => {   // Function to get electric grid (total values
 
 const update = async () => {  // Function which recives all households and updates respectively. 
   try {
-  const response = await axios.get(backend + '/household');
+  const response = await axios.get(backend + '/household/' + houseid);
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -133,7 +133,6 @@ setInterval(() => {   // Init
         totalproduction: totalproduction,
         totalconsumption: totalconsumption,
         totalnetproduction: totalnetproduction,
-        totalbuffer: totalbuffer
       })
 
       return data;
