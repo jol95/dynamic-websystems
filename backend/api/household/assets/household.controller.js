@@ -71,6 +71,7 @@ exports.addHouse = function(req, res) {
     const buffer = req.body.buffer;
     const isproducing = false;
     const blackout = false;
+    const img = "";
 
     const newHousehold = new Household({
         houseid,
@@ -83,7 +84,8 @@ exports.addHouse = function(req, res) {
         ratio,
         buffer,
         isproducing,
-        blackout
+        blackout,
+        img
     });
 
     newHousehold.save()

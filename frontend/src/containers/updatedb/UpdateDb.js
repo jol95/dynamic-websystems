@@ -9,7 +9,7 @@ class UpdateDb extends Component {
     constructor() {
       super();
       this.state = {
-        ratio: "",
+        ratio: 0,
         errors: {}
       };
     }
