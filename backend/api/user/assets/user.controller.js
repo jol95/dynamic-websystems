@@ -161,7 +161,7 @@ exports.registerUser = async function(req, res) {
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
-exports.updateUser = function(req, res) {
+exports.updateUser = async function(req, res) {
   // Form validation
   const { errors, isValid } = validateUpdateInput(req.params);
   // Check validation
@@ -202,4 +202,8 @@ exports.updateUser = function(req, res) {
       } 
     }
   });
+
+  /*
+      TODO: Update address in household.
+  */
 }
