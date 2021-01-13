@@ -1,5 +1,7 @@
 /*------------INIT------------*/
 const https = require('https');
+const fs = require('fs');
+const path = require('path');
 
 require('dotenv').config();
 
@@ -25,10 +27,6 @@ var options = {
 var server = https.createServer(options, app).listen(port, function(){
      console.log("Express server listening on port " + port);
 });
-
-/*----------file upload----------*/
-const fs = require('fs');
-const path = require('path');
 
 /* ----------MongoDB------------*/
 let dbPath = 'mongodb://localhost/mydb';
