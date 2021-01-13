@@ -32,9 +32,9 @@ const path = require('path');
 
 /* ----------MongoDB------------*/
 let dbPath = 'mongodb://localhost/mydb';
-let options = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
+let dboptions = {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false}
 
-const db = mongoose.connect(dbPath, options);
+const db = mongoose.connect(dbPath, dboptions);
 
 db.then(() => {
      console.log('MongoDB connected');
