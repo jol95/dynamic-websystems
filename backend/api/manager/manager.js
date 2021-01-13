@@ -3,7 +3,7 @@ const router = express.Router();
 
 var managerController = require("./assets/manager.controller.js")
 
-router.route('/')
+router.route('/:email')
     .get(managerController.getManager)
     .put(managerController.updateManager)
     .patch(managerController.updateManager);
