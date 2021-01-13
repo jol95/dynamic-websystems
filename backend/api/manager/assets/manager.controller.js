@@ -147,7 +147,7 @@ exports.updateManager = async function(req, res) {
 
         manager
           .save()
-          .then(manager => res.json(user))
+          .then(manager => res.json(manager))
           .catch(err => console.log(err));
     }
   });
