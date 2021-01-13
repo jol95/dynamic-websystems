@@ -14,6 +14,7 @@ class ProfileImg extends Component {
       super();
       this.state = {
         img: "",
+        display: "",
         errors: {}
       };
     }
@@ -22,7 +23,7 @@ class ProfileImg extends Component {
     var base64Flag = 'data:image/jpeg;base64,';
     var imageStr = this.state.base64TextString;
     this.setState({
-      img: base64Flag + imageStr
+      display: base64Flag + imageStr
     })
   }
 
@@ -70,11 +71,11 @@ class ProfileImg extends Component {
 
   render () {
     const { errors } = this.state;
-    const { img } = this.state;
+    const { display } = this.state;
   return(
     <div>
       <img
-        src={img}
+        src={display}
         alt='Helpful alt text'/>
       <form noValidate onSubmit={this.onSubmit}>
         <div>
