@@ -20,14 +20,7 @@ class ProfileImg extends Component {
       };
     }
   componentDidMount() {
-    var base64Flag = 'data:image/jpeg;base64,';
-    const { user } = this.props.auth;
-    const data = user.houseid.split(" ")[0]
-    const res = await axios.get("api/household/" + data);
-    this.setState = ({
-      display: base64Flag + res.data.img
-    })
-    console.log("data", data)
+
     console.log("profileimg mounted")
   }
 
@@ -86,7 +79,7 @@ class ProfileImg extends Component {
     <div>
       <img
         src={display}
-        alt='Helpful alt text'/>
+        alt='Image goes here'/>
       <form noValidate onSubmit={this.onSubmit}>
         <div>
           <input 
