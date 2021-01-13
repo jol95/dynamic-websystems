@@ -31,6 +31,9 @@ function UserProfile (props){
                                 <p>Blackout:{data.blackout}</p>
                                 <p>Price:{data.price} sek</p>
                                 <p>Ratio:{data.ratio}</p>
+                                <img
+                                    src={data.img}
+                                    alt='Image goes here'/>
                             </div>
                             </div>
                     );

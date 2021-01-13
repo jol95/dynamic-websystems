@@ -15,11 +15,10 @@ let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
 let power_plant = 100; // Power in powerplant
 
-let manager_buffer = 0;
-
 let totalproduction = 0; 
 let totalconsumption = 0;
 let totalnetproduction = 0;
+let buffer = 0;
 
 const getGrid = async () => {   // Function to get electric grid (total values).
   try {
@@ -75,6 +74,7 @@ setInterval(() => {   // Init
       totalproduction = data.totalproduction;
       totalconsumption = data.totalconsumption;
       totalnetproduction = data.totalnetproduction;
+      buffer = data.buffer;
     });
 
     distribute.distributeInit();

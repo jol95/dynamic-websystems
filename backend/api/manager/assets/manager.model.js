@@ -23,9 +23,6 @@ const managerSchema = new mongoose.Schema({
     production: {
         type: Number,
     },
-    buffer: {
-        type: Number,
-    },
     status: {
         type: String,
         required: true
