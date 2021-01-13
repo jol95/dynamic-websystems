@@ -13,9 +13,6 @@ const gridSchema = new mongoose.Schema({
     },
     totalnetproduction:{
         type: Number
-    },
-    totalbuffer: {
-        type: Number
     }
 }, {
     timestamps: true,

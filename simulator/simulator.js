@@ -6,15 +6,14 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
-let batterylimit_h = 100;
-let batterylimit_t = 2000;
+let batterylimit_h = 100; // Battery limit house in kW
+let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
-let totalproduction = 0;
+let totalproduction = 0; 
 let totalconsumption = 0;
 let totalnetproduction = 0;
-let totalbuffer = 0;
 
-const initTotal = async () => { 
+const initTotal = async () => {   // Function to get electric grid (total values).
   try {
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
@@ -26,7 +25,7 @@ const initTotal = async () => {
   }
 }
 
-const update = async () => { 
+const update = async () => {  // Function which recives all households and updates respectively. 
   try {
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
@@ -39,29 +38,37 @@ const update = async () => {
 }
 
 // tick = 10000 //for error checking.
-tick = 1000;
-setInterval(() => {
+tick = 1000;    // 1 second each loop. 
+setInterval(() => {   // Init 
   console.log("tick")
+
   initTotal().then(data => {
       totalproduction = 0;
       totalconsumption = 0;
       totalnetproduction = 0;
-      totalbuffer = data.totalbuffer;
 
-      distribute.distributeInit();
+      distribute.distributeInit(); // Init our max and min.
   });
 
   update().then(data => {
     var objCount = data.length;
-    for ( var x = 0; x < objCount ; x++ ) {
+    for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      distribute.distributeAvg();
 
-      production.calcProd(distribute.wind);
-      production.calcNetProd(distribute.cons);
-      production.calcPrice(distribute.wind, distribute.cons);
-      production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
-      production.checkBlackout(totalbuffer)
+      distribute.distributeAvg(); // Wind and consumption. 
+
+      if(curitem.isproducing){    // If household is producing or only consuming. 
+        production.calcProd(distribute.wind); 
+        production.calcNetProd(distribute.cons);
+        production.checkBlackout(totalbuffer)
+        production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
+      }else if(!curitem.isproducing){
+        production.calcProd(0);
+        production.calcNetProd();
+      }
+      
+      //production.calcPrice(distribute.wind, distribute.cons);
+      //production.checkBlackout(totalbuffer)
     
       const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: distribute.wind,
@@ -94,6 +101,6 @@ setInterval(() => {
       totalbuffer: totalbuffer
     })
   });
-  console.log("tock")
 
+  console.log("tock")
 }, tick);

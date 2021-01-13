@@ -18,6 +18,21 @@ class ProfileImg extends Component {
       };
     }
 
+    const convertBase64=(file)=>{
+      return new Promise((resolve, reject)=>{
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+          resolve(fileReader.result);
+        };
+
+        fileReader.onerror (error) => {
+          reject(error);
+        };
+      });
+    };
+
     UNSAFE_componentWillReceiveProps(nextProps) {
       if (nextProps.errors) {
       this.setState({
@@ -28,14 +43,14 @@ class ProfileImg extends Component {
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
-        onSubmit = e => {
-            e.preventDefault();
-        const newUpdate = {
-        img: this.state.img,
-
-        };
-
+    onSubmit = e => {
+        e.preventDefault();
+    const file = {.state.img
+    const base64 = await this.convertBase64(file);
+    console.log(base64);};
     const { user } = this.props.auth;
+    const data = user.houseid.split(" ")[0]
+    this.props.updateDatabase(newUpdate, data);
     const data = user.houseid.split(" ")[0]
     this.props.updateDatabase(newUpdate, data); 
     };
@@ -45,9 +60,11 @@ class ProfileImg extends Component {
         return (
             <div>
                 <div>
-                    {/*<FileBase type="file" multiple={false} onDone={this.getBaseFile.bind(this)} /> */}
+                  <input 
+                    type="file"
+                    onChange = {this.onChange}
+                  />
                 </div>
-                <img src={this.state.baseImage} alt="upload-image" className="process__image" />
             </div>
 
         )
