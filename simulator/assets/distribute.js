@@ -1,4 +1,4 @@
-const normdist = require("../normaldist.js");
+const normdist = require("./normaldist/normaldist.js");
 class Distribute{
     wind;
     cons;
