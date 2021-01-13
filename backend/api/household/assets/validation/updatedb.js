@@ -3,13 +3,14 @@ const isEmpty = require("is-empty");
 
 module.exports = function validateUpdateInput(data) {
 
+  let temp = "";
   let errors = {};
 
 // Convert empty fields to an empty string so we can use validator functions
-  data.ratio = !isEmpty(data.ratio) ? data.ratio : "";
+ temp = !isEmpty(data.ratio) ? data.ratio : "";
 
 // ratio check
-  if (! (Validator.isEmpty(data.ratio))) {
+  if (! (Validator.isEmpty(temp))) {
     if (Validator.isFloat(data.ratio)) {
       errors.ratio = "Ratio needs to be a number";
     }
