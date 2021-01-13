@@ -40,7 +40,7 @@ class ProfileImg extends Component {
   };
 
   render() {
-      const { errors } = this.state;
+      const { errors } = this.state;                              
     nst { errors } = this.state;
         rn (
             >
