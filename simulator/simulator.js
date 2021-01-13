@@ -33,7 +33,7 @@ const initTotal = async () => {   // Function to get electric grid (total values
 
 const getHouses = async () => {  // Function which recives all households and updates respectively. 
   try {
-  const response = await axios.get(backend + '/household/' + houseid);
+  const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -43,9 +43,9 @@ const getHouses = async () => {  // Function which recives all households and up
   }
 }
 
-const getManagers= async () => {  // Function which recives all households and updates respectively. 
+const getManagers = async () => {  // Function which recives all households and updates respectively. 
   try {
-  const response = await axios.get(backend + '/household/' + houseid);
+  const response = await axios.get(backend + '/manager');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -70,11 +70,13 @@ setInterval(() => {   // Init
 
 
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
-    house_o = updateHouses().then(data => {
+    house_o = getHouses().then(data => {
       return data;
     });
 
-    manager_o = 
+    manager_o = getManagers().then(data => {
+      return data
+    })
 
     init = true;
   }
