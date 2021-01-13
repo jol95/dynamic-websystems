@@ -85,7 +85,7 @@ exports.registerManager = async function(req, res) {
 
         });
         bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
+          bcrypt.hash(newManager.password, salt, (err, hash) => {
             if (err) throw err;
             newManager.password = hash;
             newManager
