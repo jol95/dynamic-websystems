@@ -26,17 +26,17 @@ exports.loginManager = async function(req, res) {
     // Find manager by email
     Manager.findOne({ email }).then(manager => {
       // Check if manager exists
-      if (!user) {
+      if (!manager) {
         return res.status(404).json({ emailnotfound: "Email not found" });
       }
 
       // Check password
-      bcrypt.compare(password, user.password).then(isMatch => {
+      bcrypt.compare(password, manager.password).then(isMatch => {
         if (isMatch) {
           // manager matched
           // Create JWT Payload
           const payload = {
-            email: user.email
+            email: manager.email
           };
          // Sign token
           jwt.sign(
