@@ -9,6 +9,7 @@ import {
 
 // Update ratio
 export const updateDatabase = (dbData) => dispatch => {
+  axios.put("api/household/" + houseID, dbData)
 };
 
 
@@ -39,6 +40,8 @@ export const loginUser = (userData, history) => dispatch => {
       const decoded = jwt_decode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
+      console.log(decoded);
+      console.log(setCurrentUser(decoded));
       history.push("/dashboard");
     })
     .catch(err =>
