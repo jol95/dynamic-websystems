@@ -21,9 +21,6 @@ class ProfileImg extends Component {
 
   componentDidMount() {
     console.log("profileimg mounted")
-    this.setState({
-      display: base64Flag + imageStr
-    })
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
