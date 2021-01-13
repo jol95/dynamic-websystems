@@ -39,7 +39,7 @@ class ProfileImg extends Component {
         onSubmit = e => {
             e.preventDefault();
         const newUpdate = {
-        ratio: this.state.ratio,
+        img: this.state.img,
 
         };
 
