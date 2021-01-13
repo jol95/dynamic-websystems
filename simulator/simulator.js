@@ -123,21 +123,6 @@ setInterval(() => {   // Init
         totalproduction = totalproduction + production.prod;
         totalnetproduction = totalnetproduction + (olditem.netproduction - production.netprod);
 
-        if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
-          totalbuffer = batterylimit_t;
-        }else if((totalbuffer + (production.netprod * (1 - curitem.ratio))) < 0){
-          totalbuffer = 0;
-        }
-        else{
-          totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-        } 
-      }
-
-      const res = axios.put(backend + "/grid", {
-        totalproduction: totalproduction,
-        totalconsumption: totalconsumption,
-        totalnetproduction: totalnetproduction,
-      })
 
       return data;
   });
