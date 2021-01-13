@@ -21,7 +21,6 @@ class ProfileImg extends Component {
       };
     }
   componentDidMount() {
-
     console.log("profileimg mounted")
   }
 
@@ -74,11 +73,10 @@ class ProfileImg extends Component {
   render () {
     const { errors } = this.state;
     const { display } = this.state;
-    const preview = "data:image/png;base64," + this.state.base64TextString
   return(
     <div>
       <img
-        src={preview}
+        src={display}
         alt='Image goes here'/>
       <form noValidate onSubmit={this.onSubmit}>
     <div>
