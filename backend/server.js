@@ -43,6 +43,9 @@ app.use('/api/household', household);
 const grid = require("./api/grid/grid.js");
 app.use('/api/grid', grid);
 
+const manager = require("./api/manager/manager.js");
+app.use('/api/manager', manager);
+
 /*Authenication stuff */
 // Passport middleware
 app.use(passport.initialize());

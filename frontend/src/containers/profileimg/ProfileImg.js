@@ -1,4 +1,4 @@
-/*import React, { Component } from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 import FileBase from 'react-file-base64';
 import DefaultImg from './defaultimg.png';
@@ -55,4 +55,4 @@ class ProfileImg extends Component {
         )
     }
 }
-  export default ProfileImg; */
+  export default ProfileImg;
