@@ -58,11 +58,6 @@ class UpdateDb extends Component {
                     invalid: errors.ratio
                   })}
                 />
-                <input
-                  type="text" 
-                  id="textInput" 
-                  value=""
-                />
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
