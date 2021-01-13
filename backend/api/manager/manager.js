@@ -3,6 +3,9 @@ const router = express.Router();
 
 var managerController = require("./assets/manager.controller.js")
 
+router.route('/')
+    .get(managerController.getManagers);
+
 router.route('/:email')
     .get(managerController.getManager)
     .put(managerController.updateManager)
