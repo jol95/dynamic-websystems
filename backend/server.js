@@ -19,14 +19,14 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-var options = {
+/* var options = {
      key: fs.readFileSync('server.key'),
      cert: fs.readFileSync('server.cert'),
 }
 
 var server = https.createServer(options, app).listen(port, function(){
      console.log("Express server listening on port " + port);
-});
+}); */
 
 /* ----------MongoDB------------*/
 let dbPath = 'mongodb://localhost/mydb';
@@ -59,5 +59,8 @@ app.use('/api/manager', manager);
 app.use(passport.initialize());    // Passport middleware
 require("./api/user/config/passport")(passport);  // Passport config
 
-
+// Launch app, always last!!!
+app.listen(port, function() {
+     console.log("Running FirstRest on Port "+ port)
+})
 
