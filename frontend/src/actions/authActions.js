@@ -83,7 +83,7 @@ export const setUserLoading = () => {
 
 export const setCurrentPicture = base => {
   return {
-    type: SET_CURRENT_USER,
+    type: SET_CURRENT_PICTURE,
     payload: base
   };
 };
