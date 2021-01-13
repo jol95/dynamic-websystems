@@ -20,6 +20,15 @@ class ProfileImg extends Component {
     }
 
   componentDidMount() {
+    const { user } = this.props.auth;
+    var base64Flag = 'data:image/jpeg;base64,';
+
+    const data = user.houseid.split(" ")[0]
+    res = axios.get("api/household/" + data);
+    this.setState = ({
+      display: base64Flag + res.data.img
+    })
+    console.log("data", data)
     console.log("profileimg mounted")
   }
 
@@ -56,13 +65,12 @@ class ProfileImg extends Component {
       console.log("binary string: xxxxxx")
       const newUpdate = {img: this.state.base64TextString}
 
-    var base64Flag = 'data:image/jpeg;base64,';
+
     var imageStr = this.state.base64TextString;
     this.setState({
       display: base64Flag + imageStr
     })
 
-  const { user } = this.props.auth;
   const data = user.houseid.split(" ")[0]
   this.props.updateDatabase(newUpdate, data); 
 
