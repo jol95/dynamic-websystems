@@ -160,7 +160,7 @@ exports.registerUser = async function(req, res) {
 
 exports.updateUser = function(req, res) {
   // Form validation
-  const { errors, isValid } = validateUpdateInput(req.body);
+  const { errors, isValid } = validateUpdateInput(req.params);
   // Check validation
   if (!isValid) {
      return res.status(400).json(errors);
