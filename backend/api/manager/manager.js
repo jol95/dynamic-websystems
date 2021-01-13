@@ -3,10 +3,10 @@ const router = express.Router();
 
 var managerController = require("./assets/manager.controller.js")
 
-router.route('/')
+router.route('/') // GET all different managers. (for simulator)
     .get(managerController.getManagers);
 
-router.route('/:email')
+router.route('/:email') // GET & UPDATE specific user
     .get(managerController.getManager)
     .put(managerController.updateManager)
     .patch(managerController.updateManager);

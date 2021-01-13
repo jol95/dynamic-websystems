@@ -23,9 +23,9 @@ exports.loginManager = async function(req, res) {
     const email = req.body.email;
     const password = req.body.password;
   
-    // Find user by email
-    Manager.findOne({ email }).then(user => {
-      // Check if user exists
+    // Find manager by email
+    Manager.findOne({ email }).then(manager => {
+      // Check if manager exists
       if (!user) {
         return res.status(404).json({ emailnotfound: "Email not found" });
       }
@@ -33,7 +33,7 @@ exports.loginManager = async function(req, res) {
       // Check password
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
-          // User matched
+          // manager matched
           // Create JWT Payload
           const payload = {
             email: user.email
@@ -69,8 +69,8 @@ exports.registerManager = async function(req, res) {
     if (!isValid) {
        return res.status(400).json(errors);
     }
-    User.findOne({ email: req.body.email }).then(user => {
-        if (user) {
+    Manager.findOne({ email: req.body.email }).then(manager => {
+        if (manager) {
             return res.status(400).json({ email: "Email already exists" });
         } else {
             const newManager = new Manager({
@@ -87,10 +87,10 @@ exports.registerManager = async function(req, res) {
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
             if (err) throw err;
-            newUser.password = hash;
-            newUser
+            newManager.password = hash;
+            newManager
               .save()
-              .then(user => res.json(user))
+              .then(manager => res.json(manager))
               .catch(err => console.log(err));
           });
         });
@@ -98,7 +98,7 @@ exports.registerManager = async function(req, res) {
     });
 }
 
-exports.getManager = function(req, res) {
+exports.getManager = async function(req, res) {
   const { errors, isValid } = validateUpdateInput(req.params);
   // Check validation
   if (!isValid) {
@@ -115,7 +115,7 @@ exports.getManager = function(req, res) {
   });
 };
 
-exports.getManagers = function(req, res) {
+exports.getManagers = async function(req, res) {
   Manager.find(function (err, manager) {
       if (err){
           console.log(err);
@@ -126,7 +126,7 @@ exports.getManagers = function(req, res) {
   });
 }
 
-exports.updateManager = function(req, res) {
+exports.updateManager = async function(req, res) {
   // Form validation
   const { errors, isValid } = validateUpdateInput(req.params);
   // Check validation
@@ -147,7 +147,7 @@ exports.updateManager = function(req, res) {
 
         manager
           .save()
-          .then(user => res.json(user))
+          .then(manager => res.json(user))
           .catch(err => console.log(err));
     }
   });
