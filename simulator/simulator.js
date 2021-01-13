@@ -45,6 +45,12 @@ tick = 1000;    // 1 second each loop.
 setInterval(() => {   // Init 
   console.log("tick")
 
+  if(!init){
+    olddata = update().then(data => {
+        return data;
+    });
+  }
+
   initTotal().then(data => {
       totalproduction = 0;
       totalconsumption = 0;
