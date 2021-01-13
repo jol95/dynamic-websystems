@@ -96,3 +96,35 @@ exports.registerManager = async function(req, res) {
       }
     });
 }
+
+exports.updateUser = function(req, res) {
+  // Form validation
+  const { errors, isValid } = validateUpdateInput(req.body);
+  // Check validation
+  if (!isValid) {
+     return res.status(400).json(errors);
+  }
+
+ User.findOne({ email: req.body.email }).then(user => {
+  if (user) {
+      return res.status(400).json({ email: "Email already exists" });
+  } else {
+      const newUser = new User({
+          password = req.body.password? req.body.password: user.password,
+          firstname = req.body.firstname? req.body.firstname: user.firstname,
+          lastname = req.body.lastname? req.body.lastname: user.lastname,
+          address = req.body.address? req.body.address: user.address,
+  });
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser
+        .save()
+        .then(user => res.json(user))
+        .catch(err => console.log(err));
+    });
+  });
+}
+});
+}

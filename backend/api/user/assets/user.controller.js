@@ -166,25 +166,24 @@ exports.updateUser = function(req, res) {
   }
 
  User.findOne({ email: req.body.email }).then(user => {
-  if (user) {
-      return res.status(400).json({ email: "Email already exists" });
+  if (!user) {
+      return res.status(400).json({ email: "Email doesn't exist" });
   } else {
-      const newUser = new User({
-          password = req.body.password? req.body.password: user.password,
-          firstname = req.body.firstname? req.body.firstname: user.firstname,
-          lastname = req.body.lastname? req.body.lastname: user.lastname,
-          address = req.body.address? req.body.address: user.address,
-  });
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
-      if (err) throw err;
-      newUser.password = hash;
-      newUser
-        .save()
-        .then(user => res.json(user))
-        .catch(err => console.log(err));
-    });
-  });
+      user.password = req.body.password? req.body.password: user.password,
+      user.firstname = req.body.firstname? req.body.firstname: user.firstname,
+      user.lastname = req.body.lastname? req.body.lastname: user.lastname,
+      user.address = req.body.address? req.body.address: user.address
+
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.password, salt, (err, hash) => {
+        if (err) throw err;
+        user.password = hash;
+        user
+          .save()
+          .then(user => res.json(user))
+          .catch(err => console.log(err));
+        });
+      });
 }
 });
 }
