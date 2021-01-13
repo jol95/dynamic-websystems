@@ -58,7 +58,7 @@ class ProfileImg extends Component {
   onSubmit = e => {
       e.preventDefault();
       const preview = document.getElementById("profile-picture");
-      console.log("binary string:", this.state.base64TextString)
+      console.log("binary string: xxxxxx")
 
       const newUpdate = {img: this.state.base64TextString}
 
