@@ -31,12 +31,14 @@ class UpdateDb extends Component {
         ratio: this.state.ratio,
 
         };
-    this.props.updateDatabase(newUpdate, this.props.history); 
+
+    const { user } = this.props.auth;
+    const data = user.houseid.split(" ")[0]
+    this.props.updateDatabase(newUpdate, data); 
     };
 
     render() {
         const { errors } = this.state;
-        const { user } = this.props.auth;
     return (
         <div className="container">
             <form noValidate onSubmit={this.onSubmit}>
