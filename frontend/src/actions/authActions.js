@@ -8,7 +8,8 @@ import {
 } from "./types";
 
 // Update ratio
-//export const updateDatabase = (dbData) => dispatch => {
+export const updateDatabase = (dbData) => dispatch => {
+};
 
 
 // Register User
