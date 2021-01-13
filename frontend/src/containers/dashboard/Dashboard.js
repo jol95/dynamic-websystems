@@ -22,8 +22,8 @@ return (
                 You are logged in :){" "}
               </p>
             </h4>
-            <UpdateDb/>
             <ProfileImg/>
+            <UpdateDb/>
             <button
               style={{
                 width: "150px",
