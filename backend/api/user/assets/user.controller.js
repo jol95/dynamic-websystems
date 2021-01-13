@@ -69,8 +69,8 @@ exports.loginUser = async function(req, res) {
               res.json({
                 success: true,
                 token: "Bearer1 " + token,
-                email: email,
-                houseid: houseid
+                //email: email,
+                //houseid: houseid
               });
             }
           );
@@ -173,7 +173,7 @@ exports.updateUser = function(req, res) {
   if (!user) {
       return res.status(400).json({ email: "Email doesn't exist" });
   } else {
-      if(!(Validator.isEmpty(req.body.password))){
+      if(!isEmpty(req.body.password)){
         user.password = req.body.password;
         user.firstname = req.body.firstname? req.body.firstname: user.firstname,
         user.lastname = req.body.lastname? req.body.lastname: user.lastname,
