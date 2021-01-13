@@ -72,7 +72,7 @@ class UpdateDb extends Component {
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Submit
+                  Update ratio
                 </button>
               </div>
             </form>
