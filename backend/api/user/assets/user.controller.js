@@ -5,6 +5,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
 
+const Validator = require("validator");
+const isEmpty = require("is-empty");
+
 let User = require('./user.model');
 let Household = require('../../household/assets/household.model');
 
@@ -170,7 +173,9 @@ exports.updateUser = function(req, res) {
   if (!user) {
       return res.status(400).json({ email: "Email doesn't exist" });
   } else {
-      user.password = req.body.password? req.body.password: user.password,
+      if((!Validator.isEmpty(req.body.password)){
+        user.password = req.body.password;
+      }
       user.firstname = req.body.firstname? req.body.firstname: user.firstname,
       user.lastname = req.body.lastname? req.body.lastname: user.lastname,
       user.address = req.body.address? req.body.address: user.address
