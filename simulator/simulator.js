@@ -6,6 +6,9 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
+let init = false;
+var olddata;
+
 let batterylimit_h = 100; // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
@@ -50,56 +53,58 @@ setInterval(() => {   // Init
       distribute.distributeInit(); // Init our max and min.
   });
 
-  update().then(data => {
-    var objCount = data.length;
-    for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
-      var curitem = data[x];
+  olddata = update().then(data => {
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+        var curitem = data[x];
+        var olditem = old_data[x];
 
-      distribute.distributeAvg(); // Wind and consumption. 
+        distribute.distributeAvg(); // Wind and consumption. 
 
-      if(curitem.isproducing){    // If household is producing or only consuming. 
-        production.calcProd(distribute.wind); 
-        production.calcNetProd(distribute.cons);
-        production.checkBlackout(totalbuffer)
-        production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
-      }else if(!curitem.isproducing){
-        production.calcProd(0);
-        production.calcNetProd();
-      }
+        if(curitem.isproducing){    // If household is producing or only consuming. 
+          production.calcProd(distribute.wind); 
+          production.calcNetProd(distribute.cons);
+          production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
+        }else if(!curitem.isproducing){
+          production.calcProd(0);
+          production.calcNetProd();
+        }
+        
+        //production.calcPrice(distribute.wind, distribute.cons);
+        //production.checkBlackout(totalbuffer)
       
-      //production.calcPrice(distribute.wind, distribute.cons);
-      //production.checkBlackout(totalbuffer)
-    
-      const res = axios.put(backend + "/household/" + curitem.houseid, {
-        wind: distribute.wind,
-        production: production.prod,
-        consumption: distribute.cons,
-        netproduction: production.netprod,
-        price: production.price,
-        buffer: production.buffer,
-        blackout: production.blackout
-      });
+        const res = axios.put(backend + "/household/" + curitem.houseid, {
+          wind: distribute.wind,
+          production: production.prod,
+          consumption: distribute.cons,
+          netproduction: production.netprod,
+          price: production.price,
+          buffer: production.buffer,
+          blackout: production.blackout
+        });
 
-      totalconsumption = totalconsumption + distribute.cons;
-      totalproduction = totalproduction + production.prod;
-      totalnetproduction = totalnetproduction + production.netprod;
+        totalconsumption = totalconsumption + distribute.cons;
+        totalproduction = totalproduction + production.prod;
+        totalnetproduction = totalnetproduction + production.netprod;
 
-      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
-        totalbuffer = batterylimit_t;
-      }else if((totalbuffer + (production.netprod * (1 - curitem.ratio))) < 0){
-        totalbuffer = 0;
+        if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
+          totalbuffer = batterylimit_t;
+        }else if((totalbuffer + (production.netprod * (1 - curitem.ratio))) < 0){
+          totalbuffer = 0;
+        }
+        else{
+          totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
+        } 
       }
-      else{
-        totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-      } 
-    }
 
-    const res = axios.put(backend + "/grid", {
-      totalproduction: totalproduction,
-      totalconsumption: totalconsumption,
-      totalnetproduction: totalnetproduction,
-      totalbuffer: totalbuffer
-    })
+      const res = axios.put(backend + "/grid", {
+        totalproduction: totalproduction,
+        totalconsumption: totalconsumption,
+        totalnetproduction: totalnetproduction,
+        totalbuffer: totalbuffer
+      })
+
+      return data;
   });
 
   console.log("tock")

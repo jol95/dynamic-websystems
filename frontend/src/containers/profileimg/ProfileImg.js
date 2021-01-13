@@ -18,7 +18,7 @@ class ProfileImg extends Component {
       };
     }
 
-    const convertBase64=(file)=>{
+      convertBase64 = (file) => {
       return new Promise((resolve, reject)=>{
         const fileReader = new FileReader();
         fileReader.readAsDataURL(file);
