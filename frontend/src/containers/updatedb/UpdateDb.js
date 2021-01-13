@@ -50,9 +50,10 @@ class UpdateDb extends Component {
                   value={this.state.ratio}
                   error={errors.ratio}
                   id="ratio"
-                  type="number"
+                  type="range"
                   min="0"
                   max="1"
+                  step="0.05"
                   className={classnames("", {
                     invalid: errors.ratio
                   })}
