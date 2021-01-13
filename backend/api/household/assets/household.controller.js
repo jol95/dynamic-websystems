@@ -66,7 +66,7 @@ exports.addHouse = function(req, res) {
     const consumption = req.body.consumption;
     const netproduction = req.body.netproduction;
     
-    const ratio = 0.5; 
+    const ratio = 0; 
     const buffer = req.body.buffer;
     const isproducing = false;
     const blackout = false;

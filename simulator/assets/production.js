@@ -7,10 +7,11 @@ class Production{
 
     calcProd(wind){
         var prod = 0;
+        var limit = 4.0;
 
-        if (wind < 4.0){ 
+        if (wind < limit){ 
             prod = 0;
-        }else{
+        }else if(limit < wind){
             prod = (wind * 2.8);  
         }
 
@@ -21,12 +22,12 @@ class Production{
         return prod - consumption;
     }
 
-    calcHouseBuffer(netprod, buffer, ratio, limit){
+    calcBuffer(netprod, buffer, ratio, limit){
         var sum_buffer = 0;
 
-        if((buffer + (netprod * ratio)) > limit){ // 100 kW limit for battery on house
+        if((buffer + (netprod * ratio)) >= limit){ // 100 kW limit for battery on house
             sum_buffer = limit;
-        }else if((o_buffer + (netprod * ratio)) < 0){
+        }else if((o_buffer + (netprod * ratio)) <= 0){
             sum_buffer = 0;
         }
         else{
@@ -36,7 +37,7 @@ class Production{
         return sum_buffer;
     }
 
-    ifBlackout(buffer, totalbuffer, totalnetprod){
+    ifBlackout(netprod, buffer, totalbuffer, totalnetprod){
         var blackout = false;
 
         if(netprod <= 0 && buffer <= 0 && totalbuffer <= 0  && totalnetprod <= 0){

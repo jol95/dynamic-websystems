@@ -1,4 +1,5 @@
 const normdist = require("./normaldist/normaldist.js");
+
 class Distribute{
     constructor(){
         this.windMin = 1.0;

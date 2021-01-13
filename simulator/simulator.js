@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { cons } = require("./assets/distribute.js");
+const { cons, calcConsumption } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
 const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
@@ -13,9 +13,12 @@ let manager_o;
 let batterylimit_h = 100;  // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
+let manager_production = 100; // 100 kw/h for coal power plant.
+
 let totalproduction = 0; 
 let totalconsumption = 0;
 let totalnetproduction = 0;
+
 let totalbuffer = 0;
 
 const getGrid = async () => {   // Function to get electric grid (total values).
@@ -42,7 +45,7 @@ const getHouses = async () => {  // Function which recives all households and up
   }
 }
 
-const getManagers = async () => {  // Function which recives all households and updates respectively. 
+const getManagers = async () => {  // Function which recives manager (coal production and price). 
   try {
   const response = await axios.get(backend + '/manager');
   if (response.status === 200) { 
@@ -60,25 +63,52 @@ setInterval(() => {   // Init
   console.log("tick")
 
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
-    house_o = getHouses().then(data => {
+    getHouses().then(data => { // Reset values, not buffer and ratio. 
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+        var curitem = data[x];
+        const res = axios.put(backend + "/household/" + curitem.houseid, {
+          wind: 0,
+          production: 0,
+          consumption: 0,
+          netproduction: 0,
+          blackout: false
+        });
+      }
+    });
+
+    getManagers().then(data => {
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+        var curitem = data[x];
+        const res = axios.put(backend + "/manager/" + curitem.email, {
+          production: 0,
+          status: "stopped"
+        });
+      }
+    })
+
+    getGrid().then(data => {
+      totalbuffer = data.buffer;
+      const res = axios.put(backend + "/grid/" + curitem.email, {
+        totalproduction: totalproduction,
+        totalconsumption: totalconsumption,
+        totalnetproduction: totalnetproduction
+      });
+    });
+
+    house_o = getHouses().then(data => { // Get newely reseted 
       return data;
     });
 
     manager_o = getManagers().then(data => {
       return data;
-    })
-
-    getGrid().then(data => {
-      totalproduction = data.totalproduction;
-      totalconsumption = data.totalconsumption;
-      totalnetproduction = data.totalnetproduction;
-      totalbuffer = data.buffer;
     });
-
-    distribute.distributeInit();
 
     init = true;
   }
+
+  distribute.distributeInit();
 
   house_o = getHouses().then(data => {
       var objCount = data.length;
@@ -89,52 +119,50 @@ setInterval(() => {   // Init
         var wind = distribute.calcWind(); 
         var consumption = distribute.calcConsumption();
 
+        var production = 0;
         if(curitem.isproducing){    // If household is producing
-          var production = production.calcProd(wind); 
-          var netproduction = production.calcNetProd(production, consumption);
-          var buffer = production.calcBuffer(netproduction, curitem.ratio, curitem.buffer, batterylimit_h);
-          var blackout = checkBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
-
-          const res = axios.put(backend + "/household/" + curitem.houseid, {
-            wind: wind,
-            production: production,
-            consumption: consumption,
-            netproduction: netproduction,
-            totalbuffer: buffer,
-            blackout: blackout
-          });
-
+          production = production.calcProd(wind); 
         }else if(!curitem.isproducing){  // Not producing
-          production.calcProd(0);
-          production.calcNetProd(distribute.cons);
-          production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer);
-          production.checkBlackout(totalbuffer, totalnetproduction)
-
-          const res = axios.put(backend + "/household/" + curitem.houseid, {
-            consumption: distribute.cons,
-            netproduction: production.netprod,
-            totalbuffer: production.totalbuffer,
-            blackout: production.blackout
-          });
+          production = production.calcProd(0);
         }
+
+        var netproduction = production.calcNetProd(production, consumption);
+        var buffer = production.calcBuffer(netproduction, curitem.buffer, curitem.ratio, batterylimit_h);
+        var blackout = checkBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
+
+        const res = axios.put(backend + "/household/" + curitem.houseid, {
+          wind: wind,
+          production: production,
+          consumption: consumption,
+          netproduction: netproduction,
+          buffer: buffer,
+          blackout: blackout
+        });
         
+        totalproduction = totalproduction + (production - olditem.production);
+        totalconsumption = totalconsumption + (consumption - olditem.consumption);
+        totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
+
         //production.calcPrice(distribute.wind, distribute.cons);
         //production.checkBlackout(totaltotalbuffer)
-      
-
-        totalconsumption = totalconsumption + (olditem.consumption - distribute.cons);
-        totalproduction = totalproduction + (olditem.production - production.prod);
-        totalnetproduction = totalnetproduction + (olditem.netproduction - production.netprod);
-
-        totalbuffer = 
-
+      }
 
       return data;
   });
 
-  manager_o = getManagers().then(data => {
-    /* CONTENT  */
-  })
+
+  //manager_o = getManagers().then(data => {
+    
+  //})
+  
+  getGrid().then(data => {
+    totalbuffer = data.buffer;
+    const res = axios.put(backend + "/grid/" + curitem.email, {
+      totalproduction: totalproduction,
+      totalconsumption: totalconsumption,
+      totalnetproduction: totalnetproduction
+    });
+  });
 
   console.log("tock")
 }, tick);
