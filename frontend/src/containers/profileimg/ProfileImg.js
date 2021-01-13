@@ -18,14 +18,6 @@ class ProfileImg extends Component {
       };
     }
 
-    // function to capture base64 format of an image
-    getBaseFile(files) {
-    // create a local readable base64 instance of an image
-    this.setState({
-      basefile: files.base64
-    });
-    }
-
     UNSAFE_componentWillReceiveProps(nextProps) {
       if (nextProps.errors) {
       this.setState({
