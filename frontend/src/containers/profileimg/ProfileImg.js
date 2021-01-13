@@ -67,7 +67,7 @@ class ProfileImg extends Component {
     <div>
       <img
         src={img}
-      />
+        alt='Helpful alt text'/>
       <form noValidate onSubmit={this.onSubmit}>
         <div>
           <input 
