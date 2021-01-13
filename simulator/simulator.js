@@ -71,8 +71,16 @@ setInterval(() => {   // Init
     });
 
     manager_o = getManagers().then(data => {
-      return data
+      return data;
     })
+
+    getGrid().then(data => {
+      totalproduction = data.totalproduction;
+      totalconsumption = data.totalconsumption;
+      totalnetproduction = data.totalnetproduction;
+    });
+
+    distribute.distributeInit();
 
     init = true;
   }
