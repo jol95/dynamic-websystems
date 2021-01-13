@@ -8,9 +8,9 @@ const keys = require("../../user/config/keys");
 let Manager = require('./manager.model.js');
 
 // Load input validation
-const validateUpdateInput = require("");
-const validateRegisterInput = require("../../user/assets/validation/register");
-const validateLoginInput = require("../../user/assets/validation/login");
+const validateUpdateInput = require("./validation/update");
+const validateRegisterInput = require("./validation/register");
+const validateLoginInput = require("./validation/login");
 
 exports.loginManager = async function(req, res) {
     // Form validation
