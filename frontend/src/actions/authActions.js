@@ -13,7 +13,7 @@ export const updateDatabase = (dbData ,data) => dispatch => {
   axios
     .put("api/household/" + data, dbData)
     .then(res => {
-      const base = res.data.img;
+      const base = data;
       dispatch(setCurrentPicture(base));
       console.log("base", base);
     })
