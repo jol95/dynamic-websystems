@@ -27,7 +27,7 @@ class Production{
 
         if((buffer + (netprod * ratio)) >= limit){ // 100 kW limit for battery on house
             sum_buffer = limit;
-        }else if((o_buffer + (netprod * ratio)) <= 0){
+        }else if((buffer + (netprod * ratio)) <= 0){
             sum_buffer = 0;
         }
         else{
