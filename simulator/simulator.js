@@ -67,13 +67,14 @@ setInterval(() => {   // Init
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
-        const res = axios.put(backend + "/household/" + curitem.houseid, {
+        const res = await axios.put(backend + "/household/" + curitem.houseid, {
           wind: 0,
           production: 0,
           consumption: 0,
           netproduction: 0,
           blackout: false
         });
+        console.log(res)
       }
     });
 
@@ -95,15 +96,11 @@ setInterval(() => {   // Init
         totalconsumption: 0,
         totalnetproduction: 0
       });
-      console.log(res);
     });
 
     house_o = getHouses().then( (data, res) => { // Get newely reseted 
-      res = data;
-      console.log(res)
+      return data;
     });
-
-    console.log(house_o)
 
     manager_o = getManagers().then(data => {
       return data;
