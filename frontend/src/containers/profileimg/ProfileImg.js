@@ -7,16 +7,15 @@ import { updateDatabase } from "../../actions/authActions";
 import classnames from "classnames";
 import FileBase from 'react-file-base64';
 import DefaultImg from './defaultimg.png';
+import UserProfile from "../userprofile/UserProfile";
 import './ProfileImg.css';
 
 
 class ProfileImg extends Component {
     constructor() {
-      const preview = "";
       super();
       this.state = {
         img: "",
-        display: "",
         errors: {}
       };
     }
@@ -74,12 +73,11 @@ class ProfileImg extends Component {
     const { errors } = this.state;
     const { display } = this.state;
   return(
+     <div>
+      <form noValidate onSubmit={this.onSubmit}>   
     <div>
-      <img
-        src={display}
-        alt='Image goes here'/>
-      <form noValidate onSubmit={this.onSubmit}>
-    <div>
+
+    <UserProfile/>
       
         <input 
           type="file"

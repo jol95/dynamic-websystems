@@ -58,9 +58,6 @@ class App extends React.Component{
             <LinkContainer to="/login">
               <Nav.Link>Login</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/userprofile">
-              <Nav.Link>UserProfile</Nav.Link>
-            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>

@@ -15,7 +15,8 @@ export const updateDatabase = (dbData ,data) => dispatch => {
     .then(res => {
       const base = dbData;
       dispatch(setCurrentPicture(base));
-      console.log("base", base);
+      console.log("authAction updateDatabase");
+
     })
     .catch(err =>
       dispatch({
@@ -24,6 +25,20 @@ export const updateDatabase = (dbData ,data) => dispatch => {
       })
     );
 };
+
+export const displayDatabase = (data, dbData) => dispatch => {
+  axios
+    .get("api/household/" + data, dbData)
+    .then(res => {
+      console.log("authActions DisplayDatabase");
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+}
 
 //export const getUserInfo = (data) => dispatch => {
   //response = axios.get("api/household/" + data)

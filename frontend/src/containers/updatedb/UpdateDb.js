@@ -54,10 +54,9 @@ class UpdateDb extends Component {
                   min="0"
                   max="1"
                   step="0.05"
-                  className={classnames("", {
-                    invalid: errors.ratio
-                  })}
+                  //value="0.5"
                 />
+
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
