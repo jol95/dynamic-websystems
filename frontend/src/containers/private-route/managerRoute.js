@@ -19,7 +19,7 @@ const ManagerRoute = ({
     }
   />
 );
-PrivateRoute.propTypes = {
+ManagerRoute.propTypes = {
   man: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({

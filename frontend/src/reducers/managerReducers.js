@@ -1,7 +1,6 @@
 import {
-    SET_CURRENT_USER,
-    USER_LOADING,
-    SET_CURRENT_PICTURE
+    SET_CURRENT_MANAGER,
+    MANAGER_LOADING
   } from "../actions/types";
 
   const isEmpty = require("is-empty");
@@ -15,13 +14,13 @@ import {
 
   export function manR(state = initialState, action) {
     switch (action.type) {
-      case SET_CURRENT_USER:
+      case SET_CURRENT_MANAGER:
         return {
           ...state,
           isManager: !isEmpty(action.payload),
           user: action.payload
         };
-      case USER_LOADING:
+      case MANAGER_LOADING:
         return {
           ...state,
           loading: true

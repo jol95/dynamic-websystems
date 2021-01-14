@@ -4,7 +4,9 @@ import jwt_decode from "jwt-decode";
 import {
   GET_ERRORS,
   SET_CURRENT_USER,
-  USER_LOADING
+  USER_LOADING,
+  SET_CURRENT_MANAGER,
+  MANAGER_LOADING
 } from "./types";
 
 // Update ratio
@@ -65,12 +67,15 @@ export const loginUser = (userType,userData, history) => dispatch => {
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
-      // Set current user
-      dispatch(setCurrentUser(decoded));
+
       if(userType=="manager"){
+        // Set current manager
+        dispatch(setCurrentManager(decoded));
         console.log("manager login success");
         history.push("/managerdashboard")
       }else{
+        // Set current user
+        dispatch(setCurrentUser(decoded));
         console.log("prosumer loggin succuess");
         history.push("/dashboard");
       }
@@ -95,6 +100,21 @@ export const setUserLoading = () => {
     type: USER_LOADING
   };
 };
+
+// Set logged in manager
+export const setCurrentManager = decoded => {
+  return {
+    type: SET_CURRENT_MANAGER,
+    payload: decoded
+  };
+};
+// Manager loading
+export const setManagerLoading = () => {
+  return {
+    type: MANAGER_LOADING
+  };
+};
+
 
 // Log user out, maybe a redirect?
 export const logoutUser = () => dispatch => {
