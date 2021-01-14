@@ -23,7 +23,6 @@ import {
           user: action.payload
         };
       case SET_ROLE:
-        console.log("ROLE=TRUE MFA");
         return {
           ...state,
           role: true

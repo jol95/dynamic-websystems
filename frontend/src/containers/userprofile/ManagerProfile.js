@@ -35,7 +35,6 @@ class ManagerProfile extends Component {
             //settimeout // polling
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
-            console.log("tidy:", this.props.auth);
             const data = user.id
             var kind = "";
 
