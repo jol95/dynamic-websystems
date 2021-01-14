@@ -28,11 +28,11 @@ class Distribute{
         this.consDistMax = normdist.nmdist(12.65, this.consMax, this.consDistScew);
     }
 
-    calcWind(){
+    get calcWind() {
         return normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
     }
 
-    calcConsumption(){
+    get calcConsumption(){
         return normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
     }
 }
