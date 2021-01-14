@@ -9,8 +9,26 @@ class UserProfile extends Component {
     constructor() {
         super();
         this.state = {
+            pollingCount: 0,
+            delay: 1000,
             errors: {}
         };
+    }
+
+    componentDidMount() {
+        this.interval = setInterval(this.tick, this.state.delay);
+        this.fetchData() 
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.delay !== this.state.delay) {
+            clearInterval(this.interval);
+            this.interval = setInterval(this.tick, this.state.delay);
+        }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
 
@@ -41,11 +59,6 @@ class UserProfile extends Component {
             })
     }
 
-
-    componentDidMount() {
-        console.log("userprofile mounted");
-        this.fetchData() 
-    }
 
 
     render() {

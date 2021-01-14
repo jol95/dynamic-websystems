@@ -17,6 +17,9 @@ const gridSchema = new mongoose.Schema({
     buffer:{
         type: Number
     },
+    modelprice:{
+        type: Number
+    },
     price:{
         type: Number
     }
