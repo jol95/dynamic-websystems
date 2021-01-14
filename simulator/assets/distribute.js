@@ -33,6 +33,7 @@ class Distribute{
 
     calcWind() {
         this.wind = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
+        console.log(normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew));
     }
 
     calcConsumption(){
