@@ -5,7 +5,7 @@ import { Database, displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
 import "./UserProfile.css";
 
-class ManagerUserProfile extends Component {
+class ManagerProfile extends Component {
     constructor() {
         super();
         this.state = {
