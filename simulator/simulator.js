@@ -114,10 +114,10 @@ setInterval(() => {   // Init
   house_o = getHouses().then(data => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
-        var curitem = data[x];
-        var olditem = house_o[x];
+        let curitem = data[x];
+        let olditem = house_o[x];
 
-        var wind = distribute.calcWind(); 
+        let wind = distribute.calcWind(); 
         console.log(wind)
         var consumption = distribute.calcConsumption();
 
