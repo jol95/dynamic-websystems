@@ -27,12 +27,17 @@ function Households(props){
                         <h3>House {index + 1}</h3>
                         <h2>ID: {houses.houseid}</h2>
                         <div className="details">
-                            <p>Address:{houses.address}</p>
-                            <p>Wind:{houses.wind}</p>
-                            <p>Consumption:{houses.consumption}</p>
-                            <p>Production:{houses.production}</p>
-                            <p>Price:{houses.price}</p>
-                            <p>Netto:{houses.netproduction}</p>
+                            <img
+                            src={"data:image/png;base64," + houses.img}
+                            alt='Image goes here'/>
+                            <br/>
+                            <p>Wind:{houses.wind} m/s</p>
+                            <p>Production:{houses.production} kW/h</p>
+                            <p>Consumption:{houses.consumption} kW/h</p>
+                            <p>Netto production:{houses.netproduction} kW/h</p>
+                            <p>Buffer:{houses.buffer} kW</p>
+                            <p>Blackout:{houses.blackout}</p>
+                            <p>Ratio:{houses.ratio}</p>
                         </div>
                     </div>
                 );
