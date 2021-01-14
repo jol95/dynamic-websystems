@@ -16,11 +16,13 @@ class UserProfile extends Component {
     }
     componentDidMount() {
         console.log("Userprofile mounted")
-        const { user } = this.props.auth;
+        const { user } = this.props.auth.houseid;
+        //const theHouseId = {houseid: this.props.auth.houseid}
         console.log("user: xxx", user);
     }
 
     render() {
+        this.props.displayDatabase()
         return(
         <div className="Apphouse">
             <h1>Your Household</h1>
