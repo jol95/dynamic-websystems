@@ -97,10 +97,11 @@ setInterval(() => {   // Init
       });
     });
 
-    house_o = getHouses().then(data => { // Get newely reseted 
-      console.log(data)
-      return data;
+    house_o = getHouses().then( (data, res) => { // Get newely reseted 
+      res = data;
     });
+
+    console.log(house_o)
 
     manager_o = getManagers().then(data => {
       return data;
