@@ -62,7 +62,7 @@ const getManagers = async () => {  // Function which recives manager (coal produ
   }
 }
 
-const initAll = () => {
+async function initAll(){
   console.log("init")
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     console.log(data)
@@ -110,11 +110,11 @@ const initAll = () => {
   manager_o = getManagers().then(data => {
     return data;
   });
+
+  await sleep(10000);
 }
 
 initAll();
-
-await sleep(10000);
 
 // tick = 10000 //for error checking.
 let tick = 5000;    // 1 second each loop. 
