@@ -132,9 +132,9 @@ setInterval(() => {   // Init
         var blackout = production.ifBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
 
         const res = axios.put(backend + "/household/" + curitem.id, {
-          wind: wind,
+          wind: distribute.wind,
           production: prod,
-          consumption: consumption,
+          consumption: distribute.cons,
           netproduction: netproduction,
           buffer: buffer,
           blackout: blackout

@@ -7,18 +7,18 @@ import {
   const isEmpty = require("is-empty");
 
   const initialState = {
-    isAuthenticated: false,
+    isManager: false,
     user: {},
     loading: false
   };
 
 
-  export function authR(state = initialState, action) {
+  export function manR(state = initialState, action) {
     switch (action.type) {
       case SET_CURRENT_USER:
         return {
           ...state,
-          isAuthenticated: !isEmpty(action.payload),
+          isManager: !isEmpty(action.payload),
           user: action.payload
         };
       case USER_LOADING:
@@ -30,4 +30,4 @@ import {
         return state;
     }
   }
-  export default authR;
+  export default manR;
