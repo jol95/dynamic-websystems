@@ -5,19 +5,25 @@ import PropTypes from "prop-types";
 
 const ManagerRoute = ({
   comp: Component, // use comp prop
-  auth: { isAuthenticated, loading, role},
+  auth: { isAuthenticated, loading},
   ...rest
 }) => (
   <Route
     {...rest}
-    render={props =>
-      //auth=FALSE and LOADING=FALSE  or ROLE = FALSE
-      !isAuthenticated && !loading || !role ? (
-        <Redirect to="/login" />
-      ) : (
-        <Component {...props} />
-      )
+    render={props => {
+      console.log("FUCKOFF");
+      console.log(props);
+      console.log("auth.user.nått", this.props.auth.user.id);
+      //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
+      if (this.props.auth.user.id==="user"){
+        return <Redirect to ="/login" />
+      }
+      if (!isAuthenticated && !loading) {
+        return <Redirect to ="/login" />
+      } 
+      return <Component {...props} />
     }
+  }
   />
 );
 ManagerRoute.propTypes = {
