@@ -26,6 +26,7 @@ export const updateDatabase = (dbData ,data) => dispatch => {
     );
 };
 
+//not in use?
 export const displayDatabase = (data, dbData) => dispatch => {
   axios
     .get("api/household/" + data, dbData)
@@ -39,12 +40,6 @@ export const displayDatabase = (data, dbData) => dispatch => {
       })
     );
 }
-
-//export const getUserInfo = (data) => dispatch => {
-  //response = axios.get("api/household/" + data)
-  //response.data.img;
-//}
-
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
