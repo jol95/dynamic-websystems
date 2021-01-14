@@ -36,7 +36,8 @@ exports.loginManager = async function(req, res) {
           // manager matched
           // Create JWT Payload
           const payload = {
-            email: manager.email
+            email: manager.email,
+            firstname: manager.firstname
           };
          // Sign token
           jwt.sign(

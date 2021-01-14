@@ -37,7 +37,6 @@ const getHouses = async () => {  // Function which recives all households and up
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
-    console.log(response.data);
    return response.data;
   }
   } catch (err) {
@@ -62,7 +61,7 @@ const initAll = async () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = axios.put(backend + "/household" + curitem.houseid, {
+      const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: 0,
         production: 0,
         consumption: 0,
@@ -77,7 +76,7 @@ const initAll = async () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = axios.put(backend + "/manager" + curitem.email, {
+      const res = axios.put(backend + "/manager/" + curitem.email, {
         production: 0,
         status: "stopped"
       });
