@@ -3,9 +3,8 @@ const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
 const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
-const 
 
-const backend = "http://localhost:5000/api"
+const backend = "http://localhost:5000/api";
 
 let init = false;
 
