@@ -1,6 +1,7 @@
 import {
     SET_CURRENT_USER,
-    USER_LOADING
+    USER_LOADING,
+    SET_ROLE
   } from "../actions/types";
 
   const isEmpty = require("is-empty");
@@ -20,6 +21,11 @@ import {
           ...state,
           isAuthenticated: !isEmpty(action.payload),
           user: action.payload
+        };
+      case SET_ROLE:
+        return {
+          ...state,
+          role: true
         };
       case USER_LOADING:
         return {

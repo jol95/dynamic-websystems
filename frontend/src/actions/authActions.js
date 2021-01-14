@@ -7,6 +7,7 @@ import {
   USER_LOADING,
   SET_CURRENT_MANAGER,
   MANAGER_LOADING,
+  SET_ROLE
 } from "./types";
 
 // Update ratio
@@ -71,6 +72,7 @@ export const loginUser = (userType,userData, history) => dispatch => {
       if(userType=="manager"){
         // Set current manager
         dispatch(setCurrentManager(decoded));
+        dispatch(setRole());
         console.log("manager login success");
         history.push("/managerdashboard")
       }else{
@@ -112,6 +114,13 @@ export const setCurrentManager = decoded => {
 export const setManagerLoading = () => {
   return {
     type: MANAGER_LOADING
+  };
+};
+
+// Set user to manager
+export const setUserLoading = () => {
+  return {
+    type: USER_LOADING
   };
 };
 
