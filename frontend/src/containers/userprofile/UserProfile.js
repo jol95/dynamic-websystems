@@ -1,16 +1,25 @@
 import React, { Component ,useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Database, displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
 import "./UserProfile.css";
 
-function UserProfile (props){
-    const [userData, setUserData] = useState(null);    
-    const fetchData = async () => {
-        const response = await axios.get("/api/household");
-        setUserData(response.data);
-        //console.log("userprofile data", response.data);
+class UserProfile extends Component {
+    constructor() {
+        super();
+        this.state = {
+            houseid: "",
+            errors: {}
+        };
     }
+    componentDidMount() {
+        console.log("Userprofile mounted")
+    }
+
+    render() {
         return(
-        fetchData(),
+        displayDatabase(dbData, data),
         <div className="Apphouse">
             <h1>Your Household</h1>
             <h2>Show household info</h2>
@@ -41,5 +50,18 @@ function UserProfile (props){
             </div>   
         );
 }
+}
 
-export default UserProfile;
+UserProfile.propTypes = {
+    displayDatabase: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  export default connect(
+    mapStateToProps,
+    { displayDatabase }
+  )( UserProfile );
