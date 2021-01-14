@@ -70,7 +70,7 @@ export const loginUser = (userType ,userData, history) => dispatch => {
       // Decode token to get user data
       const decoded = jwt_decode(token);
 
-      if(userType=="manager"){
+      if(userType==="manager"){
         // Set current manager
         dispatch(setCurrentUser(decoded));
         console.log("manager login success");

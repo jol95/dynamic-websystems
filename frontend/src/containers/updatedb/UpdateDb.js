@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
-import classnames from "classnames";
+//import classnames from "classnames";
 
 class UpdateDb extends Component {
     constructor() {

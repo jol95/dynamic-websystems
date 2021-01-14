@@ -28,7 +28,7 @@ function Households(props){
                         <div className="details">
                             <img
                             src={"data:image/png;base64," + houses.img}
-                            alt='Image goes here'/>
+                            alt='Look here'/>
                             <br/>
                             <p>Wind:{houses.wind} m/s</p>
                             <p>Production:{houses.production} kW/h</p>

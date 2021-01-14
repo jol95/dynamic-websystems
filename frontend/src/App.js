@@ -7,7 +7,7 @@ import "./App.css";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, setCurrentManager, logoutUser } from "./actions/authActions";
+import { setCurrentUser } from "./actions/authActions";
 
 import store from "./store";
 

@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from 'axios';
+//import { Link } from "react-router-dom";
+//import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
-import classnames from "classnames";
-import FileBase from 'react-file-base64';
-import DefaultImg from './defaultimg.png';
-import UserProfile from "../userprofile/UserProfile";
+//import classnames from "classnames";
+//import FileBase from 'react-file-base64';
+//import DefaultImg from './defaultimg.png';
+//import UserProfile from "../userprofile/UserProfile";
 import './ProfileImg.css';
 
 
@@ -78,8 +78,8 @@ class ProfileImg extends Component {
   };
 
   render () {
-    const { errors } = this.state;
-    const { display } = this.state;
+    //const { errors } = this.state;
+    //const { display } = this.state;
   return(
      <div>
       <form noValidate onSubmit={this.onSubmit}>   
