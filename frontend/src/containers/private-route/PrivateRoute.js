@@ -10,14 +10,17 @@ const PrivateRoute = ({
 }) => (
   <Route
     {...rest}
-    render={props =>
+    render={props => {
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
-      !isAuthenticated && !loading || role ? (
-        <Redirect to="/login" />
-      ) : (
-        <Component {...props} />
-      )
+      if (role){
+        return <Redirect to ="/login" />
+      }
+      if (!isAuthenticated && !loading) {
+        return <Redirect to ="/login" />
+      } 
+      return <Component {...props} />
     }
+  }
   />
 );
 PrivateRoute.propTypes = {
