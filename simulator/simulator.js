@@ -128,7 +128,7 @@ setInterval(() => {   // Init
 
         var netproduction = production.calcNetProd(prod, consumption);
         var buffer = production.calcBuffer(netproduction, curitem.buffer, curitem.ratio, batterylimit_h);
-        var blackout = ifBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
+        var blackout = production.ifBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
 
         const res = axios.put(backend + "/household/" + curitem.houseid, {
           wind: wind,
