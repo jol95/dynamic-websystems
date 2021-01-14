@@ -86,8 +86,9 @@ setInterval(() => {
             blackout: production.blackout
          });
 
-         console.log("Consumption diff. : " + distribute.cons - curitem.consumption);
-         console.log("Production diff. : " + production.prod - curitem.production);
+         console.log("Previous consumption : " + curitem.consumption);
+         console.log("Previous production : " + curitem.production);
+         console.log("Previous netproduction : " + curitem.netproduction);
 
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
             totalconsumption = totalconsumption + distribute.cons;
@@ -96,7 +97,7 @@ setInterval(() => {
          }else{
             totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
             totalproduction = totalproduction + (production.prod - curitem.production);
-            totalnetproduction = totalnetproduction + ((production.netprod * (1 - curitem.ratio)) - (curitem.netproduction * curitem.ratio));
+            totalnetproduction = totalnetproduction + ((production.netprod * (1 - curitem.ratio)) - (curitem.netproduction * (1 - curitem.ratio)));
          }
 
          /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
