@@ -36,7 +36,7 @@ class UserProfile extends Component {
 
 
     componentDidMount() {
-
+        console.log("userprofile mounted");
     }
 
 
