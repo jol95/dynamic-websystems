@@ -14,6 +14,7 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props => {
+      
       console.log("privateroute works");
       console.log("privateroute props", user);
       console.log("auth.user.nått2");

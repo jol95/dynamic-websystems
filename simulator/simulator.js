@@ -57,16 +57,20 @@ setInterval(() => {
       console.log("Households: " + curitem);
       distribute.distributeAvg();
 
-      if(curitem.isproducing == true)
-      production.calcProd(distribute.wind);
+      if(curitem.isproducing){
+        production.calcProd(distribute.wind);
+      }else if(!curitem.isproducing){
+        production.calcProd(0);
+      }
+
       production.calcNetProd(distribute.cons);
       production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
       production.checkBlackout(totalbuffer, totalnetproduction);
     
-      console.log("Wind: " + distribute.wind);
-      console.log("Consumption " + distribute.cons);
-      console.log("Production" + production.prod);
-      console.log("Nettoproduction" + production.netprod);
+      console.log("Wind : " + distribute.wind);
+      console.log("Consumption : " + distribute.cons);
+      console.log("Production : " + production.prod);
+      console.log("Nettoproduction : " + production.netprod);
 
       const res = axios.put(backend + "/household/" + curitem.id, {
         wind: distribute.wind,
@@ -81,7 +85,7 @@ setInterval(() => {
 
       totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
       totalproduction = totalproduction + (production.prod - curitem.production);
-      totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem));
+      totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
 
       /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
         totalbuffer = batterylimit_t
