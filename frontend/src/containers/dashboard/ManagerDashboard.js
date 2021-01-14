@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import ManagerUpdateDb from "../updatedb/ManagerUpdateDb";
+import ManagerProfile from "../userprofile/UserProfile";
 import ProfileImg from "../profileimg/ProfileImg";
 import UserProfile from "../userprofile/UserProfile";
 

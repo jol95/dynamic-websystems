@@ -1,0 +1,38 @@
+import React, { Component ,useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Database, displayDatabase } from "../../actions/authActions";
+import axios from 'axios';
+import "./UserProfile.css";
+
+class ManagerUserProfile extends Component {
+    constructor() {
+        super();
+        this.state = {
+            errors: {}
+        };
+    }
+
+    render() {
+
+        return(
+        <div className="Apphouse">
+
+            </div>   
+        );
+}
+}
+
+ManagerProfile.propTypes = {
+    displayDatabase: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  export default connect(
+    mapStateToProps,
+    { displayDatabase }
+  )( ManagerProfile );
