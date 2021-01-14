@@ -49,8 +49,6 @@ setInterval(() => {
       totalconsumption = data.totalconsumption;
       totalnetproduction = data.totalnetproduction;
       totalbuffer = data.totalbuffer;
-
-      distribute.distributeInit();
   });
   }
 
