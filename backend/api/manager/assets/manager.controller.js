@@ -79,7 +79,7 @@ exports.registerManager = async function(req, res) {
             const newManager = new Manager({
                 email: req.body.email,
                 password: req.body.password,
-                id: req.body.id,
+                id: id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 production: 100,
