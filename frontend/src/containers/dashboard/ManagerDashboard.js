@@ -24,7 +24,7 @@ return (
               </p>
             </h4>
             <ProfileImg/>
-            <UpdateDb/>
+            <ManagerUpdateDb/>
             <button
               style={{
                 width: "150px",

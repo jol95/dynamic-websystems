@@ -93,7 +93,6 @@ const initAll = async () => {
   });
 
   house_o = getHouses().then( (data,res) => { // Get newely reseted 
-    console.log(data)
     return data;
   });
 
