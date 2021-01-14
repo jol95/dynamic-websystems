@@ -13,7 +13,6 @@ const PrivateRoute = ({
     render={props => {
       console.log("FUCKOFF");
       console.log(props);
-      console.log("auth.user.nått", auth.user.role);
       console.log("auth.user.nått2", this.props.auth.user.id);
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
       if (this.props.auth.user.id==="manager"){
