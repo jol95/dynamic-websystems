@@ -64,18 +64,16 @@ class ProfileImg extends Component {
   const { user } = this.props.auth;
   const data = user.id;
   var kind = "";
-
+  console.log("beforeIF");
   if(data === "manager"){
     kind = "manager";
     this.props.updateDatabase(kind, newUpdate, data); 
-    console.log("profileImg manager userData", user)
   } else if(data === "user"){
     kind = "household";
-    this.props.updateDatabase(kind, newUpdate, data);
     console.log("ProfileImg user userData", user)
   }
 
-  //preview.src = "data:image/png;base64," + this.state.base64TextString
+  this.props.updateDatabase(kind, newUpdate, data);
 
   };
 

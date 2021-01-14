@@ -8,6 +8,8 @@ const backend = "http://localhost:5000/api"
 
 let init = false;
 
+let previous_data = [];
+
 let batterylimit_h = 100;
 let batterylimit_t = 2000;
 
