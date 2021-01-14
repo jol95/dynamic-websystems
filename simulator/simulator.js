@@ -56,7 +56,7 @@ const getManagers = async () => {  // Function which recives manager (coal produ
   }
 }
 
-initAll = async () => {
+const initAll = () => {
   console.log("init")
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     var objCount = data.length;
