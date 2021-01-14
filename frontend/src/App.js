@@ -20,7 +20,6 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
-  store.dispatch(setCurrentManager(decoded));
 
 
 
