@@ -87,7 +87,7 @@ exports.registerManager = async function(req, res) {
                 role: role,
                 production: 100,
                 status: "off",
-                img: ""
+                img: req.body.img
 
         });
         bcrypt.genSalt(10, (err, salt) => {
