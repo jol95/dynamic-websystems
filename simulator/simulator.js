@@ -81,7 +81,7 @@ setInterval(() => {   // Init
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
-        const res = axios.put(backend + "/manager/" + curitem.email, {
+        const res = await axios.put(backend + "/manager/" + curitem.email, {
           production: 0,
           status: "stopped"
         });
@@ -90,20 +90,20 @@ setInterval(() => {   // Init
 
     getGrid().then(data => {
       totalbuffer = data.buffer;
-      const res = axios.put(backend + "/grid/" + data.email, {
+      const res = await axios.put(backend + "/grid/" + data.email, {
         totalproduction: totalproduction,
         totalconsumption: totalconsumption,
         totalnetproduction: totalnetproduction
       });
     });
 
-    house_o = getHouses().then( (data, res) => { // Get newely reseted 
+    house_o = await getHouses().then( (data, res) => { // Get newely reseted 
       res = data;
     });
 
     console.log(house_o)
 
-    manager_o = getManagers().then(data => {
+    manager_o = await getManagers().then(data => {
       return data;
     });
 
