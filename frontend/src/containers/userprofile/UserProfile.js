@@ -19,7 +19,7 @@ class UserProfile extends Component {
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             console.log("tidy:", this.props.auth);
-            const data = user.id.split(" ")[0]
+            const data = user.id
             const response = await axios.get("/api/household/" + data);
             this.setState({
                 id: response.data.id,
