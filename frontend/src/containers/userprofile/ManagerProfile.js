@@ -38,7 +38,7 @@ class ManagerProfile extends Component {
             console.log("tidy:", this.props.auth);
             const data = user.id
             var kind = "";
-            
+
             if (user.role==="manager"){
                 kind = "manager/";
                 console.log("you are indeed a manager");
@@ -50,12 +50,13 @@ class ManagerProfile extends Component {
                 pollingCount: this.state.pollingCount + 1,
                 id: response.data.id,
                 status: response.data.status,
+                ratio: response.data.ratio,
                 display: response.data.img,
             })
     }
 
     render() {
-        const { id, status, display } = this.state
+        const { id, status, ratio, display } = this.state
         return(
         <div className="Apphouse">
             <h1>Manager Dashboard</h1>
@@ -72,6 +73,7 @@ class ManagerProfile extends Component {
                     alt='Image goes here'/>
                 <br/>
                 <p>status: {status} </p>
+                <p>ratio: {ratio} </p>
                 </div>
                 </div>
                 </div>
