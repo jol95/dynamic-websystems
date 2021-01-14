@@ -43,9 +43,9 @@ tick = 1000;
 setInterval(() => {
   console.log("tick")
   initTotal().then(data => {
-      totalproduction = 0;
-      totalconsumption = 0;
-      totalnetproduction = 0;
+      totalproduction = data.totalproduction;
+      totalconsumption = data.totalconsumption;
+      totalnetproduction = data.totalnetproduction;
       totalbuffer = data.totalbuffer;
 
       distribute.distributeInit();
@@ -59,16 +59,18 @@ setInterval(() => {
 
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
-      production.calcPrice(distribute.wind, distribute.cons);
       production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
-      production.checkBlackout(totalbuffer)
+      production.checkBlackout(totalbuffer);
     
+      console.log(distribute.wind);
+      console.log(distribute.cons);
+      console.log(distribute.netprod);
+
       const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: distribute.wind,
         production: production.prod,
         consumption: distribute.cons,
         netproduction: production.netprod,
-        price: production.price,
         buffer: production.buffer,
         blackout: production.blackout
       });

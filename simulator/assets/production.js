@@ -8,38 +8,31 @@ class Production{
     blackout;
 
     calcProd(wind){
-        var limit = 4.0
-
-        if (wind < limit){ 
-            this.prod = 0;
-        }else if(limit < wind){
-            this.prod = (wind * 2.8);  
+        if (wind < 4.0){ 
+            this.prod = 0.0;
+        }else{
+            this.prod = (wind * 3);  
         }
     }
-    
-    calcNetProd(prod, consumption){
-        this.netprod = prod - consumption;
+
+    calcNetProd(consumption){
+        this.netprod = this.prod - consumption;
     }
 
-    calcBuffer(netprod, o_buffer, ratio, limit){
-        if((o_buffer + (netprod * ratio)) >= limit){ // 100 kW limit for battery on house
-            this.buffer = limit;
-        }else if((o_buffer + (netprod * ratio)) <= 0){
-            this.buffer = 0;
-        }
-        else{
+    calcBuffer(netprod, ratio, o_buffer, batterylimit_h){
+        if((o_buffer + (netprod * ratio)) > batterylimit_h){ // 100 kW limit for battery on house
+            this.buffer = batterylimit_h;
+        }else{
             this.buffer = o_buffer + (netprod * ratio);
         }
     }
 
-    ifBlackout(netprod, buffer, totalbuffer, totalnetprod){
-        if(netprod <= 0 && buffer <= 0 && totalbuffer <= 0  && totalnetprod <= 0){
+    checkBlackout(totalbuffer){
+        if(this.netprod <= 0 && totalbuffer <= 0 && this.buffer <= 0){
             this.blackout = true;
         }else{
             this.blackout = false;
         }
     }
 }
-
-
 module.exports = new Production();
