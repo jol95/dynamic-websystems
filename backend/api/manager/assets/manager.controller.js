@@ -111,7 +111,7 @@ exports.getManager = async function(req, res) {
      return res.status(400).json(errors);
   }
 
-  Manager.findOne({ email: req.params.id}, function (err, manager) {
+  Manager.findOne({ id: req.params.id}, function (err, manager) {
       if (err){
           console.log(err);
       }
@@ -142,7 +142,7 @@ exports.updateManager = async function(req, res) {
 
   Manager.findOne({ id: req.params.id }).then(manager => {
     if (!manager) {
-        return res.status(400).json({ id: "Email doesn't exist" });
+        return res.status(400).json({ id: "id doesn't exist" });
     } else {
         manager.firstname = req.body.firstname? req.body.firstname: manager.firstname,
         manager.lastname = req.body.lastname? req.body.lastname: manager.lastname,
