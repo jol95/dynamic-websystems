@@ -119,8 +119,6 @@ setInterval(() => {   // Init
 
         console.log(distribute.wind);
         console.log(distribute.cons);
-        console.log(distribute.wind);
-        console.log(distribute.cons);
 
         var prod = 0;
         if(curitem.isproducing){    // If household is producing
@@ -141,6 +139,9 @@ setInterval(() => {   // Init
           buffer: buffer,
           blackout: blackout
         });
+
+        console.log(distribute.wind);
+        console.log(distribute.cons);
         
         totalproduction = totalproduction + (prod - olditem.production);
         totalconsumption = totalconsumption + (consumption - olditem.consumption);
