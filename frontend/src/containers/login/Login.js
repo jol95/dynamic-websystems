@@ -108,24 +108,6 @@ return (
                 />
                 
               </div>
-
-             {/* LOGIN ROLE DROPDOWN */}
-            <div>
-            <input
-              onChange={this.onChange}
-              value={this.state.role} 
-              list="select" 
-              name="select">
-              <datalist 
-                class="form-control" 
-                id="select">    
-                  <option value="Prosumer"/>
-                  <option value="Manager"/>
-              </datalist>
-            </input>
-            </div>
-
-                  
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
