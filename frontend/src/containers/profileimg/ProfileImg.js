@@ -13,11 +13,9 @@ import './ProfileImg.css';
 
 class ProfileImg extends Component {
     constructor() {
-      const preview = "";
       super();
       this.state = {
         img: "",
-        display: "",
         errors: {}
       };
     }

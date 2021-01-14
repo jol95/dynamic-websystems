@@ -7,6 +7,7 @@ function UserProfile (props){
     const fetchData = async () => {
         const response = await axios.get("/api/household");
         setUserData(response.data);
+        console.log("userprofile data", response.data);
     }
         return(
         fetchData(),
@@ -22,6 +23,9 @@ function UserProfile (props){
                         <div className="profile" key={index}>
                             <h2>ID: {data.houseid}</h2>
                             <div className="details">
+                            <img
+                                src={"data:image/png;base64," + data.img}
+                                alt='Image goes here'/>
                                 <p>Wind:{data.wind} m/s</p>
                                 <p>Production:{data.production} kW/h</p>
                                 <p>Consumption:{data.consumption} kW/h</p>
@@ -29,9 +33,6 @@ function UserProfile (props){
                                 <p>Buffer:{data.buffer} kW</p>
                                 <p>Blackout:{data.blackout}</p>
                                 <p>Ratio:{data.ratio}</p>
-                                <img
-                                    src={"data:image/png;base64," + data.img}
-                                    alt='Image goes here'/>
                             </div>
                             </div>
                     );
