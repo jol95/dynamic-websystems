@@ -10,6 +10,7 @@ class UserProfile extends Component {
         super();
         this.state = {
             houseid: "",
+            img: "",
             errors: {}
         };
     }
@@ -19,7 +20,6 @@ class UserProfile extends Component {
 
     render() {
         return(
-        displayDatabase(dbData, data),
         <div className="Apphouse">
             <h1>Your Household</h1>
             <h2>Show household info</h2>
@@ -27,25 +27,9 @@ class UserProfile extends Component {
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 
-                {userData && userData.map((data, index) => {
-                    return (
-                        <div className="profile" key={index}>
-                            <h2>ID: {data.houseid}</h2>
-                            <div className="details">
-                            <img
-                                src={"data:image/png;base64," + data.img}
-                                alt='Image goes here'/>
-                                <p>Wind:{data.wind} m/s</p>
-                                <p>Production:{data.production} kW/h</p>
-                                <p>Consumption:{data.consumption} kW/h</p>
-                                <p>Netto production:{data.netproduction} kW/h</p>
-                                <p>Buffer:{data.buffer} kW</p>
-                                <p>Blackout:{data.blackout}</p>
-                                <p>Ratio:{data.ratio}</p>
-                            </div>
-                            </div>
-                    );
-                })} 
+                {/* <img
+                    src={"data:image/png;base64," + data.img}
+                    alt='Image goes here'/> */}
                 </div>
             </div>   
         );
