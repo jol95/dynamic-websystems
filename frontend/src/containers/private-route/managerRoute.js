@@ -17,7 +17,7 @@ const ManagerRoute = ({
       console.log(props);
       console.log("auth.user.nått");
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
-      if (){
+      if (isAuthenticated){
         return <Redirect to ="/login" />
       }
       if (!isAuthenticated && !loading) {
