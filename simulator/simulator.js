@@ -85,11 +85,10 @@ setInterval(() => {
 
       console.log("Households: " + curitem);
 
-      if(init){
+      if(init){ // Init the total sum or add the difference depending on first iteration or not. 
         totalconsumption = totalconsumption + distribute.cons;
         totalproduction = totalproduction + production.prod;
         totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
-        init = false;
       }else{
         totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
         totalproduction = totalproduction + (production.prod - curitem.production);
@@ -101,6 +100,10 @@ setInterval(() => {
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
       }  */
+    }
+
+    if(init){
+      init = false;
     }
 
     const res = axios.put(backend + "/grid", {

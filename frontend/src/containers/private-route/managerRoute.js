@@ -7,17 +7,17 @@ const ManagerRoute = ({
   comp: Component, // use comp prop
   auth: { isAuthenticated, 
           loading,
+          user,
         },
   ...rest
 }) => (
   <Route
     {...rest}
     render={props => {
-      console.log("FUCKOFF");
-      console.log(props);
-      console.log("auth.user.nått");
+      console.log("managerrouter props:", user);
+
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
-      if (isAuthenticated){
+      if (user.role==="user"){
         return <Redirect to ="/login" />
       }
       if (!isAuthenticated && !loading) {

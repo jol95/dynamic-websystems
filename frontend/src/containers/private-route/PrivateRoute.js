@@ -14,10 +14,7 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props => {
-      
-      console.log("privateroute works");
       console.log("privateroute props", user);
-      console.log("auth.user.nått2");
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
       if (user.role==="manager"){
         return <Redirect to ="/login" />
