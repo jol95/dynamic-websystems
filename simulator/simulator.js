@@ -58,7 +58,7 @@ const getManagers = async () => {  // Function which recives manager (coal produ
 }
 
 // tick = 10000 //for error checking.
-tick = 1000;    // 1 second each loop. 
+tick = 5000;    // 1 second each loop. 
 setInterval(() => {   // Init 
   console.log("tick")
 
