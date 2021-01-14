@@ -65,10 +65,10 @@ class ProfileImg extends Component {
   const data = user.id;
   var kind = "";
   console.log("beforeIF");
-  if(data === "manager"){
+  if(data.role === "manager"){
     console.log("afterIF in the manager");
     kind = "manager";
-  } else if(data === "user"){
+  } else if(data.role === "user"){
     console.log("afterIF in the user");
     kind = "household";
   }
