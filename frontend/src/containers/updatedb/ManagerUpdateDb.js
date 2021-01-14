@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
 import classnames from "classnames";
 
-class UpdateDb extends Component {
+class ManagerUpdateDb extends Component {
     constructor() {
       super();
       this.state = {
