@@ -106,7 +106,7 @@ setInterval(() => {
          totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
          }  */
 
-         console.log("HOUSE" + curitem.id)
+         console.log("###### HOUSE " + curitem.id + " ########")
       }
 
       if(!init){
