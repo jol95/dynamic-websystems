@@ -13,7 +13,7 @@ import {
 // Update ratio
 export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
-    .put("api/" + userType + data, dbData)
+    .put("api/" + userType + "/" + data, dbData)
     .then(res => {
       console.log("authactions updatedatabase USERTYPE:", userType)
       console.log("authactions updatedatabase data:", data)
