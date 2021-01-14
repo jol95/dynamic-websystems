@@ -20,7 +20,7 @@ class UserProfile extends Component {
         const data = user.id.split(" ")[0]
         const response = await axios.get("/api/household/" + data);
         this.setState({
-            id: response.data.img.id,
+            id: response.data.id,
             display:  response.data.img,
             wind:  response.data.wind,
             production:  response.data.production,
