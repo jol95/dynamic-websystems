@@ -22,7 +22,7 @@ class Login extends Component {
       this.props.history.push("/managerdashboard");
       console.log("FROM LOGOIN --> PUSHING MANAGERDASHBOARD");
     }
-    if (this.props.auth.isAuthenticated) {
+    else if (this.props.auth.isAuthenticated) {
         this.props.history.push("/dashboard");
         console.log("FROM LOGOIN --> PUSHING DASHBOARD");
       }
