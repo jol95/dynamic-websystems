@@ -60,7 +60,6 @@ setInterval(() => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
-         console.log("Housold prod : " + curitem.prod);
          distribute.distributeAvg();
 
          if(curitem.isproducing){
@@ -116,4 +115,6 @@ setInterval(() => {
          totalnetproduction: totalnetproduction,
       })
    });
+
+   console.log("#######################")
 }, tick);
