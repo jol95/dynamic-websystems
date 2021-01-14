@@ -1,16 +1,13 @@
 const normdist = require("./normaldist/normaldist.js");
-
 class Distribute{
-    cons;
     wind;
-
+    cons;
     constructor(){
         this.windMin = 1.0;
         this.windMax = 8.5;
 
         this.windDistMin = 0.0;
         this.windDistMax = 0.0;
-
         this.windDistScew = 1.0;
 
         /*
@@ -21,9 +18,7 @@ class Distribute{
 
         this.consDistMin = 0.0;
         this.consDistMax = 0.0;
-        
         this.consDistScew = 1.0;
-
     }
 
     distributeInit(){
@@ -34,12 +29,13 @@ class Distribute{
         this.consDistMax = normdist.nmdist(12.65, this.consMax, this.consDistScew);
     }
 
-    calcAvg() {
+    distributeAvg(){
         this.wind = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
         this.cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
     }
 }
 module.exports = new Distribute();
+
 
 /*
 yolo = new Distribute();
