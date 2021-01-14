@@ -2,6 +2,7 @@ const normdist = require("./normaldist/normaldist.js");
 class Distribute{
     wind;
     cons;
+    
     constructor(){
         this.windMin = 1.0;
         this.windMax = 8.5;
