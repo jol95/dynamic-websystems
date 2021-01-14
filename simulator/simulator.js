@@ -119,27 +119,27 @@ setInterval(() => {   // Init
         var wind = distribute.calcWind(); 
         var consumption = distribute.calcConsumption();
 
-        var production = 0;
+        var prod = 0;
         if(curitem.isproducing){    // If household is producing
-          production = production.calcProd(wind); 
+          prod = production.calcProd(wind); 
         }else if(!curitem.isproducing){  // Not producing
-          production = production.calcProd(0);
+          prod = production.calcProd(0);
         }
 
-        var netproduction = production.calcNetProd(production, consumption);
+        var netproduction = production.calcNetProd(prod, consumption);
         var buffer = production.calcBuffer(netproduction, curitem.buffer, curitem.ratio, batterylimit_h);
         var blackout = checkBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
 
         const res = axios.put(backend + "/household/" + curitem.houseid, {
           wind: wind,
-          production: production,
+          production: prod,
           consumption: consumption,
           netproduction: netproduction,
           buffer: buffer,
           blackout: blackout
         });
         
-        totalproduction = totalproduction + (production - olditem.production);
+        totalproduction = totalproduction + (prod - olditem.production);
         totalconsumption = totalconsumption + (consumption - olditem.consumption);
         totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
 
