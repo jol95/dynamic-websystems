@@ -20,11 +20,12 @@ class UserProfile extends Component {
             const { user } = this.props.auth;
             console.log("tidy:", this.props.auth);
             const data = user.id
+            const kind = "";
 
             if (user.role==="manager"){
-                const kind = "manager/";
+                kind = "manager/";
             }else if (user.role==="user"){
-                const kind = "household/";
+                kind = "household/";
             }
             const response = await axios.get("/api/" + kind + data);
             this.setState({
