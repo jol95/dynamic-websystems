@@ -4,7 +4,7 @@ const distribute = require("./assets/distribute.js");
 const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
 
-const backend = "http://localhost:5000/api"
+const backend = "https://localhost:5000/api"
 
 let house_o;
 let manager_o;
@@ -22,7 +22,7 @@ let totalbuffer = 0;
 
 const update = async () => { 
   try {
-  const response = await axios.get(backend + '/household');
+  const response = await axios.get(backend + '/household/');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -34,7 +34,7 @@ const update = async () => {
 
 const initTotal = async () => { 
   try {
-    const response = await axios.get(backend + '/grid');
+    const response = await axios.get(backend + '/grid/');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
     return response.data;

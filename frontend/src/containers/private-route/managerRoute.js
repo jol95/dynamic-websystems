@@ -11,7 +11,7 @@ const ManagerRoute = ({
   <Route
     {...rest}
     render={props =>
-      !isAuthenticated && !loading && !role ? (
+      !isAuthenticated && !loading || !role ? (
         <Redirect to="/login" />
       ) : (
         <Component {...props} />
