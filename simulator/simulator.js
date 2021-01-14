@@ -39,7 +39,7 @@ const update = async () => {
 }
 
 // tick = 10000 //for error checking.
-tick = 1000;
+tick = 6000;
 setInterval(() => {
   initTotal().then(data => {
       totalproduction = data.totalproduction;
@@ -54,6 +54,7 @@ setInterval(() => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
+      console.log("Households: " + curitem);
       distribute.distributeAvg();
 
       production.calcProd(distribute.wind);
@@ -74,6 +75,8 @@ setInterval(() => {
         buffer: production.buffer,
         blackout: production.blackout
       });
+
+      console.log("Households: " + curitem);
 
       totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
       totalproduction = totalproduction + (production.prod - curitem.production);
