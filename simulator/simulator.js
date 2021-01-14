@@ -90,20 +90,21 @@ setInterval(() => {   // Init
 
     getGrid().then(data => {
       totalbuffer = data.buffer;
-      const res = await axios.put(backend + "/grid/" + data.email, {
+      const res = axios.put(backend + "/grid/" + data.email, {
         totalproduction: totalproduction,
         totalconsumption: totalconsumption,
         totalnetproduction: totalnetproduction
       });
     });
 
-    house_o = await getHouses().then( (data, res) => { // Get newely reseted 
+    house_o = getHouses().then( (data, res) => { // Get newely reseted 
       res = data;
+      console.log(res)
     });
 
     console.log(house_o)
 
-    manager_o = await getManagers().then(data => {
+    manager_o = getManagers().then(data => {
       return data;
     });
 
