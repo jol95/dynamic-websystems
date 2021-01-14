@@ -32,8 +32,15 @@ class UpdateDb extends Component {
         };
 
     const { user } = this.props.auth;
-    const data = user.id.split(" ")[0]
-    this.props.updateDatabase(newUpdate, data); 
+    const data = user.id;
+    if(data === "manager"){
+      const kind = "manager";
+      this.props.updateDatabase(kind, newUpdate, data); 
+    } else if(data === "user"){
+      const kind = "household";
+      this.props.updateDatabase(kind, newUpdate, data);
+    }
+
     };
 
     render() {

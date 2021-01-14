@@ -54,64 +54,64 @@ setInterval(() => {
 
   distribute.distributeInit();
 
-  update().then(data => {
-    var objCount = data.length;
-    for ( var x = 0; x < objCount ; x++ ) {
-      var curitem = data[x];
-      console.log("Housold prod : " + curitem.prod);
-      distribute.distributeAvg();
+   update().then(data => {
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) {
+         var curitem = data[x];
+         console.log("Housold prod : " + curitem.prod);
+         distribute.distributeAvg();
 
-      if(curitem.isproducing){
-        production.calcProd(distribute.wind);
-      }else if(!curitem.isproducing){
-        production.calcProd(0);
+         if(curitem.isproducing){
+         production.calcProd(distribute.wind);
+         }else if(!curitem.isproducing){
+         production.calcProd(0);
+         }
+
+         production.calcNetProd(distribute.cons);
+         production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
+         production.checkBlackout(totalbuffer, totalnetproduction);
+      
+         console.log("Wind : " + distribute.wind);
+         console.log("Consumption : " + distribute.cons);
+         console.log("Production : " + production.prod);
+         console.log("Nettoproduction : " + production.netprod);
+
+         const res = axios.put(backend + "/household/" + curitem.id, {
+         wind: distribute.wind,
+         production: production.prod,
+         consumption: distribute.cons,
+         netproduction: production.netprod,
+         buffer: production.buffer,
+         blackout: production.blackout
+         });
+
+         console.log("Households: " + curitem);
+
+         if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
+         totalconsumption = totalconsumption + distribute.cons;
+         totalproduction = totalproduction + production.prod;
+         totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
+         }else{
+         totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
+         totalproduction = totalproduction + (production.prod - curitem.production);
+         totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
+         }
+
+         /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
+         totalbuffer = batterylimit_t
+         }else{
+         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
+         }  */
       }
 
-      production.calcNetProd(distribute.cons);
-      production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
-      production.checkBlackout(totalbuffer, totalnetproduction);
-    
-      console.log("Wind : " + distribute.wind);
-      console.log("Consumption : " + distribute.cons);
-      console.log("Production : " + production.prod);
-      console.log("Nettoproduction : " + production.netprod);
-
-      const res = axios.put(backend + "/household/" + curitem.id, {
-        wind: distribute.wind,
-        production: production.prod,
-        consumption: distribute.cons,
-        netproduction: production.netprod,
-        buffer: production.buffer,
-        blackout: production.blackout
-      });
-
-      console.log("Households: " + curitem);
-
-      if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
-        totalconsumption = totalconsumption + distribute.cons;
-        totalproduction = totalproduction + production.prod;
-        totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
-      }else{
-        totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
-        totalproduction = totalproduction + (production.prod - curitem.production);
-        totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
+      if(!init){
+         init = true;
       }
 
-      /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
-        totalbuffer = batterylimit_t
-      }else{
-        totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-      }  */
-    }
-
-    if(!init){
-      init = true;
-    }
-
-    const res = axios.put(backend + "/grid", {
-      totalproduction: totalproduction,
-      totalconsumption: totalconsumption,
-      totalnetproduction: totalnetproduction,
-    })
-  });
+      const res = axios.put(backend + "/grid", {
+         totalproduction: totalproduction,
+         totalconsumption: totalconsumption,
+         totalnetproduction: totalnetproduction,
+      })
+   });
 }, tick);

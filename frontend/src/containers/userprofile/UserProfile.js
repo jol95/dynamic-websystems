@@ -14,15 +14,19 @@ class UserProfile extends Component {
     }
 
 
-    fetchData = async () => {
-        
+    fetchData = async () => {    
             //settimeout // polling
-
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             console.log("tidy:", this.props.auth);
             const data = user.id
-            const response = await axios.get("/api/household/" + data);
+
+            if (user.role==="manager"){
+                const kind = "manager/";
+            }else if (user.role==="user"){
+                const kind = "household/";
+            }
+            const response = await axios.get("/api/" + kind + data);
             this.setState({
                 id: response.data.id,
                 display:  response.data.img,

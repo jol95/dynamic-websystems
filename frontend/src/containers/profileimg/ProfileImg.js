@@ -62,7 +62,7 @@ class ProfileImg extends Component {
       display: base64Flag + imageStr
     })
   const { user } = this.props.auth;
-  const data = user.id.split(" ")[0]
+  const data = user.id;
   this.props.updateDatabase(newUpdate, data); 
 
   //preview.src = "data:image/png;base64," + this.state.base64TextString

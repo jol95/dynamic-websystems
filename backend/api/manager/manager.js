@@ -6,7 +6,7 @@ var managerController = require("./assets/manager.controller.js")
 router.route('/') // GET all different managers. (for simulator)
     .get(managerController.getManagers);
 
-router.route('/:email') // GET & UPDATE specific user
+router.route('/:id') // GET & UPDATE specific user
     .get(managerController.getManager)
     .put(managerController.updateManager)
     .patch(managerController.updateManager);

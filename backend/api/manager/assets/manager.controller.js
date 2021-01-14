@@ -111,7 +111,7 @@ exports.getManager = async function(req, res) {
      return res.status(400).json(errors);
   }
 
-  Manager.findOne({ email: req.params.email}, function (err, manager) {
+  Manager.findOne({ email: req.params.id}, function (err, manager) {
       if (err){
           console.log(err);
       }
@@ -133,16 +133,16 @@ exports.getManagers = async function(req, res) {
 }
 
 exports.updateManager = async function(req, res) {
-  // Form validation
-  const { errors, isValid } = validateUpdateInput(req.params);
-  // Check validation
-  if (!isValid) {
-     return res.status(400).json(errors);
-  }
+  // // Form validation
+  // const { errors, isValid } = validateUpdateInput(req.params);
+  // // Check validation
+  // if (!isValid) {
+  //    return res.status(400).json(errors);
+  // }
 
-  Manager.findOne({ email: req.params.email }).then(manager => {
+  Manager.findOne({ id: req.params.id }).then(manager => {
     if (!manager) {
-        return res.status(400).json({ email: "Email doesn't exist" });
+        return res.status(400).json({ id: "Email doesn't exist" });
     } else {
         manager.firstname = req.body.firstname? req.body.firstname: manager.firstname,
         manager.lastname = req.body.lastname? req.body.lastname: manager.lastname,

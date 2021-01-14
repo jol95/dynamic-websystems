@@ -11,9 +11,9 @@ import {
 } from "./types";
 
 // Update ratio
-export const updateDatabase = (dbData ,data) => dispatch => {
+export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
-    .put("api/household/" + data, dbData)
+    .put("api/" + userType + data, dbData)
     .then(res => {
       const base = dbData;
       console.log("authAction updateDatabase");
@@ -55,7 +55,7 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 // Login - get user token
-export const loginUser = (userType,userData, history) => dispatch => {
+export const loginUser = (userType ,userData, history) => dispatch => {
   console.log("userType(role):", userType);
   axios
     .post("api/" + userType + "/login", userData)

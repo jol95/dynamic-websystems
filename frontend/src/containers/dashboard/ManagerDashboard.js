@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import ManagerUpdateDb from "../updatedb/ManagerUpdateDb";
-import ManagerProfile from "../userprofile/ManagerProfile";
+import UpdateDb from "../updatedb/UpdateDb";
+import Profile from "../userprofile/Profile";
 import ProfileImg from "../profileimg/ProfileImg";
 
 class ManagerDashboard extends Component {
@@ -24,8 +24,9 @@ return (
                 You are logged in :){" "}
               </p>
             </h4>
+            <UserProfile/>
             <ProfileImg/>
-            <ManagerUpdateDb/>
+            <UpdateDb/>
             <button
               style={{
                 width: "150px",

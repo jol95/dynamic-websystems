@@ -165,15 +165,15 @@ exports.registerUser = async function(req, res) {
 
 exports.updateUser = async function(req, res) {
   // Form validation
-  const { errors, isValid } = validateUpdateInput(req.params);
-  // Check validation
-  if (!isValid) {
-     return res.status(400).json(errors);
-  }
-
- User.findOne({ email: req.params.email }).then(user => {
+  //    const { errors, isValid } = validateUpdateInput(req.params);
+  // // Check validation
+  // if (!isValid) {
+  //    return res.status(400).json(errors);
+  // }
+  
+ User.findOne({ id: req.params.id }).then(user => {
   if (!user) {
-      return res.status(400).json({ email: "Email doesn't exist" });
+      return res.status(400).json({id: "Id doesn't exist" });
   } else {
       if(isEmpty(req.body.password)){
         user.password = user.password,
