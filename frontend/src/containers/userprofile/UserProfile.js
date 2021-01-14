@@ -49,16 +49,8 @@ class UserProfile extends Component {
 
 
     render() {
-        const { id } = this.state
-        const { display } = this.state
-        const { wind } = this.state
-        const { production } = this.state
-        const { consumption } = this.state
-        const { netproduction } = this.state
-        const { buffer } = this.state
-        const { blackout } = this.state
-        const { ratio } = this.state
-
+        const { id, display, wind, production, consumption,
+        netproduction, buffer, blackout, ratio } = this.state
         return(
         <div className="Apphouse">
             <h1>Your Household</h1>

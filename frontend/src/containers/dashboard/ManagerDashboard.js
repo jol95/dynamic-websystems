@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import UpdateDb from "../updatedb/UpdateDb";
-import UserProfile from "../userprofile/UserProfile";
+import ManagerProfile from "../userprofile/ManagerProfile";
 import ProfileImg from "../profileimg/ProfileImg";
 
 class ManagerDashboard extends Component {
@@ -24,7 +24,7 @@ return (
                 You are logged in :){" "}
               </p>
             </h4>
-            <UserProfile/>
+            <ManagerProfile/>
             <ProfileImg/>
             <UpdateDb/>
             <button

@@ -13,17 +13,63 @@ class ManagerProfile extends Component {
         };
     }
 
-    render() {
 
+    fetchData = async () => {    
+            //settimeout // polling
+            //const base64Flag = 'data:image/jpeg;base64,';
+            const { user } = this.props.auth;
+            console.log("tidy:", this.props.auth);
+            const data = user.id
+
+            var kind = "";
+            if (user.role==="manager"){
+                kind = "manager/";
+                console.log("you are indeed a manager");
+            }else if (user.role==="user"){
+                kind = "household/";
+            }
+            const response = await axios.get("/api/" + kind + data);
+            this.setState({
+                id: response.data.id,
+                status: response.data.status,
+                display: response.data.img
+            })
+    }
+
+
+    componentDidMount() {
+        console.log("managerprofile mounted");
+        this.fetchData() 
+    }
+
+
+    render() {
+        const { id, status, display } = this.state
         return(
         <div className="Apphouse">
-
-        </div>   
+            <h1>Manager Dashboard</h1>
+            <h2>Your Profile</h2>
+            {/* Fetch data from API */}
+            <br />
+            {/* Display data from API */}   
+            <div className="profiles"> 
+                <div className="profile">
+                    <h2>ID: {id} </h2>
+                    <div className="details">
+                <img
+                    src={"data:image/png;base64," + display}
+                    alt='Image goes here'/>
+                <br/>
+                <p>status: {status} </p>
+                </div>
+                </div>
+                </div>
+            </div>   
         );
 }
 }
 
-ManagerProfile.propTypes = {
+UserProfile.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -35,4 +81,4 @@ ManagerProfile.propTypes = {
   export default connect(
     mapStateToProps,
     { displayDatabase }
-  )( ManagerProfile );
+  )( UserProfile );
