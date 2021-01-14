@@ -6,9 +6,6 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
-let house_o = axios.get(backend + "/household/").data;
-let manager_o = axios.get(backend + "/manager/").data;
-
 let batterylimit_h = 100;  // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
 
@@ -93,7 +90,7 @@ const initAll = () => {
     });
   });
 
-  house_o = getHouses().then( (data,res) => { // Get newely reseted 
+  house_o = getHouses().then(data => { // Get newely reseted 
     return data;
   });
 
@@ -118,6 +115,7 @@ setInterval(() => {   // Init
         var olditem = house_o[x];
 
         var wind = distribute.calcWind(); 
+        console.log(wind)
         var consumption = distribute.calcConsumption();
 
         var prod = 0;
