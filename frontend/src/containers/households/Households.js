@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
-import "./UserProfile.css";
+import "./Households.css";
 
 class HouseHolds extends Component {
     constructor() {
