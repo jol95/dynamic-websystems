@@ -51,10 +51,12 @@ setInterval(() => {
       totalconsumption = data.totalconsumption;
       totalnetproduction = data.totalnetproduction;
       totalbuffer = data.totalbuffer;
-  });
-  }
+   });
+   }
 
-  distribute.distributeInit();
+   distribute.distributeInit();
+
+   data = JSON.parse(data);
 
    update().then(data => {
       var objCount = data.length;
