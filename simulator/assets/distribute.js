@@ -10,6 +10,7 @@ class Distribute{
 
         this.windDistMin = 0.0;
         this.windDistMax = 0.0;
+
         this.windDistScew = 1.0;
 
         /*
@@ -20,6 +21,7 @@ class Distribute{
 
         this.consDistMin = 0.0;
         this.consDistMax = 0.0;
+        
         this.consDistScew = 1.0;
 
     }
