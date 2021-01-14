@@ -7,7 +7,6 @@ import {
   USER_LOADING,
   SET_CURRENT_MANAGER,
   MANAGER_LOADING,
-  CURRENT_TYPE
 } from "./types";
 
 // Update ratio

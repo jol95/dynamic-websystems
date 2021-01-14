@@ -54,7 +54,72 @@ const getManagers = async () => {  // Function which recives manager (coal produ
   }
 }
 
-const initAll = () => {
+// tick = 10000 //for error checking.
+tick = 5000;    // 1 second each loop. 
+setInterval(() => {   // Init 
+  console.log("tick");
+
+  distribute.distributeInit();
+
+  getHouses().then(data => {
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+        let curitem = data[x];
+
+        distribute.distributeAvg();
+
+        if(curitem.isproducing){    // If household is producing
+          production.calcProd(distribute.wind); 
+        }else if(!curitem.isproducing){  // Not producing
+          production.calcProd(0);
+        }
+
+        production.calcNetProd(production.prod, distribute.cons);
+        production.calcBuffer(production.netprod, curitem.buffer, curitem.ratio, batterylimit_h);
+        production.ifBlackout(production.netprod, production.buffer, totalbuffer, totalnetproduction);
+
+        console.log(distribute.wind);
+        console.log(distribute.cons);
+        console.log(production.prod);
+        console.log(production.netprod);
+        console.log(production.buffer);
+        console.log(production.blackout);
+
+        const res = axios.put(backend + "/household/" + curitem.id, {
+          wind: distribute.wind,
+          production: production.prod,
+          consumption: distribute.cons,
+          netproduction: production.netprod,
+          buffer: production.buffer,
+          blackout: production.blackout
+        });
+
+        totalproduction = totalproduction + production.prod;
+        totalconsumption = totalconsumption + production.cons;
+        totalnetproduction = totalnetproduction + production.netprod;
+
+        //production.calcPrice(distribute.wind, distribute.cons);
+        //production.checkBlackout(totaltotalbuffer)
+      }
+
+      return data;
+  });
+  
+  getGrid().then(data => {
+    totalbuffer = data.buffer;
+    const res = axios.put(backend + "/grid", {
+      totalproduction: totalproduction,
+      totalconsumption: totalconsumption,
+      totalnetproduction: totalnetproduction
+    });
+  });
+
+  console.log("tock")
+}, tick);
+
+
+
+/* const initAll = () => {
   console.log("init");
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     var objCount = data.length;
@@ -99,74 +164,4 @@ const initAll = () => {
   });
 }
 
-initAll();
-
-// tick = 10000 //for error checking.
-tick = 5000;    // 1 second each loop. 
-setInterval(() => {   // Init 
-  console.log("tick");
-
-  distribute.distributeInit();
-
-  house_o = getHouses().then(data => {
-      var objCount = data.length;
-      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
-        let curitem = data[x];
-        let olditem = house_o[x];
-
-        distribute.distributeAvg();
-
-        var prod = 0;
-        if(curitem.isproducing){    // If household is producing
-          production.calcProd(distribute.wind); 
-        }else if(!curitem.isproducing){  // Not producing
-          production.calcProd(0);
-        }
-
-        production.calcNetProd(production.prod, distribute.cons);
-        production.calcBuffer(production.netprod, curitem.buffer, curitem.ratio, batterylimit_h);
-        production.ifBlackout(production.netprod, production.buffer, totalbuffer, totalnetproduction);
-
-        console.log(distribute.wind);
-        console.log(distribute.cons);
-        console.log(production.prod);
-        console.log(production.netprod);
-        console.log(production.buffer);
-        console.log(production.blackout);
-
-        const res = axios.put(backend + "/household/" + curitem.id, {
-          wind: distribute.wind,
-          production: production.prod,
-          consumption: distribute.cons,
-          netproduction: production.netprod,
-          buffer: production.buffer,
-          blackout: production.blackout
-        });
-
-        totalproduction = totalproduction + (prod - olditem.production);
-        totalconsumption = totalconsumption + (consumption - olditem.consumption);
-        totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
-
-        //production.calcPrice(distribute.wind, distribute.cons);
-        //production.checkBlackout(totaltotalbuffer)
-      }
-
-      return data;
-  });
-
-
-  //manager_o = getManagers().then(data => {
-    
-  //})
-  
-  getGrid().then(data => {
-    totalbuffer = data.buffer;
-    const res = axios.put(backend + "/grid", {
-      totalproduction: totalproduction,
-      totalconsumption: totalconsumption,
-      totalnetproduction: totalnetproduction
-    });
-  });
-
-  console.log("tock")
-}, tick);
+initAll(); */
