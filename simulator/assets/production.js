@@ -19,10 +19,13 @@ class Production{
         this.netprod = this.prod - consumption;
     }
 
-    calcBuffer(netprod, ratio, o_buffer, batterylimit_h){
-        if((o_buffer + (netprod * ratio)) > batterylimit_h){ // 100 kW limit for battery on house
-            this.buffer = batterylimit_h;
-        }else{
+    calcBuffer(netprod, ratio, o_buffer, batterylimit){
+        if((o_buffer + (netprod * ratio)) >= batterylimit){ 
+            this.buffer = batterylimit;
+        }else if((o_buffer + (netprod * ratio)) <= 0){
+            this.buffer = 0
+        }
+        else{
             this.buffer = o_buffer + (netprod * ratio);
         }
     }
