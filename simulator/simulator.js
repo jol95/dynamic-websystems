@@ -6,8 +6,8 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
-let house_o;
-let manager_o;
+let house_o = axios.get(backend + "/household/").data;
+let manager_o = axios.get(backend + "/manager/").data;
 
 let batterylimit_h = 100;  // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
