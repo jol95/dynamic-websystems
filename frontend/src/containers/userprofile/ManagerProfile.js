@@ -25,11 +25,11 @@ class ManagerProfile extends Component {
 
 ManagerProfile.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
-    auth: PropTypes.object.isRequired,
+    man: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
   };
   const mapStateToProps = state => ({
-    auth: state.auth,
+    man: state.man,
     errors: state.errors
   });
   export default connect(

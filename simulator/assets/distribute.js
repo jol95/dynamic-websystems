@@ -20,7 +20,8 @@ class Distribute{
         this.consDistScew = 1.0;
 
         this.wind;
-        this.cons;
+        this.con
+        this.normdist;ss
     }
 
     distributeInit(){
