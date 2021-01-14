@@ -98,6 +98,7 @@ setInterval(() => {   // Init
     });
 
     house_o = getHouses().then(data => { // Get newely reseted 
+      console.log(data)
       return data;
     });
 
