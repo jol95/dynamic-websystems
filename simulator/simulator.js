@@ -20,6 +20,12 @@ let totalnetproduction = 0;
 
 let totalbuffer = 0;
 
+function sleep(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}   
+
 const getGrid = async () => {   // Function to get electric grid (total values).
   try {
     const response = await axios.get(backend + '/grid');
@@ -56,7 +62,8 @@ const getManagers = async () => {  // Function which recives manager (coal produ
   }
 }
 
-const initAll = async () => {
+const initAll = () => {
+  console.log("init")
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     console.log(data)
     var objCount = data.length;
@@ -98,6 +105,8 @@ const initAll = async () => {
     return data;
   });
 
+  console.log(house_o);
+
   manager_o = getManagers().then(data => {
     return data;
   });
@@ -105,8 +114,10 @@ const initAll = async () => {
 
 initAll();
 
+await sleep(10000);
+
 // tick = 10000 //for error checking.
-tick = 5000;    // 1 second each loop. 
+let tick = 5000;    // 1 second each loop. 
 setInterval(() => {   // Init 
   console.log("tick");
 
