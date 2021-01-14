@@ -9,9 +9,29 @@ class ManagerProfile extends Component {
     constructor() {
         super();
         this.state = {
-            errors: {}
+          pollingCount: 0,
+          delay: 1000,
+          errors: {}
         };
     }
+
+    componentDidMount() {
+      this.interval = setInterval(this.tick, this.state.delay);
+   }
+
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.delay !== this.state.delay) {
+            clearInterval(this.interval);
+            this.interval = setInterval(this.tick, this.state.delay);
+        }
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+
+  tick = async () => {
 
 
     fetchData = async () => {    
@@ -30,6 +50,7 @@ class ManagerProfile extends Component {
             }
             const response = await axios.get("/api/" + kind + data);
             this.setState({
+                pollingCount: this.state.pollingCount + 1,
                 id: response.data.id,
                 status: response.data.status,
                 display: response.data.img,
