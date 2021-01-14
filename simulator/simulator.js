@@ -45,7 +45,6 @@ tick = 10000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
-      console.log("111 INIT INITINIT INIT INIT")
       totalproduction = data.totalproduction;
       totalconsumption = data.totalconsumption;
       totalnetproduction = data.totalnetproduction;
@@ -93,7 +92,6 @@ setInterval(() => {
          console.log("Previous netproduction : " + curitem.netproduction);
 
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
-            console.log("22222 INIT INITINIT INIT INIT")
             totalconsumption = totalconsumption + distribute.cons;
             totalproduction = totalproduction + production.prod;
             totalnetproduction = totalnetproduction + (production.netprod * (1 - curitem.ratio));
@@ -124,7 +122,6 @@ setInterval(() => {
       }
 
       if(!init){
-         console.log("3333 INIT INITINIT INIT INIT")
          init = true;
       }
 
