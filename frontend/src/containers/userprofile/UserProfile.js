@@ -66,6 +66,8 @@ class UserProfile extends Component {
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 
+                <div className="profile">
+                    <div className="details">
                 <img
                     src={"data:image/png;base64," + display}
                     alt='Image goes here'/>
@@ -76,6 +78,8 @@ class UserProfile extends Component {
                 <p>buffer: {buffer} kW </p>
                 <p>blackout: {blackout} </p>
                 <p>ratio: {ratio} </p>
+                </div>
+                </div>
                 </div>
             </div>   
         );
