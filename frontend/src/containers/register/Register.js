@@ -19,7 +19,7 @@ class Register extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { //HITTA ETT SÄTT ATT ROUTE MANAGER DASHBOARD
     // If logged in and user navigates to Register page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");

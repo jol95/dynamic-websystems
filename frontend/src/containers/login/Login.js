@@ -16,16 +16,12 @@ class Login extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() {  //HITTA ETT SÄTT ATT ROUTA MANAGERDASHBOARD
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      if(this.state.role==="manager"){
-        this.props.history.push("/managerdashboard");
-      }else{
         this.props.history.push("/dashboard");
       }
     }
-  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
   //if (nextProps.auth.isAuthenticated) {
