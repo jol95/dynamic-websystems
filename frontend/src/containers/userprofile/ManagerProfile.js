@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Database, displayDatabase } from "../../actions/authActions";
+import { displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
 import "./UserProfile.css";
 
@@ -69,7 +69,7 @@ class ManagerProfile extends Component {
                     <div className="details">
                 <img
                     src={"data:image/png;base64," + display}
-                    alt='Image goes here'/>
+                    alt='Look here'/>
                 <br/>
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
