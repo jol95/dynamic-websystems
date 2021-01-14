@@ -18,7 +18,7 @@ let totalbuffer = 0;
 
 const initTotal = async () => { 
   try {
-    const response = await axios.get(backend + '/grid');
+    const response = await axios.get(backend + '/grid/');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
     return response.data;
@@ -30,7 +30,7 @@ const initTotal = async () => {
 
 const update = async () => { 
   try {
-  const response = await axios.get(backend + '/household');
+  const response = await axios.get(backend + '/household/');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -60,7 +60,7 @@ setInterval(() => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
-      console.log("Households: " + curitem.prod);
+      console.log("Housold prod : " + curitem.prod);
       distribute.distributeAvg();
 
       if(curitem.isproducing){
