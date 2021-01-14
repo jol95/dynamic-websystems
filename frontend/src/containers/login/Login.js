@@ -18,7 +18,7 @@ class Login extends Component {
 
   componentDidMount() {  //HITTA ETT SÄTT ATT ROUTA MANAGERDASHBOARD
     // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.man.isManager) {
+    if (this.props.auth.role) {
       this.props.history.push("/managerdashboard");
       console.log("FROM LOGOIN --> PUSHING MANAGERDASHBOARD");
     }
