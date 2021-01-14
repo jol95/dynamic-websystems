@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 
 const ManagerRoute = ({
   comp: Component, // use comp prop
-  auth: { isAuthenticated, loading},
+  auth: { isAuthenticated, 
+          loading,
+        },
   ...rest
 }) => (
   <Route

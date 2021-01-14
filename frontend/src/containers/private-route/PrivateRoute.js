@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 
 const PrivateRoute = ({
   comp: Component, // use comp prop
-  auth: { isAuthenticated, loading  },
   ...rest
 }) => (
   <Route
@@ -13,9 +12,9 @@ const PrivateRoute = ({
     render={props => {
       console.log("privateroute works");
       console.log("privateroute props", props);
-      console.log("auth.user.nått2", this.props.auth.user.id);
+      console.log("auth.user.nått2", props.auth.user.id);
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
-      if (this.props.auth.user.id==="manager"){
+      if (props.auth.user.id==="manager"){
         return <Redirect to ="/login" />
       }
       if (!isAuthenticated && !loading) {

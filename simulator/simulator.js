@@ -61,10 +61,10 @@ setInterval(() => {
       production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
       production.checkBlackout(totalbuffer, totalnetproduction);
     
-      console.log(distribute.wind);
-      console.log(distribute.cons);
-      console.log(production.prod);
-      console.log(production.netprod);
+      console.log("Wind: " + distribute.wind);
+      console.log("Consumption " + distribute.cons);
+      console.log("Production" + production.prod);
+      console.log("Nettoproduction" + production.netprod);
 
       const res = axios.put(backend + "/household/" + curitem.id, {
         wind: distribute.wind,
