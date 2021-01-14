@@ -76,7 +76,12 @@ export const loginUser = (userType,userData, history) => dispatch => {
       // Set current user
       dispatch(setCurrentUser(decoded));
       console.log("decoded", decoded);
-      history.push("/dashboard");
+      if(userType=="manager"){
+        console.log("manager login success");
+        history.push("/households")
+      }else{
+        history.push("/dashboard");
+      }
     })
     .catch(err =>
       dispatch({

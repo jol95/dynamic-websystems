@@ -57,57 +57,57 @@ const getManagers = async () => {  // Function which recives manager (coal produ
   }
 }
 
+const initAll = async () => {
+  getHouses().then(data => { // Reset values, not buffer and ratio. 
+    var objCount = data.length;
+    for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+      var curitem = data[x];
+      const res = axios.put(backend + "/household/" + curitem.houseid, {
+        wind: 0,
+        production: 0,
+        consumption: 0,
+        netproduction: 0,
+        blackout: false
+      });
+      console.log(res);
+    }
+  });
+
+  getManagers().then(data => {
+    var objCount = data.length;
+    for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
+      var curitem = data[x];
+      const res =  axios.put(backend + "/manager/" + curitem.email, {
+        production: 0,
+        status: "stopped"
+      });
+    }
+  })
+
+  getGrid().then(data => {
+    totalbuffer = data.buffer;
+    const res = axios.put(backend + "/grid/", {
+      totalproduction: 0,
+      totalconsumption: 0,
+      totalnetproduction: 0
+    });
+  });
+
+  house_o = getHouses().then( (data, res) => { // Get newely reseted 
+    return data;
+  });
+
+  manager_o = getManagers().then(data => {
+    return data;
+  });
+}
+
+initAll();
+
 // tick = 10000 //for error checking.
 tick = 5000;    // 1 second each loop. 
 setInterval(() => {   // Init 
   console.log("tick");
-
-  if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
-    getHouses().then(data => { // Reset values, not buffer and ratio. 
-      var objCount = data.length;
-      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
-        var curitem = data[x];
-        const res = axios.put(backend + "/household/" + curitem.houseid, {
-          wind: 0,
-          production: 0,
-          consumption: 0,
-          netproduction: 0,
-          blackout: false
-        });
-        console.log(res);
-      }
-    });
-
-    getManagers().then(data => {
-      var objCount = data.length;
-      for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
-        var curitem = data[x];
-        const res =  axios.put(backend + "/manager/" + curitem.email, {
-          production: 0,
-          status: "stopped"
-        });
-      }
-    })
-
-    getGrid().then(data => {
-      totalbuffer = data.buffer;
-      const res = axios.put(backend + "/grid/", {
-        totalproduction: 0,
-        totalconsumption: 0,
-        totalnetproduction: 0
-      });
-    });
-
-    house_o = getHouses().then( (data, res) => { // Get newely reseted 
-      return data;
-    });
-
-    manager_o = getManagers().then(data => {
-      return data;
-    });
-
-    init = true;
-  }
 
   distribute.distributeInit();
 
