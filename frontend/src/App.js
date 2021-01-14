@@ -19,7 +19,7 @@ if (localStorage.jwtToken) {
   // Decode token and get user info and exp
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
-  store.dispatch(setWho(decoded));
+  //store.dispatch(setCurrentUser(decoded));
 
 
 
