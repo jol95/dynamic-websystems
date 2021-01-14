@@ -95,6 +95,7 @@ setInterval(() => {   // Init
         totalconsumption: 0,
         totalnetproduction: 0
       });
+      console.log(res);
     });
 
     house_o = getHouses().then( (data, res) => { // Get newely reseted 
