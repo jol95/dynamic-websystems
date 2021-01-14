@@ -103,7 +103,7 @@ const initAll = () => {
 initAll();
 
 // tick = 10000 //for error checking.
-let tick = 5000;    // 1 second each loop. 
+tick = 5000;    // 1 second each loop. 
 setInterval(() => {   // Init 
   console.log("tick");
 
