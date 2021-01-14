@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import UpdateDb from "../updatedb/UpdateDb";
-import Profile from "../userprofile/Profile";
+import Profile from "../userprofile/UserProfile";
 import ProfileImg from "../profileimg/ProfileImg";
 
 class ManagerDashboard extends Component {
