@@ -6,6 +6,8 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
+let init = false;
+
 let batterylimit_h = 100;
 let batterylimit_t = 2000;
 
@@ -83,9 +85,16 @@ setInterval(() => {
 
       console.log("Households: " + curitem);
 
-      totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
-      totalproduction = totalproduction + (production.prod - curitem.production);
-      totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
+      if(init){
+        totalconsumption = totalconsumption + distribute.cons;
+        totalproduction = totalproduction + production.prod;
+        totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
+        init = false;
+      }else{
+        totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
+        totalproduction = totalproduction + (production.prod - curitem.production);
+        totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
+      }
 
       /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
         totalbuffer = batterylimit_t
