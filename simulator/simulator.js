@@ -60,10 +60,10 @@ const getManagers = async () => {  // Function which recives manager (coal produ
 // tick = 10000 //for error checking.
 tick = 5000;    // 1 second each loop. 
 setInterval(() => {   // Init 
-  console.log("tick")
+  console.log("tick");
 
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
-    await getHouses().then(data => { // Reset values, not buffer and ratio. 
+    getHouses().then(data => { // Reset values, not buffer and ratio. 
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
@@ -74,7 +74,7 @@ setInterval(() => {   // Init
           netproduction: 0,
           blackout: false
         });
-        console.log(res)
+        console.log(res);
       }
     });
 
