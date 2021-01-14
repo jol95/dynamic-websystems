@@ -1,6 +1,5 @@
 import React, { Component ,useState } from "react";
 import axios from 'axios';
-import FileBase from 'react-file-base64';
 import "./UserProfile.css";
 
 function UserProfile (props){
