@@ -1,5 +1,4 @@
 const axios = require("axios");
-const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
 const production = require("./assets/production.js");
 
@@ -57,7 +56,6 @@ const getManagers = async () => {  // Function which recives manager (coal produ
 
 const initAll = () => {
   console.log("init");
-  console.log(house_o);
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
