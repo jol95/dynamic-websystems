@@ -43,13 +43,12 @@ exports.loginManager = async function(req, res) {
             payload,
             keys.secretOrKey,
             {
-              expiresIn: 300 // 1 year in seconds
+              expiresIn: 300 // 5 minutes
             },
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer1 " + token,
-                email: email
+                token: "Bearer manager " + token,
               });
             }
           );

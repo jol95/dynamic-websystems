@@ -4,7 +4,7 @@ const distribute = require("./assets/distribute.js");
 const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
 
-const backend = "http://localhost:5000/api"
+const backend = "https://localhost:3000/api"
 
 let house_o;
 let manager_o;
@@ -47,7 +47,7 @@ const getHouses = async () => {  // Function which recives all households and up
 
 const getManagers = async () => {  // Function which recives manager (coal production and price). 
   try {
-  const response = await axios.get(backend + '/manager/');
+  const response = await axios.get(backend + '/manager');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -62,7 +62,7 @@ const initAll = async () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = axios.put(backend + "/household/" + curitem.houseid, {
+      const res = axios.put(backend + "/household" + curitem.houseid, {
         wind: 0,
         production: 0,
         consumption: 0,
@@ -77,7 +77,7 @@ const initAll = async () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = axios.put(backend + "/manager/" + curitem.email, {
+      const res = axios.put(backend + "/manager" + curitem.email, {
         production: 0,
         status: "stopped"
       });
@@ -86,7 +86,7 @@ const initAll = async () => {
 
   getGrid().then(data => {
     totalbuffer = data.buffer;
-    const res = axios.put(backend + "/grid/", {
+    const res = axios.put(backend + "/grid", {
       totalproduction: 0,
       totalconsumption: 0,
       totalnetproduction: 0

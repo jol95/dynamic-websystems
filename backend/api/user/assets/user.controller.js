@@ -69,9 +69,7 @@ exports.loginUser = async function(req, res) {
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer1 " + token,
-                //email: email,
-                //houseid: houseid
+                token: "Bearer user " + token,
               });
             }
           );
