@@ -7,9 +7,9 @@ import "./UserProfile.css";
 
 class UserProfile extends Component {
     constructor() {
-        const [userData, setUserData] = useState(null); 
         super();
         this.state = {
+            userData: "",
             houseid: "",
             img: "",
             errors: {}
@@ -22,7 +22,7 @@ class UserProfile extends Component {
         const data = user.houseid.split(" ")[0]
         console.log("user: xxx", data);
         const response = await axios.get("/api/household/" + data);
-        setUserData(response.data);
+        this.state.userData = response.data;
         console.log("userdata: xxx", response.data);
     }
 
