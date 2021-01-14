@@ -8,8 +8,9 @@ router.route('/') // GET all different managers. (for simulator)
 
 router.route('/:id') // GET & UPDATE specific user
     .get(managerController.getManager)
-    .put(managerController.updateManager)
-    .patch(managerController.updateManager);
+    .patch(managerController.updateManager)
+    .put(managerController.updateManager);
+
 
 router.route('/login')  // Same functionality as user.login, small differences like houseid in payload for img. 
     .post(managerController.loginManager);
