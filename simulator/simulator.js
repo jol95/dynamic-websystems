@@ -25,6 +25,7 @@ const getGrid = async () => {   // Function to get electric grid (total values).
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
+    console.log(response.data)
     return response.data;
   }
   } catch (err) {
@@ -93,6 +94,7 @@ const initAll = async () => {
   });
 
   house_o = getHouses().then(data => { // Get newely reseted 
+    cons.log(data)
     return data;
   });
 
@@ -159,7 +161,7 @@ setInterval(() => {   // Init
   
   getGrid().then(data => {
     totalbuffer = data.buffer;
-    const res = axios.put(backend + "/grid/" + curitem.email, {
+    const res = axios.put(backend + "/grid", {
       totalproduction: totalproduction,
       totalconsumption: totalconsumption,
       totalnetproduction: totalnetproduction
