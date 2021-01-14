@@ -66,13 +66,11 @@ class ProfileImg extends Component {
   var kind = "";
   console.log("beforeIF");
   if(data === "manager"){
-    kind = "manager";
-    this.props.updateDatabase(kind, newUpdate, data); 
     console.log("afterIF in the manager");
+    kind = "manager";
   } else if(data === "user"){
     console.log("afterIF in the user");
     kind = "household";
-    console.log("ProfileImg user userData", user)
   }
 
   this.props.updateDatabase(kind, newUpdate, data);
