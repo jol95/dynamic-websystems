@@ -15,21 +15,23 @@ class UserProfile extends Component {
 
 
     fetchData = async () => {
-        //const base64Flag = 'data:image/jpeg;base64,';
-        const { user } = this.props.auth;
-        const data = user.id.split(" ")[0]
-        const response = await axios.get("/api/household/" + data);
-        this.setState({
-            id: response.data.id,
-            display:  response.data.img,
-            wind:  response.data.wind,
-            production:  response.data.production,
-            consumption:  response.data.consumption,
-            netproduction:  response.data.netproduction,
-            buffer:  response.data.buffer,
-            blackout:  response.data.blackout,
-            ratio:  response.data.ratio,
-        })
+        if (this.props.auth.isAuthenticated) {
+            //const base64Flag = 'data:image/jpeg;base64,';
+            const { user } = this.props.auth;
+            const data = user.id.split(" ")[0]
+            const response = await axios.get("/api/household/" + data);
+            this.setState({
+                id: response.data.id,
+                display:  response.data.img,
+                wind:  response.data.wind,
+                production:  response.data.production,
+                consumption:  response.data.consumption,
+                netproduction:  response.data.netproduction,
+                buffer:  response.data.buffer,
+                blackout:  response.data.blackout,
+                ratio:  response.data.ratio,
+            })
+        }
     }
 
 
