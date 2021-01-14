@@ -29,13 +29,11 @@ class Distribute{
     }
 
     calcWind(){
-        var wind = normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
-        return wind;
+        return normdist.nmdist(this.windDistMin, this.windDistMax, this.windDistScew);
     }
 
     calcConsumption(){
-        var cons = normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
-        return cons;
+        return normdist.nmdist(this.consDistMin, this.consDistMax, this.consDistScew);
     }
 }
 module.exports = new Distribute();
