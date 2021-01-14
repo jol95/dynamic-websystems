@@ -62,7 +62,7 @@ const initAll = () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = axios.put(backend + "/household/" + curitem.houseid, {
+      const res = axios.put(backend + "/household/" + curitem.id, {
         wind: 0,
         production: 0,
         consumption: 0,
@@ -130,7 +130,7 @@ setInterval(() => {   // Init
         var buffer = production.calcBuffer(netproduction, curitem.buffer, curitem.ratio, batterylimit_h);
         var blackout = production.ifBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
 
-        const res = axios.put(backend + "/household/" + curitem.houseid, {
+        const res = axios.put(backend + "/household/" + curitem.id, {
           wind: wind,
           production: prod,
           consumption: consumption,
