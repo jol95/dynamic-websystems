@@ -42,9 +42,7 @@ onChange = e => {
 onSubmit = e => {
     e.preventDefault();
 
-const userRole = {
-  role: this.state.role
-}
+const userRole = this.state.role
 
 const userData = {
   email: this.state.email,
