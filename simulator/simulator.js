@@ -56,9 +56,10 @@ setInterval(() => {
 
    distribute.distributeInit();
 
-   data = JSON.parse(data);
-
    update().then(data => {
+
+      data = JSON.parse(data);
+
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
