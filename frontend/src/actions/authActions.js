@@ -26,7 +26,7 @@ export const updateDatabase = (dbData ,data) => dispatch => {
     );
 };
 
-export const displayDatabase = (dbData, data) => dispatch => {
+export const displayDatabase = (data, dbData) => dispatch => {
   axios
     .get("api/household/" + data, dbData)
     .then(res => {

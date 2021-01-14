@@ -14,15 +14,22 @@ class UserProfile extends Component {
             errors: {}
         };
     }
-    componentDidMount() {
-        console.log("Userprofile mounted")
-        const { user } = this.props.auth;
-        const data = user.houseid.split(" ")[0]
-        console.log("user: xxx", data);
+
+    fetchData = async () => {
+        console.log("TEST");
     }
 
+
+    componentDidMount() {
+        //console.log("Userprofile mounted")
+        //const { user } = this.props.auth;
+        //const data = user.houseid.split(" ")[0]
+        //this.props.displayDatabase(data)
+        //console.log("user: xxx", data);
+    }
+
+
     render() {
-        this.props.displayDatabase()
         return(
         <div className="Apphouse">
             <h1>Your Household</h1>
