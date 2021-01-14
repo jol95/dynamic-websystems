@@ -109,6 +109,8 @@ setInterval(() => {
          console.log("###### HOUSE " + curitem.id + " ########")
       }
 
+      console.log("######## TOTAL ################")
+
       if(totalproduction <= 0){
          console.log("WARNING WARNING WARNING");
          console.log("WARNING WARNING WARNING");

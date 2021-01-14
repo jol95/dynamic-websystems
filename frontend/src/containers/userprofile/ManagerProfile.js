@@ -31,10 +31,7 @@ class ManagerProfile extends Component {
     }
 
 
-  tick = async () => {
-
-
-    fetchData = async () => {    
+        tick = async () => { 
             //settimeout // polling
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
