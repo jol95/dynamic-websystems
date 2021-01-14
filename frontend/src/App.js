@@ -7,7 +7,7 @@ import "./App.css";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, setCurrentManager, logoutUser } from "./actions/authActions";
+import { setCurrentUser, setCurrentManager, logoutUser , setWho} from "./actions/authActions";
 
 import store from "./store";
 
@@ -19,7 +19,7 @@ if (localStorage.jwtToken) {
   // Decode token and get user info and exp
   const decoded = jwt_decode(token);
   // Set user and isAuthenticated
-  store.dispatch(setCurrentUser(decoded));
+  store.dispatch(setWho(decoded));
 
 
 

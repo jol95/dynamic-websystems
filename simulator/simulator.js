@@ -1,6 +1,5 @@
 const axios = require("axios");
 const distribute = require("./assets/distribute.js");
-const {cons, wind} = require("./assets/distribute.js");
 const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
@@ -117,27 +116,26 @@ setInterval(() => {   // Init
 
         distribute.distributeAvg();
 
-        console.log(distribute.wind);
-        console.log(distribute.cons);
-
         var prod = 0;
         if(curitem.isproducing){    // If household is producing
-          prod = production.calcProd(distribute.wind); 
+          production.calcProd(distribute.wind); 
         }else if(!curitem.isproducing){  // Not producing
-          prod = production.calcProd(0);
+          production.calcProd(0);
         }
 
-        var netproduction = production.calcNetProd(prod, distribute.cons);
-        var buffer = production.calcBuffer(netproduction, curitem.buffer, curitem.ratio, batterylimit_h);
-        var blackout = production.ifBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
+        production.calcNetProd(production.prod, distribute.cons);
+        production.calcBuffer(production.netprod, curitem.buffer, curitem.ratio, batterylimit_h);
+        production.ifBlackout(production.netprod, production.buffer, totalbuffer, totalnetproduction);
+
+        console.log()
 
         const res = axios.put(backend + "/household/" + curitem.id, {
           wind: distribute.wind,
-          production: prod,
+          production: production.prod,
           consumption: distribute.cons,
-          netproduction: netproduction,
-          buffer: buffer,
-          blackout: blackout
+          netproduction: production.netprod,
+          buffer: production.buffer,
+          blackout: production.blackout
         });
 
         console.log(distribute.wind);

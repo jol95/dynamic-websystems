@@ -2,7 +2,9 @@ import { GET_ERRORS,
          CURRENT_TYPE 
         } from "../actions/types";
 
-const initialState = {};
+const initialState = {
+    who: ""
+};
 
 export function errorR (state = initialState, action) {
   switch (action.type) {
@@ -11,8 +13,7 @@ export function errorR (state = initialState, action) {
     case CURRENT_TYPE:
       return {
         ...state,
-        isAuthenticated: !isEmpty(action.payload),
-        user: action.payload
+        who: action.payload
       };
     default:
       return state;

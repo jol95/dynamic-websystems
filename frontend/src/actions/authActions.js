@@ -72,13 +72,11 @@ export const loginUser = (userType,userData, history) => dispatch => {
       if(userType=="manager"){
         // Set current manager
         dispatch(setCurrentManager(decoded));
-        dispatch(setWho(userType));
         console.log("manager login success");
         history.push("/managerdashboard")
       }else{
         // Set current user
         dispatch(setCurrentUser(decoded));
-        dispatch(setWho(userType));
         console.log("prosumer loggin succuess");
         history.push("/dashboard");
       }
@@ -118,10 +116,18 @@ export const setManagerLoading = () => {
   };
 };
 
-export const setWho = userType => {
-  return {
-    type: CURRENT_TYPE,
-    payload: userType
+export const setWho = decoded => {
+  if(userType==="manager"){
+    return {
+      type: SET_CURRENT_MANAGER,
+      payload: decoded
+    };
+  };
+  if(userType==="user"){
+    return{
+      type: SET_CURRENT_USER,
+      payload:decoded
+    };
   };
 };
 
