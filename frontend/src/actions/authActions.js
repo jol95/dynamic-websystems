@@ -72,7 +72,7 @@ export const loginUser = (userType,userData, history) => dispatch => {
       console.log("decoded", decoded);
       if(userType=="manager"){
         console.log("manager login success");
-        history.push("/households")
+        history.push("/managerdashboard")
       }else{
         console.log("prosumer loggin succuess");
         history.push("/dashboard");

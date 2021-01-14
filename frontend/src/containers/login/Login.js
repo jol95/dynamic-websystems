@@ -12,7 +12,6 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      role: "",
       errors: {}
     };
   }
@@ -20,7 +19,7 @@ class Login extends Component {
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
-      if(userRole==="manager"){
+      if(this.state.role==="manager"){
         this.props.history.push("/managerdashboard");
       }else{
         this.props.history.push("/dashboard");
