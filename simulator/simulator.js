@@ -63,11 +63,11 @@ setInterval(() => {   // Init
   console.log("tick")
 
   if(!init){  // Get a batch of previously unchanged data. this is only used in first iteration!
-    getHouses().then(data => { // Reset values, not buffer and ratio. 
+    await getHouses().then(data => { // Reset values, not buffer and ratio. 
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
-        const res = await axios.put(backend + "/household/" + curitem.houseid, {
+        const res = axios.put(backend + "/household/" + curitem.houseid, {
           wind: 0,
           production: 0,
           consumption: 0,
