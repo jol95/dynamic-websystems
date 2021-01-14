@@ -30,9 +30,9 @@ class ManagerProfile extends Component {
             }
             const response = await axios.get("/api/" + kind + data);
             this.setState({
-                id: response.user.id,
-                status: response.user.status,
-                display: response.user.img
+                id: response.data.id,
+                status: response.data.status,
+                display: response.data.img,
             })
     }
 
