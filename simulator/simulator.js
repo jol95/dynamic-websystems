@@ -112,7 +112,7 @@ setInterval(() => {   // Init
 
   distribute.distributeInit();
 
-  getHouses().then(data => {
+  house_o = getHouses().then(data => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
@@ -149,7 +149,7 @@ setInterval(() => {   // Init
         //production.checkBlackout(totaltotalbuffer)
       }
 
-      house_o = data;
+      return data;
   });
 
 
