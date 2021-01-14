@@ -77,7 +77,7 @@ class ProfileImg extends Component {
       <form noValidate onSubmit={this.onSubmit}>   
     <div>
 
-    <UserProfile/>
+    {/*<UserProfile/>*/}
       
         <input 
           type="file"
