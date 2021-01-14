@@ -22,7 +22,7 @@ let totalbuffer = 0;
 
 const getGrid = () => {   // Function to get electric grid (total values).
   try {
-    const response = await axios.get(backend + '/grid');
+    const response = axios.get(backend + '/grid');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
     return response.data;
@@ -34,7 +34,7 @@ const getGrid = () => {   // Function to get electric grid (total values).
 
 const getHouses = () => {  // Function which recives all households and updates respectively. 
   try {
-  const response = await axios.get(backend + '/household');
+  const response = axios.get(backend + '/household');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -46,7 +46,7 @@ const getHouses = () => {  // Function which recives all households and updates 
 
 const getManagers = () => {  // Function which recives manager (coal production and price). 
   try {
-  const response = await axios.get(backend + '/manager');
+  const response = axios.get(backend + '/manager');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
