@@ -9,9 +9,9 @@ class UserProfile extends Component {
     constructor() {
         super();
         this.state = {
-            userData: "",
-            houseid: "",
-            img: "",
+            id: "",
+            display: "",
+            production: "",
             errors: {}
         };
     }
@@ -24,7 +24,9 @@ class UserProfile extends Component {
         console.log("user: xxx", data);
         const response = await axios.get("/api/household/" + data);
         this.setState({
-            img:  response.data.img
+            display:  response.data.img,
+            production:  response.data.production,
+            id: data
         })
         console.log("userdata: xxx", response.data);
     }
@@ -40,7 +42,8 @@ class UserProfile extends Component {
 
 
     render() {
-        const { img } = this.state
+        const { display } = this.state
+        const { production } = this.state
         this.fetchData()
         return(
         <div className="Apphouse">
@@ -50,8 +53,9 @@ class UserProfile extends Component {
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 
+                <p>production: {production} </p>
                  <img
-                    src={"data:image/png;base64," + img}
+                    src={"data:image/png;base64," + display}
                     alt='Image goes here'/>
                 </div>
             </div>   
