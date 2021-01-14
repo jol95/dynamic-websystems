@@ -91,9 +91,9 @@ setInterval(() => {   // Init
     getGrid().then(data => {
       totalbuffer = data.buffer;
       const res = axios.put(backend + "/grid/" + data.email, {
-        totalproduction: totalproduction,
-        totalconsumption: totalconsumption,
-        totalnetproduction: totalnetproduction
+        totalproduction: 0,
+        totalconsumption: 0,
+        totalnetproduction: 0
       });
     });
 
