@@ -110,8 +110,6 @@ async function initAll(){
   manager_o = getManagers().then(data => {
     return data;
   });
-
-  await sleep(10000);
 }
 
 initAll();
