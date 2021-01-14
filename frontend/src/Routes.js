@@ -19,10 +19,8 @@ class Routes extends React.Component{
         <Route path="/register" component={Register}></Route>
         <Route path="/login" component={Login}></Route>
         <Switch>
-        <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>
-        </Switch>
-        <Switch>
         <PrivateRoute path="/managerdashboard" comp={ManagerDashboard}></PrivateRoute>
+        <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>
         </Switch>
         <Route component={NotFound}/>      
       </Switch>
