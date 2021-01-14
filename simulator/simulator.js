@@ -61,7 +61,7 @@ const initAll = async () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = await axios.put(backend + "/household/" + curitem.houseid, {
+      const res = axios.put(backend + "/household/" + curitem.houseid, {
         wind: 0,
         production: 0,
         consumption: 0,
@@ -76,7 +76,7 @@ const initAll = async () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res =  await axios.put(backend + "/manager/" + curitem.email, {
+      const res = axios.put(backend + "/manager/" + curitem.email, {
         production: 0,
         status: "stopped"
       });
@@ -85,7 +85,7 @@ const initAll = async () => {
 
   getGrid().then(data => {
     totalbuffer = data.buffer;
-    const res = await axios.put(backend + "/grid/", {
+    const res = axios.put(backend + "/grid/", {
       totalproduction: 0,
       totalconsumption: 0,
       totalnetproduction: 0
