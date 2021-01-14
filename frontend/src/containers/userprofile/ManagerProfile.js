@@ -18,7 +18,7 @@ class ManagerUserProfile extends Component {
         return(
         <div className="Apphouse">
 
-            </div>   
+        </div>   
         );
 }
 }

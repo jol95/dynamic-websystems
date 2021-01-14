@@ -22,7 +22,7 @@ class Routes extends React.Component{
         <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>
         </Switch>
         <Switch>
-        <PrivateRoute path="/dashboard" comp={ManagerDashboard}></PrivateRoute>
+        <PrivateRoute path="/managerdashboard" comp={ManagerDashboard}></PrivateRoute>
         </Switch>
         <Route component={NotFound}/>      
       </Switch>

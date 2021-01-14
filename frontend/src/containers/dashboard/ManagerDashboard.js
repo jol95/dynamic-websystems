@@ -3,15 +3,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import ManagerUpdateDb from "../updatedb/ManagerUpdateDb";
-import ManagerProfile from "../userprofile/UserProfile";
+import ManagerProfile from "../userprofile/ManagerProfile";
 import ProfileImg from "../profileimg/ProfileImg";
-import UserProfile from "../userprofile/UserProfile";
 
 class ManagerDashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
   };
+
 render() {
     const { user } = this.props.auth;
 return (
