@@ -7,6 +7,7 @@ import Login from "./containers/login/Login";
 import Dashboard from "./containers/dashboard/Dashboard";
 import ManagerDashboard from "./containers/dashboard/ManagerDashboard";
 import PrivateRoute from "./containers/private-route/PrivateRoute";
+import PrivateRoute from "./containers/private-route/ManagerRoute";
 import NotFound from "./containers/default/NotFound";
 
 class Routes extends React.Component{
@@ -19,7 +20,7 @@ class Routes extends React.Component{
         <Route path="/register" component={Register}></Route>
         <Route path="/login" component={Login}></Route>
         <Switch>
-        <PrivateRoute path="/managerdashboard" comp={ManagerDashboard}></PrivateRoute>
+        <ManagerRoute path="/managerdashboard" comp={ManagerDashboard}></ManagerRoute>
         <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>
         </Switch>
         <Route component={NotFound}/>      
