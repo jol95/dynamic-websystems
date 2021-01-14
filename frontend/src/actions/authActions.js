@@ -6,7 +6,8 @@ import {
   SET_CURRENT_USER,
   USER_LOADING,
   SET_CURRENT_MANAGER,
-  MANAGER_LOADING
+  MANAGER_LOADING,
+  CURRENT_TYPE
 } from "./types";
 
 // Update ratio
@@ -71,11 +72,13 @@ export const loginUser = (userType,userData, history) => dispatch => {
       if(userType=="manager"){
         // Set current manager
         dispatch(setCurrentManager(decoded));
+        dispatch(setWho(userType));
         console.log("manager login success");
         history.push("/managerdashboard")
       }else{
         // Set current user
         dispatch(setCurrentUser(decoded));
+        dispatch(setWho(userType));
         console.log("prosumer loggin succuess");
         history.push("/dashboard");
       }
@@ -115,6 +118,12 @@ export const setManagerLoading = () => {
   };
 };
 
+export const setWho = userType => {
+  return {
+    type: CURRENT_TYPE,
+    payload: userType
+  };
+};
 
 // Log user out, maybe a redirect?
 export const logoutUser = () => dispatch => {
