@@ -43,7 +43,8 @@ const update = async () => {
 // tick = 10000 //for error checking.
 tick = 6000;
 setInterval(() => {
-  initTotal().then(data => {
+  if(!init){
+    initTotal().then(data => {
       totalproduction = data.totalproduction;
       totalconsumption = data.totalconsumption;
       totalnetproduction = data.totalnetproduction;
@@ -51,12 +52,15 @@ setInterval(() => {
 
       distribute.distributeInit();
   });
+  }
+
+  distribute.distributeInit();
 
   update().then(data => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) {
       var curitem = data[x];
-      console.log("Households: " + curitem);
+      console.log("Households: " + curitem.prod);
       distribute.distributeAvg();
 
       if(curitem.isproducing){
@@ -85,7 +89,7 @@ setInterval(() => {
 
       console.log("Households: " + curitem);
 
-      if(init){ // Init the total sum or add the difference depending on first iteration or not. 
+      if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
         totalconsumption = totalconsumption + distribute.cons;
         totalproduction = totalproduction + production.prod;
         totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
@@ -102,8 +106,8 @@ setInterval(() => {
       }  */
     }
 
-    if(init){
-      init = false;
+    if(!init){
+      init = true;
     }
 
     const res = axios.put(backend + "/grid", {
