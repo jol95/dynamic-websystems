@@ -3,6 +3,7 @@ const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
 const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
+const 
 
 const backend = "http://localhost:5000/api"
 
@@ -57,9 +58,6 @@ setInterval(() => {
    distribute.distributeInit();
 
    update().then(data => {
-
-      data = JSON.parse(data);
-
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
@@ -90,7 +88,7 @@ setInterval(() => {
             blackout: production.blackout
          });
 
-         console.log("Households: " + curitem);
+         console.log("Households: " + curitem.production);
 
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
             totalconsumption = totalconsumption + distribute.cons;
