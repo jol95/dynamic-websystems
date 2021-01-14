@@ -21,7 +21,6 @@ class UserProfile extends Component {
         //const base64Flag = 'data:image/jpeg;base64,';
         const { user } = this.props.auth;
         const data = user.houseid.split(" ")[0]
-        console.log("user: xxx", data);
         const response = await axios.get("/api/household/" + data);
         this.setState({
             display:  response.data.img,
@@ -35,16 +34,11 @@ class UserProfile extends Component {
         
             id: data
         })
-        console.log("userdata: xxx", response.data);
     }
 
 
     componentDidMount() {
-        //console.log("Userprofile mounted")
-        //const { user } = this.props.auth;
-        //const data = user.houseid.split(" ")[0]
-        //this.props.displayDatabase(data)
-        //console.log("user: xxx", data);
+
     }
 
 
