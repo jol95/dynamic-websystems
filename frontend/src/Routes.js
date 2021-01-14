@@ -7,7 +7,7 @@ import Login from "./containers/login/Login";
 import Dashboard from "./containers/dashboard/Dashboard";
 import ManagerDashboard from "./containers/dashboard/ManagerDashboard";
 import PrivateRoute from "./containers/private-route/PrivateRoute";
-import ManagerRoute from "./containers/private-route/ManagerRoute";
+import ManagerRoute from "./containers/private-route/managerRoute";
 import NotFound from "./containers/default/NotFound";
 
 class Routes extends React.Component{
