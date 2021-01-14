@@ -69,8 +69,6 @@ initAll = async () => {
         netproduction: 0,
         blackout: false
       });
-      console.log("#########################");
-      console.log(res);
     }
   });
 
@@ -97,8 +95,6 @@ initAll = async () => {
   house_o = getHouses().then( (data,res) => { // Get newely reseted 
     return data;
   });
-
-  console.log(house_o);
 
   manager_o = getManagers().then(data => {
     return data;
