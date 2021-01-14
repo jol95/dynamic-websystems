@@ -98,13 +98,6 @@ export const setUserLoading = () => {
   };
 };
 
-export const setCurrentPicture = base => {
-  return {
-    type: SET_CURRENT_PICTURE,
-    payload: base
-  };
-};
-
 // Log user out, maybe a redirect?
 export const logoutUser = () => dispatch => {
   // Remove token from local storage

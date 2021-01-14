@@ -62,6 +62,6 @@ exports.ifBlackout= (netprod, buffer, totalbuffer, totalnetprod) => {
     //     }
     // }
 
-module.exports = new Production();
+
 
 
