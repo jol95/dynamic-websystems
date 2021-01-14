@@ -54,7 +54,7 @@ class UpdateDb extends Component {
                   min="0"
                   max="1"
                   step="0.05"
-                  value="0.5"
+                  //value="0.5"
                   oninput="this.nextElementSibling.value = this.value"
                   className={classnames("", {
                     invalid: errors.ratio
