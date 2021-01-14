@@ -38,7 +38,8 @@ exports.loginManager = async function(req, res) {
           const payload = {
             id: manager.id,
             email: manager.email,
-            firstname: manager.firstname
+            firstname: manager.firstname,
+            role: manager.role
           };
          // Sign token
           jwt.sign(
@@ -65,6 +66,7 @@ exports.loginManager = async function(req, res) {
 
 exports.registerManager = async function(req, res) {
     id = mongoose.mongo.ObjectId();
+    role = "manager";
 
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
@@ -82,6 +84,7 @@ exports.registerManager = async function(req, res) {
                 id: id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
+                role: role,
                 production: 100,
                 status: "off",
                 img: ""

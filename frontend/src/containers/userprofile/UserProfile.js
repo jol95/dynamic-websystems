@@ -15,7 +15,9 @@ class UserProfile extends Component {
 
 
     fetchData = async () => {
-            //settimeout componendidmountthingyiyinyiyyh
+        
+            //settimeout // polling
+
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             console.log("tidy:", this.props.auth);

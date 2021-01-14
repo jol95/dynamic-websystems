@@ -25,6 +25,9 @@ const userSchema = new mongoose.Schema({
     lastname: {
         type: String,
     },
+    role: {
+        type: String,
+    },
     address: {
         type: String,
         required: 'Enter correct address'

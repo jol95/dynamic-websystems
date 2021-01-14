@@ -57,7 +57,8 @@ exports.loginUser = async function(req, res) {
           const payload = {
             email: user.email,
             id: user.id,
-            firstname: user.firstname
+            firstname: user.firstname,
+            role: user.role
           };
          // Sign token
           jwt.sign(
@@ -98,6 +99,7 @@ exports.loginUser = async function(req, res) {
 */
 exports.registerUser = async function(req, res) {
     id = mongoose.mongo.ObjectId();
+    role = "user";
     address = req.body.address;
 
     // Form validation
@@ -116,6 +118,7 @@ exports.registerUser = async function(req, res) {
                 id: id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
+                role: role,
                 address: address
         });
         bcrypt.genSalt(10, (err, salt) => {

@@ -25,6 +25,9 @@ const managerSchema = new mongoose.Schema({
     lastname: {
         type: String,
     },
+    role: {
+        type: String,
+    },
     production: {
         type: Number,
     },
