@@ -16,9 +16,9 @@ class UserProfile extends Component {
     }
     componentDidMount() {
         console.log("Userprofile mounted")
-        const { user } = this.props.auth.houseid;
-        //const theHouseId = {houseid: this.props.auth.houseid}
-        console.log("user: xxx", user);
+        const { user } = this.props.auth;
+        const data = user.houseid.split(" ")[0]
+        console.log("user: xxx", data);
     }
 
     render() {
