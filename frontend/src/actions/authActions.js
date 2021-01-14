@@ -60,6 +60,8 @@ export const registerUser = (userData, history) => dispatch => {
 };
 // Login - get user token
 export const loginUser = (userType,userData, history) => dispatch => {
+  console.log("userType(role):", userType);
+  console.log("userData(email and stuff):", userData);
   axios
     .post("api/" + userType + "/login", userData)
     .then(res => {
