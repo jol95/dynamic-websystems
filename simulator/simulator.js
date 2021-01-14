@@ -20,9 +20,9 @@ let totalnetproduction = 0;
 
 let totalbuffer = 0;
 
-const getGrid = () => {   // Function to get electric grid (total values).
+const getGrid = async () => {   // Function to get electric grid (total values).
   try {
-    const response = axios.get(backend + '/grid');
+    const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
     return response.data;
@@ -32,9 +32,9 @@ const getGrid = () => {   // Function to get electric grid (total values).
   }
 }
 
-const getHouses = () => {  // Function which recives all households and updates respectively. 
+const getHouses = async () => {  // Function which recives all households and updates respectively. 
   try {
-  const response = axios.get(backend + '/household');
+  const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -44,9 +44,9 @@ const getHouses = () => {  // Function which recives all households and updates 
   }
 }
 
-const getManagers = () => {  // Function which recives manager (coal production and price). 
+const getManagers = async () => {  // Function which recives manager (coal production and price). 
   try {
-  const response = axios.get(backend + '/manager');
+  const response = await axios.get(backend + '/manager');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
    return response.data;
@@ -56,12 +56,12 @@ const getManagers = () => {  // Function which recives manager (coal production 
   }
 }
 
-const initAll = () => {
+const initAll = async () => {
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res = axios.put(backend + "/household/" + curitem.houseid, {
+      const res = await axios.put(backend + "/household/" + curitem.houseid, {
         wind: 0,
         production: 0,
         consumption: 0,
@@ -76,7 +76,7 @@ const initAll = () => {
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
-      const res =  axios.put(backend + "/manager/" + curitem.email, {
+      const res =  await axios.put(backend + "/manager/" + curitem.email, {
         production: 0,
         status: "stopped"
       });
@@ -85,14 +85,14 @@ const initAll = () => {
 
   getGrid().then(data => {
     totalbuffer = data.buffer;
-    const res = axios.put(backend + "/grid/", {
+    const res = await axios.put(backend + "/grid/", {
       totalproduction: 0,
       totalconsumption: 0,
       totalnetproduction: 0
     });
   });
 
-  house_o = getHouses().then( (data, res) => { // Get newely reseted 
+  house_o = getHouses().then(data => { // Get newely reseted 
     return data;
   });
 
