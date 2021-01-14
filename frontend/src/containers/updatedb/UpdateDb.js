@@ -57,7 +57,6 @@ class UpdateDb extends Component {
                   //value="0.5"
                 />
 
-
                 <span className="red-text">{errors.ratio}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>

@@ -41,13 +41,17 @@ onChange = e => {
 onSubmit = e => {
     e.preventDefault();
 
+const userRole = {
+  role: this.state.role
+}
+
 const userData = {
   email: this.state.email,
   password: this.state.password
 };
 
 //  this.props.loginUser(userData); //
-this.props.loginUser(userData, this.props.history); 
+this.props.loginUser(userRole, userData, this.props.history); 
 };
 
 render() {
@@ -104,6 +108,24 @@ return (
                 />
                 
               </div>
+
+             {/* LOGIN ROLE DROPDOWN */}
+            <div>
+            <input
+              onChange={this.onChange}
+              value={this.state.role} 
+              list="select" 
+              name="select">
+              <datalist 
+                class="form-control" 
+                id="select">    
+                  <option value="Prosumer"/>
+                  <option value="Manager"/>
+              </datalist>
+            </input>
+            </div>
+
+                  
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
