@@ -1,51 +1,44 @@
-const { cons } = require("./distribute");
+exports.calcProd = (wind) => {
+    var prod = 0;
+    var limit = 4.0;
 
-class Production{
-    constructor(){
-       
-    }
-
-    calcProd(wind){
-        var prod = 0;
-        var limit = 4.0;
-
-        if (wind < limit){ 
+    if (wind < limit){ 
             prod = 0;
-        }else if(limit < wind){
+    }else if(limit < wind){
             prod = (wind * 2.8);  
-        }
-
-        return prod;
     }
 
-    calcNetProd(prod, consumption){
-        return prod - consumption;
+    return prod;
+}
+
+exports.calcNetProd = (prod, consumption) => {
+    return prod - consumption;
+}
+
+exports.calcBuffer = (netprod, buffer, ratio, limit) => {
+    var sum_buffer = 0;
+
+    if((buffer + (netprod * ratio)) >= limit){ // 100 kW limit for battery on house
+        sum_buffer = limit;
+    }else if((buffer + (netprod * ratio)) <= 0){
+        sum_buffer = 0;
+    }
+    else{
+        sum_buffer = buffer + (netprod * ratio);
     }
 
-    calcBuffer(netprod, buffer, ratio, limit){
-        var sum_buffer = 0;
+    return sum_buffer;
+}
 
-        if((buffer + (netprod * ratio)) >= limit){ // 100 kW limit for battery on house
-            sum_buffer = limit;
-        }else if((buffer + (netprod * ratio)) <= 0){
-            sum_buffer = 0;
-        }
-        else{
-            sum_buffer = buffer + (netprod * ratio);
-        }
+exports.ifBlackout= (netprod, buffer, totalbuffer, totalnetprod) => {
+    var blackout = false;
 
-        return sum_buffer;
+    if(netprod <= 0 && buffer <= 0 && totalbuffer <= 0  && totalnetprod <= 0){
+        blackout = true;
     }
 
-    ifBlackout(netprod, buffer, totalbuffer, totalnetprod){
-        var blackout = false;
-
-        if(netprod <= 0 && buffer <= 0 && totalbuffer <= 0  && totalnetprod <= 0){
-            blackout = true;
-        }
-
-        return blackout;
-    }
+    return blackout;
+}
 
     // calcPrice(production, consumption){
     //     if(wind < 1.0){
@@ -68,7 +61,7 @@ class Production{
     //         this.price = this.price*0.6;
     //     }
     // }
-}
+
 module.exports = new Production();
 
 

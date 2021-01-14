@@ -8,7 +8,6 @@ import {
 
   const initialState = {
     isAuthenticated: false,
-    picture: {},
     user: {},
     loading: false
   };
@@ -26,11 +25,6 @@ import {
         return {
           ...state,
           loading: true
-        };
-      case SET_CURRENT_PICTURE:
-        return {
-          ...state,
-          picture: action.payload
         };
       default:
         return state;

@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
 const production = require("./assets/production.js");
 
@@ -115,18 +116,20 @@ setInterval(() => {   // Init
         let curitem = data[x];
         let olditem = house_o[x];
 
-        let wind = distribute.calcWind(); 
-        console.log(wind)
-        var consumption = distribute.calcConsumption();
+        distribute.calcWind();
+        distribute.calcConsumption(); 
+
+        console.log(distribute.wind);
+        console.log(distribute.cons);
 
         var prod = 0;
         if(curitem.isproducing){    // If household is producing
-          prod = production.calcProd(wind); 
+          prod = production.calcProd(distribute.wind); 
         }else if(!curitem.isproducing){  // Not producing
           prod = production.calcProd(0);
         }
 
-        var netproduction = production.calcNetProd(prod, consumption);
+        var netproduction = production.calcNetProd(prod, distribute.cons);
         var buffer = production.calcBuffer(netproduction, curitem.buffer, curitem.ratio, batterylimit_h);
         var blackout = production.ifBlackout(netproduction, buffer, totalbuffer, totalnetproduction)
 
