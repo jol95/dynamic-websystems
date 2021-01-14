@@ -90,7 +90,7 @@ setInterval(() => {   // Init
 
     getGrid().then(data => {
       totalbuffer = data.buffer;
-      const res = axios.put(backend + "/grid/" + curitem.email, {
+      const res = axios.put(backend + "/grid/" + data.email, {
         totalproduction: totalproduction,
         totalconsumption: totalconsumption,
         totalnetproduction: totalnetproduction
