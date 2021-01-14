@@ -21,7 +21,7 @@ let totalnetproduction = 0;
 
 let totalbuffer = 0;
 
-const getGrid = async () => {   // Function to get electric grid (total values).
+const getGrid = () => {   // Function to get electric grid (total values).
   try {
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
@@ -33,7 +33,7 @@ const getGrid = async () => {   // Function to get electric grid (total values).
   }
 }
 
-const getHouses = async () => {  // Function which recives all households and updates respectively. 
+const getHouses = () => {  // Function which recives all households and updates respectively. 
   try {
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
@@ -45,7 +45,7 @@ const getHouses = async () => {  // Function which recives all households and up
   }
 }
 
-const getManagers = async () => {  // Function which recives manager (coal production and price). 
+const getManagers = () => {  // Function which recives manager (coal production and price). 
   try {
   const response = await axios.get(backend + '/manager');
   if (response.status === 200) { 
@@ -57,7 +57,7 @@ const getManagers = async () => {  // Function which recives manager (coal produ
   }
 }
 
-const initAll = async () => {
+const initAll = () => {
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households

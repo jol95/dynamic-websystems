@@ -80,6 +80,7 @@ export const loginUser = (userType,userData, history) => dispatch => {
         console.log("manager login success");
         history.push("/households")
       }else{
+        console.log("prosumer loggin succuess");
         history.push("/dashboard");
       }
     })
