@@ -38,7 +38,6 @@ class HouseHolds extends Component {
             const data = user.id
             var kind = "household/"
 
-            }
             const response = await axios.get("/api/" + kind + data);
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
