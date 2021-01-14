@@ -7,6 +7,7 @@ const PrivateRoute = ({
   comp: Component, // use comp prop
   auth: { isAuthenticated, 
           loading,
+          user,
   },
   ...rest
 }) => (
@@ -14,8 +15,8 @@ const PrivateRoute = ({
     {...rest}
     render={props => {
       console.log("privateroute works");
-      console.log("privateroute props", props);
-      console.log("auth.user.nått2", props.auth.user.id);
+      console.log("privateroute props", user);
+      console.log("auth.user.nått2");
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
       if (props.auth.user.id==="manager"){
         return <Redirect to ="/login" />

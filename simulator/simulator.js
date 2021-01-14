@@ -57,6 +57,7 @@ setInterval(() => {
       console.log("Households: " + curitem);
       distribute.distributeAvg();
 
+      if(curitem.isproducing == true)
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
       production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
