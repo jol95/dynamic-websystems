@@ -41,3 +41,5 @@ class Production{
     }
 }
 
+
+module.exports = new Production();
