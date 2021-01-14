@@ -25,7 +25,14 @@ class UserProfile extends Component {
         const response = await axios.get("/api/household/" + data);
         this.setState({
             display:  response.data.img,
+            wind:  response.data.wind,
             production:  response.data.production,
+            consumption:  response.data.consumption,
+            netproduction:  response.data.netproduction,
+            buffer:  response.data.buffer,
+            blackout:  response.data.blackout,
+            ratio:  response.data.ratio,
+        
             id: data
         })
         console.log("userdata: xxx", response.data);
@@ -43,7 +50,13 @@ class UserProfile extends Component {
 
     render() {
         const { display } = this.state
+        const { wind } = this.state
         const { production } = this.state
+        const { consumption } = this.state
+        const { netproduction } = this.state
+        const { buffer } = this.state
+        const { blackout } = this.state
+        const { ratio } = this.state
         this.fetchData()
         return(
         <div className="Apphouse">
@@ -53,10 +66,16 @@ class UserProfile extends Component {
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 
-                <p>production: {production} </p>
-                 <img
+                <img
                     src={"data:image/png;base64," + display}
                     alt='Image goes here'/>
+                <p>wind: {wind} m/s </p>
+                <p>production: {production} kW/h </p>
+                <p>consumption: {consumption} kw/h </p>
+                <p>netproduction: {netproduction} kW/h </p>
+                <p>buffer: {buffer} kW </p>
+                <p>blackout: {blackout} </p>
+                <p>ratio: {ratio} </p>
                 </div>
             </div>   
         );
