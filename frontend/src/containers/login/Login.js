@@ -21,6 +21,9 @@ class Login extends Component {
     if (this.props.auth.isAuthenticated) {
         this.props.history.push("/dashboard");
       }
+    if (this.props.man.isManager) {
+      this.props.history.push("/managerdashboard");
+    }
     }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -145,12 +148,14 @@ return (
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  man: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  man: state.man
 });
 
 export default connect(
