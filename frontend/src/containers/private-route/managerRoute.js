@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 
 const ManagerRoute = ({
   comp: Component, // use comp prop
-  man: { isManager, loading },
+  auth: { isAuthenticated, loading, role},
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
-      !isManager && !loading ? (
+      !isAuthenticated && !loading &&role ? (
         <Redirect to="/login" />
       ) : (
         <Component {...props} />
@@ -20,9 +20,9 @@ const ManagerRoute = ({
   />
 );
 ManagerRoute.propTypes = {
-  man: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  man: state.man
+  auth: state.auth
 });
 export default connect(mapStateToProps)(ManagerRoute);

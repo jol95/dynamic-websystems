@@ -1,6 +1,7 @@
 const axios = require("axios");
+const {cons} = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
-const {wind, cons} = require("./assets/distribute.js");
+const { prod } = require("./assets/production.js");
 const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
@@ -19,36 +20,24 @@ let totalnetproduction = 0;
 
 let totalbuffer = 0;
 
-const getGrid = async () => {   // Function to get electric grid (total values).
+const update = async () => { 
   try {
-    const response = await axios.get(backend + '/grid/');
+  const response = await axios.get(backend + '/household');
+  if (response.status === 200) { 
+    //console.log('Request on api/household worked!');
+   return response.data;
+  }
+  } catch (err) {
+   console.error(err)
+  }
+}
+
+const initTotal = async () => { 
+  try {
+    const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
     return response.data;
-  }
-  } catch (err) {
-   console.error(err)
-  }
-}
-
-const getHouses = async () => {  // Function which recives all households and updates respectively. 
-  try {
-  const response = await axios.get(backend + '/household/');
-  if (response.status === 200) { 
-    //console.log('Request on api/household worked!');
-   return response.data;
-  }
-  } catch (err) {
-   console.error(err)
-  }
-}
-
-const getManagers = async () => {  // Function which recives manager (coal production and price). 
-  try {
-  const response = await axios.get(backend + '/manager/');
-  if (response.status === 200) { 
-    //console.log('Request on api/household worked!');
-   return response.data;
   }
   } catch (err) {
    console.error(err)
@@ -60,9 +49,16 @@ tick = 5000;    // 1 second each loop.
 setInterval(() => {   // Init 
   console.log("tick");
 
-  distribute.distributeInit();
+  initTotal().then(data => {
+    totalproduction = data.totalnetproduction;
+    totalconsumption = data.totalconsumption;
+    totalnetproduction = data.totalnetproduction;
+    totalbuffer = data.totalbuffer;
 
-  getHouses().then(data => {
+    distribute.distributeInit();
+});
+
+  update().then(data => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         let curitem = data[x];
@@ -86,6 +82,10 @@ setInterval(() => {   // Init
         console.log(production.buffer);
         console.log(production.blackout);
 
+        totalproduction = totalproduction + (production.prod - curitem.production);
+        totalconsumption = totalconsumption + (production.cons - curitem.cons);
+        totalnetproduction = totalnetproduction + (production.netprod - curitem.cons);
+
         const res = axios.put(backend + "/household/" + curitem.id, {
           wind: distribute.wind,
           production: production.prod,
@@ -95,10 +95,6 @@ setInterval(() => {   // Init
           blackout: production.blackout
         });
 
-        totalproduction = totalproduction + production.prod;
-        totalconsumption = totalconsumption + production.cons;
-        totalnetproduction = totalnetproduction + production.netprod;
-
         //production.calcPrice(distribute.wind, distribute.cons);
         //production.checkBlackout(totaltotalbuffer)
       }
@@ -106,14 +102,12 @@ setInterval(() => {   // Init
       return data;
   });
   
-  getGrid().then(data => {
-    totalbuffer = data.buffer;
-    const res = axios.put(backend + "/grid", {
-      totalproduction: totalproduction,
-      totalconsumption: totalconsumption,
-      totalnetproduction: totalnetproduction
-    });
-  });
+  const res = axios.put(backend + "/grid", {
+    totalproduction: totalproduction,
+    totalconsumption: totalconsumption,
+    totalnetproduction: totalnetproduction,
+    totalbuffer: totalbuffer
+  })
 
   console.log("tock")
 }, tick);

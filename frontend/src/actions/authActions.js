@@ -71,7 +71,7 @@ export const loginUser = (userType,userData, history) => dispatch => {
 
       if(userType=="manager"){
         // Set current manager
-        dispatch(setCurrentManager(decoded));
+        dispatch(setCurrentUser(decoded));
         dispatch(setRole());
         console.log("manager login success");
         history.push("/managerdashboard")
@@ -118,9 +118,9 @@ export const setManagerLoading = () => {
 };
 
 // Set user to manager
-export const setUserLoading = () => {
+export const setRole = () => {
   return {
-    type: USER_LOADING
+    type: SET_ROLE
   };
 };
 
@@ -132,5 +132,4 @@ export const logoutUser = () => dispatch => {
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
-  dispatch(setCurrentManager({}));
 };

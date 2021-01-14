@@ -2,7 +2,6 @@ import { GET_ERRORS,
         } from "../actions/types";
 
 const initialState = {
-    who: ""
 };
 
 export function errorR (state = initialState, action) {

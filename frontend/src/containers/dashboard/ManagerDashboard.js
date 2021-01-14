@@ -13,7 +13,7 @@ class ManagerDashboard extends Component {
   };
 
 render() {
-    const { user } = this.props.man;
+    const { user } = this.props.auth;
 return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
@@ -46,10 +46,10 @@ return (
 }
 ManagerDashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  man: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
-  man: state.man
+  auth: state.auth
 });
 export default connect(
   mapStateToProps,
