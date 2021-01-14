@@ -5,7 +5,6 @@ import { logoutUser } from "../../actions/authActions";
 import UpdateDb from "../updatedb/UpdateDb";
 import UserProfile from "../userprofile/UserProfile";
 import ProfileImg from "../profileimg/ProfileImg";
-import UserProfile from "../userprofile/UserProfile";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -25,6 +24,7 @@ return (
               </p>
             </h4>
             <ProfileImg/>
+            <UserProfile/>
             <UpdateDb/>
             <button
               style={{

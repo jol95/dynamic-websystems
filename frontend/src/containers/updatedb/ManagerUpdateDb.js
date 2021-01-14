@@ -21,6 +21,7 @@ class ManagerUpdateDb extends Component {
     );
     }
 }
+
 ManagerUpdateDb.propTypes = {
   updateDatabase: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
