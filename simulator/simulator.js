@@ -66,7 +66,7 @@ setInterval(() => {
       console.log(distribute.cons);
       console.log(distribute.netprod);
 
-      const res = axios.put(backend + "/household/" + curitem.houseid, {
+      const res = axios.put(backend + "/household/" + curitem.id, {
         wind: distribute.wind,
         production: production.prod,
         consumption: distribute.cons,
