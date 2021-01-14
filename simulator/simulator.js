@@ -8,8 +8,6 @@ const backend = "http://localhost:5000/api";
 
 let init = false;
 
-let previous_data = [];
-
 let batterylimit_h = 100;
 let batterylimit_t = 2000;
 
@@ -43,7 +41,7 @@ const update = async () => {
 }
 
 // tick = 10000 //for error checking.
-tick = 6000;
+tick = 10000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
@@ -60,8 +58,9 @@ setInterval(() => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
-         
+
          console.log("###### HOUSE " + curitem.id + " ########")
+
          distribute.distributeAvg();
 
          if(curitem.isproducing){
@@ -110,6 +109,9 @@ setInterval(() => {
       }
 
       console.log("######## TOTAL ################")
+      console.log("TOTAL PRODUCTION : " + totalproduction)
+      console.log("TOTAL CONSUMPTION : " + totalconsumption)
+      console.log("TOTAL NETPRODUCTION : " + totalnetproduction)
 
       if(totalproduction <= 0){
          console.log("WARNING WARNING WARNING");
