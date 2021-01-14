@@ -106,8 +106,22 @@ return (
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
-                
               </div>
+
+              {/* RROOLLEE */}
+              <div className="input-field col s12">
+               <label htmlFor="role">Role</label>
+              <input
+                onChange={this.onChange}
+                value={this.state.role}
+
+                id="role"
+                type="text"
+              />
+              </div>
+
+              
+
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
