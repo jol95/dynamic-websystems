@@ -32,7 +32,7 @@ class UpdateDb extends Component {
         };
 
     const { user } = this.props.auth;
-    const data = user.houseid.split(" ")[0]
+    const data = user.id.split(" ")[0]
     this.props.updateDatabase(newUpdate, data); 
     };
 

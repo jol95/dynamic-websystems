@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 const householdSchema = new mongoose.Schema({
-    houseid: {
+    id: {
         type: String,
         required: true,
         unique: true

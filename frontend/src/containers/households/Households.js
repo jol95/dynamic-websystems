@@ -23,7 +23,7 @@ function Households(props){
                 return (
                     <div className="house" key={index}>
                         <h3>House {index + 1}</h3>
-                        <h2>ID: {houses.houseid}</h2>
+                        <h2>ID: {houses.id}</h2>
                         <div className="details">
                             <img
                             src={"data:image/png;base64," + houses.img}

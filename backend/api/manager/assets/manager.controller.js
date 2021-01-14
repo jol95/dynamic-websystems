@@ -36,6 +36,7 @@ exports.loginManager = async function(req, res) {
           // manager matched
           // Create JWT Payload
           const payload = {
+            id: manager.id,
             email: manager.email,
             firstname: manager.firstname
           };
@@ -63,6 +64,8 @@ exports.loginManager = async function(req, res) {
 }
 
 exports.registerManager = async function(req, res) {
+    id = mongoose.mongo.ObjectId();
+
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
@@ -76,6 +79,7 @@ exports.registerManager = async function(req, res) {
             const newManager = new Manager({
                 email: req.body.email,
                 password: req.body.password,
+                id: req.body.id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 production: 100,

@@ -17,10 +17,10 @@ class UserProfile extends Component {
     fetchData = async () => {
         //const base64Flag = 'data:image/jpeg;base64,';
         const { user } = this.props.auth;
-        const data = user.houseid.split(" ")[0]
+        const data = user.id.split(" ")[0]
         const response = await axios.get("/api/household/" + data);
         this.setState({
-            houseid: response.data.img.houseid,
+            id: response.data.img.id,
             display:  response.data.img,
             wind:  response.data.wind,
             production:  response.data.production,
@@ -29,8 +29,6 @@ class UserProfile extends Component {
             buffer:  response.data.buffer,
             blackout:  response.data.blackout,
             ratio:  response.data.ratio,
-        
-            id: data
         })
     }
 
@@ -41,7 +39,7 @@ class UserProfile extends Component {
 
 
     render() {
-        const { houseid } = this.state
+        const { id } = this.state
         const { display } = this.state
         const { wind } = this.state
         const { production } = this.state
@@ -60,7 +58,7 @@ class UserProfile extends Component {
             {/* Display data from API */}   
             <div className="profiles"> 
                 <div className="profile">
-                    <h2>houseID: {houseid} </h2>
+                    <h2>ID: {id} </h2>
                     <div className="details">
                 <img
                     src={"data:image/png;base64," + display}

@@ -58,7 +58,7 @@ exports.getHouses = function(req, res) {
     "Household added!"
 */
 exports.addHouse = function(req, res) {
-    const houseid = new mongoose.mongo.ObjectId();
+    const id = new mongoose.mongo.ObjectId();
     const address = req.body.address;
 
     const wind = req.body.wind;
@@ -73,7 +73,7 @@ exports.addHouse = function(req, res) {
     const img = "";
 
     const newHousehold = new Household({
-        houseid,
+        id,
         address,
         wind,
         production,
@@ -116,7 +116,7 @@ exports.addHouse = function(req, res) {
 
 */
 exports.getHouse = function(req, res) {
-    Household.findOne({ houseid: req.params.houseid}, function (err, house) {
+    Household.findOne({ id: req.params.id}, function (err, house) {
         if (err){
             console.log(err);
         }
@@ -164,7 +164,7 @@ exports.updateHouse = function(req, res) {
         return res.status(400).json(errors);
     }
 
-    Household.findOne({ houseid: req.params.houseid}, function (err, house) {
+    Household.findOne({ id: req.params.id}, function (err, house) {
         house.wind = req.body.wind? req.body.wind: house.wind;
         house.production = req.body.production? req.body.production: house.production;
         house.consumption = req.body.consumption? req.body.consumption: house.consumption;

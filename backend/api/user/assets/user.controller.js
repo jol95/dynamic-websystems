@@ -56,7 +56,7 @@ exports.loginUser = async function(req, res) {
           // Create JWT Payload
           const payload = {
             email: user.email,
-            houseid: user.houseid,
+            id: user.id,
             firstname: user.firstname
           };
          // Sign token
@@ -97,7 +97,7 @@ exports.loginUser = async function(req, res) {
     "User and household added!"
 */
 exports.registerUser = async function(req, res) {
-    houseid = mongoose.mongo.ObjectId();
+    id = mongoose.mongo.ObjectId();
     address = req.body.address;
 
     // Form validation
@@ -113,7 +113,7 @@ exports.registerUser = async function(req, res) {
             const newUser = new User({
                 email: req.body.email,
                 password: req.body.password,
-                houseid: houseid,
+                id: id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 address: address
@@ -142,7 +142,7 @@ exports.registerUser = async function(req, res) {
     const img = ""
 
     const newHousehold = new Household({
-        houseid,
+        id,
         address,
         wind,
         production,

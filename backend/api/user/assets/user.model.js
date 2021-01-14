@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 3
     },
-    houseid: {
+    id: {
         type: String,
         required: 'Correct house id',
         unique: true
