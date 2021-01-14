@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import UpdateDb from "../updatedb/UpdateDb";
 import ProfileImg from "../profileimg/ProfileImg";
+import UserProfile from "../userprofile/UserProfile";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
