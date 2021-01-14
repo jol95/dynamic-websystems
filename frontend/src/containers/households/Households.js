@@ -9,6 +9,7 @@ function Households(props){
       const response = await axios.get("/api/household");
       setUserData(response.data);
     }
+    
   
     return (
     fetchData(),

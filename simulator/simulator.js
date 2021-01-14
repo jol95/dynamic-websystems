@@ -41,7 +41,6 @@ const update = async () => {
 // tick = 10000 //for error checking.
 tick = 1000;
 setInterval(() => {
-  console.log("tick")
   initTotal().then(data => {
       totalproduction = data.totalproduction;
       totalconsumption = data.totalconsumption;
@@ -60,7 +59,7 @@ setInterval(() => {
       production.calcProd(distribute.wind);
       production.calcNetProd(distribute.cons);
       production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
-      production.checkBlackout(totalbuffer);
+      production.checkBlackout(totalbuffer, totalnetproduction);
     
       console.log(distribute.wind);
       console.log(distribute.cons);
@@ -75,24 +74,21 @@ setInterval(() => {
         blackout: production.blackout
       });
 
-      totalconsumption = totalconsumption + distribute.cons;
-      totalproduction = totalproduction + production.prod;
-      totalnetproduction = totalnetproduction + production.netprod;
+      totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
+      totalproduction = totalproduction + (production.prod - curitem.production);
+      totalnetproduction = totalnetproduction + (production.netprod - curitem.netproduction);
 
-      if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
+      /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
         totalbuffer = batterylimit_t
       }else{
         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-      } 
+      }  */
     }
 
     const res = axios.put(backend + "/grid", {
       totalproduction: totalproduction,
       totalconsumption: totalconsumption,
       totalnetproduction: totalnetproduction,
-      totalbuffer: totalbuffer
     })
   });
-  console.log("tock")
-
 }, tick);

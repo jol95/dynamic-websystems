@@ -27,8 +27,8 @@ class Production{
         }
     }
 
-    checkBlackout(totalbuffer){
-        if(this.netprod <= 0 && totalbuffer <= 0 && this.buffer <= 0){
+    checkBlackout(totalbuffer, totalnetproduction){
+        if(this.netprod <= 0 && totalbuffer <= 0 && this.buffer <= 0 && totalnetproduction <= 0){
             this.blackout = true;
         }else{
             this.blackout = false;

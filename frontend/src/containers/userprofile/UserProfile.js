@@ -15,7 +15,7 @@ class UserProfile extends Component {
 
 
     fetchData = async () => {
-        if (this.props.auth.isAuthenticated) {
+            //settimeout componendidmountthingyiyinyiyyh
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             const data = user.id.split(" ")[0]
@@ -31,12 +31,12 @@ class UserProfile extends Component {
                 blackout:  response.data.blackout,
                 ratio:  response.data.ratio,
             })
-        }
     }
 
 
     componentDidMount() {
         console.log("userprofile mounted");
+        this.fetchData() 
     }
 
 
@@ -50,7 +50,7 @@ class UserProfile extends Component {
         const { buffer } = this.state
         const { blackout } = this.state
         const { ratio } = this.state
-        this.fetchData()
+
         return(
         <div className="Apphouse">
             <h1>Your Household</h1>
