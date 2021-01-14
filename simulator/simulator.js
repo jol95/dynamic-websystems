@@ -114,8 +114,7 @@ setInterval(() => {   // Init
         let curitem = data[x];
         let olditem = house_o[x];
 
-        distribute.calcWind();
-        distribute.calcConsumption(); 
+        distribute.calcAvg();
 
         console.log(distribute.wind);
         console.log(distribute.cons);
