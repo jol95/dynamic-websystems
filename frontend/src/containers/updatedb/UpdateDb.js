@@ -37,9 +37,11 @@ class UpdateDb extends Component {
     if(data === "manager"){
       kind = "manager";
       this.props.updateDatabase(kind, newUpdate, data); 
+      console.log("updateDB manager userData", user)
     } else if(data === "user"){
       kind = "household";
       this.props.updateDatabase(kind, newUpdate, data);
+      console.log("updateDB user userData", user)
     }
 
     };

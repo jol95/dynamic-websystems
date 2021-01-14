@@ -20,7 +20,7 @@ class UserProfile extends Component {
             const { user } = this.props.auth;
             console.log("tidy:", this.props.auth);
             const data = user.id
-            
+
             var kind = "";
             if (user.role==="manager"){
                 kind = "manager/";

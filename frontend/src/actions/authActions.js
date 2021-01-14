@@ -15,8 +15,9 @@ export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
     .put("api/" + userType + data, dbData)
     .then(res => {
-      const base = dbData;
-      console.log("authAction updateDatabase");
+      console.log("authactions updatedatabase USERTYPE:", userType)
+      console.log("authactions updatedatabase data:", data)
+      console.log("authactions updatedatabase dbData:", dbData)
 
     })
     .catch(err =>
