@@ -62,9 +62,9 @@ setInterval(() => {
          distribute.distributeAvg();
 
          if(curitem.isproducing){
-         production.calcProd(distribute.wind);
+            production.calcProd(distribute.wind);
          }else if(!curitem.isproducing){
-         production.calcProd(0);
+            production.calcProd(0);
          }
 
          production.calcNetProd(distribute.cons);
@@ -77,24 +77,24 @@ setInterval(() => {
          console.log("Nettoproduction : " + production.netprod);
 
          const res = axios.put(backend + "/household/" + curitem.id, {
-         wind: distribute.wind,
-         production: production.prod,
-         consumption: distribute.cons,
-         netproduction: production.netprod,
-         buffer: production.buffer,
-         blackout: production.blackout
+            wind: distribute.wind,
+            production: production.prod,
+            consumption: distribute.cons,
+            netproduction: production.netprod,
+            buffer: production.buffer,
+            blackout: production.blackout
          });
 
          console.log("Households: " + curitem);
 
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
-         totalconsumption = totalconsumption + distribute.cons;
-         totalproduction = totalproduction + production.prod;
-         totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
+            totalconsumption = totalconsumption + distribute.cons;
+            totalproduction = totalproduction + production.prod;
+            totalnetproduction = totalnetproduction + (production.netprod * 1 - curitem.ratio);
          }else{
-         totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
-         totalproduction = totalproduction + (production.prod - curitem.production);
-         totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
+            totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
+            totalproduction = totalproduction + (production.prod - curitem.production);
+            totalnetproduction = totalnetproduction + ((production.netprod * 1 - curitem.ratio) - (curitem.netproduction * curitem.ratio));
          }
 
          /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
