@@ -17,7 +17,6 @@ class UserProfile extends Component {
 
     componentDidMount() {
         this.interval = setInterval(this.tick, this.state.delay);
-        this.fetchData() 
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -32,7 +31,7 @@ class UserProfile extends Component {
     }
 
 
-    fetchData = async () => {    
+    tick = async () => {    
             //settimeout // polling
             //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
@@ -47,6 +46,7 @@ class UserProfile extends Component {
             }
             const response = await axios.get("/api/" + kind + data);
             this.setState({
+                pollingCount: this.state.pollingCount + 1,
                 id: response.data.id,
                 display:  response.data.img,
                 wind:  response.data.wind,
