@@ -6,8 +6,8 @@ class Distribute{
         this.windMin = 1.0;
         this.windMax = 8.5;
 
-        this.windDistMin = 0.0;
-        this.windDistMax = 0.0;
+        this.windDistMin;
+        this.windDistMax;
         this.windDistScew = 1.0;
 
         /*
@@ -16,8 +16,8 @@ class Distribute{
         this.consMin = 5.9;
         this.consMax = 19.4;
 
-        this.consDistMin = 0.0;
-        this.consDistMax = 0.0;
+        this.consDistMin;
+        this.consDistMax;
         this.consDistScew = 1.0;
     }
 
