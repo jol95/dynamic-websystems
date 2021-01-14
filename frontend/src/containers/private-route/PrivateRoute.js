@@ -11,6 +11,7 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={props => {
+      console.log("FUCKOFF");
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
       if (role){
         return <Redirect to ="/login" />
