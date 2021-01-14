@@ -20,12 +20,6 @@ let totalnetproduction = 0;
 
 let totalbuffer = 0;
 
-function sleep(ms) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
-}   
-
 const getGrid = async () => {   // Function to get electric grid (total values).
   try {
     const response = await axios.get(backend + '/grid');
