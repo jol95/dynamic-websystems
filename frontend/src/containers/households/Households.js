@@ -94,7 +94,7 @@ class HouseHolds extends Component {
 }
 }
 
-UserProfile.propTypes = {
+HouseHolds.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -106,4 +106,4 @@ UserProfile.propTypes = {
   export default connect(
     mapStateToProps,
     { displayDatabase }
-  )( UserProfile );
+  )( HouseHolds );
