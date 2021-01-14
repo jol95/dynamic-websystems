@@ -74,11 +74,7 @@ class ProfileImg extends Component {
     const { display } = this.state;
   return(
      <div>
-{/*         <img
-        src={display}
-        alt='Image goes here'/> */}
-      <form noValidate onSubmit={this.onSubmit}>
-      
+      <form noValidate onSubmit={this.onSubmit}>   
     <div>
 
     <UserProfile/>
