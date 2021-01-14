@@ -6,7 +6,6 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
-let init = false;
 let house_o;
 let manager_o;
 
@@ -142,6 +141,8 @@ setInterval(() => {   // Init
           blackout: blackout
         });
         
+        totalconsumption = totalconsumption + (consumption - olditem.consumption);
+        totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
         totalproduction = totalproduction + (prod - olditem.production);
         totalconsumption = totalconsumption + (consumption - olditem.consumption);
         totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
