@@ -44,11 +44,6 @@ class App extends React.Component{
             Electricity Panel
           </Navbar.Brand>
         </LinkContainer>
-        <LinkContainer to="/households">
-          <Navbar.Brand className="font-weight-bold text-muted">
-            Households
-          </Navbar.Brand>
-        </LinkContainer>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
