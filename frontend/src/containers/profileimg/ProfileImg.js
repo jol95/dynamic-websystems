@@ -73,7 +73,7 @@ class ProfileImg extends Component {
     kind = "household";
   }
 
-  this.props.updateDatabase(kind, newUpdate, data);
+  this.props.updateDatabase(kind + "/", newUpdate, data);
 
   };
 
