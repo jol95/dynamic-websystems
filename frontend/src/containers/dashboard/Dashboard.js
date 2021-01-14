@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import UpdateDb from "../updatedb/UpdateDb";
+import ProfileImg from "../profileimg/ProfileImg";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -15,11 +17,13 @@ return (
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-                <b>Hello, {user.name}</b>
+              <b>Hey there,</b> {user.firstname.split(" ")[0]}
               <p className="flow-text grey-text text-darken-1">
                 You are logged in :){" "}
               </p>
             </h4>
+            <ProfileImg/>
+            <UpdateDb/>
             <button
               style={{
                 width: "150px",

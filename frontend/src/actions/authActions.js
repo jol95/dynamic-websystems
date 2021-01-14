@@ -4,8 +4,33 @@ import jwt_decode from "jwt-decode";
 import {
   GET_ERRORS,
   SET_CURRENT_USER,
+  SET_CURRENT_PICTURE,
   USER_LOADING
 } from "./types";
+
+// Update ratio
+export const updateDatabase = (dbData ,data) => dispatch => {
+  axios
+    .put("api/household/" + data, dbData)
+    .then(res => {
+      const base = dbData;
+      dispatch(setCurrentPicture(base));
+      console.log("base", base);
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+//export const getUserInfo = (data) => dispatch => {
+  //response = axios.get("api/household/" + data)
+  //response.data.img;
+//}
+
+
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
@@ -33,8 +58,7 @@ export const loginUser = (userData, history) => dispatch => {
       const decoded = jwt_decode(token);
       // Set current user
       dispatch(setCurrentUser(decoded));
-      console.log("authaction login");
-      console.log("token: ", token);
+      console.log("decoded", decoded);
       history.push("/dashboard");
     })
     .catch(err =>
@@ -57,7 +81,15 @@ export const setUserLoading = () => {
     type: USER_LOADING
   };
 };
-// Log user out
+
+export const setCurrentPicture = base => {
+  return {
+    type: SET_CURRENT_PICTURE,
+    payload: base
+  };
+};
+
+// Log user out, maybe a redirect?
 export const logoutUser = () => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");

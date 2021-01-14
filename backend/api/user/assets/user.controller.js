@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
 const express = require("express");
-const router = express.Router();
+
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../config/keys");
+
+const Validator = require("validator");
+const isEmpty = require("is-empty");
 
 let User = require('./user.model');
 let Household = require('../../household/assets/household.model');
@@ -11,6 +14,7 @@ let Household = require('../../household/assets/household.model');
 // Load input validation
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
+const validateUpdateInput = require("../../manager/assets/validation/update");
 
 /*  WORKING
 
@@ -27,7 +31,7 @@ const validateLoginInput = require("./validation/login");
     "token": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmZjMyMDg0MDA5M2JlN2RkYzcyY2IxOSIsImVtYWlsIjoiYUBhLmNvbSIsImlhdCI6MTYwOTc2OTE1NSwiZXhwIjoxNjA5NzcwOTU1fQ.2nSmC0oGKE9jWs4Mw2aQYE5QGy10va4fmDPwcdMOuN8"
     }
 */
-exports.getUser = async function(req, res) {
+exports.loginUser = async function(req, res) {
     // Form validation
     const { errors, isValid } = validateLoginInput(req.body);
     // Check validation
@@ -37,8 +41,7 @@ exports.getUser = async function(req, res) {
 
     const email = req.body.email;
     const password = req.body.password;
-    
-    
+  
     // Find user by email
     User.findOne({ email }).then(user => {
       // Check if user exists
@@ -52,20 +55,23 @@ exports.getUser = async function(req, res) {
           // User matched
           // Create JWT Payload
           const payload = {
-            id: user.id,
-            name: user.name
+            email: user.email,
+            houseid: user.houseid,
+            firstname: user.firstname
           };
          // Sign token
           jwt.sign(
             payload,
             keys.secretOrKey,
             {
-              expiresIn: 120 // 1 year in seconds
+              expiresIn: 300 // 5 minutes
             },
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer1 " + token
+                token: "Bearer1 " + token,
+                //email: email,
+                //houseid: houseid
               });
             }
           );
@@ -93,6 +99,9 @@ exports.getUser = async function(req, res) {
     "User and household added!"
 */
 exports.registerUser = async function(req, res) {
+    houseid = mongoose.mongo.ObjectId();
+    address = req.body.address;
+
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
@@ -106,10 +115,10 @@ exports.registerUser = async function(req, res) {
             const newUser = new User({
                 email: req.body.email,
                 password: req.body.password,
-                houseid: new mongoose.mongo.ObjectId(),
+                houseid: houseid,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
-                address: req.body.address
+                address: address
         });
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -125,26 +134,77 @@ exports.registerUser = async function(req, res) {
     });
 
     const wind = 0 
-    const consumption = 0 
-    const price = 0 
-    const isproducing = true
     const production = 0  
+    const consumption = 0 
     const netproduction = 0  
     const ratio = 0.5
+    const buffer = 10
+    const isproducing = true
+    const blackout = false
+    const img = ""
 
     const newHousehold = new Household({
         houseid,
         address,
         wind,
-        consumption,
-        price,
-        isproducing,
         production,
+        consumption,
         netproduction,
         ratio,
+        buffer,
+        isproducing, 
+        blackout,
+        img
     });
 
     newHousehold.save()
         .then(() => res.json('User and household added!'))
         .catch(err => res.status(400).json('Error: ' + err));
+}
+
+exports.updateUser = async function(req, res) {
+  // Form validation
+  const { errors, isValid } = validateUpdateInput(req.params);
+  // Check validation
+  if (!isValid) {
+     return res.status(400).json(errors);
+  }
+
+ User.findOne({ email: req.params.email }).then(user => {
+  if (!user) {
+      return res.status(400).json({ email: "Email doesn't exist" });
+  } else {
+      if(isEmpty(req.body.password)){
+        user.password = user.password,
+        user.firstname = req.body.firstname? req.body.firstname: user.firstname,
+        user.lastname = req.body.lastname? req.body.lastname: user.lastname,
+        user.address = req.body.address? req.body.address: user.address,
+
+        user
+          .save()
+          .then(user => res.json(user))
+          .catch(err => console.log(err));
+      }else{
+        user.password = req.body.password;
+        user.firstname = req.body.firstname? req.body.firstname: user.firstname,
+        user.lastname = req.body.lastname? req.body.lastname: user.lastname,
+        user.address = req.body.address? req.body.address: user.address
+
+        bcrypt.genSalt(10, (err, salt) => {
+          bcrypt.hash(user.password, salt, (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          user
+            .save()
+            .then(user => res.json(user))
+            .catch(err => console.log(err));
+          });
+        });
+      } 
+    }
+  });
+
+  /*
+      TODO: Update address in household.
+  */
 }

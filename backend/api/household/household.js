@@ -4,12 +4,12 @@ const router = express.Router();
 var householdController = require("./assets/household.controller.js")
 
 router.route('/') 
-    .get(householdController.getHouses)
-    .post(householdController.addHouse);
+    .get(householdController.getHouses) // GET all household.
+    .post(householdController.addHouse); // POST new household which isnt producing (constant).   
     
 router.route('/:houseid')
-    .get(householdController.getHouse)
-    .patch(householdController.updateHouse)
-    .put(householdController.updateHouse);
+    .get(householdController.getHouse) // GET household based on id. 
+    .patch(householdController.updateHouse) // UPDATE all household parameters including specific ones. 
+    .put(householdController.updateHouse); // UPDATE all household parameters including specific ones.
 
 module.exports = router;

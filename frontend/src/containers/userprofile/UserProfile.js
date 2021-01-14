@@ -1,30 +1,45 @@
-/*import React from 'react'
-import "./UserProfile.css"
+import React, { Component ,useState } from "react";
+import axios from 'axios';
+import FileBase from 'react-file-base64';
+import "./UserProfile.css";
 
-function UserProfile(props){
-
-    return (
-        <div className="Appprofile">
-            <h1>Household overviews</h1>
+function UserProfile (props){
+    const [userData, setUserData] = useState(null);    
+    const fetchData = async () => {
+        const response = await axios.get("/api/household");
+        setUserData(response.data);
+    }
+        return(
+        fetchData(),
+        <div className="Apphouse">
+            <h1>Your Household</h1>
             <h2>Show household info</h2>
-        <div>   
-            <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
-        </div>
-        <br /> 
-        <div className="profiles"> 
-            {userData.map((profiles) => {
-                return (
-                    <div className="profile" key={index}>
-                        <h3>House {index + 1}</h3>
-                        <h2>ID: {profiles.firstname}</h2>
-                        <div className="details">
-                            <p>Address:{profiles.lastname}</p>
-                        </div>
-                    </div>
-                );
-            })}    
-        </div>
-        </div>
-    );
+            {/* Fetch data from API */}
+            <br />
+            {/* Display data from API */}   
+            <div className="profiles"> 
+                {userData && userData.map((data, index) => {
+                    return (
+                        <div className="profile" key={index}>
+                            <h2>ID: {data.houseid}</h2>
+                            <div className="details">
+                                <p>Wind:{data.wind} m/s</p>
+                                <p>Production:{data.production} kW/h</p>
+                                <p>Consumption:{data.consumption} kW/h</p>
+                                <p>Netto production:{data.netproduction} kW/h</p>
+                                <p>Buffer:{data.buffer} kW</p>
+                                <p>Blackout:{data.blackout}</p>
+                                <p>Ratio:{data.ratio}</p>
+                                <img
+                                    src={"data:image/png;base64," + data.img}
+                                    alt='Image goes here'/>
+                            </div>
+                            </div>
+                    );
+                })} 
+                </div>
+            </div>   
+        );
 }
-*/
+
+export default UserProfile;
