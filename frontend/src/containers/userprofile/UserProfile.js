@@ -18,11 +18,14 @@ class UserProfile extends Component {
 
 
     fetchData = async () => {
+        //const base64Flag = 'data:image/jpeg;base64,';
         const { user } = this.props.auth;
         const data = user.houseid.split(" ")[0]
         console.log("user: xxx", data);
         const response = await axios.get("/api/household/" + data);
-        this.state.userData = response.data;
+        this.setState({
+            img:  response.data.img
+        })
         console.log("userdata: xxx", response.data);
     }
 
@@ -37,6 +40,7 @@ class UserProfile extends Component {
 
 
     render() {
+        const { img } = this.state
         this.fetchData()
         return(
         <div className="Apphouse">
@@ -46,9 +50,9 @@ class UserProfile extends Component {
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 
-                {/* <img
-                    src={"data:image/png;base64," + data.img}
-                    alt='Image goes here'/> */}
+                 <img
+                    src={"data:image/png;base64," + img}
+                    alt='Image goes here'/>
                 </div>
             </div>   
         );
