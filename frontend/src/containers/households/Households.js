@@ -11,13 +11,11 @@ function Households(props){
     }
   
     return (
+    fetchData(),
       <div className="Apphouse">
           <h1>Household overviews</h1>
           <h2>Show household info</h2>
         {/* Fetch data from API */}
-        <div>   
-          <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
-        </div>
         <br />
         {/* Display data from API */}   
         <div className="houses"> 
