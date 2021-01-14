@@ -57,7 +57,8 @@ const getManagers = async () => {  // Function which recives manager (coal produ
 }
 
 const initAll = () => {
-  console.log("init")
+  console.log("init");
+  console.log(house_o);
   getHouses().then(data => { // Reset values, not buffer and ratio. 
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
