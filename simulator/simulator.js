@@ -81,7 +81,7 @@ setInterval(() => {   // Init
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
-        const res = await axios.put(backend + "/manager/" + curitem.email, {
+        const res =  axios.put(backend + "/manager/" + curitem.email, {
           production: 0,
           status: "stopped"
         });
