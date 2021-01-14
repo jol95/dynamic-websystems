@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({   
+const managerSchema = new mongoose.Schema({   
     email: {
         type: String,
         required: 'Enter your email',
@@ -14,25 +14,26 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 3
     },
-    houseid: {
-        type: String,
-        required: 'Correct house id',
-        unique: true
-    },
     firstname: {
         type: String,
     },
     lastname: {
         type: String,
     },
-    address: {
+    production: {
+        type: Number,
+    },
+    status: {
         type: String,
-        required: 'Enter correct address'
-    }
+        required: true
+    },
+    img: {
+        type: String
+    },
 }, {
     timestamps: true,
 });
 
-const User  = module.exports = mongoose.model('User', userSchema);
+const Manager  = module.exports = mongoose.model('Manager', managerSchema);
 
-module.exports = User;
+module.exports = Manager;

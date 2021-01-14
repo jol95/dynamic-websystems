@@ -13,17 +13,10 @@ const householdSchema = new mongoose.Schema({
     wind: {
         type: Number,
     },
-    consumption: {
-        type: Number,
-    },
-    price: {
-        type: Number,
-    },
-    isproducing: {
-        type: Boolean,
-        required: true,
-    },
     production: {
+        type: Number,
+    },
+    consumption: {
         type: Number,
     },
     netproduction: {
@@ -32,6 +25,20 @@ const householdSchema = new mongoose.Schema({
     ratio: {
         type: Number,
     },
+    buffer: {
+        type: Number,
+    },
+    isproducing: {
+        type: Boolean,
+        required: true,
+    },
+    blackout: {
+        type: Boolean,
+        required: true,
+    },
+    img: {
+        type: String
+    }
 }, {
     timestamps: true,
 });
