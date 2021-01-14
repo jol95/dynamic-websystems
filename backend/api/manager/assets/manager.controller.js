@@ -87,7 +87,7 @@ exports.registerManager = async function(req, res) {
                 role: role,
                 production: 100,
                 status: "off",
-                img: req.body.img
+                img: ""
 
         });
         bcrypt.genSalt(10, (err, salt) => {
@@ -148,7 +148,9 @@ exports.updateManager = async function(req, res) {
         manager.lastname = req.body.lastname? req.body.lastname: manager.lastname,
         manager.production = req.body.production? req.body.production: manager.production,
         manager.status = req.body.status? req.body.status: manager.status,
-        manager.address = req.body.address? req.body.address: manager.address
+        manager.address = req.body.address? req.body.address: manager.address,
+        manager.img = req.body.img? req.body.img: manager.img
+
 
         manager
           .save()
