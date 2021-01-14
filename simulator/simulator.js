@@ -108,7 +108,9 @@ setInterval(() => {
          }  */
       }
 
-      console.log("######## TOTAL ################")
+      console.log("########################")
+      console.log("######## TOTAL ##########")
+      console.log("########################")
       console.log("TOTAL PRODUCTION : " + totalproduction)
       console.log("TOTAL CONSUMPTION : " + totalconsumption)
       console.log("TOTAL NETPRODUCTION : " + totalnetproduction)
