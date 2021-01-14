@@ -117,6 +117,8 @@ export const setManagerLoading = () => {
   };
 };
 
+
+
 // Set user to manager
 export const setRole = () => {
   return {

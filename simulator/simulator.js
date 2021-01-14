@@ -50,7 +50,7 @@ setInterval(() => {   // Init
   console.log("tick");
 
   initTotal().then(data => {
-    totalproduction = data.totalnetproduction;
+    totalproduction = data.totalproduction;
     totalconsumption = data.totalconsumption;
     totalnetproduction = data.totalnetproduction;
     totalbuffer = data.totalbuffer;
