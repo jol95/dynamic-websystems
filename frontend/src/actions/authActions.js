@@ -16,6 +16,7 @@ export const updateDatabase = (dbData ,data) => dispatch => {
       const base = dbData;
       dispatch(setCurrentPicture(base));
       console.log("base", base);
+      console.log("res", res);
     })
     .catch(err =>
       dispatch({
