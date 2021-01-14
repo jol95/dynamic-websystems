@@ -6,8 +6,8 @@ const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api"
 
-let house_o;
-let manager_o;
+var house_o;
+var manager_o;
 
 let batterylimit_h = 100;  // Battery limit house in kW
 let batterylimit_t = 2000; // Battery limit power plant (manager) in kW
@@ -25,7 +25,6 @@ const getGrid = async () => {   // Function to get electric grid (total values).
     const response = await axios.get(backend + '/grid');
   if (response.status === 200) { 
     //console.log('Request on api/grid worked!');
-    console.log(response.data)
     return response.data;
   }
   } catch (err) {
@@ -93,8 +92,8 @@ const initAll = async () => {
     });
   });
 
-  house_o = getHouses().then(data => { // Get newely reseted 
-    cons.log(data)
+  house_o = getHouses().then( (data,res) => { // Get newely reseted 
+    console.log(data)
     return data;
   });
 
@@ -118,7 +117,9 @@ setInterval(() => {   // Init
         var curitem = data[x];
         var olditem = house_o[x];
 
-        console.log(olditem);
+        console.log(house_o);
+        console.log(house_o[x]);
+        console.log(data[x]);
 
         var wind = distribute.calcWind(); 
         var consumption = distribute.calcConsumption();
