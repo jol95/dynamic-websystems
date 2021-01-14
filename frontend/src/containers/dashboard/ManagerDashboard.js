@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-import UpdateDb from "../updatedb/UpdateDb";
+import ManagerUpdateDb from "../updatedb/ManagerUpdateDb";
 import ProfileImg from "../profileimg/ProfileImg";
 import UserProfile from "../userprofile/UserProfile";
 
