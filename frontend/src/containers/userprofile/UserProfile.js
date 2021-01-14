@@ -16,6 +16,8 @@ class UserProfile extends Component {
     }
     componentDidMount() {
         console.log("Userprofile mounted")
+        const { user } = this.props.auth;
+        console.log("user: xxx", user);
     }
 
     render() {
