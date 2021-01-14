@@ -37,6 +37,7 @@ const getHouses = async () => {  // Function which recives all households and up
   const response = await axios.get(backend + '/household');
   if (response.status === 200) { 
     //console.log('Request on api/household worked!');
+    console.log(response.data);
    return response.data;
   }
   } catch (err) {
@@ -141,8 +142,6 @@ setInterval(() => {   // Init
           blackout: blackout
         });
         
-        totalconsumption = totalconsumption + (consumption - olditem.consumption);
-        totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
         totalproduction = totalproduction + (prod - olditem.production);
         totalconsumption = totalconsumption + (consumption - olditem.consumption);
         totalnetproduction = totalnetproduction + (netproduction - olditem.netproduction);
