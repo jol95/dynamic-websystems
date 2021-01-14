@@ -31,6 +31,9 @@ const managerSchema = new mongoose.Schema({
     production: {
         type: Number,
     },
+    ratio: {
+        type: Number,
+    },
     status: {
         type: String,
         required: true

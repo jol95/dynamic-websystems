@@ -86,6 +86,7 @@ exports.registerManager = async function(req, res) {
                 lastname: req.body.lastname,
                 role: role,
                 production: 100,
+                ratio: 0.5,
                 status: "off",
                 img: ""
 
@@ -147,8 +148,8 @@ exports.updateManager = async function(req, res) {
         manager.firstname = req.body.firstname? req.body.firstname: manager.firstname,
         manager.lastname = req.body.lastname? req.body.lastname: manager.lastname,
         manager.production = req.body.production? req.body.production: manager.production,
+        manager.ratio = req.body.ratio? req.body.ratio: manager.ratio,
         manager.status = req.body.status? req.body.status: manager.status,
-        manager.address = req.body.address? req.body.address: manager.address,
         manager.img = req.body.img? req.body.img: manager.img
 
 
