@@ -7,7 +7,7 @@ import ManagerProfile from "../userprofile/UserProfile";
 import ProfileImg from "../profileimg/ProfileImg";
 import UserProfile from "../userprofile/UserProfile";
 
-class Dashboard extends Component {
+class ManagerDashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -44,7 +44,7 @@ return (
     );
   }
 }
-Dashboard.propTypes = {
+ManagerDashboard.propTypes = {
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -54,4 +54,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { logoutUser }
-)(Dashboard);
+)(ManagerDashboard);

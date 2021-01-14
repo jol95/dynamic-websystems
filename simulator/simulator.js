@@ -58,6 +58,7 @@ const getManagers = async () => {  // Function which recives manager (coal produ
 
 const initAll = async () => {
   getHouses().then(data => { // Reset values, not buffer and ratio. 
+    console.log(data)
     var objCount = data.length;
     for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
       var curitem = data[x];
@@ -68,6 +69,7 @@ const initAll = async () => {
         netproduction: 0,
         blackout: false
       });
+      console.log("#########################");
       console.log(res);
     }
   });
@@ -115,10 +117,6 @@ setInterval(() => {   // Init
       for ( var x = 0; x < objCount ; x++ ) { // Loop through all households
         var curitem = data[x];
         var olditem = house_o[x];
-
-        console.log(house_o);
-        console.log(house_o[x]);
-        console.log(data[x]);
 
         var wind = distribute.calcWind(); 
         var consumption = distribute.calcConsumption();
