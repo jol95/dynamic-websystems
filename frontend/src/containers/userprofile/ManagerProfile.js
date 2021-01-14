@@ -54,13 +54,6 @@ class ManagerProfile extends Component {
             })
     }
 
-
-    componentDidMount() {
-        console.log("managerprofile mounted");
-        this.fetchData() 
-    }
-
-
     render() {
         const { id, status, display } = this.state
         return(

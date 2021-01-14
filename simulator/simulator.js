@@ -60,6 +60,8 @@ setInterval(() => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
+         
+         console.log("###### HOUSE " + curitem.id + " ########")
          distribute.distributeAvg();
 
          if(curitem.isproducing){
@@ -105,8 +107,6 @@ setInterval(() => {
          }else{
          totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
          }  */
-
-         console.log("###### HOUSE " + curitem.id + " ########")
       }
 
       console.log("######## TOTAL ################")
