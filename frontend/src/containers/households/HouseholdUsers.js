@@ -43,9 +43,9 @@ class HouseholdUsers extends Component {
             })
     }
 
-    onEditClick = value => {
+    onEditClick = e => {
         console.log("click");
-        //e.preventDefault();
+        const value = this.state.id;
         const path = `/profile/${value}`;
         this.props.history.push(path);
         };
@@ -85,8 +85,8 @@ class HouseholdUsers extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-
-                        onClick={this.onEditClick(item.id)}
+                        onClick={(e) => this.state.id = item.state}
+                        onClick={this.onEditClick}
 
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
