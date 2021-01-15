@@ -58,11 +58,10 @@ const updateManager = async () => {
 tick = 5000;
 setInterval(() => {
   if(!init){
-   totalproduction = 0;
-   totalconsumption = 0;
-   totalnetproduction = 0;
-
     initTotal().then(tot => {
+      totalproduction = tot.totalproduction;
+      totalconsumption = tot.totalconsumption;
+      totalnetproduction = tot.totalnetproduction;
       totalbuffer = tot.buffer;
    });
    }
@@ -106,12 +105,6 @@ setInterval(() => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
-
-         if(!init){
-            curitem.production = 0;
-            curitem.consumption = 0;
-            curitem.netproduction = 0;
-         }
 
          console.log("")
          console.log("###### HOUSE " + curitem.id + " ########")
@@ -162,11 +155,11 @@ setInterval(() => {
          if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
             totalbuffer = batterylimit_t
          }else if(production.netprod < 0){
-            if((totalbuffer + (production.netprod * (1 - curitem.ratio))) <= 0){
+            if((totalbuffer + (production.netprod * (1 - curitem.ratio))) < 0){
                totalbuffer = 0;
             }else{
                totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-            } 
+         } 
          }
       }
       console.log("");

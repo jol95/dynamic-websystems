@@ -22,6 +22,9 @@ const householdSchema = new mongoose.Schema({
     netproduction: {
         type: Number,
     },
+    price: {
+        type: Number
+    },
     ratio: {
         type: Number,
     },
