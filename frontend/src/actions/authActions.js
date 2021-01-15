@@ -15,8 +15,7 @@ export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
     .put("api/" + userType + data, dbData)
     .then(res => {
-    .console.log("updateDatabase");
-
+      console.log("updateDatabase");
     })
     .catch(err =>
       dispatch({
