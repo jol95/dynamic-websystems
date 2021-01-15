@@ -43,7 +43,7 @@ class HouseholdUsers extends Component {
             })
     }
 
-    onEditClick = value => () => {
+    onEditClick = value => {
         console.log("click");
         //e.preventDefault();
         const path = `/profile/${value}`;
