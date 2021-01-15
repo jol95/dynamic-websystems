@@ -205,6 +205,18 @@ exports.getUser = function(req, res) {
   });
 };
 
+exports.getUsers = function(req, res) {
+  User.find(function (err, user) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          res.json(user);
+      }
+  });
+}
+
+
 exports.updateUser = async function(req, res) {
   // Form validation
   //    const { errors, isValid } = validateUpdateInput(req.params);
