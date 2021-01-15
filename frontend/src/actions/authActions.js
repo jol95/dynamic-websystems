@@ -64,7 +64,7 @@ export const editUser = (userType, dbData ,data) => dispatch => {
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("api/user/register", userData)
+    .post("/api/user/register", userData)
     .then(res => history.push("/login")) // re-direct to login on successful register
     .catch(err =>
       dispatch({
