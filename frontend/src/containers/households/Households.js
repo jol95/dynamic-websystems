@@ -8,11 +8,9 @@ import "./Households.css";
 class HouseHolds extends Component {
     constructor() {
         super();
-        this.listies = {}
         this.state = {
             pollingCount: 0,
             delay: 1000,
-            houselist: {}
             errors: {}
         };
     }
@@ -43,16 +41,16 @@ class HouseHolds extends Component {
             const response = await axios.get("/api/" + kind);
             this.setState({
                 
-                // pollingCount: this.state.pollingCount + 1,
-                // id: response.data.id,
-                // display:  response.data.img,
-                // wind:  response.data.wind,
-                // production:  response.data.production,
-                // consumption:  response.data.consumption,
-                // netproduction:  response.data.netproduction,
-                // buffer:  response.data.buffer,
-                // blackout:  response.data.blackout,
-                // ratio:  response.data.ratio,
+                pollingCount: this.state.pollingCount + 1,
+                id: response.data.id,
+                display:  response.data.img,
+                wind:  response.data.wind,
+                production:  response.data.production,
+                consumption:  response.data.consumption,
+                netproduction:  response.data.netproduction,
+                buffer:  response.data.buffer,
+                blackout:  response.data.blackout,
+                ratio:  response.data.ratio,
 
             })
     }
@@ -60,40 +58,35 @@ class HouseHolds extends Component {
 
 
     render() {
-        // const { id, display, wind, production, consumption,
-        // netproduction, buffer, blackout, ratio } = this.state
+        const { id, display, wind, production, consumption,
+        netproduction, buffer, blackout, ratio } = this.state
         return(
-        <div className="Apphouse">
-            <h1>Your Household</h1>
-            <h2>Show household info</h2>
-            {/* Fetch data from API */}
-            <br />
-            {/* Display data from API */}   
-                <div className="houses"> 
-                {this.state && this.state.map((houses, index) => {
-                return (
-                    <div className="house" key={index}>
-                        <h3>House {index + 1}</h3>
-                        <h2>ID: {houses.id}</h2>
+            <div className="Apphouse">
+                <h1>Your Household</h1>
+                <h2>Show household info</h2>
+                {/* Fetch data from API */}
+                <br />
+                {/* Display data from API */}   
+                <div className="profiles"> 
+                    <div className="profile">
+                        <h2>ID: {id} </h2>
                         <div className="details">
-                            <img
-                            src={"data:image/png;base64," + houses.img}
-                            alt='Look here'/>
-                            <br/>
-                            <p>Wind:{houses.wind} m/s</p>
-                            <p>Production:{houses.production} kW/h</p>
-                            <p>Consumption:{houses.consumption} kW/h</p>
-                            <p>Netto production:{houses.netproduction} kW/h</p>
-                            <p>Buffer:{houses.buffer} kW</p>
-                            <p>Blackout:{houses.blackout}</p>
-                            <p>Ratio:{houses.ratio}</p>
-                        </div>
+                    <img
+                        src={"data:image/png;base64," + display}
+                        alt='Look here'/>
+                    <br/>
+                    <p>wind: {wind} m/s </p>
+                    <p>production: {production} kW/h </p>
+                    <p>consumption: {consumption} kw/h </p>
+                    <p>netproduction: {netproduction} kW/h </p>
+                    <p>buffer: {buffer} kW </p>
+                    <p>blackout: {blackout} </p>
+                    <p>ratio: {ratio} </p>
                     </div>
-                );
-            })}    
-        </div>
-        </div>   
-        );
+                    </div>
+                    </div>
+                </div>   
+            );
 }
 }
 
