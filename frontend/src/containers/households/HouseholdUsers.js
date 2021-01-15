@@ -12,6 +12,7 @@ class HouseholdUsers extends Component {
             pollingCount: 0,
             items: [],
             delay: 1000,
+            id: "",
             errors: {}
         };
     }
@@ -44,8 +45,8 @@ class HouseholdUsers extends Component {
 
     onEditClick = e => {
         console.log("click");
-        const { user } = this.props.auth;
-        const data = user.id;
+        const data = this.state.id;
+        console.log("ID",id);
         e.preventDefault();
         const path = `/profile/${data}`;
         this.props.history.push(path);
@@ -86,7 +87,10 @@ class HouseholdUsers extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-                        onClick={this.onEditClick}
+                        onClick={ => {
+                            this.setState({ id: item.id });
+                            this.onEditClick;}
+                        }
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
                         Edit profile
