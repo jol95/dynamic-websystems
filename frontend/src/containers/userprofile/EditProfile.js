@@ -65,7 +65,7 @@ class EditProfile extends Component {
                     <b>Edit User Info</b>
                   </h4>
                   <p className="grey-text text-darken-1">
-                    Want to see your dashboard? <Link to="/dashboard">Dashboard</Link>
+                    Want to go back to the users? <Link to="/dashboard">Users</Link>
                   </p>
                 </div>
                 <form noValidate onSubmit={this.onSubmit}>

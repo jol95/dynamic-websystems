@@ -43,7 +43,7 @@ class HouseholdUsers extends Component {
     }
 
     onEditClick = e => {
-        console.log("click")
+        console.log("click");
         const { user } = this.props.auth;
         const data = user.id;
         e.preventDefault();
