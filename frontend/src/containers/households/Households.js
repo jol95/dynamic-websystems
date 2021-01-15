@@ -11,7 +11,7 @@ class HouseHolds extends Component {
         this.state = {
             pollingCount: 0,
             delay: 1000,
-            incoming: {},
+            incoming: [this.incominghouseholds()],
             errors: {}
         };
     }
@@ -67,7 +67,6 @@ class HouseHolds extends Component {
         console.log("this state", this.state);
         // const { id, display, wind, production, consumption,
         // netproduction, buffer, blackout, ratio } = this.state
-        {incoming && incoming.map((houses, index) => {
         return(
                 <div className="Apphouse" key={index}>
                     <h1>Your Household</h1>
@@ -83,19 +82,12 @@ class HouseHolds extends Component {
                             src={"data:image/png;base64," + display}
                             alt='Look here'/> */}
                         <br/>
-                        <p>wind: {} m/s </p>
-                        {/*<p>production: {production} kW/h </p>
-                        <p>consumption: {consumption} kw/h </p>
-                        <p>netproduction: {netproduction} kW/h </p>
-                        <p>buffer: {buffer} kW </p>
-                        <p>blackout: {blackout} </p>
-                        <p>ratio: {ratio} </p> */}
+                        {/* <p>wind: {} m/s </p> */}
                         </div>
                         </div>
                     </div>
                 </div>   
             );
-        })}
 }
 }
 
