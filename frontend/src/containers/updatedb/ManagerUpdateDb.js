@@ -1,17 +1,13 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
-//import classnames from "classnames";
 
 class ManagerUpdateDb extends Component {
     constructor() {
       super();
       this.state = {
-        ratio: 0,
         price: 0,
-        kind: "",
         errors: {}
       };
     }
@@ -28,24 +24,12 @@ class ManagerUpdateDb extends Component {
         this.setState({ [e.target.id]: e.target.value });
     };
         onSubmit = e => {
-            e.preventDefault();
+          e.preventDefault();
         const newUpdate = {
-          ratio: this.state.ratio,
-          price: this.state.ratio,
+          price: this.state.price,
         };
 
-    const { user } = this.props.auth;
-    const data = user.id;
-
-    //OLD
-    if(user.role === "manager"){
-      this.state.kind = "manager/";
-      console.log("updateDB manager userData", user)
-    } else if(user.role === "user"){
-      this.state.kind = "household/";
-      console.log("updateDB user userData", user)
-    }
-    this.props.updateDatabase(this.state.kind, newUpdate, data); 
+    this.props.updateDatabase("grid"+ newUpdate, "/"); 
 
     };
 
@@ -56,25 +40,25 @@ class ManagerUpdateDb extends Component {
         <div className="container">
             <form noValidate onSubmit={this.onSubmit}>
               
-              {/* RATIO */}
+              {/* PRICE */}
               <div className="input-field col s12">
               <label htmlFor="slider">Ratio</label>
                 <input
                   onChange={this.onChange}
-                  value={this.state.ratio}
-                  error={errors.ratio}
-                  id="ratio"
+                  value={this.state.price}
+                  error={errors.price}
+                  id="price"
                   type="range"
                   min="0"
-                  max="1"
-                  step="0.05"
+                  max="1000"
+                  step="10"
                   //value="0.5"
                 />
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
 
-              {/* RATIO SUBMIT BUTTON */}
+              {/* PRICE SUBMIT BUTTON */}
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
@@ -86,7 +70,7 @@ class ManagerUpdateDb extends Component {
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Update ratio
+                  Update price
                 </button>
               </div>
             </form>

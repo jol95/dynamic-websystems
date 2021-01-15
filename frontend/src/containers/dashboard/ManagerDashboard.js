@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import UpdateDb from "../updatedb/UpdateDb";
 import ManagerUpdateDb from "../updatedb/ManagerUpdateDb";
 import ManagerProfile from "../userprofile/ManagerProfile";
 import ProfileImg from "../profileimg/ProfileImg";
@@ -26,6 +27,7 @@ return (
             </h4>
             <ManagerProfile/>
             <ProfileImg/>
+            <UpdateDb/>
             <ManagerUpdateDb/>
             <button
               style={{

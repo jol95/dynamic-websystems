@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
-const { prod, netprodmarket } = require("./assets/production.js");
+const { prod, netprodmarket, ratio } = require("./assets/production.js");
 const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api";
@@ -59,10 +59,7 @@ tick = 1000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
-      totalproduction = data.totalproduction;
-      totalconsumption = data.totalconsumption;
-      totalnetproduction = data.totalnetproduction;
-      totalbuffer = data.totalbuffer;
+      totalbuffer = data.buffer;
    });
    }
 
@@ -71,14 +68,11 @@ setInterval(() => {
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
 
-         if(init){
             if(curitem.status == "running"){
-               managerpower = managerpower + curitem.production;
+               managerpower = managerpower + (curitem.production * ratio);
             }
-         }else{
 
-         }
-         
+            totalbuffer = totalbuffer + (managerpower * ratio);
       }
    })
 
@@ -102,7 +96,7 @@ setInterval(() => {
          production.setRatio(curitem.ratio);
          production.calcNetProd(distribute.cons);
          production.calcBuffer(curitem.buffer, batterylimit_h);
-         production.checkBlackout(totalbuffer, totalnetproduction);
+         production.checkBlackout(totalbuffer, totalnetproduction + managerpower);
       
          console.log("Wind : " + distribute.wind);
          console.log("Consumption : " + distribute.cons);
@@ -151,11 +145,18 @@ setInterval(() => {
       init = true;
    }
 
+   if(totalnetproduction < 0){
+      totalbuffer = totalbuffer + totalnetproduction;
+   }
+
    const res = axios.put(backend + "/grid", {
-      totalproduction: '' + totalproduction,
-      totalconsumption: '' + totalconsumption,
-      totalnetproduction: '' + totalnetproduction,
+      totalproduction: '' + (totalproduction + managerpower),
+      totalconsumption: '' + (totalconsumption),
+      totalnetproduction: '' + (totalnetproduction + managerpower),
+      buffer: '' + totalbuffer
    })
+
+   managerpower = 0;
 
    console.log("#######################")
 }, tick);
