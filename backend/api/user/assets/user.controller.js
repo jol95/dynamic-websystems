@@ -216,7 +216,6 @@ exports.getUsers = function(req, res) {
   });
 }
 
-
 exports.updateUser = async function(req, res) {
   // Form validation
   //    const { errors, isValid } = validateUpdateInput(req.params);

@@ -35,16 +35,6 @@ class ManagerUpdateDb extends Component {
 
     };
 
-    onSubmit2 = e => {
-      e.preventDefault();
-    const newUpdate = {
-      status: this.state.status,
-    };
-    console.log("ManagerUpdateDB manager newupdate", newUpdate);
-    this.props.updateDatabase("grid", newUpdate, "/"); 
-  };
-
-
     render() {
         const { errors } = this.state;
     return (
@@ -89,9 +79,8 @@ class ManagerUpdateDb extends Component {
               </div>
 
               <div className="input-field col s12">
-              <form noValidate onSubmit={this.onSubmit2}>
+              <form noValidate onSubmit={this.onSubmit}>
                 {/* DROPDOWN FOR STATUS ON/OFF */}
-                <div className="input-field col s12">
                 <label htmlFor="status">Status</label>
                 <select
                   onChange={this.onChange}
@@ -104,7 +93,6 @@ class ManagerUpdateDb extends Component {
                 </select>      
 
               </div>   
-            </div>
             {/* STATUS SUBMIT BUTTON */}
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <button
