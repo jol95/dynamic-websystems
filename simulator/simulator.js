@@ -155,7 +155,10 @@ setInterval(() => {
          if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
             totalbuffer = batterylimit_t
          }else if(production.netprod < 0){
-            totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
+            if((totalbuffer + (production.netprod * (1 - curitem.ratio))) <= 0){
+               totalbuffer = 0;
+            }else{
+               totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
          } 
       }
       console.log("");
