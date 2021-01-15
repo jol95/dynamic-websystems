@@ -43,13 +43,12 @@ class HouseholdUsers extends Component {
             })
     }
 
-    // onEditClick = e => {
-    //     console.log("click");
-    //     const data = this.state.id;
-    //     e.preventDefault();
-    //     const path = `/profile/${data}`;
-    //     this.props.history.push(path);
-    //     };
+    onEditClick = value => () => {
+        console.log("click");
+        //e.preventDefault();
+        const path = `/profile/${value}`;
+        this.props.history.push(path);
+        };
 
 
 
@@ -86,10 +85,9 @@ class HouseholdUsers extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-                        // onClick={ => {
-                        //     this.setState({ id: item.id });
-                        //     this.onEditClick;}
-                        // }
+
+                        onClick={this.onEditClick(item.id)}
+
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
                         Edit profile
