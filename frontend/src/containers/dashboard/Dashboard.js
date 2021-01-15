@@ -28,7 +28,7 @@ class Dashboard extends Component {
 
 render() {
   const { user2 } = this.props.auth;
-  const data2 = user.id;
+  const data2 = user2.id;
 return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
