@@ -56,15 +56,16 @@ class HouseHolds extends Component {
                 // ratio:  response.data.ratio,
 
             })
-            console.log("incoming array", incoming);
-            console.log("response.data", respone.data);
     }
 
 
 
     render() {
-        const { id, display, wind, production, consumption,
-        netproduction, buffer, blackout, ratio } = this.state
+        const { incoming } = this.state;
+        console.log("incoming array", incoming);
+        console.log("this state", this.state);
+        // const { id, display, wind, production, consumption,
+        // netproduction, buffer, blackout, ratio } = this.state
         return(
             <div className="Apphouse">
                 <h1>Your Household</h1>
