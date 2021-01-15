@@ -87,10 +87,10 @@ class HouseholdUsers extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-                        onClick={ => {
-                            this.setState({ id: item.id });
-                            this.onEditClick;}
-                        }
+                        // onClick={ => {
+                        //     this.setState({ id: item.id });
+                        //     this.onEditClick;}
+                        // }
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
                         Edit profile
