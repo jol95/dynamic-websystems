@@ -42,7 +42,7 @@ class ManagerUpdateDb extends Component {
     };
       
   console.log("ManagerUpdateDB manager newupdate", newUpdate);
-  this.props.updateDatabase("grid", newUpdate, "/"); 
+  this.props.updateDatabase("manager", newUpdate, "/"); 
 
   };
 
