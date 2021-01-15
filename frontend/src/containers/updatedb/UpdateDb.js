@@ -68,7 +68,6 @@ class UpdateDb extends Component {
                   minratio={this.state.minRatio}
                   maxratio={this.state.maxRatio}
                   ratiovalue={this.state.distance}
-                  onChange={ val => this.setState({ distance: val })}
 
                   id="ratio"
                   type="range"
