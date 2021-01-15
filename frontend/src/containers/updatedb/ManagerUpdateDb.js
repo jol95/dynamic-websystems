@@ -7,7 +7,7 @@ class ManagerUpdateDb extends Component {
     constructor() {
       super();
       this.state = {
-        status: "on",
+        status: "running",
         price: 0,
         errors: {}
       };
@@ -86,7 +86,7 @@ class ManagerUpdateDb extends Component {
                   id="status"
                   type="text"
                   >
-                <option value="on">On</option>
+                <option value="running">On</option>
                 <option value="off">Off</option>
                 </select>      
 
