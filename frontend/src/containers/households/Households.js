@@ -16,6 +16,7 @@ class HouseHolds extends Component {
     }
 
     componentDidMount() {
+        console.log("component did mount HOUSEHOLDS");
         this.interval = setInterval(this.tick, this.state.delay);
     }
 
@@ -39,6 +40,7 @@ class HouseHolds extends Component {
             var kind = "household/"
 
             const response = await axios.get("/api/" + kind);
+            console.log("HOUSEHOLD: log responsce", responce);
             this.setState({
                 
                 pollingCount: this.state.pollingCount + 1,

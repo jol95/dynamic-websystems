@@ -41,7 +41,7 @@ const update = async () => {
 }
 
 // tick = 10000 //for error checking.
-tick = 10000;
+tick = 1000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
@@ -98,9 +98,6 @@ setInterval(() => {
          }else{
             totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
             totalproduction = totalproduction + (production.prod - curitem.production);
-            if(totalproduction < 0){
-               totalproduction = 0;
-            }
             totalnetproduction = totalnetproduction + ((production.netprod * (1 - curitem.ratio)) - (curitem.netproduction * (1 - curitem.ratio)));
          }
 
