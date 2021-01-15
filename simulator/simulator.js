@@ -16,6 +16,8 @@ let totalconsumption = 0;
 let totalnetproduction = 0;
 let totalbuffer = 0;
 
+let managerpower = 0;
+
 const initTotal = async () => { 
   try {
     const response = await axios.get(backend + '/grid/');
@@ -127,12 +129,6 @@ setInterval(() => {
       console.log("TOTAL PRODUCTION : " + totalproduction)
       console.log("TOTAL CONSUMPTION : " + totalconsumption)
       console.log("TOTAL NETPRODUCTION : " + totalnetproduction)
-
-      if(!init){
-         init = true;
-      }
-
-      
    });
 
    updateManager().then(data => {
@@ -140,9 +136,20 @@ setInterval(() => {
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
 
-         if(curitem.status === "running")
+         if(init){
+            if(curitem == "running"){
+               managerpower
+            }
+         }else{
+
+         }
+         
       }
    })
+
+   if(!init){
+      init = true;
+   }
 
    const res = axios.put(backend + "/grid", {
       totalproduction: '' + totalproduction,
