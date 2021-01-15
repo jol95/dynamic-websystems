@@ -46,7 +46,7 @@ export const displayDatabase = (data, dbData) => dispatch => {
 // Edit user
 export const editUser = (userType, dbData ,data) => dispatch => {
   axios
-    .put("api/" + userType + data, dbData)
+    .put("/api/" + userType + data, dbData)
     .then(res => {
       console.log("authactions updatedatabase USERTYPE:", userType)
       console.log("authactions updatedatabase data:", data)
@@ -64,7 +64,7 @@ export const editUser = (userType, dbData ,data) => dispatch => {
 // Register User
 export const registerUser = (userData, history) => dispatch => {
   axios
-    .post("/api/user/register", userData)
+    .post("api/user/register", userData)
     .then(res => history.push("/login")) // re-direct to login on successful register
     .catch(err =>
       dispatch({
