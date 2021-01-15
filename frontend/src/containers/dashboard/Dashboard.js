@@ -27,14 +27,11 @@ class Dashboard extends Component {
   };
 
 render() {
-  const { user2 } = this.props.auth;
-  const data2 = user2.id;
 return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Hey there,</b> {user2.firstname}
               <p className="flow-text grey-text text-darken-1">
                 You are logged in :){" "}
               </p>
