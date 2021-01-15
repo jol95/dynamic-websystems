@@ -27,6 +27,7 @@ class UpdateDb extends Component {
     }
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
+        //var ratioValue = this.state.distance;
     };
         onSubmit = e => {
             e.preventDefault();
@@ -79,7 +80,7 @@ class UpdateDb extends Component {
                 />
                 <view>
                   <text>{this.state.minRatio}</text>
-                  <text>{this.state.distance}</text>
+                  <text>{this.state.ratioValue}</text>
                   <text>{this.state.maxRatio}</text>
                 </view>
 
