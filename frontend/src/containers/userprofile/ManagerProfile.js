@@ -45,17 +45,19 @@ class ManagerProfile extends Component {
                 kind = "household/";
             }
             const response = await axios.get("/api/" + kind + data);
+            const response2 = await axios.get("/api/grid/");
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
                 id: response.data.id,
                 status: response.data.status,
                 ratio: response.data.ratio,
                 display: response.data.img,
+                price: response2.data.price,
             })
     }
 
     render() {
-        const { id, status, ratio, display } = this.state
+        const { id, status, ratio, display, price } = this.state
         return(
         <div className="Apphouse">
             <h1>Manager Dashboard</h1>
@@ -73,6 +75,7 @@ class ManagerProfile extends Component {
                 <br/>
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
+                <p>price: {price} </p>
                 </div>
                 </div>
                 </div>

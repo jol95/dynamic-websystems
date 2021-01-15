@@ -69,16 +69,15 @@ setInterval(() => {
          var curitem = data[x];
 
             if(curitem.status == "running"){
-               managerpower = managerpower + (curitem.production * (1 - ratio));
-            }
-
-            if(totalbuffer + (curitem.production * ratio) >= batterylimit_t){
-               totalbuffer = batterylimit_t;
-               managerpower = ((totalbuffer + (curitem.production * ratio)) - batterylimit_t);
-            }else if(totalbuffer + (curitem.production * ratio) <= 0){
-               totalbuffer = 0;
-            }else{
-               totalbuffer = totalbuffer + (curitem.production * ratio);
+               if(totalbuffer + (curitem.production * ratio) >= batterylimit_t){
+                  totalbuffer = batterylimit_t;
+                  managerpower = managerpower + ((totalbuffer + (curitem.production * ratio)) - batterylimit_t);
+               }else if(totalbuffer + (curitem.production * ratio) <= 0){
+                  totalbuffer = 0;
+               }else{
+                  managerpower = managerpower + (curitem.production * (1 - ratio));
+                  totalbuffer = totalbuffer + (curitem.production * ratio);
+               }
             }
       }
    })
