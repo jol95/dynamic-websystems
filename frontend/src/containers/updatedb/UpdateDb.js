@@ -78,9 +78,9 @@ class UpdateDb extends Component {
                   //value="0.5"
                 />
                 <view>
-                  <Text>{this.state.minRatio}</Text>
-                  <Text>{this.state.ratioValue}</Text>
-                  <Text>{this.state.maxRatio}</Text>
+                  <p>{this.state.minRatio}</p>
+                  <p>{this.state.ratioValue}</p>
+                  <p>{this.state.maxRatio}</p>
                 </view>
 
                 <span className="red-text">{errors.ratio}</span>
