@@ -45,9 +45,9 @@ class Households extends Component {
 
 
     render() {
+         let items = this.state.items
          console.log("RENDER(): items:", items);
          console.log("RENDER(): response.data", this.state.items)
-         let items = this.state.items
         return(
         <div className="Apphouse">
 
