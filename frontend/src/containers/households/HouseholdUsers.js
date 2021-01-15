@@ -43,7 +43,6 @@ class HouseholdUsers extends Component {
             })
     }
 
-
     render() {
          let items = this.state.items
          console.log("RENDER(): items:", items);
@@ -73,7 +72,7 @@ class HouseholdUsers extends Component {
                         <p>address:{item.address} </p>
                         <p>logged in:{item.status} </p>
                         {/*EDIT PROFILE BUTTON*/}
-                        <button
+                        {/* <button
                         style={{
                             width: "150px",
                             borderRadius: "3px",
@@ -84,7 +83,7 @@ class HouseholdUsers extends Component {
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
                         Edit profile
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             )}
