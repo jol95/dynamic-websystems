@@ -9,6 +9,9 @@ class UpdateDb extends Component {
     constructor() {
       super();
       this.state = {
+        minRatio: 0,
+        maxRatio: 1,
+        distance: 0.3,
         ratio: 0,
         kind: "",
         errors: {}
@@ -61,6 +64,10 @@ class UpdateDb extends Component {
                   onChange={this.onChange}
                   value={this.state.ratio}
                   error={errors.ratio}
+
+                  style={{width: 300}}
+                  onValueChange={ val => this.setState({ distance: val })}
+                  
                   id="ratio"
                   type="range"
                   min="0"

@@ -18,6 +18,9 @@ let totalbuffer = 0;
 
 let managerpower = 0;
 
+let totalprice = 0;
+let totalmodelprice = 0;
+
 const initTotal = async () => { 
   try {
     const response = await axios.get(backend + '/grid/');
@@ -57,14 +60,17 @@ const updateManager = async () => {
 // tick = 10000 //for error checking.
 tick = 5000;
 setInterval(() => {
-  if(!init){
     initTotal().then(tot => {
-      totalproduction = tot.totalproduction;
-      totalconsumption = tot.totalconsumption;
-      totalnetproduction = tot.totalnetproduction;
-      totalbuffer = tot.buffer;
+      if(!init){
+         totalproduction = tot.totalproduction;
+         totalconsumption = tot.totalconsumption;
+         totalnetproduction = tot.totalnetproduction;
+         totalmodelprice = tot.modelprice;
+         totalbuffer = tot.buffer;
+      }
+
+      totalprice = tot.price;
    });
-   }
 
    /*
       CHARGE BUFFER WITH RATIO * PRODUCTION OF MANAGER
@@ -133,6 +139,7 @@ setInterval(() => {
             production: "" + production.prod,
             consumption: "" + distribute.cons,
             netproduction: "" + production.netprodmarket,
+            price: "" + totalprice,
             buffer: "" + production.buffer,
             blackout: "" + production.blackout
          });
@@ -172,11 +179,18 @@ setInterval(() => {
       console.log("");
    });
 
+   if(totalnetproduction < 0){
+      totalmodelprice = 5 + (-1 * totalnetproduction);
+   }else{
+      totalmodelprice = 2;
+   }
+
    const res = axios.put(backend + "/grid/", {
       totalproduction: "" + (totalproduction + managerpower),
       totalconsumption: "" + (totalconsumption),
       totalnetproduction: "" + (totalnetproduction + managerpower),
-      buffer: "" + totalbuffer
+      buffer: "" + totalbuffer,
+      modelprice: "" + totalmodelprice
    })
 
    managerpower = 0;
