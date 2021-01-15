@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
         type: String,
     },
     status: {
-        type: Boolean
+        type: String
     },
     address: {
         type: String,

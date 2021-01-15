@@ -15,7 +15,7 @@ class Dashboard extends Component {
     //   status: false,
     // }
     const dbData =  {
-      status: false,
+      status: "false",
     }
     console.log("dashboard logout data", dbData)
     this.props.logoutUser(dbData, data);

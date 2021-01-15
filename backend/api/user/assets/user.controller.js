@@ -75,7 +75,7 @@ exports.loginUser = async function(req, res) {
             }
           );
 
-          user.status = true;
+          user.status = "true";
 
           user.save()
               .then(user => res.json(user))
@@ -125,7 +125,7 @@ exports.registerUser = async function(req, res) {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 role: role,
-                status: false,
+                status: "false",
                 address: address
         });
         bcrypt.genSalt(10, (err, salt) => {
