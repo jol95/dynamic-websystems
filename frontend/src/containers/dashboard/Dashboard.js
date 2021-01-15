@@ -8,6 +8,8 @@ import ProfileImg from "../profileimg/ProfileImg";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
+    const { user } = this.props.auth;
+    const data = user.id;
     e.preventDefault();
     const dbData = {
       status: false,
