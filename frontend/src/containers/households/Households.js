@@ -70,7 +70,7 @@ class HouseHolds extends Component {
         return(
                 <div className="Apphouse">
                     {this.state.incoming.map((item, index) => {
-                        
+                        <p> test </p>
                     })}
                     <h1>Your Household</h1>
                     <h2>Show household info</h2>

@@ -42,7 +42,7 @@ const updateUser = async () => {
 
 const updateManager = async () => { 
    try {
-   const response = await axios.get(backend + '/household/');
+   const response = await axios.get(backend + '/manager/');
    if (response.status === 200) { 
      //console.log('Request on api/household worked!');
     return response.data;

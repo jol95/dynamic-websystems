@@ -19,9 +19,10 @@ class Production{
         this.netprod = (this.prod - consumption);
     }
 
-    calcBuffer(netprod, ratio, o_buffer, batterylimit){
+    calcDiffBuffer(netprod, ratio, o_buffer, batterylimit){
         if((o_buffer + (netprod * ratio)) >= batterylimit){ 
             this.buffer = batterylimit;
+
         }else if((o_buffer + (netprod * ratio)) <= 0){
             this.buffer = 0
         }
