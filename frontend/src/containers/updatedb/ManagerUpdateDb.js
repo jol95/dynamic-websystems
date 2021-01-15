@@ -57,7 +57,7 @@ class ManagerUpdateDb extends Component {
                   step="0.1"
                   //value="0.5"
                 />
-
+                <p>{this.state.price}</p>
                 <span className="red-text">{errors.price}</span>
               </div>
 
