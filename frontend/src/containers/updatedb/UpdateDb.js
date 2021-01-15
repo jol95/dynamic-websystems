@@ -76,13 +76,12 @@ class UpdateDb extends Component {
                   step="0.05"
                   defaultvalue="0.5"
                 />
-                  <p>{this.state.minratio}</p>
-                  <p>{this.state.ratiovalue}</p>
-                  <p>{this.state.maxratio}</p>
+                <p>{this.state.ratio}</p>
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <p>{this.state.ratio}</p>
                 <button
                   style={{
                     width: "150px",
@@ -92,8 +91,9 @@ class UpdateDb extends Component {
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                >
-                  Update ratio <p>{this.state.ratio}</p>
+                > 
+                <p>{this.state.ratio}</p>
+                Update ratio
                 </button>
               </div>
             </form>
