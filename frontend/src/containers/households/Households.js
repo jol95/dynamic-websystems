@@ -70,7 +70,7 @@ class Households extends Component {
                         <p>Netto production:{item.netproduction} kW/h</p>
                         <p>Buffer:{item.buffer} kW</p>
                         <p>Price:{item.price} sek/kW </p>
-                        <p>Blackout:{item.blackout}</p>
+                        <p>Blackout:{String(item.blackout)}</p>
                         <p>Ratio:{item.ratio}</p>
                     </div>
                 </div>

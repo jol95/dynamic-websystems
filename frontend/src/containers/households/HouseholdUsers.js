@@ -74,7 +74,7 @@ class HouseholdUsers extends Component {
                         <p>firstname:{item.firstname} </p>
                         <p>lastname:{item.lastname} </p>
                         <p>address:{item.address} </p>
-                        <p>status:{item.status} </p>
+                        <p>status:{String(item.status)} </p>
                                     {/*EDIT PROFILE BUTTON*/}
                         <button
                         style={{
