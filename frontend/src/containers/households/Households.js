@@ -40,7 +40,8 @@ class HouseHolds extends Component {
 
             const response = await axios.get("/api/" + kind);
             console.log("AXIOS GET");
-            console.log("HOUSEHOLD: log responsce", response);
+            console.log("HOUSEHOLD: response data", response.data);
+            console.log("HOUSEHOLD: response", response);
             this.setState({           
                 pollingCount: this.state.pollingCount + 1,
                 incoming: response.data,
