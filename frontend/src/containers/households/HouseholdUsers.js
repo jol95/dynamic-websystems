@@ -42,11 +42,11 @@ class HouseholdUsers extends Component {
             })
     }
 
-    onEditClick = e => {
-        e.preventDefault();
-        const path = `/profile/${}`;
-        this.props.history.push(path);
-        };
+    // onEditClick = e => {
+    //     e.preventDefault();
+    //     const path = `/profile/${}`;
+    //     this.props.history.push(path);
+    //     };
 
 
 
