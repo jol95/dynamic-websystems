@@ -98,7 +98,7 @@ setInterval(() => {
       REST IS SENT TO MARKET (NETPRODUCTION * (1 - RATIO))
 
       TOTALPRODUCTION - TOTALCONSUMPTION != TOTALNETPRODUCTION.
-      WITH 
+      REMEBER TO TAKE THE RATIO IN ACCOUNT!
    */
 
    updateUser().then(data => {
