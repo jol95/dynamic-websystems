@@ -10,7 +10,7 @@ import ProfileImg from "../profileimg/ProfileImg";
 class ManagerDashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
-    this.props.logoutUser();
+    this.props.logoutManager();
   };
 
 render() {
@@ -48,7 +48,7 @@ return (
   }
 }
 ManagerDashboard.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
+  logoutManager: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -56,5 +56,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutManager }
 )(ManagerDashboard);

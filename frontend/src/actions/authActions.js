@@ -124,15 +124,15 @@ export const setRole = () => {
   };
 };
 
-// // Log user out, maybe a redirect?
-// export const logoutUser = () => dispatch => {
-//   // Remove token from local storage
-//   localStorage.removeItem("jwtToken");
-//   // Remove auth header for future requests
-//   setAuthToken(false);
-//   // Set current user to empty object {} which will set isAuthenticated to false
-//   dispatch(setCurrentUser({}));
-// };
+// Log user out, maybe a redirect?
+export const logoutManager = () => dispatch => {
+  // Remove token from local storage
+  localStorage.removeItem("jwtToken");
+  // Remove auth header for future requests
+  setAuthToken(false);
+  // Set current user to empty object {} which will set isAuthenticated to false
+  dispatch(setCurrentUser({}));
+};
 
 export const logoutUser = (status, data) => dispatch => {
 
