@@ -168,13 +168,6 @@ setInterval(() => {
       console.log("");
    });
 
-   if(totalnetproduction < 0){
-      totalbuffer = totalbuffer + totalnetproduction;
-      if (totalbuffer < 0){
-         totalbuffer = 0;
-      }
-   } 
-
    const res = axios.put(backend + "/grid/", {
       totalproduction: "" + (totalproduction + managerpower),
       totalconsumption: "" + (totalconsumption),
