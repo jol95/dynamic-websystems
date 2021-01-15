@@ -96,6 +96,9 @@ setInterval(() => {
    /*
       CHARGE HOUSE BUFFER (NETPRODUCTION * RATIO)
       REST IS SENT TO MARKET (NETPRODUCTION * (1 - RATIO))
+
+      TOTALPRODUCTION - TOTALCONSUMPTION != TOTALNETPRODUCTION.
+      WITH 
    */
 
    updateUser().then(data => {
@@ -165,12 +168,12 @@ setInterval(() => {
       console.log("");
    });
 
-   /* if(totalnetproduction < 0){
+   if(totalnetproduction < 0){
       totalbuffer = totalbuffer + totalnetproduction;
       if (totalbuffer < 0){
          totalbuffer = 0;
       }
-   } */
+   } 
 
    const res = axios.put(backend + "/grid/", {
       totalproduction: "" + (totalproduction + managerpower),
