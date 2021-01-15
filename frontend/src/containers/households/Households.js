@@ -8,9 +8,11 @@ import "./Households.css";
 class HouseHolds extends Component {
     constructor() {
         super();
+        this.listies = {}
         this.state = {
             pollingCount: 0,
             delay: 1000,
+            houselist: {}
             errors: {}
         };
     }
@@ -38,26 +40,28 @@ class HouseHolds extends Component {
             const data = user.id
             var kind = "household/"
 
-            const response = await axios.get("/api/" + kind + data);
+            const response = await axios.get("/api/" + kind);
             this.setState({
-                pollingCount: this.state.pollingCount + 1,
-                id: response.data.id,
-                display:  response.data.img,
-                wind:  response.data.wind,
-                production:  response.data.production,
-                consumption:  response.data.consumption,
-                netproduction:  response.data.netproduction,
-                buffer:  response.data.buffer,
-                blackout:  response.data.blackout,
-                ratio:  response.data.ratio,
+                
+                // pollingCount: this.state.pollingCount + 1,
+                // id: response.data.id,
+                // display:  response.data.img,
+                // wind:  response.data.wind,
+                // production:  response.data.production,
+                // consumption:  response.data.consumption,
+                // netproduction:  response.data.netproduction,
+                // buffer:  response.data.buffer,
+                // blackout:  response.data.blackout,
+                // ratio:  response.data.ratio,
+
             })
     }
 
 
 
     render() {
-        const { id, display, wind, production, consumption,
-        netproduction, buffer, blackout, ratio } = this.state
+        // const { id, display, wind, production, consumption,
+        // netproduction, buffer, blackout, ratio } = this.state
         return(
         <div className="Apphouse">
             <h1>Your Household</h1>
