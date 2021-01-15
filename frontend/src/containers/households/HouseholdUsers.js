@@ -43,8 +43,7 @@ class HouseholdUsers extends Component {
             })
     }
 
-    onEditClick = e => {
-        const value = this.state.id;
+    onEditClick = (e, value) => {
         console.log("click", value);
         const path = `/profile/${value}`;
         this.props.history.push(path);
@@ -85,10 +84,8 @@ class HouseholdUsers extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-                        onClick={(e) =>  this.setState({
-                            id: item.id})}
 
-                        onClick={this.onEditClick}
+                        onClick={this.onEditClick(e, item.id)}
 
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >

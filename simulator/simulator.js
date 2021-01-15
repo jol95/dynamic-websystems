@@ -58,7 +58,7 @@ const updateManager = async () => {
  }
 
 // tick = 10000 //for error checking.
-tick = 5000;
+tick = 1000;
 setInterval(() => {
     initTotal().then(tot => {
       if(!init){
