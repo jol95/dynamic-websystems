@@ -52,7 +52,7 @@ class ManagerUpdateDb extends Component {
     render() {
         const { errors } = this.state;
     return (
-        
+     
         <div className="container">
             <form noValidate onSubmit={this.onSubmit}>
               
@@ -92,7 +92,6 @@ class ManagerUpdateDb extends Component {
             </form>
           </div>
 
-      <div className="container">
       <form noValidate onSubmit={this.onSubmit}>
         
         {/* PRICE */}
@@ -129,7 +128,6 @@ class ManagerUpdateDb extends Component {
           </button>
         </div>
       </form>
-      </div>
     );
     }
 }
