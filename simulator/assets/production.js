@@ -3,7 +3,10 @@ const { cons } = require("./distribute");
 class Production{
     prod;
     price;
+    ratio;
     netprod;
+    netprodbuffer;
+    netprodmarket;
     buffer;
     blackout;
 
@@ -15,19 +18,25 @@ class Production{
         }
     }
 
-    calcNetProd(consumption){
-        this.netprod = (this.prod - consumption);
+    setRatio(ratio){
+        this.ratio = ratio;
     }
 
-    calcDiffBuffer(netprod, ratio, o_buffer, batterylimit){
-        if((o_buffer + (netprod * ratio)) >= batterylimit){ 
+    calcNetProd(consumption){
+        this.netprod = (this.prod - consumption);
+        this.netprodbuffer = this.netprod * this.ratio;
+        this.netprodmarket = this.netprod * (1 - this.ratio)
+    }
+
+    calcDiffBuffer(o_buffer, batterylimit){
+        if((o_buffer + this.netprodbuffer) >= batterylimit){ 
             this.buffer = batterylimit;
 
-        }else if((o_buffer + (netprod * ratio)) <= 0){
+        }else if((o_buffer + this.netprodbuffer) <= 0){
             this.buffer = 0
         }
         else{
-            this.buffer = o_buffer + (netprod * ratio);
+            this.buffer = o_buffer + this.netprodbuffer;
         }
     }
 

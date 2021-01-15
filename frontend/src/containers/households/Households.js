@@ -71,7 +71,10 @@ class HouseHolds extends Component {
                 <div className="Apphouse">
                     {this.state.incoming.map((item, index) => {
                         return
-                            <p> test </p>
+                        <div className="house" key={index}>
+                        <p> test no data </p>
+                        <p> test ID: {item.id} </p>
+                       </div>
                     })}
                     <h1>Your Household</h1>
                     <h2>Show household info</h2>
