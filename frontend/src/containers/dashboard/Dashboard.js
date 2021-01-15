@@ -11,10 +11,10 @@ class Dashboard extends Component {
     const { user } = this.props.auth;
     const data = user.id;
     e.preventDefault();
-    const dbData = {
-      status: false,
-    }
-    Boolean(dbData) = false;
+    // const dbData = {
+    //   status: false,
+    // }
+    Boolean dbData = false;
     console.log("dashboard logout data", dbData)
     this.props.logoutUser(dbData, data);
   };
