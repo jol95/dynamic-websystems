@@ -5,22 +5,22 @@ const gridSchema = new mongoose.Schema({
         type: Number,
         unique: true
     },
-    totalproduction: {
+    totalproduction: {  // Visa
         type: Number
     },
-    totalconsumption: {
+    totalconsumption: { // Visa 
         type: Number
     },
-    totalnetproduction:{
+    totalnetproduction:{ // Visa
         type: Number
     },
-    buffer:{
-        type: Number
+    buffer:{            // Visa
+        type: Number    
     },
-    modelprice:{
+    modelprice:{        // Visa
         type: Number
-    },
-    price:{
+    }, 
+    price:{             // Visa och ändra
         type: Number
     }
 }, {

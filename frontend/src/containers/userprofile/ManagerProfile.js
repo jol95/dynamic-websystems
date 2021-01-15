@@ -49,6 +49,11 @@ class ManagerProfile extends Component {
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
                 price: response2.data.price,
+                totalproduction: response2.data.totalproduction,
+                totalconsumption: response2.data.totalconsumption,
+                totalnetproduction: response2.data.totalnetproduction,
+                buffer: response2.data.buffer
+                modelprice: response2.data.modelprice
                 id: response.data.id,
                 status: response.data.status,
                 ratio: response.data.ratio,
