@@ -5,7 +5,7 @@ import { displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
 import "./Households.css";
 
-class Households extends Component {
+class HouseholdUsers extends Component {
     constructor() {
         super();
         this.state = {
@@ -34,7 +34,7 @@ class Households extends Component {
 
     tick = async () => {    
 
-            var kind = "household";
+            var kind = "user";
             const response = await axios.get("/api/" + kind);
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
@@ -50,7 +50,7 @@ class Households extends Component {
          console.log("RENDER(): response.data", this.state.items)
         return(
         <div className="Apphouse">
-            <h1>Households</h1>
+            <h1>Users</h1>
             <h2>Refreshes: {this.state.pollingCount}</h2>
             {/* Fetch data from API */}
             <br />
@@ -64,14 +64,11 @@ class Households extends Component {
                         src={"data:image/png;base64," + item.img}
                         alt='Look here'/>
                         <br/>
-                        <p>Wind:{item.wind} m/s</p>
-                        <p>Production:{item.production} kW/h</p>
-                        <p>Consumption:{item.consumption} kW/h</p>
-                        <p>Netto production:{item.netproduction} kW/h</p>
-                        <p>Buffer:{item.buffer} kW</p>
-                        <p>Price:{item.price} sek/kW </p>
-                        <p>Blackout:{item.blackout}</p>
-                        <p>Ratio:{item.ratio}</p>
+                        <p>email:{item.email} </p>
+                        <p>firstname:{item.firstname} </p>
+                        <p>lastname:{item.lastname} </p>
+                        <p>address:{item.address} </p>
+                        <p>status:{item.status} </p>
                     </div>
                 </div>
             )}
@@ -82,7 +79,7 @@ class Households extends Component {
     }
 }
 
-Households.propTypes = {
+HouseholdUsers.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -94,4 +91,4 @@ Households.propTypes = {
   export default connect(
     mapStateToProps,
     { displayDatabase }
-  )( Households );
+  )( HouseholdUsers );
