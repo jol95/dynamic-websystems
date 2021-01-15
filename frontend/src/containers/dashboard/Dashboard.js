@@ -14,11 +14,11 @@ class Dashboard extends Component {
     // const dbData = {
     //   status: false,
     // }
-    Boolean =  {
+    const dbData =  {
       status: false,
     }
-    console.log("dashboard logout data", Boolean)
-    this.props.logoutUser(Boolean, data);
+    console.log("dashboard logout data", dbData)
+    this.props.logoutUser(dbData, data);
   };
 
   onEditClick = e => {
