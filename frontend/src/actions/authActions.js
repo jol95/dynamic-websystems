@@ -46,7 +46,7 @@ export const displayDatabase = (data, dbData) => dispatch => {
 // Edit user
 export const editUser = (userType, dbData ,data) => dispatch => {
   axios
-    .put("/api/" + userType + data, dbData)
+    .put("130.240.200.62:3000/api/" + userType + data, dbData)
     .then(res => {
       console.log("authactions updatedatabase USERTYPE:", userType)
       console.log("authactions updatedatabase data:", data)
