@@ -18,6 +18,12 @@ class Dashboard extends Component {
     this.props.logoutUser(dbData, data);
   };
 
+  onEditClick = e => {
+  const { user } = this.props.auth;
+  const data = user.id;
+  e.preventDefault();
+  const path = "/profile/"{data};
+  this.props.history.push(path);
 
 render() {
   const { user } = this.props.auth;
@@ -35,6 +41,20 @@ return (
             <UserProfile/>
             <ProfileImg/>
             <UpdateDb/>
+            {/*EDIT PROFILE BUTTON*/}
+            <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              onClick={this.onEditClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Edit profile
+            </button>
+            {/*LOGOUT BUTTON */}
             <button
               style={{
                 width: "150px",

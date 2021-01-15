@@ -93,7 +93,9 @@ setInterval(() => {
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
 
+         console.log("")
          console.log("###### HOUSE " + curitem.id + " ########")
+         console.log("")
 
          distribute.distributeAvg();
 
@@ -122,6 +124,7 @@ setInterval(() => {
             blackout: "" + production.blackout
          });
 
+         console.log("")
          console.log("Previous consumption : " + curitem.consumption);
          console.log("Previous production : " + curitem.production);
          console.log("Previous netproduction : " + curitem.netproduction);
@@ -142,13 +145,14 @@ setInterval(() => {
          totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
          }  */
       }
-
+      console.log("")
       console.log("########################")
       console.log("######## TOTAL ##########")
       console.log("########################")
       console.log("TOTAL PRODUCTION : " + totalproduction)
       console.log("TOTAL CONSUMPTION : " + totalconsumption)
       console.log("TOTAL NETPRODUCTION : " + totalnetproduction)
+      console.log("")
    });
 
    if(!init){
