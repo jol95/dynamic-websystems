@@ -24,22 +24,26 @@ class ManagerUpdateDb extends Component {
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
-        onSubmit = e => {
-          e.preventDefault();
-        const newUpdate = {
-          price: this.state.price,
-        };
-
-        onSubmit2 = e => {
-          e.preventDefault();
-        const newUpdate = {
-          status: this.state.status,
-        };
+      onSubmit = e => {
+        e.preventDefault();
+      const newUpdate = {
+        price: this.state.price,
+      };
         
     console.log("ManagerUpdateDB manager newupdate", newUpdate);
     this.props.updateDatabase("grid", newUpdate, "/"); 
 
     };
+
+    onSubmit2 = e => {
+      e.preventDefault();
+    const newUpdate = {
+      status: this.state.status,
+    };
+    console.log("ManagerUpdateDB manager newupdate", newUpdate);
+    this.props.updateDatabase("grid", newUpdate, "/"); 
+  };
+
 
     render() {
         const { errors } = this.state;
@@ -83,7 +87,7 @@ class ManagerUpdateDb extends Component {
                 </button>
                 </form>
               </div>
-              
+
               <div className="input-field col s12">
               <form noValidate onSubmit={this.onSubmit2}>
                 {/* DROPDOWN FOR STATUS ON/OFF */}
