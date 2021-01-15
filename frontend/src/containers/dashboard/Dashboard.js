@@ -39,7 +39,8 @@ render() {
             <ProfileImg/>
             <UpdateDb/>
             {/*EDIT PROFILE BUTTON*/}
-            <button
+            {/* WORKS BUT IS NOW RESTRICTED FOR MANAGER ONLY */}
+            {/* <button
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -50,10 +51,9 @@ render() {
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
               Edit profile
-            </button>
+            </button> */}
             {/*LOGOUT BUTTON */}
-            {/* WORKS BUT IS NOW RESTRICTED FOR MANAGER ONLY */}
-            {/* <button
+             <button
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -64,7 +64,7 @@ render() {
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
               Logout
-            </button> */}
+            </button>
           </div>
         </div>
       </div>
