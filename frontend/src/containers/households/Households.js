@@ -11,6 +11,7 @@ class HouseHolds extends Component {
         this.state = {
             pollingCount: 0,
             delay: 1000,
+            incoming: {},
             errors: {}
         };
     }
@@ -40,20 +41,23 @@ class HouseHolds extends Component {
             const response = await axios.get("/api/" + kind);
             console.log("AXIOS GET");
             console.log("HOUSEHOLD: log responsce", response);
-            this.setState({
-                
+            this.setState({           
                 pollingCount: this.state.pollingCount + 1,
-                id: response.data.id,
-                display:  response.data.img,
-                wind:  response.data.wind,
-                production:  response.data.production,
-                consumption:  response.data.consumption,
-                netproduction:  response.data.netproduction,
-                buffer:  response.data.buffer,
-                blackout:  response.data.blackout,
-                ratio:  response.data.ratio,
+                incoming: response.data,
+
+                // id: response.data.id,
+                // display:  response.data.img,
+                // wind:  response.data.wind,
+                // production:  response.data.production,
+                // consumption:  response.data.consumption,
+                // netproduction:  response.data.netproduction,
+                // buffer:  response.data.buffer,
+                // blackout:  response.data.blackout,
+                // ratio:  response.data.ratio,
 
             })
+            console.log("incoming array", incoming);
+            console.log("response.data", respone.data);
     }
 
 
