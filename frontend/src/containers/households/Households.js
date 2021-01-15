@@ -62,13 +62,14 @@ class HouseHolds extends Component {
 
 
     render() {
-        const { incoming } = this.state;
+        //const { incoming } = this.state;
         console.log("incoming array", incoming);
         console.log("this state", this.state);
         // const { id, display, wind, production, consumption,
         // netproduction, buffer, blackout, ratio } = this.state
+        {this.state.incoming.map((item, index) => {
         return(
-                <div className="Apphouse" key={index}>
+                <div className="Apphouse">
                     <h1>Your Household</h1>
                     <h2>Show household info</h2>
                     {/* Fetch data from API */}
@@ -88,7 +89,13 @@ class HouseHolds extends Component {
                     </div>
                 </div>   
             );
+        })}
 }
+        incominghouseholds = () => {
+            return {
+                ref: React.createRef()
+            }
+        }
 }
 
 HouseHolds.propTypes = {
