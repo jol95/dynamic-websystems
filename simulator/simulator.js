@@ -66,6 +66,22 @@ setInterval(() => {
    });
    }
 
+   updateManager().then(data => {
+      var objCount = data.length;
+      for ( var x = 0; x < objCount ; x++ ) {
+         var curitem = data[x];
+
+         if(init){
+            if(curitem == "running"){
+               managerpower
+            }
+         }else{
+
+         }
+         
+      }
+   })
+
    distribute.distributeInit();
 
    updateUser().then(data => {

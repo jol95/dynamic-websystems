@@ -35,6 +35,7 @@ class UpdateDb extends Component {
     const { user } = this.props.auth;
     const data = user.id;
 
+    //OLD
     if(user.role === "manager"){
       this.state.kind = "manager/";
       console.log("updateDB manager userData", user)
