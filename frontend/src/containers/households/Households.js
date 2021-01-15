@@ -71,7 +71,6 @@ class Households extends Component {
                         <p>Buffer:{item.buffer} kW</p>
                         <p>Blackout:{item.blackout}</p>
                         <p>Ratio:{item.ratio}</p>
-                        <p>Status:{item.status}</p>
                     </div>
                 </div>
                 //<h4 key={item.id}>{item.id}</h4>

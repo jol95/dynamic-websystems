@@ -55,6 +55,7 @@ class UserProfile extends Component {
                 buffer:  response.data.buffer,
                 blackout:  response.data.blackout,
                 ratio:  response.data.ratio,
+                status: response.data.status,
             })
     }
 
@@ -62,7 +63,7 @@ class UserProfile extends Component {
 
     render() {
          const { id, display, wind, production, consumption,
-         netproduction, buffer, blackout, ratio } = this.state
+         netproduction, buffer, blackout, ratio, status } = this.state
         return(
         <div className="Apphouse">
             <h1>Your Household</h1>
@@ -85,6 +86,7 @@ class UserProfile extends Component {
                 <p>buffer: {buffer} kW </p>
                 <p>blackout: {blackout} </p>
                 <p>ratio: {ratio} </p>
+                <p>status: {status} </p>
                 </div>
                 </div>
                 </div>
