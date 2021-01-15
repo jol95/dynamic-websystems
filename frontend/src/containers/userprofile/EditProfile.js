@@ -46,6 +46,8 @@ class EditProfile extends Component {
         };
     //editUser = (userType, dbData ,data)
     //       .put("api/" + userType + data, dbData)
+    console.log("xxx NEWUSER xxx", newUser);
+    console.log("xxx params xxx" , this.props.match.params);
     this.props.editUser("user/" , newUser, this.props.match.params); 
       };
     render() {
