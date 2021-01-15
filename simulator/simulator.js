@@ -180,9 +180,9 @@ setInterval(() => {
    });
 
    if(totalnetproduction < 0){
-      totalmodelprice = 2 + ((-0.01 * totalnetproduction));
+      totalmodelprice = 10 + (-0.1 * totalnetproduction); // Fix (without any dist.)
    }else{
-      totalmodelprice =  2 - ((0.01 * totalnetproduction)); // TODO
+      totalmodelprice =  10 - (0.1 * totalnetproduction); 
    }
 
    const res = axios.put(backend + "/grid/", {
