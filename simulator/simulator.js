@@ -72,8 +72,9 @@ setInterval(() => {
                if(totalbuffer + (curitem.production * ratio) >= batterylimit_t){
                   totalbuffer = batterylimit_t;
                   managerpower = managerpower + ((totalbuffer + (curitem.production * ratio)) - batterylimit_t);
-               }else if(totalbuffer + (curitem.production * ratio) <= 0){
+               }else if(totalbuffer + (curitem.production * ratio) < 0){
                   totalbuffer = 0;
+                  managerpower = managerpower + (curitem.production * (1 - ratio));
                }else{
                   managerpower = managerpower + (curitem.production * (1 - ratio));
                   totalbuffer = totalbuffer + (curitem.production * ratio);
@@ -153,12 +154,15 @@ setInterval(() => {
 
    if(totalnetproduction < 0){
       totalbuffer = totalbuffer + totalnetproduction;
+      if (totalbuffer < 0){
+         totalbuffer = 0;
+      }
    }
 
    const res = axios.put(backend + "/grid", {
       totalproduction: '' + (totalproduction + managerpower),
       totalconsumption: '' + (totalconsumption),
-      totalnetproduction: '' + (totalnetproduction + (managerpower)),
+      totalnetproduction: '' + (totalnetproduction + managerpower),
       buffer: '' + totalbuffer
    })
 
