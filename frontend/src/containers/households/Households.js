@@ -5,19 +5,18 @@ import { displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
 import "./Households.css";
 
-class HouseHolds extends Component {
+class Households extends Component {
     constructor() {
         super();
         this.state = {
             pollingCount: 0,
+            items: [],
             delay: 1000,
-            incoming: [this.incominghouseholds()],
             errors: {}
         };
     }
 
     componentDidMount() {
-        console.log("component did mount HOUSEHOLDS");
         this.interval = setInterval(this.tick, this.state.delay);
     }
 
@@ -34,79 +33,50 @@ class HouseHolds extends Component {
 
 
     tick = async () => {    
-            const { user } = this.props.auth;
-            const data = user.id
-            var kind = "household/"
 
+            var kind = "households";
             const response = await axios.get("/api/" + kind);
-            console.log("AXIOS GET");
-            console.log("HOUSEHOLD: response data", response.data);
-            console.log("HOUSEHOLD: response", response);
-            this.setState({           
+            this.setState({
                 pollingCount: this.state.pollingCount + 1,
-                incoming: response.data,
-
-                // id: response.data.id,
-                // display:  response.data.img,
-                // wind:  response.data.wind,
-                // production:  response.data.production,
-                // consumption:  response.data.consumption,
-                // netproduction:  response.data.netproduction,
-                // buffer:  response.data.buffer,
-                // blackout:  response.data.blackout,
-                // ratio:  response.data.ratio,
-
+                items: response.data
             })
     }
 
 
 
     render() {
-        //const { incoming } = this.state;
-        console.log("incoming array", this.state.incoming);
-        console.log("this state", this.state);
-        // const { id, display, wind, production, consumption,
-        // netproduction, buffer, blackout, ratio } = this.state
+         console.log("RENDER(): items:", items);
+         console.log("RENDER(): response.data", this.state.items)
+         let items = this.state.items
         return(
-                <div className="Apphouse">
-                    {this.state.incoming.map((item, index) => {
-                        return
-                        <div className="house" 
-                        ref={item.ref}
-                        key={index}>
-                        <p> test no data </p>
-                        <p> test ID: {item.id} </p>
-                       </div>
-                    })}
-                    <h1>Your Household</h1>
-                    <h2>Show household info</h2>
-                    {/* Fetch data from API */}
-                    <br />
-                    {/* Display data from API */}   
-                    <div className="profiles"> 
-                        <div className="profile">
-                            {/* <h2>ID: {id} </h2> */}
-                            <div className="details">
-                        {/* <img
-                            src={"data:image/png;base64," + display}
-                            alt='Look here'/> */}
-                        <br/>
-                        {/* <p>wind: {} m/s </p> */}
-                        </div>
-                        </div>
-                    </div>
-                </div>   
-            );
+        <div className="Apphouse">
+
+            {items.map(item =>
+                <h4 key={item.id}>{item.id}</h4>)}
+            
+            <h1>Your Household</h1>
+            <h2>Show household info</h2>
+            {/* Fetch data from API */}
+            <br />
+            {/* Display data from API */}   
+            <div className="profiles"> 
+                <div className="profile">
+                    {/* <h2>ID: {id} </h2> */}
+                    <div className="details">
+                {/* <img
+                    src={"data:image/png;base64," + display}
+                    alt='Look here'/> */}
+                <br/>
+
+                </div>
+                </div>
+                </div>
+            </div>   
+        );
 }
-        incominghouseholds = () => {
-            console.log("return incominghouldsholds");
-            return {
-                ref: React.createRef()
-            }
-        }
 }
 
-HouseHolds.propTypes = {
+Households.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -118,4 +88,4 @@ HouseHolds.propTypes = {
   export default connect(
     mapStateToProps,
     { displayDatabase }
-  )( HouseHolds );
+  )( Households );

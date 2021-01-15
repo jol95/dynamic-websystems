@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { cons } = require("./assets/distribute.js");
 const distribute = require("./assets/distribute.js");
-const { prod } = require("./assets/production.js");
+const { prod, netprodmarket } = require("./assets/production.js");
 const production = require("./assets/production.js");
 
 const backend = "http://localhost:5000/api";
@@ -95,7 +95,7 @@ setInterval(() => {
             wind: '' + distribute.wind,
             production: '' + production.prod,
             consumption: '' + distribute.cons,
-            netproduction: '' + production.netprod,
+            netproduction: '' + production.netprodmarket,
             buffer: '' + production.buffer,
             blackout: '' + production.blackout
          });
@@ -107,11 +107,11 @@ setInterval(() => {
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
             totalconsumption = totalconsumption + distribute.cons;
             totalproduction = totalproduction + production.prod;
-            totalnetproduction = totalnetproduction + (production.netprod * (1 - curitem.ratio));
+            totalnetproduction = totalnetproduction + production.netprodmarket;
          }else{
             totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
             totalproduction = (totalproduction + (production.prod - curitem.production));
-            totalnetproduction = totalnetproduction + ((production.netprod * (1 - curitem.ratio)) - (curitem.netproduction * (1 - curitem.ratio)));
+            totalnetproduction = totalnetproduction + ((netprodmarket - curitem.netproduction));
          }
 
          /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
