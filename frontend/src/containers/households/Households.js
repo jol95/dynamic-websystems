@@ -71,7 +71,9 @@ class HouseHolds extends Component {
                 <div className="Apphouse">
                     {this.state.incoming.map((item, index) => {
                         return
-                        <div className="house" key={index}>
+                        <div className="house" 
+                        ref={item.ref}
+                        key={index}>
                         <p> test no data </p>
                         <p> test ID: {item.id} </p>
                        </div>

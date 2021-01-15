@@ -81,8 +81,9 @@ setInterval(() => {
             production.calcProd(0);
          }
 
+         production.setRatio(curitem.ratio);
          production.calcNetProd(distribute.cons);
-         production.calcBuffer(production.netprod, curitem.ratio, curitem.buffer, batterylimit_h);
+         production.calcBuffer(curitem.buffer, batterylimit_h);
          production.checkBlackout(totalbuffer, totalnetproduction);
       
          console.log("Wind : " + distribute.wind);
