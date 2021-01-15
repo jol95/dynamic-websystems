@@ -170,6 +170,41 @@ exports.registerUser = async function(req, res) {
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
+/* WORKING
+
+    IN: http://130.240.200.62:3000/api/household/5ff320840093be7ddc72cb18
+
+    OUT: 
+    
+    {
+    "_id": "5ff320840093be7ddc72cb1a",
+    "houseid": "5ff320840093be7ddc72cb18",
+    "address": "ha123",
+    "wind": 0,
+    "consumption": 0,
+    "price": 0,
+    "isproducing": true,
+    "production": 0,
+    "netproduction": 0,
+    "buffer": 0,
+    "ratio": 0.5,
+    "createdAt": "2021-01-04T14:04:52.406Z",
+    "updatedAt": "2021-01-04T14:04:52.406Z",
+    "__v": 0
+}
+
+*/
+exports.getUser = function(req, res) {
+  User.findOne({ id: req.params.id}, function (err, user) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          res.json(user);
+      }
+  });
+};
+
 exports.updateUser = async function(req, res) {
   // Form validation
   //    const { errors, isValid } = validateUpdateInput(req.params);

@@ -28,6 +28,11 @@ class ManagerUpdateDb extends Component {
           e.preventDefault();
         const newUpdate = {
           price: this.state.price,
+        };
+
+        onSubmit2 = e => {
+          e.preventDefault();
+        const newUpdate = {
           status: this.state.status,
         };
         
@@ -76,7 +81,9 @@ class ManagerUpdateDb extends Component {
                 >
                   Update price
                 </button>
+                </form>
 
+                <form noValidate onSubmit={this.onSubmit2}>
                 {/* DROPDOWN FOR STATUS ON/OFF */}
                 <div className="input-field col s12">
                 <label htmlFor="status">Status</label>
