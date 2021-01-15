@@ -7,6 +7,7 @@ class ManagerUpdateDb extends Component {
     constructor() {
       super();
       this.state = {
+        status: "",
         price: 0,
         errors: {}
       };
@@ -27,6 +28,7 @@ class ManagerUpdateDb extends Component {
           e.preventDefault();
         const newUpdate = {
           price: this.state.price,
+          status: this.state.status,
         };
         
     console.log("ManagerUpdateDB manager newupdate", newUpdate);
@@ -73,6 +75,21 @@ class ManagerUpdateDb extends Component {
                 >
                   Update price
                 </button>
+
+                {/* DROPDOWN FOR STATUS ON/OFF */}
+                <div>
+                <label htmlFor="role">Role</label>
+                <select
+                  onChange={this.onChange}
+                  value={this.state.status}
+                  id="status"
+                  type="text"
+                  >
+                <option value="On">on</option>
+                <option value="Off">off</option>
+                </select>      
+
+              </div>   
               </div>
             </form>
           </div>
