@@ -1,0 +1,6 @@
+
+.view {
+    width: 320;
+    flex-direction: row;
+    justify-content: space-between;
+}
