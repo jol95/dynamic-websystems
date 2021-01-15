@@ -44,7 +44,7 @@ class HouseholdUsers extends Component {
 
     onEditClick = e => {
         e.preventDefault();
-        const path = `/profile/${data}`;
+        const path = `/profile/${}`;
         this.props.history.push(path);
         };
 
