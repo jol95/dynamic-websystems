@@ -130,7 +130,7 @@ setInterval(() => {
          }else{
             totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
             totalproduction = (totalproduction + (production.prod - curitem.production));
-            totalnetproduction = totalnetproduction + ((netprodmarket - curitem.netproduction));
+            totalnetproduction = totalnetproduction + (production.netprodmarket - curitem.netproduction);
          }
 
          /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  

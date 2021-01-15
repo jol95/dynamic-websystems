@@ -78,7 +78,7 @@ class ManagerProfile extends Component {
                 <img
                     src={"data:image/png;base64," + display}
                     alt='Look here'/>
-                <br/>
+                <br/><br/>
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
                 <p>price: {price} </p>
