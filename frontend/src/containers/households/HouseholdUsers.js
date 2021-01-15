@@ -43,15 +43,6 @@ class HouseholdUsers extends Component {
             })
     }
 
-    onEditClick = e => {
-        const value = this.state.id;
-        e.preventDefault();
-        console.log("click", value);
-        const path = `/profile/${value}`;
-        this.props.history.push(path);
-        };
-
-
 
     render() {
          let items = this.state.items
@@ -89,8 +80,6 @@ class HouseholdUsers extends Component {
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-
-                        onClick={this.onEditClick}
 
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
