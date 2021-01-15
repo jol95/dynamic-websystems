@@ -124,12 +124,27 @@ export const setRole = () => {
   };
 };
 
-// Log user out, maybe a redirect?
-export const logoutUser = () => dispatch => {
-  // Remove token from local storage
-  localStorage.removeItem("jwtToken");
-  // Remove auth header for future requests
-  setAuthToken(false);
-  // Set current user to empty object {} which will set isAuthenticated to false
-  dispatch(setCurrentUser({}));
+// // Log user out, maybe a redirect?
+// export const logoutUser = () => dispatch => {
+//   // Remove token from local storage
+//   localStorage.removeItem("jwtToken");
+//   // Remove auth header for future requests
+//   setAuthToken(false);
+//   // Set current user to empty object {} which will set isAuthenticated to false
+//   dispatch(setCurrentUser({}));
+// };
+
+export const logoutUser = (data) => dispatch => {
+  axios
+    .put("api/user/" + data, false)
+    .then(res => {
+      console.log("authactions LOGOUT USER", data)
+
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };

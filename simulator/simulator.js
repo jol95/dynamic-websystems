@@ -59,7 +59,10 @@ tick = 5000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
-      totalbuffer = data.buffer;
+      totalproduction = data.totalproduction;
+      totalconsumption = data.totalconsumption;
+      totalnetproduction = data.totalnetproduction;
+      totalbuffer = data.totalbuffer;
    });
    }
 
@@ -108,7 +111,7 @@ setInterval(() => {
          console.log("Wind : " + distribute.wind);
          console.log("Consumption : " + distribute.cons);
          console.log("Production : " + production.prod);
-         console.log("Nettoproduction : " + production.netprod);
+         console.log("Nettoproduction : " + production.netprodmarket);
 
          const res = axios.put(backend + "/household/" + curitem.id, {
             wind: '' + distribute.wind,

@@ -9,10 +9,11 @@ import ProfileImg from "../profileimg/ProfileImg";
 class Dashboard extends Component {
   onLogoutClick = e => {
     e.preventDefault();
-    this.props.logoutUser();
+    this.props.logoutUser(data);
   };
 render() {
     const { user } = this.props.auth;
+    const data = user.id;
 return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">

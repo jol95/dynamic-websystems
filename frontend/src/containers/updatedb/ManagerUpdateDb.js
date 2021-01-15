@@ -43,7 +43,7 @@ class ManagerUpdateDb extends Component {
               
               {/* PRICE */}
               <div className="input-field col s12">
-              <label htmlFor="slider">Ratio</label>
+              <label htmlFor="slider">Price</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.price}
@@ -56,7 +56,7 @@ class ManagerUpdateDb extends Component {
                   //value="0.5"
                 />
 
-                <span className="red-text">{errors.ratio}</span>
+                <span className="red-text">{errors.price}</span>
               </div>
 
               {/* PRICE SUBMIT BUTTON */}
