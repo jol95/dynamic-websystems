@@ -16,7 +16,7 @@ class Production{
     }
 
     calcNetProd(consumption){
-        this.netprod = this.prod - consumption;
+        this.netprod = (this.prod - consumption);
     }
 
     calcBuffer(netprod, ratio, o_buffer, batterylimit){
