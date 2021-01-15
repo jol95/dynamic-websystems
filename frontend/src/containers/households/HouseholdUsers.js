@@ -78,7 +78,7 @@ class HouseholdUsers extends Component {
                         <p>lastname:{item.lastname} </p>
                         <p>address:{item.address} </p>
                         <p>logged in:{item.status} </p>
-                                    {/*EDIT PROFILE BUTTON*/}
+                        {/*EDIT PROFILE BUTTON*/}
                         <button
                         style={{
                             width: "150px",

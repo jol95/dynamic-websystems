@@ -86,7 +86,6 @@ class UserProfile extends Component {
                 <p>buffer: {buffer} kW </p>
                 <p>blackout: {String(blackout)}</p>                
                 <p>ratio: {ratio} </p>
-                <p>logged in: {status} </p>
                 </div>
                 </div>
                 </div>
