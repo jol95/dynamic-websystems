@@ -7,7 +7,7 @@ class ManagerUpdateDb extends Component {
     constructor() {
       super();
       this.state = {
-        status: "",
+        status: "on",
         price: 0,
         errors: {}
       };
@@ -47,6 +47,7 @@ class ManagerUpdateDb extends Component {
               <div className="input-field col s12">
               <label htmlFor="slider">Price</label>
                 <input
+                  style={{width: 300}}
                   onChange={this.onChange}
                   value={this.state.price}
                   error={errors.price}
@@ -78,8 +79,9 @@ class ManagerUpdateDb extends Component {
 
                 {/* DROPDOWN FOR STATUS ON/OFF */}
                 <div>
-                <label htmlFor="role">Role</label>
+                <label htmlFor="status">Status</label>
                 <select
+                  style={{width: 300}}
                   onChange={this.onChange}
                   value={this.state.status}
                   id="status"

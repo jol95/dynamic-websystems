@@ -86,14 +86,17 @@ class ProfileImg extends Component {
     <div>
 
     {/*<UserProfile/>*/}
-      
-        <input 
+      <label class="custom-file">
+        <input
+        style={{size = 60,
+        }} 
           type="file"
           name="image"
           id="file"
           accept=".jpeg, .png, .jpg"
           onChange = {this.onChange}
         />
+        <label/>
         
         </div>
           <div className="col s12" style={{ paddingLeft: "11.250px" }}>

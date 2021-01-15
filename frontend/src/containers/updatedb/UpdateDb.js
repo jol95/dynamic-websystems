@@ -71,7 +71,7 @@ class UpdateDb extends Component {
                   min="0"
                   max="1"
                   step="0.05"
-                  defaultvalue="0.5"
+                  defaultValue="0.5"
                 />
                 <p>{this.state.ratio}</p>
 
