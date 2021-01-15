@@ -43,7 +43,8 @@ class HouseholdUsers extends Component {
             })
     }
 
-    onEditClick = (e, value) => {
+    onEditClick = e => {
+        const value = this.state.id;
         e.preventDefault();
         console.log("click", value);
         const path = `/profile/${value}`;
@@ -67,6 +68,9 @@ class HouseholdUsers extends Component {
             {items.map(item =>
                 <div className="house" key={item.id}>
                     <h2>ID: {item.id}</h2>
+                    {this.setState({
+                        id: item.id
+                    })}
                     <div className="details">
                         <img
                         src={"data:image/png;base64," + item.img}
@@ -86,7 +90,7 @@ class HouseholdUsers extends Component {
                             marginTop: "1rem"
                         }}
 
-                        onClick={this.onEditClick(item.id)}
+                        onClick={this.onEditClick}
 
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
