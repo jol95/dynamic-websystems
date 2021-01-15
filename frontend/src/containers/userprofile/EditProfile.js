@@ -1,9 +1,12 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { editUser } from "../../actions/authActions";
+import classnames from "classnames";
+import "./UserProfile.css";
 
-class EditUser extends Component {
+class EditProfile extends Component {
     constructor() {
         super();
         this.state = {

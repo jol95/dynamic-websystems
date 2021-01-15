@@ -82,7 +82,7 @@ setInterval(() => {
                managerpower = managerpower + (curitem.production * (1 - curitem.ratio));
                totalbuffer = totalbuffer + (curitem.production * curitem.ratio);
             }
-            }
+         }
       }
    })
 
