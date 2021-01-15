@@ -44,8 +44,8 @@ class HouseholdUsers extends Component {
     }
 
     onEditClick = e => {
-        console.log("click", this.state.id);
         const value = this.state.id;
+        console.log("click", value);
         const path = `/profile/${value}`;
         this.props.history.push(path);
         };

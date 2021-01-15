@@ -5,13 +5,18 @@ const gridSchema = new mongoose.Schema({
         type: Number,
         unique: true
     },
-    totalproduction: {  // Visa
+    totalproduction: {  // Total production of all houses / managers.
         type: Number
     },
-    totalconsumption: { // Visa 
+    totalconsumption: { // Total consumption of all the houses.
         type: Number
     },
-    totalnetproduction:{ // Visa
+    /*
+        IMPORTANT to notice is that totalnetproduction (market electricity)
+        isnt production - consumption. There is a ratio which distribute 
+        the netprodution between buffer and market....!!!!
+    */
+    totalnetproduction:{ 
         type: Number
     },
     buffer:{            // Visa
