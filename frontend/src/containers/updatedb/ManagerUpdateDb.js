@@ -108,6 +108,7 @@ class ManagerUpdateDb extends Component {
               </div>
             </form>
           </div>
+        </div>
     );
     }
 }
