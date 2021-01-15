@@ -41,7 +41,7 @@ const update = async () => {
 }
 
 // tick = 10000 //for error checking.
-tick = 10000;
+tick = 1000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
