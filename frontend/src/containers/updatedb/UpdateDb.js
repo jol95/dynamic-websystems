@@ -78,7 +78,9 @@ class UpdateDb extends Component {
                   step="0.05"
                   //value="0.5"
                 />
-                <v
+                <p>{this.state.minRatio}</p>
+                <p>{this.state.distance}</p>
+                <p>{this.state.maxRatio}</p>
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
