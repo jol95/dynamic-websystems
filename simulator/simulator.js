@@ -97,7 +97,7 @@ setInterval(() => {
             totalnetproduction = totalnetproduction + (production.netprod * (1 - curitem.ratio));
          }else{
             totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
-            totalproduction = totalproduction + (production.prod - curitem.production);
+            totalproduction = (totalproduction + (production.prod - curitem.production));
             totalnetproduction = totalnetproduction + ((production.netprod * (1 - curitem.ratio)) - (curitem.netproduction * (1 - curitem.ratio)));
          }
 
@@ -128,9 +128,9 @@ setInterval(() => {
       }
 
       const res = axios.put(backend + "/grid", {
-         totalproduction: totalproduction,
-         totalconsumption: totalconsumption,
-         totalnetproduction: totalnetproduction,
+         totalproduction: "" + totalproduction,
+         totalconsumption: "" + totalconsumption,
+         totalnetproduction: "" + totalnetproduction,
       })
    });
 

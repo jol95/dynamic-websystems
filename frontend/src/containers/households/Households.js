@@ -33,8 +33,6 @@ class HouseHolds extends Component {
 
 
     tick = async () => {    
-            //settimeout // polling
-            //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             const data = user.id
             var kind = "household/"

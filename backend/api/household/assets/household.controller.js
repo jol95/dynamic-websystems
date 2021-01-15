@@ -165,7 +165,7 @@ exports.updateHouse = function(req, res) {
     }
 
     Household.findOne({ id: req.params.id}, function (err, house) {
-        house.wind = req.body.wind? req.body.wind: house.wind;
+        house.wind = req.body.wind ? req.body.wind: house.wind;
         house.production = req.body.production? req.body.production: house.production;
         house.consumption = req.body.consumption? req.body.consumption: house.consumption;
         house.netproduction = req.body.netproduction? req.body.netproduction: house.netproduction;
