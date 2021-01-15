@@ -10,6 +10,7 @@ class UpdateDb extends Component {
       super();
       this.state = {
         ratio: 0,
+        kind: "",
         errors: {}
       };
     }
@@ -33,16 +34,15 @@ class UpdateDb extends Component {
 
     const { user } = this.props.auth;
     const data = user.id;
-    var kind = "";
 
     if(user.role === "manager"){
-      kind = "manager/";
+      this.state.kind = "manager/";
       console.log("updateDB manager userData", user)
     } else if(user.role === "user"){
-      kind = "household/";
+      this.state.kind = "household/";
       console.log("updateDB user userData", user)
     }
-    this.props.updateDatabase(kind, newUpdate, data); 
+    this.props.updateDatabase(this.state.kind, newUpdate, data); 
 
     };
 

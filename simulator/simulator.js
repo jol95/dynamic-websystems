@@ -140,14 +140,7 @@ setInterval(() => {
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
 
-         const res = axios.put(backend + "/manager/" + curitem.id, {
-            wind: '' + distribute.wind,
-            production: '' + production.prod,
-            consumption: '' + distribute.cons,
-            netproduction: '' + production.netprod,
-            buffer: '' + production.buffer,
-            blackout: '' + production.blackout
-         });
+         if(curitem.status === "running")
       }
    })
 
