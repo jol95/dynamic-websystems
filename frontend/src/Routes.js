@@ -4,6 +4,7 @@ import Home from "./containers/home/Home";
 import Households from "./containers/households/Households";
 import Register from "./containers/register/Register";
 import Login from "./containers/login/Login";
+import EditProfile from "./containers/userprofile/EditProfile";
 import Dashboard from "./containers/dashboard/Dashboard";
 import ManagerDashboard from "./containers/dashboard/ManagerDashboard";
 import PrivateRoute from "./containers/private-route/PrivateRoute";
@@ -19,6 +20,7 @@ class Routes extends React.Component{
         <Route path="/households" component={Households}></Route>
         <Route path="/register" component={Register}></Route>
         <Route path="/login" component={Login}></Route>
+        <Route path={"/profile/:userID"} component={EditProfile}></Route>
         <Switch>
         <ManagerRoute path="/managerdashboard" comp={ManagerDashboard}></ManagerRoute>
         <PrivateRoute path="/dashboard" comp={Dashboard}></PrivateRoute>

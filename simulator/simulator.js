@@ -114,12 +114,12 @@ setInterval(() => {
          console.log("Nettoproduction : " + production.netprodmarket);
 
          const res = axios.put(backend + "/household/" + curitem.id, {
-            wind: '' + distribute.wind,
-            production: '' + production.prod,
-            consumption: '' + distribute.cons,
-            netproduction: '' + production.netprodmarket,
-            buffer: '' + production.buffer,
-            blackout: '' + production.blackout
+            wind: ""+ distribute.wind,
+            production: "" + production.prod,
+            consumption: "" + distribute.cons,
+            netproduction: "" + production.netprodmarket,
+            buffer: "" + production.buffer,
+            blackout: "" + production.blackout
          });
 
          console.log("Previous consumption : " + curitem.consumption);
@@ -155,18 +155,18 @@ setInterval(() => {
       init = true;
    }
 
-   if(totalnetproduction < 0){
+   /* if(totalnetproduction < 0){
       totalbuffer = totalbuffer + totalnetproduction;
       if (totalbuffer < 0){
          totalbuffer = 0;
       }
-   }
+   } */
 
-   const res = axios.put(backend + "/grid", {
-      totalproduction: '' + (totalproduction + managerpower),
-      totalconsumption: '' + (totalconsumption),
-      totalnetproduction: '' + (totalnetproduction + managerpower),
-      buffer: '' + totalbuffer
+   const res = axios.put(backend + "/grid/", {
+      totalproduction: "" + (totalproduction + managerpower),
+      totalconsumption: "" + (totalconsumption),
+      totalnetproduction: "" + (totalnetproduction + managerpower),
+      buffer: "" + totalbuffer
    })
 
    managerpower = 0;
