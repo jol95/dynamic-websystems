@@ -27,7 +27,6 @@ class UpdateDb extends Component {
     }
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
-        //var ratioValue = this.state.distance;
     };
         onSubmit = e => {
             e.preventDefault();
