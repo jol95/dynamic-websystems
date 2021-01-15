@@ -97,9 +97,9 @@ class HouseHolds extends Component {
             );
 }
         incominghouseholds = () => {
+            console.log("return incominghouldsholds");
             return {
                 ref: React.createRef()
-                console.log("return incominghouldsholds");
             }
         }
 }
