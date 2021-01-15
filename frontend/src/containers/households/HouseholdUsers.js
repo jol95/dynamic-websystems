@@ -12,7 +12,6 @@ class HouseholdUsers extends Component {
             pollingCount: 0,
             items: [],
             delay: 1000,
-            id: "",
             errors: {}
         };
     }
@@ -58,9 +57,6 @@ class HouseholdUsers extends Component {
             {items.map(item =>
                 <div className="house" key={item.id}>
                     <h2>ID: {item.id}</h2>
-                    {this.setState({
-                        id: item.id
-                    })}
                     <div className="details">
                         <img
                         src={"data:image/png;base64," + item.img}
