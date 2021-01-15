@@ -66,6 +66,11 @@ setInterval(() => {
    });
    }
 
+   /*
+      CHARGE BUFFER WITH RATIO * PRODUCTION OF MANAGER
+      REST IS SENT TO MARKET
+   */
+
    updateManager().then(manager => {
       var objCount = manager.length;
       for ( var x = 0; x < objCount ; x++ ) {
@@ -87,6 +92,11 @@ setInterval(() => {
    })
 
    distribute.distributeInit();
+
+   /*
+      CHARGE HOUSE BUFFER (NETPRODUCTION * RATIO)
+      REST IS SENT TO MARKET (NETPRODUCTION * (1 - RATIO))
+   */
 
    updateUser().then(data => {
       var objCount = data.length;
@@ -139,11 +149,11 @@ setInterval(() => {
             totalnetproduction = (totalnetproduction + (production.netprodmarket - curitem.netproduction));
          }
 
-         /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
-         totalbuffer = batterylimit_t
+         if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
+            totalbuffer = batterylimit_t
          }else{
-         totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
-         }  */
+            totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
+         } 
       }
       console.log("");
       console.log("########################");

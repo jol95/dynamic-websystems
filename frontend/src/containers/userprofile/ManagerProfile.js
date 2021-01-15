@@ -81,12 +81,12 @@ class ManagerProfile extends Component {
                 <br/><br/>
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
-                <p>price: {price} </p>
-                <p>totalproduction: {totalproduction} </p>
-                <p>totalconsumption: {totalconsumption} </p>
-                <p>totalnetproduction: {totalnetproduction} </p>
-                <p>buffer: {buffer} </p>
-                <p>modelprice: {modelprice} </p>
+                <p>price: {price} sek/kW</p>
+                <p>totalproduction: {totalproduction} kW/h</p>
+                <p>totalconsumption: {totalconsumption} kW/h</p>
+                <p>market: {totalnetproduction} kW/h </p>
+                <p>buffer: {buffer} kW</p>
+                <p>modelprice: {modelprice} sek/kW</p>
                 </div>
                 </div>
                 </div>
