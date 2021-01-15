@@ -48,11 +48,11 @@ class ManagerProfile extends Component {
             const response2 = await axios.get("/api/grid/");
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
+                price: response2.data.price,
                 id: response.data.id,
                 status: response.data.status,
                 ratio: response.data.ratio,
                 display: response.data.img,
-                price: response2.price,
             })
     }
 

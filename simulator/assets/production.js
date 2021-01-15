@@ -25,13 +25,13 @@ class Production{
     calcNetProd(consumption){
         this.netprod = (this.prod - consumption);
         this.netprodbuffer = this.netprod * this.ratio;
-        this.netprodmarket = this.netprod * (1 - this.ratio)
+        this.netprodmarket = this.netprod * (1 - this.ratio);
     }
 
     calcBuffer(o_buffer, batterylimit){
         if((o_buffer + this.netprodbuffer) >= batterylimit){ 
             this.buffer = batterylimit;
-            this.netprodmarket = (o_buffer + this.netprodbuffer) - batterylimit
+            this.netprodmarket = (o_buffer + this.netprodbuffer) - batterylimit;
 
         }else if((o_buffer + this.netprodbuffer) <= 0){
             this.buffer = 0
