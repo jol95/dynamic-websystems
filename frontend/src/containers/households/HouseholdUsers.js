@@ -85,7 +85,7 @@ class HouseholdUsers extends Component {
                             marginTop: "1rem"
                         }}
 
-                        onClick={this.onEditClick(event, item.id)}
+                        onClick={this.onEditClick(item.id)}
 
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
