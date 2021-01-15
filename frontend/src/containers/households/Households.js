@@ -50,8 +50,8 @@ class Households extends Component {
          console.log("RENDER(): response.data", this.state.items)
         return(
         <div className="Apphouse">
-            <h1>Your Household</h1>
-            <h2>Show household info</h2>
+            <h1>Households</h1>
+            <h2>Refreshes: {this.state.pollingCount}</h2>
             {/* Fetch data from API */}
             <br />
             {/* Display data from API */}
