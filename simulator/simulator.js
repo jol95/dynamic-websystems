@@ -72,8 +72,8 @@ setInterval(() => {
          var curitem = data[x];
 
          if(init){
-            if(curitem == "running"){
-               managerpower
+            if(curitem.status == "running"){
+               managerpower = managerpower + curitem.production;
             }
          }else{
 

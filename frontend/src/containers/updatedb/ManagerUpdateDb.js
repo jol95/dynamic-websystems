@@ -91,43 +91,6 @@ class ManagerUpdateDb extends Component {
               </div>
             </form>
           </div>
-
-      <form noValidate onSubmit={this.onSubmit}>
-        
-        {/* PRICE */}
-        <div className="input-field col s12">
-        <label htmlFor="slider">Ratio</label>
-          <input
-            onChange={this.onChange}
-            value={this.state.ratio}
-            error={errors.ratio}
-            id="ratio"
-            type="range"
-            min="0"
-            max="1000"
-            step="10"
-            //value="0.5"
-          />
-
-          <span className="red-text">{errors.ratio}</span>
-        </div>
-
-        {/* PRICE SUBMIT BUTTON */}
-        <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-          <button
-            style={{
-              width: "150px",
-              borderRadius: "3px",
-              letterSpacing: "1.5px",
-              marginTop: "1rem"
-            }}
-            type="submit"
-            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-          >
-            Update price
-          </button>
-        </div>
-      </form>
     );
     }
 }
