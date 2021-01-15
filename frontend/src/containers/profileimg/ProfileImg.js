@@ -88,7 +88,7 @@ class ProfileImg extends Component {
     {/*<UserProfile/>*/}
       <label class="custom-file">
         <input
-        style={{size = 60
+        style={{size: 60
         }} 
           type="file"
           name="image"
