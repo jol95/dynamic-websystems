@@ -52,7 +52,7 @@ class ManagerProfile extends Component {
                 status: response.data.status,
                 ratio: response.data.ratio,
                 display: response.data.img,
-                price: response2.data.price,
+                price: response2.price,
             })
     }
 
