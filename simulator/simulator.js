@@ -28,7 +28,7 @@ const initTotal = async () => {
   }
 }
 
-const update = async () => { 
+const updateUser = async () => { 
   try {
   const response = await axios.get(backend + '/household/');
   if (response.status === 200) { 
@@ -39,6 +39,18 @@ const update = async () => {
    console.error(err)
   }
 }
+
+const updateManager = async () => { 
+   try {
+   const response = await axios.get(backend + '/household/');
+   if (response.status === 200) { 
+     //console.log('Request on api/household worked!');
+    return response.data;
+   }
+   } catch (err) {
+    console.error(err)
+   }
+ }
 
 // tick = 10000 //for error checking.
 tick = 1000;
@@ -54,7 +66,7 @@ setInterval(() => {
 
    distribute.distributeInit();
 
-   update().then(data => {
+   updateUser().then(data => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
@@ -119,12 +131,14 @@ setInterval(() => {
          init = true;
       }
 
-      const res = axios.put(backend + "/grid", {
-         totalproduction: '' + totalproduction,
-         totalconsumption: '' + totalconsumption,
-         totalnetproduction: '' + totalnetproduction,
-      })
+      
    });
+
+   const res = axios.put(backend + "/grid", {
+      totalproduction: '' + totalproduction,
+      totalconsumption: '' + totalconsumption,
+      totalnetproduction: '' + totalnetproduction,
+   })
 
    console.log("#######################")
 }, tick);

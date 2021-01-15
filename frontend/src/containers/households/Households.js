@@ -63,13 +63,15 @@ class HouseHolds extends Component {
 
     render() {
         //const { incoming } = this.state;
-        console.log("incoming array", incoming);
+        console.log("incoming array", this.state.incoming);
         console.log("this state", this.state);
         // const { id, display, wind, production, consumption,
         // netproduction, buffer, blackout, ratio } = this.state
-        {this.state.incoming.map((item, index) => {
         return(
                 <div className="Apphouse">
+                    {this.state.incoming.map((item, index) => {
+                        
+                    })}
                     <h1>Your Household</h1>
                     <h2>Show household info</h2>
                     {/* Fetch data from API */}
@@ -89,7 +91,6 @@ class HouseHolds extends Component {
                     </div>
                 </div>   
             );
-        })}
 }
         incominghouseholds = () => {
             return {
