@@ -90,7 +90,7 @@ class ManagerUpdateDb extends Component {
                 </select>      
 
               </div>   
-
+            </div>
             {/* STATUS SUBMIT BUTTON */}
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <button
@@ -106,9 +106,8 @@ class ManagerUpdateDb extends Component {
                 Update Status
                 </button>
               </div>
+              </form>
           </div>
-          </form>
-        </div>
     );
     }
 }
