@@ -66,8 +66,11 @@ class UpdateDb extends Component {
                   error={errors.ratio}
 
                   style={{width: 300}}
+                  minRatio={this.state.minRatio}
+                  maxRatio={this.state.maxRatio}
+                  ratioValue={this.state.distance}
                   onValueChange={ val => this.setState({ distance: val })}
-                  
+
                   id="ratio"
                   type="range"
                   min="0"
@@ -75,6 +78,7 @@ class UpdateDb extends Component {
                   step="0.05"
                   //value="0.5"
                 />
+                <v
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
