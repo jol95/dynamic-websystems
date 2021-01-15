@@ -12,6 +12,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      role: "",
       errors: {}
     };
   }
@@ -42,6 +43,7 @@ class Login extends Component {
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
 
 onSubmit = e => {
     e.preventDefault();
@@ -111,7 +113,6 @@ return (
                 />
               </div>
 
-              {/* RROOLLEE */}
               {/* <div className="input-field col s12">
                <label htmlFor="role">Role</label>
               <input
@@ -123,11 +124,15 @@ return (
               />
               </div> */}
 
-              <div className="input-field col s12">
+              
+              {/* RROOLLEE */}
+              <div>
                 <label htmlFor="role">Role</label>
                 <select
-                  value={this.state.role}
                   onChange={this.onChange}
+                  value={this.state.role}
+                  id="role"
+                  type="text"
                   >
                 <option value="User">User</option>
                 <option value="Manager">Manager</option>
