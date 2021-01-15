@@ -51,8 +51,8 @@ class ManagerUpdateDb extends Component {
                   id="price"
                   type="range"
                   min="0"
-                  max="1000"
-                  step="10"
+                  max="20"
+                  step="0.1"
                   //value="0.5"
                 />
 

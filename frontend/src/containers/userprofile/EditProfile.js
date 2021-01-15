@@ -62,7 +62,7 @@ class EditProfile extends Component {
                 </Link>
                 <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                   <h4>
-                    <b>Registration</b>
+                    <b>Edit User Info</b>
                   </h4>
                   <p className="grey-text text-darken-1">
                     Wanna see your dashboard? <Link to="/dashboard">Log in</Link>
