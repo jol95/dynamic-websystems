@@ -43,6 +43,7 @@ class UpdateDb extends Component {
       this.state.kind = "household/";
       console.log("updateDB user userData", user)
     }
+  //                 example:       manager, ratio=1, userID
     this.props.updateDatabase(this.state.kind, newUpdate, data); 
 
     };

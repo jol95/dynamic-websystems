@@ -55,7 +55,7 @@ const updateManager = async () => {
  }
 
 // tick = 10000 //for error checking.
-tick = 1000;
+tick = 50000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
@@ -69,10 +69,17 @@ setInterval(() => {
          var curitem = data[x];
 
             if(curitem.status == "running"){
-               managerpower = managerpower + (curitem.production * ratio);
+               managerpower = managerpower + (curitem.production * (1 - ratio));
             }
 
-            totalbuffer = totalbuffer + (managerpower * ratio);
+            if(totalbuffer + (curitem.production * ratio) >= batterylimit_t){
+               totalbuffer = batterylimit_t;
+               managerpower = ((totalbuffer + (curitem.production * ratio)) - batterylimit_t);
+            }else if(totalbuffer + (curitem.production * ratio) <= 0){
+               totalbuffer = 0;
+            }else{
+               totalbuffer = totalbuffer + (curitem.production * ratio);
+            }
       }
    })
 
@@ -152,7 +159,7 @@ setInterval(() => {
    const res = axios.put(backend + "/grid", {
       totalproduction: '' + (totalproduction + managerpower),
       totalconsumption: '' + (totalconsumption),
-      totalnetproduction: '' + (totalnetproduction + managerpower),
+      totalnetproduction: '' + (totalnetproduction + (managerpower)),
       buffer: '' + totalbuffer
    })
 

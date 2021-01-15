@@ -29,7 +29,7 @@ class ManagerUpdateDb extends Component {
           price: this.state.price,
         };
 
-    this.props.updateDatabase("grid"+ newUpdate, "/"); 
+    this.props.updateDatabase("grid", newUpdate, "/"); 
 
     };
 
