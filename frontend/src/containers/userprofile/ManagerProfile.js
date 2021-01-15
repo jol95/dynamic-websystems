@@ -62,7 +62,8 @@ class ManagerProfile extends Component {
     }
 
     render() {
-        const { id, status, ratio, display, price } = this.state
+        const { id, status, ratio, display, price, totalproduction, totalconsumption,
+        totalnetproduction, buffer, modelprice } = this.state
         return(
         <div className="Apphouse">
             <h1>Manager Dashboard</h1>
@@ -81,6 +82,11 @@ class ManagerProfile extends Component {
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
                 <p>price: {price} </p>
+                <p>totalproduction: {totalproduction} </p>
+                <p>totalconsumption: {totalconsumption} </p>
+                <p>totalnetproduction: {totalnetproduction} </p>
+                <p>buffer: {buffer} </p>
+                <p>modelprice: {modelprice} </p>
                 </div>
                 </div>
                 </div>
