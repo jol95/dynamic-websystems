@@ -22,7 +22,7 @@ class Dashboard extends Component {
   const { user } = this.props.auth;
   const data = user.id;
   e.preventDefault();
-  const path = "/profile/${data}";
+  const path = `/profile/${data}`;
   this.props.history.push(path);
   };
 

@@ -147,7 +147,6 @@ class EditUser extends Component {
         );
       }
     }
-}
 EditProfile.propTypes = {
   editUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
