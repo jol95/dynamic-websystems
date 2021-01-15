@@ -76,19 +76,19 @@ class HouseHolds extends Component {
                 {/* Display data from API */}   
                 <div className="profiles"> 
                     <div className="profile">
-                        <h2>ID: {id} </h2>
+                        {/* <h2>ID: {id} </h2> */}
                         <div className="details">
-                    <img
+                    {/* <img
                         src={"data:image/png;base64," + display}
-                        alt='Look here'/>
+                        alt='Look here'/> */}
                     <br/>
-                    <p>wind: {wind} m/s </p>
+                    {/* <p>wind: {wind} m/s </p>
                     <p>production: {production} kW/h </p>
                     <p>consumption: {consumption} kw/h </p>
                     <p>netproduction: {netproduction} kW/h </p>
                     <p>buffer: {buffer} kW </p>
                     <p>blackout: {blackout} </p>
-                    <p>ratio: {ratio} </p>
+                    <p>ratio: {ratio} </p> */}
                     </div>
                     </div>
                     </div>
