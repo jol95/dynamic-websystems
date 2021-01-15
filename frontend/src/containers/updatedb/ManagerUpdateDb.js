@@ -28,7 +28,8 @@ class ManagerUpdateDb extends Component {
         const newUpdate = {
           price: this.state.price,
         };
-
+        
+    console.log("ManagerUpdateDB manager newupdate", newUpdate);
     this.props.updateDatabase("grid", newUpdate, "/"); 
 
     };
