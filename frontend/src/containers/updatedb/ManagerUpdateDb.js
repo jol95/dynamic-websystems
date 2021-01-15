@@ -77,8 +77,8 @@ class ManagerUpdateDb extends Component {
                 </button>
               </div>
               </form>
-              <div className="input-field col s12">
               <form noValidate onSubmit={this.onSubmit}>
+              <div className="input-field col s12">
                 {/* DROPDOWN FOR STATUS ON/OFF */}
                 <label htmlFor="status">Status</label>
                 <select
