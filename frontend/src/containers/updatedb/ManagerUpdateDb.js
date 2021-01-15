@@ -106,8 +106,8 @@ class ManagerUpdateDb extends Component {
                 Update Status
                 </button>
               </div>
-            </form>
           </div>
+          </form>
         </div>
     );
     }
