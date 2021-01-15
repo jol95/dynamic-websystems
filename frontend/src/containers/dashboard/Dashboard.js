@@ -24,6 +24,7 @@ class Dashboard extends Component {
   e.preventDefault();
   const path = "/profile/${data}";
   this.props.history.push(path);
+  };
 
 render() {
   const { user } = this.props.auth;

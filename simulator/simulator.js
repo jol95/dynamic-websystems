@@ -130,13 +130,13 @@ setInterval(() => {
          console.log("Previous netproduction : " + curitem.netproduction);
 
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
-            totalconsumption = totalconsumption + distribute.cons;
-            totalproduction = totalproduction + production.prod;
-            totalnetproduction = totalnetproduction + production.netprodmarket;
+            totalconsumption = (totalconsumption + distribute.cons);
+            totalproduction = (totalproduction + production.prod);
+            totalnetproduction = (totalnetproduction + production.netprodmarket);
          }else{
-            totalconsumption = totalconsumption + (distribute.cons - curitem.consumption);
-            totalproduction = totalproduction + (production.prod - curitem.production);
-            totalnetproduction = totalnetproduction + (production.netprodmarket - curitem.netproduction);
+            totalconsumption = (totalconsumption + (distribute.cons - curitem.consumption));
+            totalproduction = (totalproduction + (production.prod - curitem.production));
+            totalnetproduction = (totalnetproduction + (production.netprodmarket - curitem.netproduction));
          }
 
          /* if((totalbuffer + (production.netprod * (1 - curitem.ratio))) > batterylimit_t) {  
@@ -145,14 +145,14 @@ setInterval(() => {
          totalbuffer = totalbuffer + (production.netprod * (1 - curitem.ratio));
          }  */
       }
-      console.log("")
-      console.log("########################")
-      console.log("######## TOTAL ##########")
-      console.log("########################")
-      console.log("TOTAL PRODUCTION : " + totalproduction)
-      console.log("TOTAL CONSUMPTION : " + totalconsumption)
-      console.log("TOTAL NETPRODUCTION : " + totalnetproduction)
-      console.log("")
+      console.log("");
+      console.log("########################");
+      console.log("######## TOTAL ##########");
+      console.log("########################");
+      console.log("TOTAL PRODUCTION : " + totalproduction);
+      console.log("TOTAL CONSUMPTION : " + totalconsumption);
+      console.log("TOTAL NETPRODUCTION : " + totalnetproduction);
+      console.log("");
    });
 
    if(!init){
