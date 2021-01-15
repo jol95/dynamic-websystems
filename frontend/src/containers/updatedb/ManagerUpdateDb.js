@@ -81,7 +81,6 @@ class ManagerUpdateDb extends Component {
                 <div className="input-field col s12">
                 <label htmlFor="status">Status</label>
                 <select
-                  style={{width: 300}}
                   onChange={this.onChange}
                   value={this.state.status}
                   id="status"
