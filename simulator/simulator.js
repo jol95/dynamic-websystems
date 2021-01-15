@@ -57,12 +57,14 @@ const updateManager = async () => {
 // tick = 10000 //for error checking.
 tick = 5000;
 setInterval(() => {
+  if(!init){
     initTotal().then(tot => {
-      totalproduction = tot.totalproduction;
-      totalconsumption = tot.totalconsumption;
-      totalnetproduction = tot.totalnetproduction;
+      totalproduction = 0;
+      totalconsumption = 0;
+      totalnetproduction = 0;
       totalbuffer = tot.buffer;
    });
+   }
 
    /*
       CHARGE BUFFER WITH RATIO * PRODUCTION OF MANAGER
