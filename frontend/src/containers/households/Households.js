@@ -38,6 +38,7 @@ class HouseHolds extends Component {
             var kind = "household/"
 
             const response = await axios.get("/api/" + kind);
+            console.log("AXIOS GET");
             console.log("HOUSEHOLD: log responsce", response);
             this.setState({
                 

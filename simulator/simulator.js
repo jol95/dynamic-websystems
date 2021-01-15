@@ -79,12 +79,12 @@ setInterval(() => {
          console.log("Nettoproduction : " + production.netprod);
 
          const res = axios.put(backend + "/household/" + curitem.id, {
-            wind: "" + distribute.wind,
-            production: "" + production.prod,
-            consumption: "" + distribute.cons,
-            netproduction: "" + production.netprod,
-            buffer: "" + production.buffer,
-            blackout: "" + production.blackout
+            wind: '' + distribute.wind,
+            production: '' + production.prod,
+            consumption: '' + distribute.cons,
+            netproduction: '' + production.netprod,
+            buffer: '' + production.buffer,
+            blackout: '' + production.blackout
          });
 
          console.log("Previous consumption : " + curitem.consumption);
@@ -115,22 +115,14 @@ setInterval(() => {
       console.log("TOTAL CONSUMPTION : " + totalconsumption)
       console.log("TOTAL NETPRODUCTION : " + totalnetproduction)
 
-      if(totalproduction <= 0){
-         console.log("WARNING WARNING WARNING");
-         console.log("WARNING WARNING WARNING");
-         console.log("WARNING WARNING WARNING");
-         console.log("WARNING WARNING WARNING");
-         console.log("WARNING WARNING WARNING");
-      }
-
       if(!init){
          init = true;
       }
 
       const res = axios.put(backend + "/grid", {
-         totalproduction: "" + totalproduction,
-         totalconsumption: "" + totalconsumption,
-         totalnetproduction: "" + totalnetproduction,
+         totalproduction: '' + totalproduction,
+         totalconsumption: '' + totalconsumption,
+         totalnetproduction: '' + totalnetproduction,
       })
    });
 
