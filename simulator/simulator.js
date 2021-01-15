@@ -79,12 +79,12 @@ setInterval(() => {
          console.log("Nettoproduction : " + production.netprod);
 
          const res = axios.put(backend + "/household/" + curitem.id, {
-            wind: distribute.wind,
-            production: production.prod,
-            consumption: distribute.cons,
-            netproduction: production.netprod,
-            buffer: production.buffer,
-            blackout: production.blackout
+            wind: "" + distribute.wind,
+            production: "" + production.prod,
+            consumption: "" + distribute.cons,
+            netproduction: "" + production.netprod,
+            buffer: "" + production.buffer,
+            blackout: "" + production.blackout
          });
 
          console.log("Previous consumption : " + curitem.consumption);
