@@ -74,7 +74,7 @@ class UpdateDb extends Component {
                   min="0"
                   max="1"
                   step="0.05"
-                  //value="0.5"
+                  defaultvalue="0.5"
                 />
                   <p>{this.state.minratio}</p>
                   <p>{this.state.ratiovalue}</p>
@@ -93,7 +93,7 @@ class UpdateDb extends Component {
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Update ratio
+                  Update ratio <p>{this.state.ratio}</p>
                 </button>
               </div>
             </form>
