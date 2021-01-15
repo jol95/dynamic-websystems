@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
-import classnames from "classnames";
+import "./UpdateDb.css";
 
 class UpdateDb extends Component {
     constructor() {
       super();
       this.state = {
+        minratio: 0,
+        maxratio: 1,
+        distance: 0.5,
         ratio: 0,
+        kind: "",
         errors: {}
       };
     }
 
-
+    //some error handling
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
         this.setState({
@@ -22,6 +25,7 @@ class UpdateDb extends Component {
         });
         }
     }
+    //sets value when some input is given  
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -31,9 +35,19 @@ class UpdateDb extends Component {
           ratio: this.state.ratio,
         };
 
+    //takes the current user id from global state
     const { user } = this.props.auth;
-    const data = user.houseid.split(" ")[0]
-    this.props.updateDatabase(newUpdate, data); 
+    const data = user.id;
+
+    //OLD
+    if(user.role === "manager"){
+      this.state.kind = "manager/";
+    } else if(user.role === "user"){
+      this.state.kind = "household/";
+    }
+    //              example:       manager, ratio=1, userID
+    this.props.updateDatabase(this.state.kind, newUpdate, data); 
+
     };
 
     render() {
@@ -49,14 +63,17 @@ class UpdateDb extends Component {
                   onChange={this.onChange}
                   value={this.state.ratio}
                   error={errors.ratio}
+
+                  style={{width: 300}}
+
                   id="ratio"
                   type="range"
                   min="0"
                   max="1"
                   step="0.05"
-                  //value="0.5"
+                  defaultValue="0.5"
                 />
-
+                <p>{this.state.ratio}</p>
 
                 <span className="red-text">{errors.ratio}</span>
               </div>
@@ -70,8 +87,8 @@ class UpdateDb extends Component {
                   }}
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                >
-                  Update ratio
+                > 
+                Update ratio
                 </button>
               </div>
             </form>

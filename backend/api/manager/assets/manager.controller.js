@@ -36,20 +36,22 @@ exports.loginManager = async function(req, res) {
           // manager matched
           // Create JWT Payload
           const payload = {
-            email: manager.email
+            id: manager.id,
+            email: manager.email,
+            firstname: manager.firstname,
+            role: manager.role
           };
          // Sign token
           jwt.sign(
             payload,
             keys.secretOrKey,
             {
-              expiresIn: 300 // 1 year in seconds
+              expiresIn: 300 // 5 minutes
             },
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer1 " + token,
-                email: email
+                token: "Bearer manager " + token,
               });
             }
           );
@@ -63,6 +65,9 @@ exports.loginManager = async function(req, res) {
 }
 
 exports.registerManager = async function(req, res) {
+    id = mongoose.mongo.ObjectId();
+    role = "manager";
+
     // Form validation
     const { errors, isValid } = validateRegisterInput(req.body);
     // Check validation
@@ -76,9 +81,12 @@ exports.registerManager = async function(req, res) {
             const newManager = new Manager({
                 email: req.body.email,
                 password: req.body.password,
+                id: id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
+                role: role,
                 production: 100,
+                ratio: 0.5,
                 status: "off",
                 img: ""
 
@@ -104,7 +112,7 @@ exports.getManager = async function(req, res) {
      return res.status(400).json(errors);
   }
 
-  Manager.findOne({ email: req.params.email}, function (err, manager) {
+  Manager.findOne({ id: req.params.id}, function (err, manager) {
       if (err){
           console.log(err);
       }
@@ -126,22 +134,24 @@ exports.getManagers = async function(req, res) {
 }
 
 exports.updateManager = async function(req, res) {
-  // Form validation
-  const { errors, isValid } = validateUpdateInput(req.params);
-  // Check validation
-  if (!isValid) {
-     return res.status(400).json(errors);
-  }
+  // // Form validation
+  // const { errors, isValid } = validateUpdateInput(req.params);
+  // // Check validation
+  // if (!isValid) {
+  //    return res.status(400).json(errors);
+  // }
 
-  Manager.findOne({ email: req.params.email }).then(manager => {
+  Manager.findOne({ id: req.params.id }).then(manager => {
     if (!manager) {
-        return res.status(400).json({ email: "Email doesn't exist" });
+        return res.status(400).json({ id: "id doesn't exist" });
     } else {
         manager.firstname = req.body.firstname? req.body.firstname: manager.firstname,
         manager.lastname = req.body.lastname? req.body.lastname: manager.lastname,
         manager.production = req.body.production? req.body.production: manager.production,
+        manager.ratio = req.body.ratio? req.body.ratio: manager.ratio,
         manager.status = req.body.status? req.body.status: manager.status,
-        manager.address = req.body.address? req.body.address: manager.address
+        manager.img = req.body.img? req.body.img: manager.img
+
 
         manager
           .save()

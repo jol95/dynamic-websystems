@@ -6,14 +6,12 @@ module.exports = function validateUpdateInput(data) {
   let errors = {};
 
 // Convert empty fields to an empty string so we can use validator functions
-  data.email = !isEmpty(data.email) ? data.email : "";
+  data.id = !isEmpty(data.id) ? data.id : "";
 
 // Email checks
-  if (Validator.isEmpty(data.email)) {
-    errors.email = "Email field is required";
-  } else if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
-  }
+  if (Validator.isEmpty(data.id)) {
+    errors.id = "Id field is required";
+  } 
 return {
     errors,
     isValid: isEmpty(errors)

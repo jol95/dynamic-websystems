@@ -4,19 +4,18 @@ import jwt_decode from "jwt-decode";
 import {
   GET_ERRORS,
   SET_CURRENT_USER,
-  SET_CURRENT_PICTURE,
-  USER_LOADING
+  USER_LOADING,
+  SET_CURRENT_MANAGER,
+  MANAGER_LOADING,
+  SET_ROLE
 } from "./types";
 
-// Update ratio
-export const updateDatabase = (dbData ,data) => dispatch => {
+// Update whatever
+export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
-    .put("api/household/" + data, dbData)
+    .put("api/" + userType + data, dbData)
     .then(res => {
-      const base = dbData;
-      dispatch(setCurrentPicture(base));
-      console.log("authAction updateDatabase");
-
+      console.log("updateDatabase");
     })
     .catch(err =>
       dispatch({
@@ -26,11 +25,12 @@ export const updateDatabase = (dbData ,data) => dispatch => {
     );
 };
 
+//not in use?
 export const displayDatabase = (data, dbData) => dispatch => {
   axios
     .get("api/household/" + data, dbData)
     .then(res => {
-      console.log("authActions DisplayDatabase");
+      console.log("Display database");
     })
     .catch(err =>
       dispatch({
@@ -40,11 +40,22 @@ export const displayDatabase = (data, dbData) => dispatch => {
     );
 }
 
-//export const getUserInfo = (data) => dispatch => {
-  //response = axios.get("api/household/" + data)
-  //response.data.img;
-//}
+// Edit user
+export const editUser = (userType, dbData ,data) => dispatch => {
+  axios
+    .put("/api/" + userType + data, dbData)
+    .then(res => {
+      console.log("editUser");
 
+
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -59,9 +70,10 @@ export const registerUser = (userData, history) => dispatch => {
     );
 };
 // Login - get user token
-export const loginUser = (userData, history) => dispatch => {
+export const loginUser = (userType ,userData, history) => dispatch => {
+  console.log("loginUser");
   axios
-    .post("api/user/login", userData)
+    .post("api/" + userType + "/login", userData)
     .then(res => {
       // Save to localStorage
       // Set token to localStorage
@@ -71,10 +83,16 @@ export const loginUser = (userData, history) => dispatch => {
       setAuthToken(token);
       // Decode token to get user data
       const decoded = jwt_decode(token);
-      // Set current user
-      dispatch(setCurrentUser(decoded));
-      console.log("decoded", decoded);
-      history.push("/dashboard");
+
+      if(userType==="manager"){
+        // Set current manager
+        dispatch(setCurrentUser(decoded));
+        history.push("/managerdashboard")
+      }else{
+        // Set current user
+        dispatch(setCurrentUser(decoded));
+        history.push("/dashboard");
+      }
     })
     .catch(err =>
       dispatch({
@@ -97,19 +115,53 @@ export const setUserLoading = () => {
   };
 };
 
-export const setCurrentPicture = base => {
+// Set logged in manager
+export const setCurrentManager = decoded => {
   return {
-    type: SET_CURRENT_PICTURE,
-    payload: base
+    type: SET_CURRENT_MANAGER,
+    payload: decoded
+  };
+};
+// Manager loading
+export const setManagerLoading = () => {
+  return {
+    type: MANAGER_LOADING
+  };
+};
+
+// Set user to manager
+export const setRole = () => {
+  return {
+    type: SET_ROLE
   };
 };
 
 // Log user out, maybe a redirect?
-export const logoutUser = () => dispatch => {
+export const logoutManager = () => dispatch => {
   // Remove token from local storage
   localStorage.removeItem("jwtToken");
   // Remove auth header for future requests
   setAuthToken(false);
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
+};
+
+export const logoutUser = (status, data) => dispatch => {
+  axios
+    .put("api/user/" + data, status)
+    .then(res => {
+      console.log("logoutuser");
+      // Remove token from local storage
+      localStorage.removeItem("jwtToken");
+      // Remove auth header for future requests
+      setAuthToken(false);
+      // Set current user to empty object {} which will set isAuthenticated to false
+      dispatch(setCurrentUser({}));
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };

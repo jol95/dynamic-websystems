@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "0807bb21-4e8f-47ce-a10b-ce93a1a5c668",
+		"name": "api/user",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://130.240.200.62:3000/api/user/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"user@user.com\",\r\n    \"password\": \"user123\",\r\n    \"firstname\": \"user\",\r\n    \"lastname\": \"user\",\r\n    \"address\": \"user\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.240.200.62:5000/api/user/register",
+					"protocol": "http",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/user/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"a@a.com\",\r\n    \"password\": \"abc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/user/login",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/user/a@a.com",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://130.240.200.62:3000/api/user/",
+					"protocol": "http",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://130.240.200.62:3000/api/user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/user",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://130.240.200.62:3000/api/user/6001bef50cab7ab4be9d5335",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/user/6001bef50cab7ab4be9d5335",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"user",
+						"6001bef50cab7ab4be9d5335"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

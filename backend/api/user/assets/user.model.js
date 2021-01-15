@@ -14,9 +14,9 @@ const userSchema = new mongoose.Schema({
         trim: true,
         minlength: 3
     },
-    houseid: {
+    id: {
         type: String,
-        required: 'Correct house id',
+        required: 'Correct id',
         unique: true
     },
     firstname: {
@@ -24,6 +24,12 @@ const userSchema = new mongoose.Schema({
     },
     lastname: {
         type: String,
+    },
+    role: {
+        type: String,
+    },
+    status: {
+        type: String
     },
     address: {
         type: String,

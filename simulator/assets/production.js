@@ -1,74 +1,51 @@
 const { cons } = require("./distribute");
 
 class Production{
-    constructor(){
-       
-    }
+    prod;
+    ratio;
+    netprod;
+    netprodbuffer;
+    netprodmarket;
+    buffer;
+    blackout;
 
     calcProd(wind){
-        var prod = 0;
-        var limit = 4.0;
-
-        if (wind < limit){ 
-            prod = 0;
-        }else if(limit < wind){
-            prod = (wind * 2.8);  
+        if (wind < 4.0){ 
+            this.prod = 0.0;
+        }else{
+            this.prod = (wind * 3.0);  
         }
-
-        return prod;
     }
 
-    calcNetProd(prod, consumption){
-        return prod - consumption;
+    setRatio(ratio_){
+        this.ratio = ratio_;
     }
 
-    calcBuffer(netprod, buffer, ratio, limit){
-        var sum_buffer = 0;
+    calcNetProd(consumption){
+        this.netprod = (this.prod - consumption);
+        this.netprodbuffer = this.netprod * this.ratio;
+        this.netprodmarket = this.netprod * (1 - this.ratio);
+    }
 
-        if((buffer + (netprod * ratio)) >= limit){ // 100 kW limit for battery on house
-            sum_buffer = limit;
-        }else if((buffer + (netprod * ratio)) <= 0){
-            sum_buffer = 0;
+    calcBuffer(o_buffer, batterylimit){
+        if((o_buffer + this.netprodbuffer) >= batterylimit){ 
+            this.buffer = batterylimit;
+            this.netprodmarket = (o_buffer + this.netprodbuffer) - batterylimit;
+
+        }else if((o_buffer + this.netprodbuffer) <= 0){
+            this.buffer = 0
         }
         else{
-            sum_buffer = buffer + (netprod * ratio);
+            this.buffer = o_buffer + this.netprodbuffer;
         }
-
-        return sum_buffer;
     }
 
-    ifBlackout(netprod, buffer, totalbuffer, totalnetprod){
-        var blackout = false;
-
-        if(netprod <= 0 && buffer <= 0 && totalbuffer <= 0  && totalnetprod <= 0){
-            blackout = true;
+    checkBlackout(totalbuffer, totalnetproduction){
+        if(this.netprod <= 0 && totalbuffer <= 0 && this.buffer <= 0 && totalnetproduction <= 0){
+            this.blackout = true;
+        }else{
+            this.blackout = false;
         }
-
-        return blackout;
     }
-
-    // calcPrice(production, consumption){
-    //     if(wind < 1.0){
-    //         this.price = 4.0;
-    //     } else if(1.0 < wind < 2.0){
-    //         this.price = 3.0;
-    //     } else if(2.0 < wind < 3.0){
-    //         this.price = 2.0;
-    //     } else {
-    //         this.price = 1.0;
-    //     }
-
-    //     if(consumption < 8.0){
-    //         this.price = this.price*0.3;
-    //     } else if(consumption < 12.0 && consumption > 8.0) {
-    //         this.price = this.price*0.4;
-    //     } else if(consumption < 15.0 && consumption > 12.0){
-    //         this.price = this.price*0.5;
-    //     } else {
-    //         this.price = this.price*0.6;
-    //     }
-    // }
 }
 module.exports = new Production();
-
-

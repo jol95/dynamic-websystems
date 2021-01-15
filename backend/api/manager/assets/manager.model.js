@@ -14,13 +14,24 @@ const managerSchema = new mongoose.Schema({
         trim: true,
         minlength: 3
     },
+    id: {
+        type: String,
+        required: 'Correct id',
+        unique: true
+    },
     firstname: {
         type: String,
     },
     lastname: {
         type: String,
     },
+    role: {
+        type: String,
+    },
     production: {
+        type: Number,
+    },
+    ratio: {
         type: Number,
     },
     status: {

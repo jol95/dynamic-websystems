@@ -1,4 +1,8 @@
 export const GET_ERRORS = "GET_ERRORS";
 export const USER_LOADING = "USER_LOADING";
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
-export const SET_CURRENT_PICTURE = "SET_CURRENT_PICTURE";
+
+export const MANAGER_LOADING = "MANAGER_LOADING";
+export const SET_CURRENT_MANAGER = "SET_CURRENT_MANAGER";
+
+export const SET_ROLE = "SET_ROLE";

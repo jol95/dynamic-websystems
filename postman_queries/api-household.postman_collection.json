@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "c32a3011-3b1f-451b-a9f6-1065b00ae7c4",
+		"name": "api/household",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://130.240.200.62:3000/api/household",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"address\": \"klintvägen 11\",\r\n    \"wind\": 10,\r\n    \"consumption\": 3,\r\n    \"price\": 2,\r\n    \"production\": 5,\r\n    \"netproduction\": 6,\r\n    \"buffer\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/household",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"household"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/household/5ffeeb1d84cc6422a0050a68",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/household/5ffef75f4007142ea886c234",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"household",
+						"5ffef75f4007142ea886c234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/household/5ffeeb1d84cc6422a0050a68",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"wind\": \"0\",\r\n    \"production\": \"0\",\r\n    \"consumption\":\"0\",\r\n    \"netproduction\": \"0\",\r\n    \"buffer\": \"0\",\r\n    \"ratio\": 0.5\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/household/60018d7506c4c09b5f5a9158",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"household",
+						"60018d7506c4c09b5f5a9158"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/household",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/household",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"household"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -7,7 +7,7 @@ import "./App.css";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
-import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { setCurrentUser } from "./actions/authActions";
 
 import store from "./store";
 
@@ -21,7 +21,7 @@ if (localStorage.jwtToken) {
   // Set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
 
-
+/* Unfortunate buggy, so not implemented for now */
 
   // Check for expired token
   //const currentTime = Date.now() / 120; // to get in milliseconds
@@ -47,6 +47,11 @@ class App extends React.Component{
         <LinkContainer to="/households">
           <Navbar.Brand className="font-weight-bold text-muted">
             Households
+          </Navbar.Brand>
+        </LinkContainer>
+        <LinkContainer to="/householdusers">
+          <Navbar.Brand className="font-weight-bold text-muted">
+            Users
           </Navbar.Brand>
         </LinkContainer>
         <Navbar.Toggle />

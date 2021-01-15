@@ -3,29 +3,57 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import UpdateDb from "../updatedb/UpdateDb";
-import ProfileImg from "../profileimg/ProfileImg";
 import UserProfile from "../userprofile/UserProfile";
+import ProfileImg from "../profileimg/ProfileImg";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
-render() {
     const { user } = this.props.auth;
-return (
+    const data = user.id;
+    e.preventDefault();
+    // const dbData = {
+    //   status: false,
+    // }
+    const dbData =  {
+      status: "false",
+    }
+    this.props.logoutUser(dbData, data);
+  };
+
+  onEditClick = e => {
+  const { user } = this.props.auth;
+  const data = user.id;
+  e.preventDefault();
+  const path = `/profile/${data}`;
+  this.props.history.push(path);
+  };
+
+render() {
+  const { user } = this.props.auth;
+  const data = user.id;
+  return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.firstname.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged in :){" "}
-              </p>
-            </h4>
+            <UserProfile/>
             <ProfileImg/>
             <UpdateDb/>
-            <button
+            {/*EDIT PROFILE BUTTON*/}
+            {/* WORKS BUT IS NOW RESTRICTED FOR MANAGER ONLY */}
+            {/* <button
+              style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+              }}
+              onClick={this.onEditClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Edit profile
+            </button> */}
+            {/*LOGOUT BUTTON */}
+             <button
               style={{
                 width: "150px",
                 borderRadius: "3px",

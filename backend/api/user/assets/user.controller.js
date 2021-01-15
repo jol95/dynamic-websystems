@@ -56,8 +56,9 @@ exports.loginUser = async function(req, res) {
           // Create JWT Payload
           const payload = {
             email: user.email,
-            houseid: user.houseid,
-            firstname: user.firstname
+            id: user.id,
+            firstname: user.firstname,
+            role: user.role
           };
          // Sign token
           jwt.sign(
@@ -69,12 +70,16 @@ exports.loginUser = async function(req, res) {
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer1 " + token,
-                //email: email,
-                //houseid: houseid
+                token: "Bearer user " + token,
               });
             }
           );
+
+          user.status = "true";
+
+          user.save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err));
         } else {
           return res
             .status(400)
@@ -99,7 +104,8 @@ exports.loginUser = async function(req, res) {
     "User and household added!"
 */
 exports.registerUser = async function(req, res) {
-    houseid = mongoose.mongo.ObjectId();
+    id = mongoose.mongo.ObjectId();
+    role = "user";
     address = req.body.address;
 
     // Form validation
@@ -115,9 +121,11 @@ exports.registerUser = async function(req, res) {
             const newUser = new User({
                 email: req.body.email,
                 password: req.body.password,
-                houseid: houseid,
+                id: id,
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
+                role: role,
+                status: "false",
                 address: address
         });
         bcrypt.genSalt(10, (err, salt) => {
@@ -144,7 +152,7 @@ exports.registerUser = async function(req, res) {
     const img = ""
 
     const newHousehold = new Household({
-        houseid,
+        id,
         address,
         wind,
         production,
@@ -162,23 +170,70 @@ exports.registerUser = async function(req, res) {
         .catch(err => res.status(400).json('Error: ' + err));
 }
 
+/* WORKING
+
+    IN: http://130.240.200.62:3000/api/household/5ff320840093be7ddc72cb18
+
+    OUT: 
+    
+    {
+    "_id": "5ff320840093be7ddc72cb1a",
+    "houseid": "5ff320840093be7ddc72cb18",
+    "address": "ha123",
+    "wind": 0,
+    "consumption": 0,
+    "price": 0,
+    "isproducing": true,
+    "production": 0,
+    "netproduction": 0,
+    "buffer": 0,
+    "ratio": 0.5,
+    "createdAt": "2021-01-04T14:04:52.406Z",
+    "updatedAt": "2021-01-04T14:04:52.406Z",
+    "__v": 0
+}
+
+*/
+exports.getUser = function(req, res) {
+  User.findOne({ id: req.params.id}, function (err, user) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          res.json(user);
+      }
+  });
+};
+
+exports.getUsers = function(req, res) {
+  User.find(function (err, user) {
+      if (err){
+          console.log(err);
+      }
+      else{
+          res.json(user);
+      }
+  });
+}
+
 exports.updateUser = async function(req, res) {
   // Form validation
-  const { errors, isValid } = validateUpdateInput(req.params);
-  // Check validation
-  if (!isValid) {
-     return res.status(400).json(errors);
-  }
-
- User.findOne({ email: req.params.email }).then(user => {
+  //    const { errors, isValid } = validateUpdateInput(req.params);
+  // // Check validation
+  // if (!isValid) {
+  //    return res.status(400).json(errors);
+  // }
+  
+ User.findOne({ id: req.params.id }).then(user => {
   if (!user) {
-      return res.status(400).json({ email: "Email doesn't exist" });
+      return res.status(400).json({id: "Id doesn't exist" });
   } else {
       if(isEmpty(req.body.password)){
         user.password = user.password,
         user.firstname = req.body.firstname? req.body.firstname: user.firstname,
         user.lastname = req.body.lastname? req.body.lastname: user.lastname,
         user.address = req.body.address? req.body.address: user.address,
+        user.status = req.body.status? req.body.status: user.status
 
         user
           .save()
@@ -189,6 +244,7 @@ exports.updateUser = async function(req, res) {
         user.firstname = req.body.firstname? req.body.firstname: user.firstname,
         user.lastname = req.body.lastname? req.body.lastname: user.lastname,
         user.address = req.body.address? req.body.address: user.address
+        user.status = req.body.status? req.body.status: user.status
 
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(user.password, salt, (err, hash) => {

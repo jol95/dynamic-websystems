@@ -12,16 +12,20 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
+      role: "user",
       errors: {}
     };
   }
 
-  componentDidMount() {
+  componentDidMount() {  //HITTA ETT SÄTT ATT ROUTA MANAGERDASHBOARD
     // If logged in and user navigates to Login page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+    if (this.props.auth.user.role==="manager") {
+      this.props.history.push("/managerdashboard");
     }
-  }
+    else if (this.props.auth.user.role==="user") {
+        this.props.history.push("/dashboard");
+      }
+    }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
   //if (nextProps.auth.isAuthenticated) {
@@ -38,8 +42,11 @@ onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
+
 onSubmit = e => {
     e.preventDefault();
+
+const userRole = this.state.role
 
 const userData = {
   email: this.state.email,
@@ -47,7 +54,7 @@ const userData = {
 };
 
 //  this.props.loginUser(userData); //
-this.props.loginUser(userData, this.props.history); 
+this.props.loginUser(userRole, userData, this.props.history); 
 };
 
 render() {
@@ -102,8 +109,34 @@ return (
                     invalid: errors.password || errors.passwordincorrect
                   })}
                 />
-                
               </div>
+
+              {/* <div className="input-field col s12">
+               <label htmlFor="role">Role</label>
+              <input
+                onChange={this.onChange}
+                value={this.state.role}
+
+                id="role"
+                type="text"
+              />
+              </div> */}
+
+              
+              {/* RROOLLEE */}
+              <div>
+                <label htmlFor="role">Role</label>
+                <select
+                  onChange={this.onChange}
+                  value={this.state.role}
+                  id="role"
+                  type="text"
+                  >
+                <option value="User">User</option>
+                <option value="Manager">Manager</option>
+                </select>      
+              </div>        
+
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   style={{
@@ -129,12 +162,14 @@ return (
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  man: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  man: state.man
 });
 
 export default connect(

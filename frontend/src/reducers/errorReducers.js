@@ -1,6 +1,8 @@
-import { GET_ERRORS } from "../actions/types";
+import { GET_ERRORS,
+        } from "../actions/types";
 
-const initialState = {};
+const initialState = {
+};
 
 export function errorR (state = initialState, action) {
   switch (action.type) {

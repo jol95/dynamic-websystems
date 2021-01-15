@@ -19,8 +19,11 @@ class Register extends Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { 
     // If logged in and user navigates to Register page, should redirect them to dashboard
+    if (this.props.man.isManager) {
+      this.props.history.push("/managerdashboard");
+    }
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
@@ -170,11 +173,13 @@ return (
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  man: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  man: state.man
 });
 export default connect(
   mapStateToProps,

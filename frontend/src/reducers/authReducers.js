@@ -1,14 +1,14 @@
 import {
     SET_CURRENT_USER,
     USER_LOADING,
-    SET_CURRENT_PICTURE
+    SET_ROLE
   } from "../actions/types";
 
   const isEmpty = require("is-empty");
 
   const initialState = {
     isAuthenticated: false,
-    picture: {},
+    role: false,
     user: {},
     loading: false
   };
@@ -22,15 +22,15 @@ import {
           isAuthenticated: !isEmpty(action.payload),
           user: action.payload
         };
+      case SET_ROLE:
+        return {
+          ...state,
+          role: true
+        };
       case USER_LOADING:
         return {
           ...state,
           loading: true
-        };
-      case SET_CURRENT_PICTURE:
-        return {
-          ...state,
-          picture: action.payload
         };
       default:
         return state;

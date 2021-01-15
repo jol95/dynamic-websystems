@@ -5,19 +5,19 @@ import { displayDatabase } from "../../actions/authActions";
 import axios from 'axios';
 import "./UserProfile.css";
 
-class UserProfile extends Component {
+class ManagerProfile extends Component {
     constructor() {
         super();
         this.state = {
-            pollingCount: 0,
-            delay: 1000,     //tick delay
-            errors: {}
+          pollingCount: 0,
+          delay: 1000,
+          errors: {}
         };
     }
     //Sets an interval and tickrate when component and for as long as it's mounted
     componentDidMount() {
-        this.interval = setInterval(this.tick, this.state.delay);
-    }
+      this.interval = setInterval(this.tick, this.state.delay);
+   }
 
     componentDidUpdate(prevProps, prevState){
         if (prevState.delay !== this.state.delay) {
@@ -30,38 +30,42 @@ class UserProfile extends Component {
         clearInterval(this.interval);
     }
 
-    tick = async () => {    
+
+        tick = async () => { 
             const { user } = this.props.auth;
             const data = user.id
-
             var kind = "";
+
             if (user.role==="manager"){
                 kind = "manager/";
             }else if (user.role==="user"){
                 kind = "household/";
             }
+
             const response = await axios.get("/api/" + kind + data);
+            const response2 = await axios.get("/api/grid/");
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
+                price: response2.data.price,
+                totalproduction: response2.data.totalproduction,
+                totalconsumption: response2.data.totalconsumption,
+                totalnetproduction: response2.data.totalnetproduction,
+                buffer: response2.data.buffer,
+                modelprice: response2.data.modelprice,
                 id: response.data.id,
-                display:  response.data.img,
-                wind:  response.data.wind,
-                production:  response.data.production,
-                consumption:  response.data.consumption,
-                netproduction:  response.data.netproduction,
-                buffer:  response.data.buffer,
-                blackout:  response.data.blackout,
-                ratio:  response.data.ratio,
                 status: response.data.status,
+                ratio: response.data.ratio,
+                display: response.data.img,
             })
     }
+
     render() {
-         const { id, display, wind, production, consumption,
-         netproduction, buffer, blackout, ratio, status } = this.state
+        const { id, status, ratio, display, price, totalproduction, totalconsumption,
+        totalnetproduction, buffer, modelprice } = this.state
         return(
         <div className="Apphouse">
-            <h1>Your Household</h1>
-            <h2>Show household info</h2>
+            <h1>Manager Dashboard</h1>
+            <h2>Your Profile</h2>
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 
@@ -71,14 +75,15 @@ class UserProfile extends Component {
                 <img
                     src={"data:image/png;base64," + display}
                     alt='Look here'/>
-                <br/>
-                <p>wind: {wind} m/s </p>
-                <p>production: {production} kW/h </p>
-                <p>consumption: {consumption} kw/h </p>
-                <p>netproduction: {netproduction} kW/h </p>
-                <p>buffer: {buffer} kW </p>
-                <p>blackout: {String(blackout)}</p>                
+                <br/><br/>
+                <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
+                <p>price: {price} sek/kW</p>
+                <p>totalproduction: {totalproduction} kW/h</p>
+                <p>totalconsumption: {totalconsumption} kW/h</p>
+                <p>market: {totalnetproduction} kW/h </p>
+                <p>buffer: {buffer} kW</p>
+                <p>modelprice: {modelprice} sek/kW</p>
                 </div>
                 </div>
                 </div>
@@ -87,7 +92,7 @@ class UserProfile extends Component {
 }
 }
 
-UserProfile.propTypes = {
+ManagerProfile.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
@@ -99,4 +104,4 @@ UserProfile.propTypes = {
   export default connect(
     mapStateToProps,
     { displayDatabase }
-  )( UserProfile );
+  )( ManagerProfile );

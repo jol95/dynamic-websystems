@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
-import classnames from "classnames";
-import FileBase from 'react-file-base64';
-import DefaultImg from './defaultimg.png';
-import UserProfile from "../userprofile/UserProfile";
 import './ProfileImg.css';
 
 
@@ -19,9 +13,6 @@ class ProfileImg extends Component {
         errors: {}
       };
     }
-  componentDidMount() {
-    console.log("profileimg mounted")
-  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -30,8 +21,9 @@ class ProfileImg extends Component {
     });
     }
   }
+
+  //uses base64 to make the imagine into a string for easy storage
   onChange = e => {
-      console.log("file to upload", e.target.files[0])
       let file = e.target.files[0]
       this.setState({ [e.target.id]: e.target.value });
 
@@ -49,10 +41,9 @@ class ProfileImg extends Component {
     })
   }
 
-
+   //sets value when some input is given  
   onSubmit = e => {
       e.preventDefault();
-      console.log("binary string: xxxxxx")
       const newUpdate = {img: this.state.base64TextString}
 
     
@@ -62,30 +53,34 @@ class ProfileImg extends Component {
       display: base64Flag + imageStr
     })
   const { user } = this.props.auth;
-  const data = user.houseid.split(" ")[0]
-  this.props.updateDatabase(newUpdate, data); 
+  const data = user.id;
+  var kind = "";
+  if(user.role === "manager"){
+    kind = "manager/";
+  } else if(user.role === "user"){
+    kind = "household/";
+  }
 
-  //preview.src = "data:image/png;base64," + this.state.base64TextString
+  this.props.updateDatabase(kind, newUpdate, data);
 
   };
 
   render () {
-    const { errors } = this.state;
-    const { display } = this.state;
   return(
      <div>
       <form noValidate onSubmit={this.onSubmit}>   
     <div>
 
-    <UserProfile/>
-      
-        <input 
+    {/*<UserProfile/>*/}
+      <label class="custom-file">
+        <input
           type="file"
           name="image"
           id="file"
           accept=".jpeg, .png, .jpg"
           onChange = {this.onChange}
         />
+        </label>
         
         </div>
           <div className="col s12" style={{ paddingLeft: "11.250px" }}>
