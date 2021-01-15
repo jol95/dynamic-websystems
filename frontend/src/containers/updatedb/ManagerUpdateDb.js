@@ -40,9 +40,11 @@ class ManagerUpdateDb extends Component {
     const newUpdate = {
       status: this.state.status,
     };
+    const { user } = this.props.auth;
+    const data = user.id;
       
   console.log("ManagerUpdateDB manager newupdate", newUpdate);
-  this.props.updateDatabase("manager", newUpdate, "/"); 
+  this.props.updateDatabase("manager/", newUpdate, data); 
 
   };
 
