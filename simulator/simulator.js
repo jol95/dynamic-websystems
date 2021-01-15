@@ -61,7 +61,7 @@ setInterval(() => {
    totalproduction = 0;
    totalconsumption = 0;
    totalnetproduction = 0;
-   
+
     initTotal().then(tot => {
       totalbuffer = tot.buffer;
    });
@@ -106,6 +106,12 @@ setInterval(() => {
       var objCount = data.length;
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
+
+         if(!init){
+            curitem.production = 0;
+            curitem.consumption = 0;
+            curitem.netproduction = 0;
+         }
 
          console.log("")
          console.log("###### HOUSE " + curitem.id + " ########")
