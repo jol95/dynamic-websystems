@@ -10,7 +10,7 @@ import {
   SET_ROLE
 } from "./types";
 
-// Update ratio
+// Update whatever
 export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
     .put("api/" + userType + data, dbData)
@@ -42,6 +42,24 @@ export const displayDatabase = (data, dbData) => dispatch => {
       })
     );
 }
+
+// Edit user
+export const editUser = (userType, dbData ,data) => dispatch => {
+  axios
+    .put("api/" + userType + data, dbData)
+    .then(res => {
+      console.log("authactions updatedatabase USERTYPE:", userType)
+      console.log("authactions updatedatabase data:", data)
+      console.log("authactions updatedatabase dbData:", dbData)
+
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
 
 // Register User
 export const registerUser = (userData, history) => dispatch => {
@@ -135,7 +153,6 @@ export const logoutManager = () => dispatch => {
 };
 
 export const logoutUser = (status, data) => dispatch => {
-
   axios
     .put("api/user/" + data, status)
     .then(res => {

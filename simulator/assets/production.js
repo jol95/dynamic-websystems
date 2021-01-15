@@ -2,7 +2,6 @@ const { cons } = require("./distribute");
 
 class Production{
     prod;
-    price;
     ratio;
     netprod;
     netprodbuffer;
@@ -14,12 +13,12 @@ class Production{
         if (wind < 4.0){ 
             this.prod = 0.0;
         }else{
-            this.prod = (wind * 3);  
+            this.prod = (wind * 3.0);  
         }
     }
 
-    setRatio(ratio){
-        this.ratio = ratio;
+    setRatio(ratio_){
+        this.ratio = ratio_;
     }
 
     calcNetProd(consumption){

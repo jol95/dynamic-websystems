@@ -9,7 +9,7 @@ router.route('/login')  // POST for auth token.
 router.route('/register') // POST adding user to db.
     .post(userController.registerUser);
 
-router.route('/:id') // UPDATE specific user based on email
+router.route('/:id') // UPDATE specific user based on id
     .put(userController.updateUser)
     .patch(userController.updateUser);
 
