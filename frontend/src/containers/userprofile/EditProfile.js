@@ -44,7 +44,9 @@ class EditProfile extends Component {
           lastname: this.state.lastname,
           address: this.state.address,
         };
-    this.props.editUser(newUser, this.props.history); 
+    //editUser = (userType, dbData ,data)
+    //       .put("api/" + userType + data, dbData)
+    this.props.editUser(newUser, this.props.match.params); 
       };
     render() {
         const { errors } = this.state;
@@ -60,7 +62,7 @@ class EditProfile extends Component {
                     <b>Registration</b>
                   </h4>
                   <p className="grey-text text-darken-1">
-                    Already have an account? <Link to="/editprofile">Log in</Link>
+                    Wanna see your dashboard? <Link to="/dashboard">Log in</Link>
                   </p>
                 </div>
                 <form noValidate onSubmit={this.onSubmit}>

@@ -58,18 +58,18 @@ const updateManager = async () => {
 tick = 5000;
 setInterval(() => {
   if(!init){
-    initTotal().then(data => {
-      totalproduction = data.totalproduction;
-      totalconsumption = data.totalconsumption;
-      totalnetproduction = data.totalnetproduction;
-      totalbuffer = data.buffer;
+    initTotal().then(tot => {
+      totalproduction = tot.totalproduction;
+      totalconsumption = tot.totalconsumption;
+      totalnetproduction = tot.totalnetproduction;
+      totalbuffer = tot.buffer;
    });
    }
 
-   updateManager().then(data => {
-      var objCount = data.length;
+   updateManager().then(manager => {
+      var objCount = manager.length;
       for ( var x = 0; x < objCount ; x++ ) {
-         var curitem = data[x];
+         var curitem = manager[x];
 
          if(curitem.status === "running"){
             if(totalbuffer + (curitem.production * curitem.ratio) >= batterylimit_t){
@@ -155,10 +155,6 @@ setInterval(() => {
       console.log("");
    });
 
-   if(!init){
-      init = true;
-   }
-
    /* if(totalnetproduction < 0){
       totalbuffer = totalbuffer + totalnetproduction;
       if (totalbuffer < 0){
@@ -174,6 +170,7 @@ setInterval(() => {
    })
 
    managerpower = 0;
+   init = true;
 
    console.log("#######################")
 }, tick);
