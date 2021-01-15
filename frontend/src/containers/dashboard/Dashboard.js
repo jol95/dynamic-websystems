@@ -7,8 +7,6 @@ import UserProfile from "../userprofile/UserProfile";
 import ProfileImg from "../profileimg/ProfileImg";
 
 class Dashboard extends Component {
-  const { user } = this.props.auth;
-  const data = user.id;
   onLogoutClick = e => {
     e.preventDefault();
     const dbData = {
@@ -19,7 +17,8 @@ class Dashboard extends Component {
 
 
 render() {
-
+  const { user } = this.props.auth;
+  const data = user.id;
 return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
