@@ -134,12 +134,19 @@ export const setRole = () => {
 //   dispatch(setCurrentUser({}));
 // };
 
-export const logoutUser = (data) => dispatch => {
-  axios
-    .put("api/user/" + data, false)
-    .then(res => {
-      console.log("authactions LOGOUT USER", data)
+export const logoutUser = (status, data) => dispatch => {
 
+  axios
+    .put("api/user/" + data, status)
+    .then(res => {
+      console.log("authactions LOGOUT USER --data--", data);
+      console.log("authactions LOGOUT USER --status--", status);
+      // Remove token from local storage
+      localStorage.removeItem("jwtToken");
+      // Remove auth header for future requests
+      setAuthToken(false);
+      // Set current user to empty object {} which will set isAuthenticated to false
+      dispatch(setCurrentUser({}));
     })
     .catch(err =>
       dispatch({

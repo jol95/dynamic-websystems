@@ -28,6 +28,9 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
     },
+    status: {
+        type: Boolean
+    },
     address: {
         type: String,
         required: 'Enter correct address'

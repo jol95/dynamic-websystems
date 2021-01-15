@@ -7,19 +7,25 @@ import UserProfile from "../userprofile/UserProfile";
 import ProfileImg from "../profileimg/ProfileImg";
 
 class Dashboard extends Component {
+  const { user } = this.props.auth;
+  const data = user.id;
   onLogoutClick = e => {
     e.preventDefault();
-    this.props.logoutUser(data);
+    const dbData = {
+      status: false,
+    }
+    this.props.logoutUser(dbData, data);
   };
+
+
 render() {
-    const { user } = this.props.auth;
-    const data = user.id;
+
 return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align">
             <h4>
-              <b>Hey there,</b> {user.firstname.split(" ")[0]}
+              <b>Hey there,</b> {user.firstname}
               <p className="flow-text grey-text text-darken-1">
                 You are logged in :){" "}
               </p>

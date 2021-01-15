@@ -74,6 +74,12 @@ exports.loginUser = async function(req, res) {
               });
             }
           );
+
+          user.status = true;
+
+          user.save()
+              .then(user => res.json(user))
+              .catch(err => console.log(err));
         } else {
           return res
             .status(400)
@@ -119,6 +125,7 @@ exports.registerUser = async function(req, res) {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 role: role,
+                status: false,
                 address: address
         });
         bcrypt.genSalt(10, (err, salt) => {
@@ -180,6 +187,7 @@ exports.updateUser = async function(req, res) {
         user.firstname = req.body.firstname? req.body.firstname: user.firstname,
         user.lastname = req.body.lastname? req.body.lastname: user.lastname,
         user.address = req.body.address? req.body.address: user.address,
+        user.status = req.body.status? req.body.status: user.status
 
         user
           .save()
@@ -190,6 +198,7 @@ exports.updateUser = async function(req, res) {
         user.firstname = req.body.firstname? req.body.firstname: user.firstname,
         user.lastname = req.body.lastname? req.body.lastname: user.lastname,
         user.address = req.body.address? req.body.address: user.address
+        user.status = req.body.status? req.body.status: user.status
 
         bcrypt.genSalt(10, (err, salt) => {
           bcrypt.hash(user.password, salt, (err, hash) => {

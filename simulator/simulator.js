@@ -59,9 +59,9 @@ tick = 5000;
 setInterval(() => {
   if(!init){
     initTotal().then(data => {
-      totalproduction = data.totalproduction;
-      totalconsumption = data.totalconsumption;
-      totalnetproduction = data.totalnetproduction;
+      totalproduction = 0;
+      totalconsumption = 0;
+      totalnetproduction = 0;
       totalbuffer = data.totalbuffer;
    });
    }
@@ -71,16 +71,16 @@ setInterval(() => {
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
 
-            if(curitem.status == "running"){
-               if(totalbuffer + (curitem.production * ratio) >= batterylimit_t){
+            if(curitem.status === "running"){
+               if(totalbuffer + (curitem.production * curitem.ratio) >= batterylimit_t){
                   totalbuffer = batterylimit_t;
-                  managerpower = managerpower + ((totalbuffer + (curitem.production * ratio)) - batterylimit_t);
+                  managerpower = managerpower + ((totalbuffer + (curitem.production * curitem.ratio)) - batterylimit_t);
                }else if(totalbuffer + (curitem.production * ratio) < 0){
                   totalbuffer = 0;
-                  managerpower = managerpower + (curitem.production * (1 - ratio));
+                  managerpower = managerpower + (curitem.production * (1 - curitem.ratio));
                }else{
-                  managerpower = managerpower + (curitem.production * (1 - ratio));
-                  totalbuffer = totalbuffer + (curitem.production * ratio);
+                  managerpower = managerpower + (curitem.production * (1 - curitem.ratio));
+                  totalbuffer = totalbuffer + (curitem.production * curitem.ratio);
                }
             }
       }
