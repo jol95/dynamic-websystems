@@ -50,30 +50,36 @@ class Households extends Component {
          console.log("RENDER(): response.data", this.state.items)
         return(
         <div className="Apphouse">
-
-            {items.map(item =>
-                <h4 key={item.id}>{item.id}</h4>)}
-            
             <h1>Your Household</h1>
             <h2>Show household info</h2>
             {/* Fetch data from API */}
             <br />
-            {/* Display data from API */}   
-            <div className="profiles"> 
-                <div className="profile">
-                    {/* <h2>ID: {id} </h2> */}
+            {/* Display data from API */}
+            <div className="houses">   
+            {items.map(item =>
+                <div className="house" key={item.id}>
+                    <h2>ID: {item.id}</h2>
                     <div className="details">
-                {/* <img
-                    src={"data:image/png;base64," + display}
-                    alt='Look here'/> */}
-                <br/>
-
+                        <img
+                        src={"data:image/png;base64," + item.img}
+                        alt='Look here'/>
+                        <br/>
+                        <p>Wind:{item.wind} m/s</p>
+                        <p>Production:{item.production} kW/h</p>
+                        <p>Consumption:{item.consumption} kW/h</p>
+                        <p>Netto production:{item.netproduction} kW/h</p>
+                        <p>Buffer:{item.buffer} kW</p>
+                        <p>Blackout:{item.blackout}</p>
+                        <p>Ratio:{item.ratio}</p>
+                    </div>
                 </div>
-                </div>
-                </div>
-            </div>   
+                //<h4 key={item.id}>{item.id}</h4>
+            )}
+            
+            </div>
+        </div>   
         );
-}
+    }
 }
 
 Households.propTypes = {
