@@ -1,13 +1,7 @@
 import React, { Component } from "react";
-//import { Link } from "react-router-dom";
-//import axios from 'axios';
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { updateDatabase } from "../../actions/authActions";
-//import classnames from "classnames";
-//import FileBase from 'react-file-base64';
-//import DefaultImg from './defaultimg.png';
-//import UserProfile from "../userprofile/UserProfile";
 import './ProfileImg.css';
 
 
@@ -19,9 +13,6 @@ class ProfileImg extends Component {
         errors: {}
       };
     }
-  componentDidMount() {
-    console.log("profileimg mounted")
-  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
@@ -30,8 +21,9 @@ class ProfileImg extends Component {
     });
     }
   }
+
+  //uses base64 to make the imagine into a string for easy storage
   onChange = e => {
-      console.log("file to upload", e.target.files[0])
       let file = e.target.files[0]
       this.setState({ [e.target.id]: e.target.value });
 
@@ -49,10 +41,9 @@ class ProfileImg extends Component {
     })
   }
 
-
+   //sets value when some input is given  
   onSubmit = e => {
       e.preventDefault();
-      console.log("binary string: xxxxxx")
       const newUpdate = {img: this.state.base64TextString}
 
     
@@ -64,12 +55,9 @@ class ProfileImg extends Component {
   const { user } = this.props.auth;
   const data = user.id;
   var kind = "";
-  console.log("beforeIF");
   if(user.role === "manager"){
-    console.log("afterIF in the manager");
     kind = "manager/";
   } else if(user.role === "user"){
-    console.log("afterIF in the user");
     kind = "household/";
   }
 
@@ -78,8 +66,6 @@ class ProfileImg extends Component {
   };
 
   render () {
-    //const { errors } = this.state;
-    //const { display } = this.state;
   return(
      <div>
       <form noValidate onSubmit={this.onSubmit}>   

@@ -15,7 +15,7 @@ class Households extends Component {
             errors: {}
         };
     }
-
+    //Sets an interval and tickrate when component and for as long as it's mounted
     componentDidMount() {
         this.interval = setInterval(this.tick, this.state.delay);
     }
@@ -26,7 +26,7 @@ class Households extends Component {
             this.interval = setInterval(this.tick, this.state.delay);
         }
     }
-
+    //Stops ticking when the component is unmounted
     componentWillUnmount() {
         clearInterval(this.interval);
     }
@@ -46,8 +46,6 @@ class Households extends Component {
 
     render() {
          let items = this.state.items
-         console.log("RENDER(): items:", items);
-         console.log("RENDER(): response.data", this.state.items)
         return(
         <div className="Apphouse">
             <h1>Households</h1>

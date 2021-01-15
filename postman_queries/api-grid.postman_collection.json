@@ -1,0 +1,98 @@
+{
+	"info": {
+		"_postman_id": "4b8b9ab7-3790-45ef-8bd4-ced34fd0d8e7",
+		"name": "api/grid",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://130.240.200.62:3000/api/grid",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/grid",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"grid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/grid",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/grid",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"grid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://130.240.200.62:3000/api/grid",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"totalproduction\": \"0\",\r\n    \"totalconsumption\": \"0\",\r\n    \"totalnetproduction\": \"0\",\r\n    \"buffer\": \"0\",\r\n    \"price\": 20\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/grid",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"grid"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

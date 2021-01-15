@@ -1,0 +1,155 @@
+{
+	"info": {
+		"_postman_id": "aeed0be3-189f-4d5b-9295-8e4df4fcf580",
+		"name": "api/manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://130.240.200.62:3000/api/manager/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"manager@manager.com\",\r\n    \"password\": \"manager123\",\r\n    \"firstname\": \"manager\",\r\n    \"lastname\": \"manager\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/manager/register",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"manager",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://130.240.200.62:3000/api/manager/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"manager@manager.com\",\r\n    \"password\": \"manager123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/manager/login",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"manager",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://130.240.200.62:3000/api/manager",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/manager",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"manager"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://130.240.200.62:3000/api/manager/abca@a.com",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/manager/6001735f62056b85fc119d11",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"manager",
+						"6001735f62056b85fc119d11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://130.240.200.62:3000/api/manager/abca@a.com",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"stop\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://130.240.200.62:3000/api/manager/6001735f62056b85fc119d11",
+					"protocol": "https",
+					"host": [
+						"130",
+						"240",
+						"200",
+						"62"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"manager",
+						"6001735f62056b85fc119d11"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -17,7 +17,7 @@ class UpdateDb extends Component {
       };
     }
 
-
+    //some error handling
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
         this.setState({
@@ -25,6 +25,7 @@ class UpdateDb extends Component {
         });
         }
     }
+    //sets value when some input is given  
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -34,18 +35,17 @@ class UpdateDb extends Component {
           ratio: this.state.ratio,
         };
 
+    //takes the current user id from global state
     const { user } = this.props.auth;
     const data = user.id;
 
     //OLD
     if(user.role === "manager"){
       this.state.kind = "manager/";
-      console.log("updateDB manager userData", user)
     } else if(user.role === "user"){
       this.state.kind = "household/";
-      console.log("updateDB user userData", user)
     }
-  //                 example:       manager, ratio=1, userID
+    //              example:       manager, ratio=1, userID
     this.props.updateDatabase(this.state.kind, newUpdate, data); 
 
     };

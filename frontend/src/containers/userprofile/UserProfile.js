@@ -10,11 +10,11 @@ class UserProfile extends Component {
         super();
         this.state = {
             pollingCount: 0,
-            delay: 1000,
+            delay: 1000,     //tick delay
             errors: {}
         };
     }
-
+    //Sets an interval and tickrate when component and for as long as it's mounted
     componentDidMount() {
         this.interval = setInterval(this.tick, this.state.delay);
     }
@@ -25,15 +25,12 @@ class UserProfile extends Component {
             this.interval = setInterval(this.tick, this.state.delay);
         }
     }
-
+    //Stops ticking when the component is unmounted
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
-
     tick = async () => {    
-            //settimeout // polling
-            //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             const data = user.id
 
@@ -58,9 +55,6 @@ class UserProfile extends Component {
                 status: response.data.status,
             })
     }
-
-
-
     render() {
          const { id, display, wind, production, consumption,
          netproduction, buffer, blackout, ratio, status } = this.state
@@ -68,7 +62,6 @@ class UserProfile extends Component {
         <div className="Apphouse">
             <h1>Your Household</h1>
             <h2>Show household info</h2>
-            {/* Fetch data from API */}
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 

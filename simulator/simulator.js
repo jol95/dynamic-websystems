@@ -112,10 +112,6 @@ setInterval(() => {
       for ( var x = 0; x < objCount ; x++ ) {
          var curitem = data[x];
 
-         console.log("")
-         console.log("###### HOUSE " + curitem.id + " ########")
-         console.log("")
-
          distribute.distributeAvg();
 
          if(curitem.isproducing){
@@ -128,11 +124,6 @@ setInterval(() => {
          production.calcNetProd(distribute.cons);
          production.calcBuffer(curitem.buffer, batterylimit_h);
          production.checkBlackout(totalbuffer, totalnetproduction + managerpower);
-      
-         console.log("Wind : " + distribute.wind);
-         console.log("Consumption : " + distribute.cons);
-         console.log("Production : " + production.prod);
-         console.log("Nettoproduction : " + production.netprodmarket);
 
          const res = axios.put(backend + "/household/" + curitem.id, {
             wind: ""+ distribute.wind,
@@ -143,11 +134,6 @@ setInterval(() => {
             buffer: "" + production.buffer,
             blackout: "" + production.blackout
          });
-
-         console.log("")
-         console.log("Previous consumption : " + curitem.consumption);
-         console.log("Previous production : " + curitem.production);
-         console.log("Previous netproduction : " + curitem.netproduction);
 
          if(!init){ // Init the total sum or add the difference depending on first iteration or not. 
             totalconsumption = (totalconsumption + distribute.cons);
@@ -169,14 +155,6 @@ setInterval(() => {
          } 
          }
       }
-      console.log("");
-      console.log("########################");
-      console.log("######## TOTAL ##########");
-      console.log("########################");
-      console.log("TOTAL PRODUCTION : " + totalproduction);
-      console.log("TOTAL CONSUMPTION : " + totalconsumption);
-      console.log("TOTAL NETPRODUCTION : " + totalnetproduction);
-      console.log("");
    });
 
    if(totalnetproduction < 0){
@@ -195,6 +173,4 @@ setInterval(() => {
 
    managerpower = 0;
    init = true;
-
-   console.log("#######################")
 }, tick);

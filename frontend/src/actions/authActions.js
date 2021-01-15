@@ -15,9 +15,7 @@ export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios
     .put("api/" + userType + data, dbData)
     .then(res => {
-      console.log("authactions updatedatabase USERTYPE:", userType)
-      console.log("authactions updatedatabase data:", data)
-      console.log("authactions updatedatabase dbData:", dbData)
+    .console.log("updateDatabase");
 
     })
     .catch(err =>
@@ -33,7 +31,7 @@ export const displayDatabase = (data, dbData) => dispatch => {
   axios
     .get("api/household/" + data, dbData)
     .then(res => {
-      console.log("authActions DisplayDatabase");
+      console.log("Display database");
     })
     .catch(err =>
       dispatch({
@@ -48,9 +46,8 @@ export const editUser = (userType, dbData ,data) => dispatch => {
   axios
     .put("/api/" + userType + data, dbData)
     .then(res => {
-      console.log("authactions updatedatabase USERTYPE:", userType)
-      console.log("authactions updatedatabase data:", data)
-      console.log("authactions updatedatabase dbData:", dbData)
+      console.log("editUser");
+
 
     })
     .catch(err =>
@@ -75,7 +72,7 @@ export const registerUser = (userData, history) => dispatch => {
 };
 // Login - get user token
 export const loginUser = (userType ,userData, history) => dispatch => {
-  console.log("userType(role):", userType);
+  console.log("loginUser");
   axios
     .post("api/" + userType + "/login", userData)
     .then(res => {
@@ -91,12 +88,10 @@ export const loginUser = (userType ,userData, history) => dispatch => {
       if(userType==="manager"){
         // Set current manager
         dispatch(setCurrentUser(decoded));
-        console.log("manager login success");
         history.push("/managerdashboard")
       }else{
         // Set current user
         dispatch(setCurrentUser(decoded));
-        console.log("prosumer loggin succuess");
         history.push("/dashboard");
       }
     })
@@ -156,8 +151,7 @@ export const logoutUser = (status, data) => dispatch => {
   axios
     .put("api/user/" + data, status)
     .then(res => {
-      console.log("authactions LOGOUT USER --data--", data);
-      console.log("authactions LOGOUT USER --status--", status);
+      console.log("logoutuser");
       // Remove token from local storage
       localStorage.removeItem("jwtToken");
       // Remove auth header for future requests

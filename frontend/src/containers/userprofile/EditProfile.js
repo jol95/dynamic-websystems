@@ -17,15 +17,14 @@ class EditProfile extends Component {
             errors: {}
         };
     }
-
+    // if someone isnt logged in, push login
     componentDidMount() { 
-        // if someone isnt logged in, push login
         if (!this.props.auth.isAuthenticated) {
           this.props.history.push("/login");
-          console.log("FROM EDITUSER --> PUSHING LOGIN");
         }
       }
     
+      // some error handling
       UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
           this.setState({
@@ -33,9 +32,12 @@ class EditProfile extends Component {
           });
         }
       }
+
+    //sets value when some input is given  
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
       };
+
     onSubmit = e => {
         e.preventDefault();
     const newUser = {
@@ -44,16 +46,16 @@ class EditProfile extends Component {
           lastname: this.state.lastname,
           address: this.state.address,
         };
-    //editUser = (userType, dbData ,data)
-    //       .put("api/" + userType + data, dbData)
-    console.log("xxx NEWUSER xxx", newUser);
-    console.log("xxx params xxx" , this.props.match.params);
+    
+    //updates the chosen user in the database
     const data = this.props.match.params.id;
     this.props.editUser("user/" , newUser, data); 
       };
     render() {
         const { errors } = this.state;
     return (
+
+          /* DISPLAY INPUT FIELDS FOR UPDATING USER */
           <div className="container">
             <div className="row">
               <div className="col s8 offset-s2">
@@ -155,6 +157,7 @@ class EditProfile extends Component {
         );
       }
     }
+
 EditProfile.propTypes = {
   editUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired

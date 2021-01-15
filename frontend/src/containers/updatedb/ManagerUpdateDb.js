@@ -13,7 +13,7 @@ class ManagerUpdateDb extends Component {
       };
     }
 
-
+    //some error handling
     UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.errors) {
         this.setState({
@@ -21,6 +21,7 @@ class ManagerUpdateDb extends Component {
         });
         }
     }
+    //sets value when some input is given  
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
     };
@@ -30,11 +31,12 @@ class ManagerUpdateDb extends Component {
         price: this.state.price,
       };
         
-    console.log("ManagerUpdateDB manager newupdate", newUpdate);
     this.props.updateDatabase("grid", newUpdate, "/"); 
 
     };
 
+    //onsubmit for status so it can be independently patched
+    //must be a better way to do this
     onSubmit2 = e => {
       e.preventDefault();
     const newUpdate = {
@@ -43,7 +45,6 @@ class ManagerUpdateDb extends Component {
     const { user } = this.props.auth;
     const data = user.id;
       
-  console.log("ManagerUpdateDB manager newupdate", newUpdate);
   this.props.updateDatabase("manager/", newUpdate, data); 
 
   };

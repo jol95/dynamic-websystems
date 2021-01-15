@@ -14,7 +14,7 @@ class ManagerProfile extends Component {
           errors: {}
         };
     }
-
+    //Sets an interval and tickrate when component and for as long as it's mounted
     componentDidMount() {
       this.interval = setInterval(this.tick, this.state.delay);
    }
@@ -25,25 +25,23 @@ class ManagerProfile extends Component {
             this.interval = setInterval(this.tick, this.state.delay);
         }
     }
-
+    //Stops ticking when the component is unmounted
     componentWillUnmount() {
         clearInterval(this.interval);
     }
 
 
         tick = async () => { 
-            //settimeout // polling
-            //const base64Flag = 'data:image/jpeg;base64,';
             const { user } = this.props.auth;
             const data = user.id
             var kind = "";
 
             if (user.role==="manager"){
                 kind = "manager/";
-                console.log("you are indeed a manager");
             }else if (user.role==="user"){
                 kind = "household/";
             }
+
             const response = await axios.get("/api/" + kind + data);
             const response2 = await axios.get("/api/grid/");
             this.setState({
@@ -68,7 +66,6 @@ class ManagerProfile extends Component {
         <div className="Apphouse">
             <h1>Manager Dashboard</h1>
             <h2>Your Profile</h2>
-            {/* Fetch data from API */}
             <br />
             {/* Display data from API */}   
             <div className="profiles"> 

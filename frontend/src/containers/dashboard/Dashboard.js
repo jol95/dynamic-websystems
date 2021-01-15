@@ -17,7 +17,6 @@ class Dashboard extends Component {
     const dbData =  {
       status: "false",
     }
-    console.log("dashboard logout data", dbData)
     this.props.logoutUser(dbData, data);
   };
 
@@ -53,7 +52,8 @@ render() {
               Edit profile
             </button>
             {/*LOGOUT BUTTON */}
-            <button
+            {/* WORKS BUT IS NOW RESTRICTED FOR MANAGER ONLY */}
+            {/* <button
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -64,7 +64,7 @@ render() {
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
               Logout
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

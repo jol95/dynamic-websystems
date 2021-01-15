@@ -14,8 +14,6 @@ const ManagerRoute = ({
   <Route
     {...rest}
     render={props => {
-      console.log("managerrouter props:", user);
-
       //auth=FALSE and LOADING=FALSE  or ROLE = TRUE
       if (user.role==="user"){
         return <Redirect to ="/login" />
