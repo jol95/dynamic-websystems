@@ -58,10 +58,11 @@ const updateManager = async () => {
 tick = 5000;
 setInterval(() => {
   if(!init){
+   totalproduction = 0;
+   totalconsumption = 0;
+   totalnetproduction = 0;
+   
     initTotal().then(tot => {
-      totalproduction = 0;
-      totalconsumption = 0;
-      totalnetproduction = 0;
       totalbuffer = tot.buffer;
    });
    }
