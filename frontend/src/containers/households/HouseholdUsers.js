@@ -42,6 +42,12 @@ class HouseholdUsers extends Component {
             })
     }
 
+    onEditClick = e => {
+        e.preventDefault();
+        const path = `/profile/${data}`;
+        this.props.history.push(path);
+        };
+
 
 
     render() {
@@ -69,6 +75,19 @@ class HouseholdUsers extends Component {
                         <p>lastname:{item.lastname} </p>
                         <p>address:{item.address} </p>
                         <p>status:{item.status} </p>
+                                    {/*EDIT PROFILE BUTTON*/}
+                        <button
+                        style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                        }}
+                        onClick={this.onEditClick}
+                        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                        >
+                        Edit profile
+                        </button>
                     </div>
                 </div>
             )}

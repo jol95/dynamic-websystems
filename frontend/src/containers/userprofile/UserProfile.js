@@ -83,7 +83,7 @@ class UserProfile extends Component {
                 <p>consumption: {consumption} kw/h </p>
                 <p>netproduction: {netproduction} kW/h </p>
                 <p>buffer: {buffer} kW </p>
-                <p>blackout: {blackout} </p>
+                <p>blackout: {String(blackout)}</p>                
                 <p>ratio: {ratio} </p>
                 </div>
                 </div>
