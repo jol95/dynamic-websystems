@@ -7,6 +7,14 @@
     padding: 60px 0;
   }
 
+  img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+    height: 150px;
+  }
+
   .Update form {
     margin: 0 auto;
     max-width: 320px;

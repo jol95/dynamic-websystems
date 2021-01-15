@@ -85,8 +85,8 @@ class ManagerUpdateDb extends Component {
                   id="status"
                   type="text"
                   >
-                <option value="On">on</option>
-                <option value="Off">off</option>
+                <option value="on">On</option>
+                <option value="off">Off</option>
                 </select>      
 
               </div>   
