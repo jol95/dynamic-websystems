@@ -78,7 +78,7 @@ class ManagerUpdateDb extends Component {
                 </button>
 
                 {/* DROPDOWN FOR STATUS ON/OFF */}
-                <div>
+                <div className="input-field col s12">
                 <label htmlFor="status">Status</label>
                 <select
                   style={{width: 300}}
