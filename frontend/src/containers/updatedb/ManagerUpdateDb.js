@@ -75,9 +75,8 @@ class ManagerUpdateDb extends Component {
                 >
                   Update price
                 </button>
-                </form>
               </div>
-
+              </form>
               <div className="input-field col s12">
               <form noValidate onSubmit={this.onSubmit}>
                 {/* DROPDOWN FOR STATUS ON/OFF */}
