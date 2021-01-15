@@ -34,7 +34,7 @@ class Households extends Component {
 
     tick = async () => {    
 
-            var kind = "households";
+            var kind = "household";
             const response = await axios.get("/api/" + kind);
             this.setState({
                 pollingCount: this.state.pollingCount + 1,
