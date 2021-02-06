@@ -31,6 +31,10 @@ class HouseholdUsers extends Component {
         clearInterval(this.interval);
     }
 
+    onEditClick = (e, id) => { 
+        e.preventDefault();
+        this.props.push(`/profile/${id}`);
+      }
 
     tick = async () => {    
 
@@ -66,18 +70,18 @@ class HouseholdUsers extends Component {
                         <p>address:{item.address} </p>
                         <p>logged in:{item.status} </p>
                         {/*EDIT PROFILE BUTTON*/}
-                        {/* <button
+                        <button
                         style={{
                             width: "150px",
                             borderRadius: "3px",
                             letterSpacing: "1.5px",
                             marginTop: "1rem"
                         }}
-
+                        onClick={(e) => this.onEditClick(e, item.id)}
                         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                         >
                         Edit profile
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             )}
