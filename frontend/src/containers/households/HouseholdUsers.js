@@ -33,7 +33,9 @@ class HouseholdUsers extends Component {
 
     onEditClick = (e, id) => { 
         e.preventDefault();
-        this.props.push(`/profile/${id}`);
+        console.log("ID:", id);
+        const path = `/profile/${id}`;
+        this.props.history.push(path);
       }
 
     tick = async () => {    
