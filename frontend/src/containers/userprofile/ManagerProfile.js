@@ -78,7 +78,7 @@ class ManagerProfile extends Component {
                 <br/><br/>
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
-                <p>price: {price} sek/kW</p>
+                <p>current market price: {price} sek/kW</p>
                 <p>totalproduction: {totalproduction} kW/h</p>
                 <p>totalconsumption: {totalconsumption} kW/h</p>
                 <p>market: {totalnetproduction} kW/h </p>

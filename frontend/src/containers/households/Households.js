@@ -67,8 +67,9 @@ class Households extends Component {
                         <p>Consumption:{item.consumption} kW/h</p>
                         <p>Netto production:{item.netproduction} kW/h</p>
                         <p>Buffer:{item.buffer} kW</p>
-                        <p>Price:{item.price} sek/kW </p>
+                        <p>Current market price:{item.price} sek/kW </p>
                         <p>Blackout:{String(item.blackout)}</p>
+                        <p>Prosumer:{String(item.isproducing)}</p>
                         <p>Ratio:{item.ratio}</p>
                     </div>
                 </div>

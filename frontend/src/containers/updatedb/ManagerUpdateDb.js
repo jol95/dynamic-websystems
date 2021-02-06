@@ -87,7 +87,7 @@ class ManagerUpdateDb extends Component {
                   type="submit"
                   className="btn btn-large waves-effect waves-light hoverable blue accent-3"
                 >
-                  Update price
+                  Update current market price
                 </button>
               </div>
               </form>

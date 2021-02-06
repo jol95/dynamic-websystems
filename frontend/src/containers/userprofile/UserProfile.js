@@ -45,6 +45,7 @@ class UserProfile extends Component {
                 pollingCount: this.state.pollingCount + 1,
                 id: response.data.id,
                 display:  response.data.img,
+                price: response.data.price,
                 wind:  response.data.wind,
                 production:  response.data.production,
                 consumption:  response.data.consumption,
@@ -72,6 +73,7 @@ class UserProfile extends Component {
                     src={"data:image/png;base64," + display}
                     alt='Look here'/>
                 <br/>
+                <p>current market price: {price} sek/kW</p>
                 <p>wind: {wind} m/s </p>
                 <p>production: {production} kW/h </p>
                 <p>consumption: {consumption} kw/h </p>
