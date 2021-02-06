@@ -208,7 +208,7 @@ exports.timeout = function(req, res) {
    });
 };
 
-const reset = function(house, actual_ratio){
+const reset = function(house, actual_ratio, res){
     house.ratio = actual_ratio;
  
     house.save(function (err) {
