@@ -77,7 +77,7 @@ class ManagerProfile extends Component {
                     src={"data:image/png;base64," + display}
                     alt='Look here'/>
                 <br/><br/>
-                <p>status: {status} </p>
+                <p>status of coal powerplant: {status} </p>
                 <p>ratio: {ratio} </p>
                 <p>current market price: {price} sek/kW</p>
                 <p>manager production output: {production} kW/h</p>

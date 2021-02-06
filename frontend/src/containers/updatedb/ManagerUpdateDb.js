@@ -118,7 +118,7 @@ class ManagerUpdateDb extends Component {
                 type="submit"
                 className="btn btn-large waves-effect waves-light hoverable blue accent-3"
               >
-                Update Status
+                Update Status of coal powerplant
                 </button>
               </div>
               </form>
