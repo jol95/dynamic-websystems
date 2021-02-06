@@ -52,6 +52,7 @@ class ManagerProfile extends Component {
                 totalnetproduction: response2.data.totalnetproduction,
                 buffer: response2.data.buffer,
                 modelprice: response2.data.modelprice,
+                production: response.data.production,
                 id: response.data.id,
                 status: response.data.status,
                 ratio: response.data.ratio,
@@ -60,7 +61,7 @@ class ManagerProfile extends Component {
     }
 
     render() {
-        const { id, status, ratio, display, price, totalproduction, totalconsumption,
+        const { id, status, ratio, production, display, price, totalproduction, totalconsumption,
         totalnetproduction, buffer, modelprice } = this.state
         return(
         <div className="Apphouse">
@@ -79,6 +80,7 @@ class ManagerProfile extends Component {
                 <p>status: {status} </p>
                 <p>ratio: {ratio} </p>
                 <p>current market price: {price} sek/kW</p>
+                <p>manager production output: {production} kW/h</p>
                 <p>totalproduction: {totalproduction} kW/h</p>
                 <p>totalconsumption: {totalconsumption} kW/h</p>
                 <p>market: {totalnetproduction} kW/h </p>
