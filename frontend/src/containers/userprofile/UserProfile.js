@@ -57,7 +57,7 @@ class UserProfile extends Component {
             })
     }
     render() {
-         const { id, display, wind, production, consumption,
+         const { id, price, display, wind, production, consumption,
          netproduction, buffer, blackout, ratio, status } = this.state
         return(
         <div className="Apphouse">
