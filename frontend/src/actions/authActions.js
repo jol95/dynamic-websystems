@@ -10,6 +10,20 @@ import {
   SET_ROLE
 } from "./types";
 
+export const setUserTimeout = (id) => dispatch => {
+  axios
+    .put("/api/user/timeout/" + id)
+    .then(res => {
+      console.log("setUserTimeout");
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
 // Update whatever
 export const updateDatabase = (userType, dbData ,data) => dispatch => {
   axios

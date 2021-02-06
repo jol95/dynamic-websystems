@@ -12,4 +12,8 @@ router.route('/:id')
     .patch(householdController.updateHouse) // UPDATE all household parameters including specific ones. 
     .put(householdController.updateHouse); // UPDATE all household parameters including specific ones.
 
+router.route('/:id/timeout')
+    .patch(householdController.timeout) 
+    .put(householdController.timeout);
+
 module.exports = router;

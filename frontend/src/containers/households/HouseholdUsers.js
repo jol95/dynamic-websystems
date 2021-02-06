@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { displayDatabase } from "../../actions/authActions";
+import { setUserTimeout } from "../../actions/authActions";
 import axios from 'axios';
 import "./Households.css";
 
@@ -33,10 +34,13 @@ class HouseholdUsers extends Component {
 
     onEditClick = (e, id) => { 
         e.preventDefault();
-        console.log("ID:", id);
         const path = `/profile/${id}`;
         this.props.history.push(path);
       }
+    onEditClick2 = (e, id) => { 
+        e.preventDefault();
+        this.props.setUserTimeout(id);
+    }
 
     tick = async () => {    
 
@@ -71,7 +75,24 @@ class HouseholdUsers extends Component {
                         <p>lastname:{item.lastname} </p>
                         <p>address:{item.address} </p>
                         <p>logged in:{item.status} </p>
+
+                        {/*BLOCK SALES OF USER */}
+                        
+                        <button
+                        style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                        }}
+                        onClick={(e) => this.onEditClick2(e, item.id)}
+                        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                        >
+                        Sell timeout
+                        </button>
+
                         {/*EDIT PROFILE BUTTON*/}
+
                         <button
                         style={{
                             width: "150px",

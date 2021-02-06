@@ -189,3 +189,34 @@ exports.updateHouse = function(req, res) {
     });
 };
 
+exports.timeout = function(req, res) {
+    Household.findOne({ id: req.params.id}, function (err, house) {
+       actual_ratio = house.ratio;
+       house.ratio = 1;
+
+       setTimeout(function(){ reset(house,actual_ratio); }, 30000); // Delay timeout.
+
+       house.save(function (err) {
+           if (err)
+               res.json(err)
+           res.json({
+               message: "Data Updated Successfully",
+               data: house
+           });
+       });
+
+   });
+};
+
+const reset = function(house, actual_ratio){
+    house.ratio = actual_ratio;
+ 
+    house.save(function (err) {
+        if (err)
+            res.json(err)
+        res.json({
+            message: "Data Updated Successfully",
+            data: house
+        });
+    });
+}
