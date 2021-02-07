@@ -31,7 +31,7 @@ class ManagerProfile extends Component {
     }
 
     onUserClick = () => { 
-        this.props.push(`/householdusers`);
+        this.props.history.push(`/householdusers`);
       }
 
     onHouseholdsClick = (e) => { 
