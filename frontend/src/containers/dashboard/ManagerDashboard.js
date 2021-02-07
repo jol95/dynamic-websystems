@@ -25,6 +25,7 @@ return (
             <ManagerUpdateDb/>
             <button
               style={{
+                backgroundColor: "lightblue",
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
