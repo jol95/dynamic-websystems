@@ -70,6 +70,7 @@ class ManagerProfile extends Component {
 
             <button
             style={{
+                backgroundColor: "lightblue",
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
@@ -85,7 +86,7 @@ class ManagerProfile extends Component {
 
             <button
             style={{
-                backgroundColor: "blue",
+                backgroundColor: "lightblue",
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
