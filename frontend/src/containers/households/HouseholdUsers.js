@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { displayDatabase } from "../../actions/authActions";
 import { setUserTimeout } from "../../actions/authActions";
+import classnames from "classnames";
 import axios from 'axios';
 import "./Households.css";
 
@@ -56,6 +57,17 @@ class HouseholdUsers extends Component {
          let items = this.state.items
         return(
         <div className="Apphouse">
+            <Link to="/managerdashboard" className="btn-flat waves-effect">
+            <i className="material-icons left"></i> Back to managerdashboard
+            </Link>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                <h4>
+                <b>Edit User Info</b>
+                </h4>
+                <p className="grey-text text-darken-1">
+                Want to go to the households? <Link to="/households">Users</Link>
+                </p>
+            </div>
             <h1>Users</h1>
             <h2>Refreshes: {this.state.pollingCount}</h2>
             {/* Fetch data from API */}
