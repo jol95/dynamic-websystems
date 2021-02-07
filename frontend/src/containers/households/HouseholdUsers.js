@@ -117,6 +117,7 @@ class HouseholdUsers extends Component {
 
 HouseholdUsers.propTypes = {
     displayDatabase: PropTypes.func.isRequired,
+    setUserTimeout: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
   };
@@ -126,5 +127,5 @@ HouseholdUsers.propTypes = {
   });
   export default connect(
     mapStateToProps,
-    { displayDatabase }
+    { displayDatabase, setUserTimeout }
   )( HouseholdUsers );

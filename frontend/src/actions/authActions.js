@@ -12,7 +12,7 @@ import {
 
 export const setUserTimeout = (id) => dispatch => {
   axios
-    .put("/api/user/timeout/" + id)
+    .put("/api/household/" + id + "/timeout")
     .then(res => {
       console.log("setUserTimeout");
     })
