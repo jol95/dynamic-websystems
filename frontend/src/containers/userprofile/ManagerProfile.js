@@ -85,6 +85,7 @@ class ManagerProfile extends Component {
 
             <button
             style={{
+                color: "blue",
                 width: "150px",
                 borderRadius: "3px",
                 letterSpacing: "1.5px",
