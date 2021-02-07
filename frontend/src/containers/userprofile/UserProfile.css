@@ -15,6 +15,10 @@
     height: 150px;
   }
 
+  button {
+    background-color:rgb(120, 158, 241)
+  }
+
   .Update form {
     margin: 0 auto;
     max-width: 320px;
