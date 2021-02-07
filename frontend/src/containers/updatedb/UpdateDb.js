@@ -76,8 +76,8 @@ class UpdateDb extends Component {
                 <p>{this.state.ratio}</p>
 
                 <span className="red-text">{errors.ratio}</span>
-              </div>
-              <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              {/*</div>*/}
+              {/*<div className="col s12" style={{ paddingLeft: "11.250px" }}>*/}
                 <button
                   style={{
                     width: "150px",
