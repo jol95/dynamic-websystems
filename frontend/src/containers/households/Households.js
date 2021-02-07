@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { displayDatabase } from "../../actions/authActions";
+import classnames from "classnames";
 import axios from 'axios';
 import "./Households.css";
 
