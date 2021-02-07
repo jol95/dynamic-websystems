@@ -62,15 +62,15 @@ class Households extends Component {
                         src={"data:image/png;base64," + item.img}
                         alt='Look here'/>
                         <br/>
-                        <p><b> Wind:</b>{item.wind} m/s</p>
-                        <p>Production:{item.production} kW/h</p>
-                        <p>Consumption:{item.consumption} kW/h</p>
-                        <p>Netto production:{item.netproduction} kW/h</p>
-                        <p>Buffer:{item.buffer} kW</p>
-                        <p>Current market price:{item.price} sek/kW </p>
-                        <p>Blackout:{String(item.blackout)}</p>
-                        <p>Prosumer:{String(item.isproducing)}</p>
-                        <p>Ratio:{item.ratio}</p>
+                        <p><b> Wind: </b>{item.wind} m/s</p>
+                        <p><b>Production: </b>{item.production} kW/h</p>
+                        <p><b>Consumption: </b>{item.consumption} kW/h</p>
+                        <p><b>Netto production: </b>{item.netproduction} kW/h</p>
+                        <p><b>Buffer: </b>{item.buffer} kW</p>
+                        <p><b>Current market price:</b>{item.price} sek/kW </p>
+                        <p><b>Blackout: </b>{String(item.blackout)}</p>
+                        <p><b>Prosumer: </b>{String(item.isproducing)}</p>
+                        <p><b>Ratio: </b>{item.ratio}</p>
                     </div>
                 </div>
             )}

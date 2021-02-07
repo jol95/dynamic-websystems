@@ -30,6 +30,16 @@ class ManagerProfile extends Component {
         clearInterval(this.interval);
     }
 
+    onUserClick = (e) => { 
+        e.preventDefault();
+        this.props.history.push(`/householdusers`);
+      }
+
+    onHouseholdsClick = (e) => { 
+        e.preventDefault();
+        this.props.history.push(`/households`);
+    }
+
 
         tick = async () => { 
             const { user } = this.props.auth;
@@ -66,6 +76,36 @@ class ManagerProfile extends Component {
         return(
         <div className="Apphouse">
             <h1>Manager Dashboard</h1>
+
+            {/*HOUSEHOLD BUTTON*/}
+
+            <button
+            style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+            }}
+            onClick={(e) => this.onHouseholdsClick(e)}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+            Your households
+            </button>
+
+            {/*USER BUTTON*/}
+
+            <button
+            style={{
+                width: "150px",
+                borderRadius: "3px",
+                letterSpacing: "1.5px",
+                marginTop: "1rem"
+            }}
+            onClick={(e) => this.onUserClick(e)}
+            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+            Your users
+            </button>
             <h2>Your Profile</h2>
             <br />
             {/* Display data from API */}   
@@ -77,15 +117,15 @@ class ManagerProfile extends Component {
                     src={"data:image/png;base64," + display}
                     alt='Look here'/>
                 <br/><br/>
-                <p>status of coal powerplant: {status} </p>
-                <p>ratio: {ratio} </p>
-                <p>current market price: {price} sek/kW</p>
-                <p>manager production output: {production} kW/h</p>
-                <p>totalproduction: {totalproduction} kW/h</p>
-                <p>totalconsumption: {totalconsumption} kW/h</p>
-                <p>market: {totalnetproduction} kW/h </p>
-                <p>buffer: {buffer} kW</p>
-                <p>modelprice: {modelprice} sek/kW</p>
+                <p><b>status of coal powerplant: </b> {status} </p>
+                <p><b>ratio: </b> {ratio} </p>
+                <p><b>current market price: </b> {price} sek/kW</p>
+                <p><b>manager production output: </b>{production} kW/h</p>
+                <p><b>totalproduction: </b>{totalproduction} kW/h</p>
+                <p><b>totalconsumption: </b>{totalconsumption} kW/h</p>
+                <p><b>market: </b>{totalnetproduction} kW/h </p>
+                <p><b>buffer: </b> {buffer} kW</p>
+                <p><b>modelprice: </b>{modelprice} sek/kW</p>
                 </div>
                 </div>
                 </div>

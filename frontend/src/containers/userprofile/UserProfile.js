@@ -73,14 +73,14 @@ class UserProfile extends Component {
                     src={"data:image/png;base64," + display}
                     alt='Look here'/>
                 <br/>
-                <p>current market price: {price} sek/kW</p>
-                <p>wind: {wind} m/s </p>
-                <p>production: {production} kW/h </p>
-                <p>consumption: {consumption} kw/h </p>
-                <p>netproduction: {netproduction} kW/h </p>
-                <p>buffer: {buffer} kW </p>
-                <p>blackout: {String(blackout)}</p>                
-                <p>ratio: {ratio} </p>
+                <p><b>current market price: </b> {price} sek/kW</p>
+                <p><b>wind: </b> {wind} m/s </p>
+                <p><b>production: </b> {production} kW/h </p>
+                <p><b>consumption: </b> {consumption} kw/h </p>
+                <p><b>netproduction: </b> {netproduction} kW/h </p>
+                <p><b>buffer: </b> {buffer} kW </p>
+                <p><b>blackout: </b> {String(blackout)}</p>                
+                <p><b>ratio: </b> {ratio} </p>
                 </div>
                 </div>
                 </div>

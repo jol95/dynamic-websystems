@@ -70,11 +70,11 @@ class HouseholdUsers extends Component {
                         src={"data:image/png;base64," + item.img}
                         alt='Look here'/>
                         <br/>
-                        <p>email:{item.email} </p>
-                        <p>firstname:{item.firstname} </p>
-                        <p>lastname:{item.lastname} </p>
-                        <p>address:{item.address} </p>
-                        <p>logged in:{item.status} </p>
+                        <p><b>email: </b>{item.email} </p>
+                        <p><b>firstname: </b>{item.firstname} </p>
+                        <p><b>lastname: </b>{item.lastname} </p>
+                        <p><b>address: </b>{item.address} </p>
+                        <p><b>logged in: </b>{item.status} </p>
 
                         {/*BLOCK SALES OF USER */}
                         
