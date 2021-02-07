@@ -100,7 +100,7 @@ class ManagerProfile extends Component {
                 letterSpacing: "1.5px",
                 marginTop: "1rem"
             }}
-            onClick={this.onUserClick}
+            onClick={event =>  window.location.href='/householdusers'}
             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
             Your users
