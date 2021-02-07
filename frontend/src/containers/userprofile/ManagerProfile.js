@@ -30,9 +30,8 @@ class ManagerProfile extends Component {
         clearInterval(this.interval);
     }
 
-    onUserClick = (e) => { 
-        e.preventDefault();
-        history.push(`/householdusers`);
+    onUserClick = () => { 
+        this.props.push(`/householdusers`);
       }
 
     onHouseholdsClick = (e) => { 
@@ -101,7 +100,7 @@ class ManagerProfile extends Component {
                 letterSpacing: "1.5px",
                 marginTop: "1rem"
             }}
-            onClick={(e) => this.onUserClick(e)}
+            onClick={this.onUserClick}
             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
             Your users
