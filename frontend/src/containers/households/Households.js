@@ -62,7 +62,7 @@ class Households extends Component {
                         src={"data:image/png;base64," + item.img}
                         alt='Look here'/>
                         <br/>
-                        <p>Wind:{item.wind} m/s</p>
+                        <p><b> Wind:</b>{item.wind} m/s</p>
                         <p>Production:{item.production} kW/h</p>
                         <p>Consumption:{item.consumption} kW/h</p>
                         <p>Netto production:{item.netproduction} kW/h</p>
