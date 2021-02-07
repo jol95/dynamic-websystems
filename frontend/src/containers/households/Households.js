@@ -48,7 +48,17 @@ class Households extends Component {
          let items = this.state.items
         return(
         <div className="Apphouse">
-            <h1>Households</h1>
+            <Link to="/managerdashboard" className="btn-flat waves-effect">
+            <i className="material-icons left"></i> Back to managerdashboard
+            </Link>
+            <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+                <h4>
+                <b>Households</b>
+                </h4>
+                <p className="grey-text text-darken-1">
+                Want to go to the users? <Link to="/householdusers">Users</Link>
+                </p>
+            </div>
             <h2>Refreshes: {this.state.pollingCount}</h2>
             {/* Fetch data from API */}
             <br />

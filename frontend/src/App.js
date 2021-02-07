@@ -44,7 +44,7 @@ class App extends React.Component{
             Electricity Panel
           </Navbar.Brand>
         </LinkContainer>
-        <LinkContainer to="/households">
+{/*         <LinkContainer to="/households">
           <Navbar.Brand className="font-weight-bold text-muted">
             Households
           </Navbar.Brand>
@@ -53,7 +53,7 @@ class App extends React.Component{
           <Navbar.Brand className="font-weight-bold text-muted">
             Users
           </Navbar.Brand>
-        </LinkContainer>
+        </LinkContainer> */}
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>

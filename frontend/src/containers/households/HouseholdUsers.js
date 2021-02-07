@@ -63,13 +63,12 @@ class HouseholdUsers extends Component {
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <h4>
-                <b>Edit User Info</b>
+                <b>Users</b>
                 </h4>
                 <p className="grey-text text-darken-1">
                 Want to go to the households? <Link to="/households">Users</Link>
                 </p>
             </div>
-            <h1>Users</h1>
             <h2>Refreshes: {this.state.pollingCount}</h2>
             {/* Fetch data from API */}
             <br />
