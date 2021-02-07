@@ -32,7 +32,7 @@ class ManagerProfile extends Component {
 
     onUserClick = (e) => { 
         e.preventDefault();
-        this.props.history.push(`/householdusers`);
+        history.push(`/householdusers`);
       }
 
     onHouseholdsClick = (e) => { 
