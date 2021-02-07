@@ -194,7 +194,7 @@ exports.timeout = function(req, res) {
        actual_ratio = house.ratio;
        house.ratio = 1;
 
-       setTimeout(function(){ reset(house,actual_ratio); }, 30000); // Delay timeout.
+       setTimeout(function(){ reset(house,actual_ratio); }, 5000); // Delay timeout.
 
        house.save(function (err) {
            if (err)
