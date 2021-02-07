@@ -59,8 +59,8 @@ class EditProfile extends Component {
           <div className="container">
             <div className="row">
               <div className="col s8 offset-s2">
-                <Link to="/" className="btn-flat waves-effect">
-                  <i className="material-icons left"></i> Back to home
+                <Link to="/managerdashboard" className="btn-flat waves-effect">
+                  <i className="material-icons left"></i> Back to manager dashboard
                 </Link>
                 <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                   <h4>

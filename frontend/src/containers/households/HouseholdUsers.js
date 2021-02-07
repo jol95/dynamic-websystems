@@ -66,7 +66,7 @@ class HouseholdUsers extends Component {
                 <b>Users</b>
                 </h4>
                 <p className="grey-text text-darken-1">
-                Want to go to the households? <Link to="/households">Users</Link>
+                Want to go to the households? <Link to="/households">Households</Link>
                 </p>
             </div>
             <h2>Refreshes: {this.state.pollingCount}</h2>
