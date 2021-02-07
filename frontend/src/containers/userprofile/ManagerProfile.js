@@ -30,16 +30,6 @@ class ManagerProfile extends Component {
         clearInterval(this.interval);
     }
 
-    onUserClick = () => { 
-        this.props.history.push(`/householdusers`);
-      }
-
-    onHouseholdsClick = (e) => { 
-        e.preventDefault();
-        this.props.history.push(`/households`);
-    }
-
-
         tick = async () => { 
             const { user } = this.props.auth;
             const data = user.id
@@ -85,7 +75,7 @@ class ManagerProfile extends Component {
                 letterSpacing: "1.5px",
                 marginTop: "1rem"
             }}
-            onClick={(e) => this.onHouseholdsClick(e)}
+            onClick={event =>  window.location.href='/households'}
             className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
             Your households
